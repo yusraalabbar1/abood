@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:abood/constant/urls.dart';
 import 'package:abood/controller/ControlUser.dart';
 import 'package:abood/controller/controlProduct.dart';
+import 'package:abood/model/user/mycart/api/update_check.dart';
 import 'package:abood/model/user/mycart/json/my_cart_model.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
@@ -29,8 +30,10 @@ myCartApi() async {
       for (var i = 0; i < c.data!.length; i++) {
         MyCart.add(c.data![i].toJson());
         print(c.data![i].toJson()["qty"]);
-        total = total +
-            (c.data![i].toJson()["qty"] * c.data![i].toJson()["newPrice"]);
+        if (c.data![i].toJson()["isCheck"] == true) {
+          total = total +
+              (c.data![i].toJson()["qty"] * c.data![i].toJson()["newPrice"]);
+        }
       }
       print("========MyCart===============");
       // print(MyCart.length);

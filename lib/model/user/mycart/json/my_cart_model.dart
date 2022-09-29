@@ -52,6 +52,7 @@ class Datum {
     this.extraText,
     this.offerText,
     this.isOffer,
+    this.isCheck,
     this.itemImages,
     this.itemColors,
     this.itemSizes,
@@ -67,6 +68,7 @@ class Datum {
   String? itemName;
   String? itemDescription;
   int? qty;
+  bool? isCheck;
   dynamic? price;
   dynamic? newPrice;
   String? extraText;
@@ -85,6 +87,7 @@ class Datum {
         image: json["image"],
         itemId: json["itemId"],
         itemName: json["itemName"],
+        isCheck: json["isCheck"],
         itemDescription: json["itemDescription"],
         qty: json["qty"],
         price: json["price"],
@@ -113,6 +116,7 @@ class Datum {
         "image": image,
         "itemId": itemId,
         "itemName": itemName,
+        "isCheck": isCheck,
         "itemDescription": itemDescription,
         "qty": qty,
         "price": price,

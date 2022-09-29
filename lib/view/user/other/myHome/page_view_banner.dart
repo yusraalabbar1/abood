@@ -4,6 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:abood/controller/controlProduct.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class CarouselBanner extends StatefulWidget {
   const CarouselBanner({
@@ -82,7 +83,13 @@ Widget slider(context, images, pagePosition, active) {
 
   return InkWell(
     onTap: () async {
-      print("$sliderurl${images[pagePosition]["image"]}");
+      print("${images[pagePosition]["target"]}");
+      if (images[pagePosition]["target"] == "LINK") {
+        final Uri _url = Uri.parse(images[pagePosition]["value"]);
+        if (!await launchUrl(_url)) {
+          throw 'Could not launch $_url';
+        }
+      }
     },
     child: AnimatedContainer(
       duration: const Duration(milliseconds: 1000),
@@ -94,8 +101,6 @@ Widget slider(context, images, pagePosition, active) {
           image: DecorationImage(
             image: CachedNetworkImageProvider(
                 sliderurl + images[pagePosition]["image"]),
-            // image: CachedNetworkImageProvider(
-            //     "https://friendly-proskuriakova.162-55-191-66.plesk.page/AboodAPI/Images/${images[pagePosition]["image"]}"),
             fit: BoxFit.cover,
           )),
     ),

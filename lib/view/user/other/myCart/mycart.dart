@@ -5,6 +5,7 @@ import 'package:abood/controller/controlProduct.dart';
 import 'package:abood/model/user/mycart/api/cart_qty.dart';
 import 'package:abood/model/user/mycart/api/delet_cart.dart';
 import 'package:abood/model/user/mycart/api/my_cart.dart';
+import 'package:abood/model/user/mycart/api/update_check.dart';
 import 'package:abood/model/user/mylike/api/delete_like.dart';
 import 'package:abood/model/user/mylike/api/mylike.dart';
 import 'package:abood/view/user/other/particuler_product.dart';
@@ -30,6 +31,23 @@ class _MyCartState extends State<MyCart> {
   Homecontroller controller1 = Get.put(Homecontroller());
   var cc;
   var i;
+  List<String> _texts = [
+    "InduceSmile.com",
+    "Flutter.io",
+    "google.com",
+    "youtube.com",
+    "yahoo.com",
+    "gmail.com"
+  ];
+
+  List<bool>? _isChecked;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _isChecked = List<bool>.filled(_texts.length, false);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -151,8 +169,11 @@ class _MyCartState extends State<MyCart> {
                                                                 .size
                                                                 .height /
                                                             6,
-                                                    child: sideWidget(controller
-                                                        .myCart[index]["id"])),
+                                                    child: sideWidget(
+                                                        controller.myCart[index]
+                                                            ["id"],
+                                                        controller.myCart[index]
+                                                            ["isCheck"])),
                                               ),
                                             ],
                                           )),
@@ -293,7 +314,7 @@ class _MyCartState extends State<MyCart> {
     );
   }
 
-  Widget sideWidget(idCart) {
+  Widget sideWidget(idCart, isCheck) {
     return RotatedBox(
       quarterTurns: 0,
       child: Center(
@@ -312,11 +333,24 @@ class _MyCartState extends State<MyCart> {
             ),
             Expanded(
               child: IconButton(
-                  onPressed: () async {},
-                  icon: const Icon(
-                    Icons.check_box,
-                    color: Colors.white,
-                  )),
+                  onPressed: () async {
+                    if (isCheck == false) {
+                      checkApi(idCart, true);
+                      await myCartApi();
+                    } else {
+                      checkApi(idCart, false);
+                      await myCartApi();
+                    }
+                  },
+                  icon: isCheck == true
+                      ? const Icon(
+                          Icons.check_box,
+                          color: Colors.white,
+                        )
+                      : const Icon(
+                          Icons.check_box_outline_blank,
+                          color: Colors.white,
+                        )),
             )
           ],
         ),
