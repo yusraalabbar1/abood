@@ -24,6 +24,7 @@ import 'package:abood/view/user/auth/otp_sigup.dart';
 import 'package:abood/view/user/other/Notif/notification.dart';
 import 'package:abood/view/user/other/home_page.dart';
 import 'package:abood/view/user/other/like/my_like.dart';
+import 'package:abood/view/user/other/myCart/complet_cart.dart';
 import 'package:abood/view/user/other/myCart/mycart.dart';
 import 'package:abood/view/user/other/myCateg/offer..dart';
 import 'package:abood/view/user/other/myCateg/sub2cat.dart';
@@ -76,6 +77,7 @@ class MyApp extends StatelessWidget {
         "AllItemsStoreoffer": ((context) => AllItemsStoreoffer()),
         "particulerProduct": ((context) => particulerProduct()),
         "AddProduct": ((context) => AddProduct()),
+        "CompletCart": ((context) => CompletCart()),
         "EditItem": ((context) => EditItem(
               id: null,
             )),

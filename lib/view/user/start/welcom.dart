@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:abood/constant/colors.dart';
 import 'package:abood/controller/ControlUser.dart';
 import 'package:abood/main.dart';
+import 'package:abood/model/user/auth/signup/api/generate_city.dart';
 import 'package:abood/model/user/auth/signup/api/generate_country.dart';
 import 'package:abood/model/user/mycart/api/my_cart.dart';
 import 'package:abood/model/user/mylike/api/mylike.dart';
@@ -43,10 +44,12 @@ class _welcomState extends State<welcom> {
     controller.SavefirstName(preferences.getString('firstName'));
     controller.SavelastName(preferences.getString('lastName'));
     controller.SavemobileNumber(preferences.getString('mobileNumber'));
+    controller.SavecountryId(preferences.getInt('countryId'));
     if (preferences.getBool("isLogin") == true) {
       if (preferences.getInt("userType") == 1) {
         await myLikeApi(controller.id);
         await myCartApi();
+        await cityGen();
         print(controller.id);
         Navigator.of(context).pushReplacementNamed("homePage");
       } else if (preferences.getInt("userType") == 2) {

@@ -3,7 +3,6 @@ import 'package:abood/constant/urls.dart';
 import 'package:abood/controller/ControlUser.dart';
 import 'package:abood/controller/controlProduct.dart';
 import 'package:abood/model/user/mycart/api/cart_qty.dart';
-import 'package:abood/model/user/mycart/api/check_coupon.dart';
 import 'package:abood/model/user/mycart/api/delet_cart.dart';
 import 'package:abood/model/user/mycart/api/my_cart.dart';
 import 'package:abood/model/user/mycart/api/update_check.dart';
@@ -54,7 +53,7 @@ class _MyCartState extends State<MyCart> {
               ),
               SizedBox(
                 width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height / 2,
+                height: MediaQuery.of(context).size.height / 1.5,
                 child: GetBuilder<ControllerProduct>(builder: (controller) {
                   return (controller.myCart.length > 0
                       ? Container(
@@ -168,7 +167,6 @@ class _MyCartState extends State<MyCart> {
                       : nothingWidget());
                 }),
               ),
-              bottomButtoncuopon(),
               bottomButton()
             ],
           )),
@@ -252,52 +250,6 @@ class _MyCartState extends State<MyCart> {
     );
   }
 
-  Widget bottomButtoncuopon() {
-    return Expanded(
-      child: Align(
-        alignment: FractionalOffset.bottomCenter,
-        child: ListView.builder(
-            shrinkWrap: true,
-            itemCount: thirdMap.length,
-            itemBuilder: (BuildContext context, int index) {
-              return ListTile(
-                  trailing: Text(
-                    "Total: " + thirdMap[index][1].toString() + "JD",
-                    style: TextStyle(color: Colors.green, fontSize: 15),
-                  ),
-                  title: TextFormField1(
-                      thirdMap[index][0].toString(), thirdMap[index][1]));
-            }),
-      ),
-    );
-  }
-
-  TextFormField TextFormField1(hint, Total) {
-    return TextFormField(
-      keyboardType: TextInputType.text,
-      textInputAction: TextInputAction.next,
-      decoration: InputDecoration(
-        hintText: "Add Coupon Code" + hint,
-        prefixIcon: IconButton(onPressed: () {}, icon: const Icon(Icons.send)),
-      ),
-      onFieldSubmitted: (Value) {
-        checkCoponApi(context, Value, hint, Total);
-      },
-      validator: (text) {
-        if (text!.length > 15) {
-          return "can not enter bigest than 15";
-        }
-        if (text.length < 9) {
-          return "can not enter less than 9";
-        }
-      },
-      // onSaved: (string) {
-      //   name = string;
-      //   print(name);
-      // },
-    );
-  }
-
   Widget bottomButton() {
     return Expanded(
       child: Align(
@@ -322,6 +274,16 @@ class _MyCartState extends State<MyCart> {
                           color: Colors.white),
                     )),
               ),
+              // FlatButton(
+              //     color: Colors.black,
+              //     onPressed: () async {},
+              //     child: Text(
+              //       "Add coupon ",
+              //       style: TextStyle(
+              //           fontWeight: FontWeight.bold,
+              //           fontSize: 14,
+              //           color: Colors.white),
+              //     )),
               Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: GetBuilder<ControllerProduct>(builder: (controller) {
@@ -357,10 +319,10 @@ class _MyCartState extends State<MyCart> {
               child: IconButton(
                   onPressed: () async {
                     if (isCheck == false) {
-                      await checkApi(idCart, true);
+                      checkApi(idCart, true);
                       await myCartApi();
                     } else {
-                      await checkApi(idCart, false);
+                      checkApi(idCart, false);
                       await myCartApi();
                     }
                   },

@@ -108,12 +108,12 @@ class _signupState extends State<signup> {
                 boxWidth: MediaQuery.of(context).size.width,
                 boxHeight: 70,
                 boxDecoration: boxd(),
-                icon: Icon(
+                icon: const Icon(
                   Icons.arrow_downward,
                   color: Colors.black,
                 ),
-                hint: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                hint: const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20),
                   child: Text(
                     'اختر المدينة',
                     style: TextStyle(

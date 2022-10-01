@@ -16,11 +16,18 @@ class Homecontroller extends GetxController {
       email,
       passwordcon,
       idReg,
-      identif;
+      identif,
+      cityId;
   bool islogin = false;
   List<Map<dynamic, dynamic>> saveallCountry = [];
+  List<Map<dynamic, dynamic>> allCity = [];
   ident(c) {
     identif = c;
+    update();
+  }
+
+  SaveallCity(c) {
+    allCity = c;
     update();
   }
 
