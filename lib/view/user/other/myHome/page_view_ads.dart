@@ -25,7 +25,7 @@ class _CarouselState extends State<Carousel> {
   @override
   void initState() {
     super.initState();
-    _timer = Timer.periodic(Duration(seconds: 5), (Timer timer) {
+    _timer = Timer.periodic(Duration(seconds: 20), (Timer timer) {
       if (_currentPage < controllerPro.saveContrilerBannerMap.length - 1) {
         _currentPage++;
       } else {

@@ -20,7 +20,7 @@ class homePage extends StatefulWidget {
 final List<Widget> widgetOptions = <Widget>[
   Home(),
   New(),
-  Cantegory(),
+  category(),
   myProfile(),
 ];
 

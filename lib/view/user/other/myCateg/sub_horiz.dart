@@ -85,9 +85,12 @@ class _SubCatHorizState extends State<SubCatHoriz> {
             refreshController.loadFailed();
           }
         },
-        child: ListView.builder(
-            shrinkWrap: true,
-            scrollDirection: Axis.horizontal,
+        child: GridView.builder(
+            gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                maxCrossAxisExtent: 200,
+                childAspectRatio: 3 / 2,
+                crossAxisSpacing: 20,
+                mainAxisSpacing: 20),
             itemCount: passengers.length,
             itemBuilder: (BuildContext ctx, index) {
               final passenger = passengers[index];

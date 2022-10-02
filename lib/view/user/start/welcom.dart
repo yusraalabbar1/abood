@@ -91,7 +91,7 @@ class _welcomState extends State<welcom> {
                 waveColor: Colors.white,
                 boxBackgroundColor: Colors.black,
                 textStyle: TextStyle(
-                  fontSize: 70.0,
+                  fontSize: 60.0,
                   fontWeight: FontWeight.bold,
                 ),
                 boxHeight: 300.0,

@@ -179,32 +179,31 @@ class _particulerProductState extends State<particulerProduct> {
                   Container(
                     height: MediaQuery.of(context).size.height / 2,
                     width: MediaQuery.of(context).size.width,
-                    child: Expanded(
-                      child: controller.ItemsById["itemImages"].length > 0
-                          ? ListView.builder(
-                              itemCount:
-                                  controller.ItemsById["itemImages"].length,
-                              scrollDirection: Axis.horizontal,
-                              itemBuilder: (BuildContext context, int i) {
-                                return InkWell(
-                                  onTap: () {},
-                                  child: Container(
-                                    height:
-                                        MediaQuery.of(context).size.height / 4,
-                                    width: MediaQuery.of(context).size.width,
-                                    decoration: BoxDecoration(
-                                        image: DecorationImage(
-                                            fit: BoxFit.cover,
-                                            image: CachedNetworkImageProvider(
-                                                imageAds +
-                                                    controller.ItemsById[
-                                                            "itemImages"][i]
-                                                        ["imageUrl"]))),
-                                  ),
-                                );
-                              })
-                          : const Center(child: Text("Not found Image")),
-                    ),
+                    child: controller.ItemsById["itemImages"].length > 0
+                        ? ListView.builder(
+                            shrinkWrap: true,
+                            itemCount:
+                                controller.ItemsById["itemImages"].length,
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (BuildContext context, int i) {
+                              return InkWell(
+                                onTap: () {},
+                                child: Container(
+                                  height:
+                                      MediaQuery.of(context).size.height / 4,
+                                  width: MediaQuery.of(context).size.width,
+                                  decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                          fit: BoxFit.cover,
+                                          image: CachedNetworkImageProvider(
+                                              imageAds +
+                                                  controller.ItemsById[
+                                                          "itemImages"][i]
+                                                      ["imageUrl"]))),
+                                ),
+                              );
+                            })
+                        : const Center(child: Text("Not found Image")),
                   ),
                   const SizedBox(height: 10),
                   Row(
@@ -298,6 +297,7 @@ class _particulerProductState extends State<particulerProduct> {
                             height: 30,
                             width: MediaQuery.of(context).size.width,
                             child: ListView.builder(
+                                shrinkWrap: true,
                                 itemCount:
                                     controller.ItemsById["itemSizes"].length,
                                 scrollDirection: Axis.horizontal,
@@ -650,6 +650,7 @@ class _particulerProductState extends State<particulerProduct> {
               height: 25,
               width: MediaQuery.of(context).size.width,
               child: ListView.builder(
+                  shrinkWrap: true,
                   itemCount: controller.ItemsById["itemColors"].length,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (BuildContext context, int i) {

@@ -102,7 +102,7 @@ class _AllHomeState extends State<AllHome> {
           height: 10,
         ),
         Container(
-            margin: EdgeInsets.symmetric(horizontal: 10),
+            margin: const EdgeInsets.symmetric(horizontal: 10),
             height: MediaQuery.of(context).size.height / 6,
             decoration: box(),
             child: Carousel()),
@@ -110,7 +110,7 @@ class _AllHomeState extends State<AllHome> {
           height: 10,
         ),
         Container(
-          margin: EdgeInsets.symmetric(horizontal: 10),
+          margin: const EdgeInsets.symmetric(horizontal: 10),
           child: Row(
             children: [
               text1("Stores"),
@@ -119,7 +119,7 @@ class _AllHomeState extends State<AllHome> {
         ),
         Container(
             decoration: box(),
-            height: MediaQuery.of(context).size.height / 4,
+            height: MediaQuery.of(context).size.height / 5,
             child: allStore())
       ],
     );

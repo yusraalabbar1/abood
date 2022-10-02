@@ -81,7 +81,8 @@ class _allStoreState extends State<allStore> {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
+    return SizedBox(
+      height: MediaQuery.of(context).size.height / 5,
       child: GetBuilder<ControllerProduct>(builder: (controller) {
         return SmartRefresher(
           controller: refreshController,
@@ -104,6 +105,7 @@ class _allStoreState extends State<allStore> {
           },
           child: ListView.builder(
               itemCount: passengers.length,
+              shrinkWrap: true,
               itemBuilder: (context, index) {
                 final passenger = passengers[index];
                 return InkWell(
@@ -179,6 +181,19 @@ class _allStoreState extends State<allStore> {
     );
   }
 
+//  Card(
+//                       semanticContainer: true,
+//                       clipBehavior: Clip.antiAliasWithSaveLayer,
+//                       child: CachedNetworkImage(
+//                         imageUrl: (imageAds + passenger.image.toString()),
+//                         fit: BoxFit.cover,
+//                       ),
+//                       shape: RoundedRectangleBorder(
+//                         borderRadius: BorderRadius.circular(10.0),
+//                       ),
+//                       elevation: 5,
+//                       margin: EdgeInsets.all(10),
+//                     ),
   Text text1(text) {
     return Text(text,
         style: const TextStyle(
