@@ -1,5 +1,6 @@
 import 'package:abood/constant/colors.dart';
 import 'package:abood/controller/ControlUser.dart';
+import 'package:abood/view/admin/stor_add.dart';
 import 'package:abood/view/admin/stor_by_merch.dart';
 import 'package:abood/view/user/other/widget/dialogs_drawer.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
@@ -311,7 +312,14 @@ class _MainScreenStorState extends State<MainScreenStor> {
                   children: [
                     InkWell(
                       onTap: () {
-                        Navigator.of(context).pushNamed("AddProduct");
+                        // Navigator.of(context).pushNamed("AddProduct");StorByMerchAdd
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => StorByMerchAdd(
+                                  id: controller.id,
+                                  typeOperation: 'addOffer')),
+                        );
                       },
                       child: Container(
                         margin: EdgeInsets.all(10),

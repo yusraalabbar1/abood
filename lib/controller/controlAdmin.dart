@@ -3,9 +3,14 @@ import 'package:get/get.dart';
 class ControllerAdmin extends GetxController {
   var idProduct;
 
-  var nameItem, priceItem, noteItem, desItem;
+  var nameItem, priceItem, noteItem, desItem, idStore;
   SavepriceItem(v) {
     priceItem = v;
+    update();
+  }
+
+  SaveIdStore(v) {
+    idStore = v;
     update();
   }
 

@@ -1,6 +1,7 @@
 import 'package:abood/constant/urls.dart';
 import 'package:abood/model/user/stor/stor_by_section_sub/stor_by_section_sub_model.dart';
 import 'package:abood/view/user/other/myCateg/sub2cat.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -135,8 +136,9 @@ class _storeByIdSectionState extends State<storeByIdSection> {
                             padding: EdgeInsets.all(10),
                             child: ClipRRect(
                                 borderRadius: BorderRadius.circular(10),
-                                child: Image.network(
-                                  (imageAds + passenger.image.toString()),
+                                child: CachedNetworkImage(
+                                  imageUrl:
+                                      (imageAds + passenger.image.toString()),
                                   fit: BoxFit.cover,
                                 )),
                             decoration: const BoxDecoration(
@@ -168,17 +170,7 @@ class _storeByIdSectionState extends State<storeByIdSection> {
                           ),
                           Container(
                             padding: EdgeInsets.all(10),
-                            child: const RotatedBox(
-                              quarterTurns: -1,
-                            ),
-                            decoration: BoxDecoration(
-                              color: Colors.black,
-                              shape: BoxShape.rectangle,
-                              borderRadius: const BorderRadius.only(
-                                topLeft: Radius.circular(4.0),
-                                bottomLeft: Radius.circular(4.0),
-                              ),
-                            ),
+                            child: Icon(Icons.navigate_next),
                             width: 40,
                             height: 80,
                           ),

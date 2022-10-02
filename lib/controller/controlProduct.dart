@@ -2,6 +2,7 @@ import 'package:abood/model/admin/jsonModel/SearchModel.dart';
 import 'package:get/get.dart';
 
 class ControllerProduct extends GetxController {
+  List<Map<dynamic, dynamic>> thirdMap = [];
   List<Map<dynamic, dynamic>> saveAllCateg = [];
   List<Map<dynamic, dynamic>> saveAllCategwithout = [];
   List<Map<dynamic, dynamic>> saveSubCateg = [];
@@ -79,6 +80,11 @@ class ControllerProduct extends GetxController {
 
   SaveMainBannerMap(v) {
     saveContrilerBannerMapMain = v;
+    update();
+  }
+
+  SaveThrid(v) {
+    thirdMap = v;
     update();
   }
 

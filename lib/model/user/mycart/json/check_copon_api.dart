@@ -41,7 +41,7 @@ class Data {
     this.netTotal,
   });
 
-  int? total;
+  double? total;
   double? discount;
   double? netTotal;
 

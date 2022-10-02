@@ -1,7 +1,13 @@
 import 'dart:async';
 
+import 'package:abood/controller/ControlUser.dart';
+import 'package:abood/model/user/auth/signup/api/generate_city.dart';
+import 'package:abood/model/user/mycart/api/my_cart.dart';
+import 'package:abood/model/user/mylike/api/mylike.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class finishRegister extends StatefulWidget {
   const finishRegister({super.key});
@@ -25,13 +31,25 @@ class _finishRegisterState extends State<finishRegister>
     searchOnStoppedTyping = new Timer(duration, () => navigateHome());
   }
 
-  navigateHome() {
+  navigateHome() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    Homecontroller controller = Get.put(Homecontroller());
+    controller.Saveid(preferences.getInt('id'));
+    controller.SavefirstName(preferences.getString('firstName'));
+    controller.SavelastName(preferences.getString('lastName'));
+    controller.SavemobileNumber(preferences.getString('mobileNumber'));
+    controller.SavecountryId(preferences.getInt('countryId'));
+    await myLikeApi(controller.id);
+    await myCartApi();
+    await cityGen();
+    print(controller.id);
     Navigator.of(context).pushReplacementNamed("lang");
   }
 
   @override
   void initState() {
     getInfo();
+
     _onChangeHandler();
     super.initState();
   }

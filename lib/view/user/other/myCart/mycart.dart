@@ -30,7 +30,7 @@ class _MyCartState extends State<MyCart> {
   }
 
   Homecontroller controller1 = Get.put(Homecontroller());
-
+  var newTotal;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,6 +58,7 @@ class _MyCartState extends State<MyCart> {
                 child: GetBuilder<ControllerProduct>(builder: (controller) {
                   return (controller.myCart.length > 0
                       ? Container(
+                          color: Colors.white,
                           child: ListView.builder(
                               itemCount: controller.myCart.length,
                               itemBuilder: (BuildContext context, int index) {
@@ -67,7 +68,7 @@ class _MyCartState extends State<MyCart> {
                                       padding: const EdgeInsets.all(8.0),
                                       child: Card(
                                           color: Colors.white,
-                                          elevation: 5,
+                                          // elevation: 5,
                                           shape: RoundedRectangleBorder(
                                             side: BorderSide(
                                               color: Colors.black,
@@ -75,90 +76,99 @@ class _MyCartState extends State<MyCart> {
                                             borderRadius:
                                                 BorderRadius.circular(15.0),
                                           ),
-                                          child: Row(
-                                            children: [
-                                              Expanded(
-                                                flex: 4,
-                                                child: ListTile(
-                                                  leading: CircleAvatar(
-                                                    radius: 35,
-                                                    backgroundImage:
-                                                        CachedNetworkImageProvider(imageAds +
-                                                            controller.myCart[
+                                          child: Container(
+                                            color: Colors.white,
+                                            child: Row(
+                                              children: [
+                                                Expanded(
+                                                  flex: 4,
+                                                  child: Center(
+                                                    child: Container(
+                                                      color: Colors.white,
+                                                      child: ListTile(
+                                                        leading: Container(
+                                                          color: Colors.white,
+                                                          child: ClipRRect(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          4),
+                                                              child:
+                                                                  CachedNetworkImage(
+                                                                imageUrl: (imageAds +
+                                                                    controller.myCart[index]
+                                                                            [
+                                                                            "itemImages"][0]
+                                                                        [
+                                                                        "imageUrl"]),
+                                                                fit: BoxFit
+                                                                    .cover,
+                                                              )),
+                                                          width: 70,
+                                                          height: 73,
+                                                        ),
+                                                        subtitle: Column(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                          children: [
+                                                            const SizedBox(
+                                                              height: 10,
+                                                            ),
+                                                            counter(
+                                                                controller.myCart[
+                                                                        index]
+                                                                    ["id"],
+                                                                controller.myCart[
+                                                                        index]
+                                                                    ["qty"]),
+                                                            const SizedBox(
+                                                              height: 10,
+                                                            ),
+                                                            Row(
+                                                              children: [
+                                                                textWidget("price : "
+                                                                        .tr +
+                                                                    (controller.myCart[index]["newPrice"] *
+                                                                            controller.myCart[index]["qty"])
+                                                                        .toString() +
+                                                                    " JOD \t ")
+                                                              ],
+                                                            )
+                                                          ],
+                                                        ),
+                                                        title: Container(
+                                                            child: textWidget(
+                                                                controller.myCart[
                                                                         index][
-                                                                    "itemImages"]
-                                                                [
-                                                                0]["imageUrl"]),
+                                                                    "itemName"])),
+                                                      ),
+                                                    ),
                                                   ),
-                                                  subtitle: Column(
-                                                    children: [
-                                                      Row(
-                                                        children: [
-                                                          Container(
-                                                              child: textWidget(
-                                                                  controller.myCart[
-                                                                          index]
-                                                                      [
-                                                                      "info"])),
-                                                        ],
-                                                      ),
-                                                      const SizedBox(
-                                                        height: 10,
-                                                      ),
-                                                      counter(
+                                                ),
+                                                Expanded(
+                                                  flex: 1,
+                                                  child: Container(
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              8),
+                                                      decoration: boxdeco(),
+                                                      width: 40,
+                                                      height:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .height /
+                                                              6,
+                                                      child: sideWidget(
                                                           controller
                                                                   .myCart[index]
                                                               ["id"],
                                                           controller
                                                                   .myCart[index]
-                                                              ["qty"]),
-                                                      const SizedBox(
-                                                        height: 10,
-                                                      ),
-                                                      Row(
-                                                        children: [
-                                                          textWidget("price : "
-                                                                  .tr +
-                                                              (controller.myCart[
-                                                                              index]
-                                                                          [
-                                                                          "newPrice"] *
-                                                                      controller
-                                                                              .myCart[index]
-                                                                          [
-                                                                          "qty"])
-                                                                  .toString() +
-                                                              " JOD \t ")
-                                                        ],
-                                                      )
-                                                    ],
-                                                  ),
-                                                  title: Container(
-                                                      child: textWidget(
-                                                          controller
-                                                                  .myCart[index]
-                                                              ["itemName"])),
+                                                              ["isCheck"])),
                                                 ),
-                                              ),
-                                              Expanded(
-                                                flex: 1,
-                                                child: Container(
-                                                    padding:
-                                                        const EdgeInsets.all(8),
-                                                    decoration: boxdeco(),
-                                                    width: 40,
-                                                    height:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .height /
-                                                            6,
-                                                    child: sideWidget(
-                                                        controller.myCart[index]
-                                                            ["id"],
-                                                        controller.myCart[index]
-                                                            ["isCheck"])),
-                                              ),
-                                            ],
+                                              ],
+                                            ),
                                           )),
                                     ),
                                   ],
@@ -242,7 +252,7 @@ class _MyCartState extends State<MyCart> {
 
   BoxDecoration boxdeco() {
     return const BoxDecoration(
-      color: Colors.black,
+      color: Colors.white,
       shape: BoxShape.rectangle,
       borderRadius: BorderRadius.only(
           topLeft: Radius.circular(15.0),
@@ -255,46 +265,50 @@ class _MyCartState extends State<MyCart> {
   Widget bottomButtoncuopon() {
     return Expanded(
       child: Align(
-        alignment: FractionalOffset.bottomCenter,
-        child: ListView.builder(
-            shrinkWrap: true,
-            itemCount: thirdMap.length,
-            itemBuilder: (BuildContext context, int index) {
-              return ListTile(
-                  trailing: Text(
-                    "Total: " + thirdMap[index][1].toString() + "JD",
-                    style: TextStyle(color: Colors.green, fontSize: 15),
-                  ),
-                  title: TextFormField1(
-                      thirdMap[index][0].toString(), thirdMap[index][1]));
-            }),
-      ),
-    );
-  }
-
-  TextFormField TextFormField1(hint, Total) {
-    return TextFormField(
-      keyboardType: TextInputType.text,
-      textInputAction: TextInputAction.next,
-      decoration: InputDecoration(
-        hintText: "Add Coupon Code" + hint,
-        prefixIcon: IconButton(onPressed: () {}, icon: const Icon(Icons.send)),
-      ),
-      onFieldSubmitted: (Value) {
-        checkCoponApi(context, Value, hint, Total);
-      },
-      validator: (text) {
-        if (text!.length > 15) {
-          return "can not enter bigest than 15";
-        }
-        if (text.length < 9) {
-          return "can not enter less than 9";
-        }
-      },
-      // onSaved: (string) {
-      //   name = string;
-      //   print(name);
-      // },
+          alignment: FractionalOffset.bottomCenter,
+          child: Column(
+            children: [
+              Expanded(
+                child: ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: controllerPro.thirdMap.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return ListTile(
+                          trailing: Text(
+                            "Total: " +
+                                controllerPro.thirdMap[index][1].toString() +
+                                "JD",
+                            style: TextStyle(color: Colors.black, fontSize: 15),
+                          ),
+                          title: GetBuilder<ControllerProduct>(
+                              builder: (controller) {
+                            return (TextFormField(
+                              keyboardType: TextInputType.text,
+                              textInputAction: TextInputAction.next,
+                              decoration: InputDecoration(
+                                hintText: newTotal == null
+                                    ? "Add Coupon Code" +
+                                        controller.thirdMap[index][0].toString()
+                                    : "Add Coupon Code" + newTotal.toString(),
+                              ),
+                              onFieldSubmitted: (Value) {
+                                setState(() {
+                                  newTotal = checkCoponApi(
+                                      context,
+                                      Value,
+                                      controller.thirdMap[index][0],
+                                      controller.thirdMap[index][1]);
+                                  print("============newTotal==========");
+                                  print(newTotal);
+                                });
+                              },
+                            ));
+                          }));
+                    }),
+              ),
+              // Text("data")
+            ],
+          )),
     );
   }
 
@@ -350,7 +364,7 @@ class _MyCartState extends State<MyCart> {
                   },
                   icon: const Icon(
                     Icons.delete,
-                    color: Colors.white,
+                    color: Colors.black,
                   )),
             ),
             Expanded(
@@ -367,11 +381,11 @@ class _MyCartState extends State<MyCart> {
                   icon: isCheck == true
                       ? const Icon(
                           Icons.check_box,
-                          color: Colors.white,
+                          color: Colors.black,
                         )
                       : const Icon(
                           Icons.check_box_outline_blank,
-                          color: Colors.white,
+                          color: Colors.black,
                         )),
             )
           ],

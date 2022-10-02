@@ -7,7 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AddProduct extends StatefulWidget {
-  const AddProduct({super.key});
+  final id;
+  const AddProduct({super.key, this.id});
 
   @override
   State<AddProduct> createState() => _AddProductState();
@@ -273,6 +274,15 @@ class _AddProductState extends State<AddProduct> {
             print(myListMapize);
             print("=======================");
             Navigator.of(context).pushNamed("picColor");
+
+            print(widget.id);
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) =>
+                    picColor(id: int.parse(widget.id.toString())),
+              ),
+            );
           } else {
             print("not validddddddddddddddd");
           }

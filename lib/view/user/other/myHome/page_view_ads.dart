@@ -52,7 +52,7 @@ class _CarouselState extends State<Carousel> {
       children: [
         SizedBox(
           width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height / 5,
+          height: MediaQuery.of(context).size.height / 6,
           child: PageView.builder(
               itemCount: controllerPro.saveContrilerBannerMap.length,
               pageSnapping: true,

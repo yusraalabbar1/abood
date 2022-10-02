@@ -1,3 +1,4 @@
+import 'package:abood/controller/controlAdmin.dart';
 import 'package:abood/view/admin/add_offer.dart';
 import 'package:abood/view/admin/delet_item.dart';
 import 'package:abood/view/admin/edit_item.dart';
@@ -40,25 +41,20 @@ class _AllItemsStoreAddIMgState extends State<AllItemsStoreAddIMg> {
       RefreshController(initialRefresh: true);
   /////////////////////////////////////
 
+  ControllerAdmin controller1 = Get.put(ControllerAdmin());
   Future<bool> getPassengerData({bool isRefresh = false}) async {
+    String id = controller1.idStore.toString();
     if (isRefresh) {
       currentPage = 0;
       print("1===========================");
     } else {
       print("2===========================");
       print(currentPage);
-      // if (currentPage > 2) {
-      //   print("3========================");
-      //   refreshController.loadNoData();
-      //   return false;
-      // }
     }
     print("==========currentPage============");
     print(currentPage);
-    var request = http.Request(
-        'GET',
-        Uri.parse(
-            baseURL + '/api/store/$id_stor/items/pageIndex/$currentPage'));
+    var request = http.Request('GET',
+        Uri.parse(baseURL + '/api/store/$id/items/pageIndex/$currentPage'));
 
     final response = await request.send();
     var res = await http.Response.fromStream(response);

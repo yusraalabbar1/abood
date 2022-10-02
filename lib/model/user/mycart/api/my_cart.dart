@@ -12,8 +12,9 @@ import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:http/http.dart' as http;
 
 // var thirdMap;
-List<Map<dynamic, dynamic>> thirdMap = [];
+
 myCartApi() async {
+  List<Map<dynamic, dynamic>> thirdMap = [];
   List<Map<dynamic, dynamic>> MyCart = [];
   List stor = [];
   List storPrice = [];
@@ -22,6 +23,7 @@ myCartApi() async {
   int id = controller.id;
   double total = 0.0;
   double total1 = 0.0;
+  double totalnew = 0.0;
   var request = http.Request('GET', Uri.parse(baseURL + '/api/cart/$id'));
 
   http.StreamedResponse response = await request.send();
@@ -79,13 +81,19 @@ myCartApi() async {
         }
       }
       print("===================thirdMap price===================");
-      print(thirdMap);
+      // print(thirdMap);
       final ids = thirdMap.map<int>((e) => e[0]).toSet();
       thirdMap.retainWhere((Map x) {
         return ids.remove(x[0]);
       });
 
       print('Without duplicates $thirdMap');
+      controllerPro.SaveThrid(thirdMap);
+      // print("===================thirdMap price total===================");
+      // for (var i = 0; i < thirdMap.length; i++) {
+      //   totalnew = totalnew + thirdMap[i][1];
+      // }
+      // print(totalnew);
     }
   } else {
     print("not response");

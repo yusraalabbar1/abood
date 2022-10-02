@@ -167,13 +167,12 @@ class _signupState extends State<signup> {
         prefixIcon: IconButton(onPressed: () {}, icon: Icon(Icons.person)),
       ),
       validator: (text) {
-        if (text!.length > 40) {
-          return "can not enter bigest than 40";
-        }
-        if (text.length < 2) {
-          return "can not enter less than 2";
-        }
-        return null;
+        String pattern = r'^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z]';
+        RegExp regex = RegExp(pattern, unicode: true);
+        if (text == null || text.isEmpty || !regex.hasMatch(text))
+          return 'Enter a valid Name';
+        else
+          return null;
       },
       onSaved: (string) {
         first = string;
@@ -190,13 +189,12 @@ class _signupState extends State<signup> {
         hintText: "اسم الاخير",
       ),
       validator: (text) {
-        if (text!.length > 40) {
-          return "can not enter bigest than 40";
-        }
-        if (text.length < 2) {
-          return "can not enter less than 2";
-        }
-        return null;
+        String pattern = r'^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z]';
+        RegExp regex = RegExp(pattern, unicode: true);
+        if (text == null || text.isEmpty || !regex.hasMatch(text))
+          return 'Enter a valid Name';
+        else
+          return null;
       },
       onSaved: (string) {
         last = string;
@@ -214,11 +212,11 @@ class _signupState extends State<signup> {
         prefixIcon: IconButton(onPressed: () {}, icon: Icon(Icons.phone)),
       ),
       validator: (text) {
-        if (text!.length > 40) {
-          return "can not enter bigest than 40";
+        if (text!.length > 15) {
+          return "can not enter bigest than 15";
         }
-        if (text.length < 2) {
-          return "can not enter less than 2";
+        if (text.length < 9) {
+          return "can not enter less than 9";
         }
         return null;
       },
@@ -238,13 +236,13 @@ class _signupState extends State<signup> {
         prefixIcon: IconButton(onPressed: () {}, icon: Icon(Icons.email)),
       ),
       validator: (text) {
-        if (text!.length > 40) {
-          return "can not enter bigest than 40";
-        }
-        if (text.length < 2) {
-          return "can not enter less than 2";
-        }
-        return null;
+        String pattern =
+            r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+        RegExp regex = RegExp(pattern);
+        if (text == null || text.isEmpty || !regex.hasMatch(text))
+          return 'Enter a valid Email';
+        else
+          return null;
       },
       onSaved: (string) {
         email = string;

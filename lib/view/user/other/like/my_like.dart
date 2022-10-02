@@ -59,149 +59,143 @@ class _myLikeState extends State<myLike> {
                                     ),
                                     borderRadius: BorderRadius.circular(15.0),
                                   ),
-                                  child: Row(
-                                    children: [
-                                      Expanded(
-                                        flex: 4,
-                                        child: ListTile(
-                                          leading: CircleAvatar(
-                                            radius: 35,
-                                            backgroundImage:
-                                                CachedNetworkImageProvider(
-                                                    imageAds +
-                                                        controller.myFavorite[
-                                                                    index]
-                                                                ["itemImages"]
-                                                            [0]["imageUrl"]),
-                                          ),
-                                          subtitle: Column(
-                                            children: [
-                                              Container(
-                                                  margin: const EdgeInsets.only(
-                                                      top: 10, bottom: 10),
+                                  child: Container(
+                                    color: Colors.white,
+                                    child: Row(
+                                      children: [
+                                        Expanded(
+                                          flex: 4,
+                                          child: Container(
+                                            child: ListTile(
+                                              leading: CircleAvatar(
+                                                radius: 35,
+                                                backgroundImage:
+                                                    CachedNetworkImageProvider(
+                                                        imageAds +
+                                                            controller.myFavorite[
+                                                                        index][
+                                                                    "itemImages"]
+                                                                [
+                                                                0]["imageUrl"]),
+                                              ),
+                                              subtitle: Column(
+                                                children: [
+                                                  Row(
+                                                    children: [
+                                                      Text(
+                                                          "price : ".tr +
+                                                              controller
+                                                                  .myFavorite[
+                                                                      index][
+                                                                      "newPrice"]
+                                                                  .toString() +
+                                                              " JOD \t ",
+                                                          style: const TextStyle(
+                                                              color:
+                                                                  Colors.black,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                              fontSize: 13,
+                                                              fontFamily:
+                                                                  'Almarai')),
+                                                    ],
+                                                  )
+                                                ],
+                                              ),
+                                              title: Container(
                                                   child: Text(
                                                       controller
                                                           .myFavorite[index]
-                                                              ["info"]
+                                                              ["itemName"]
                                                           .toString(),
                                                       style: const TextStyle(
                                                           color: Colors.black,
-                                                          overflow: TextOverflow
-                                                              .ellipsis,
                                                           fontWeight:
                                                               FontWeight.bold,
-                                                          fontSize: 13,
+                                                          fontSize: 15,
                                                           fontFamily:
                                                               'Almarai'))),
-                                              Row(
-                                                children: [
-                                                  Text(
-                                                      "price : ".tr +
-                                                          controller
-                                                              .myFavorite[index]
-                                                                  ["newPrice"]
-                                                              .toString() +
-                                                          " JOD \t ",
-                                                      style: const TextStyle(
-                                                          color: Colors.black,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          fontSize: 13,
-                                                          fontFamily:
-                                                              'Almarai')),
-                                                ],
-                                              )
-                                            ],
+                                            ),
                                           ),
-                                          title: Container(
-                                              child: Text(
-                                                  controller.myFavorite[index]
-                                                          ["itemName"]
-                                                      .toString(),
-                                                  style: const TextStyle(
-                                                      color: Colors.black,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontSize: 15,
-                                                      fontFamily: 'Almarai'))),
                                         ),
-                                      ),
-                                      Expanded(
-                                        flex: 1,
-                                        child: Container(
-                                          padding: const EdgeInsets.all(8),
-                                          decoration: const BoxDecoration(
-                                            color: Colors.black,
-                                            shape: BoxShape.rectangle,
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(15.0),
-                                                bottomLeft:
-                                                    Radius.circular(15.0),
-                                                topRight: Radius.circular(15.0),
-                                                bottomRight:
-                                                    Radius.circular(15.0)),
-                                          ),
-                                          width: 40,
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .height /
-                                              6,
-                                          child: RotatedBox(
-                                            quarterTurns: 0,
-                                            child: Center(
-                                              child: Column(
-                                                children: [
-                                                  Expanded(
-                                                    child: IconButton(
-                                                        onPressed: () async {
-                                                          await deleteLike(
-                                                              controller1.id,
-                                                              controller.myFavorite[
-                                                                      index]
-                                                                  ["itemId"]);
-                                                          await myLikeApi(
-                                                              controller1.id);
-                                                          print("delete");
-                                                        },
-                                                        icon: const Icon(
-                                                          Icons.delete,
-                                                          color: Colors.white,
-                                                        )),
-                                                  ),
-                                                  Expanded(
-                                                    child: IconButton(
-                                                        onPressed: () async {
-                                                          print(controller
-                                                                  .myFavorite[
-                                                              index]["itemId"]);
-                                                          await getItemsIdApi(
-                                                              controller.myFavorite[
-                                                                      index]
-                                                                  ["itemId"]);
-                                                          Navigator.push(
-                                                            context,
-                                                            MaterialPageRoute(
-                                                                builder:
-                                                                    (context) =>
-                                                                        particulerProduct(
-                                                                          id: controller.myFavorite[index]
-                                                                              [
-                                                                              "itemId"],
-                                                                        )),
-                                                          );
-                                                        },
-                                                        icon: Icon(
-                                                          Icons.shopping_cart,
-                                                          color: Colors.white,
-                                                        )),
-                                                  )
-                                                ],
+                                        Expanded(
+                                          flex: 1,
+                                          child: Container(
+                                            padding: const EdgeInsets.all(8),
+                                            decoration: const BoxDecoration(
+                                              color: Colors.black,
+                                              shape: BoxShape.rectangle,
+                                              borderRadius: BorderRadius.only(
+                                                  topLeft:
+                                                      Radius.circular(15.0),
+                                                  bottomLeft:
+                                                      Radius.circular(15.0),
+                                                  topRight:
+                                                      Radius.circular(15.0),
+                                                  bottomRight:
+                                                      Radius.circular(15.0)),
+                                            ),
+                                            width: 40,
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height /
+                                                6,
+                                            child: RotatedBox(
+                                              quarterTurns: 0,
+                                              child: Center(
+                                                child: Column(
+                                                  children: [
+                                                    Expanded(
+                                                      child: IconButton(
+                                                          onPressed: () async {
+                                                            await deleteLike(
+                                                                controller1.id,
+                                                                controller.myFavorite[
+                                                                        index]
+                                                                    ["itemId"]);
+                                                            await myLikeApi(
+                                                                controller1.id);
+                                                            print("delete");
+                                                          },
+                                                          icon: const Icon(
+                                                            Icons.delete,
+                                                            color: Colors.white,
+                                                          )),
+                                                    ),
+                                                    Expanded(
+                                                      child: IconButton(
+                                                          onPressed: () async {
+                                                            print(controller
+                                                                    .myFavorite[
+                                                                index]["itemId"]);
+                                                            await getItemsIdApi(
+                                                                controller.myFavorite[
+                                                                        index]
+                                                                    ["itemId"]);
+                                                            Navigator.push(
+                                                              context,
+                                                              MaterialPageRoute(
+                                                                  builder:
+                                                                      (context) =>
+                                                                          particulerProduct(
+                                                                            id: controller.myFavorite[index]["itemId"],
+                                                                          )),
+                                                            );
+                                                          },
+                                                          icon: Icon(
+                                                            Icons.shopping_cart,
+                                                            color: Colors.white,
+                                                          )),
+                                                    )
+                                                  ],
+                                                ),
                                               ),
                                             ),
                                           ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   )),
                             ),
                           ],

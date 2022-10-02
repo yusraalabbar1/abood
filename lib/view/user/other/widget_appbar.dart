@@ -1,3 +1,4 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -10,7 +11,21 @@ Text text1(text) {
 AppBar appbarmain(GlobalKey<ScaffoldState> scaffoldKey, context) {
   return AppBar(
     toolbarHeight: 70,
-    title: text1("ABOOD"),
+    title: SizedBox(
+      width: 250.0,
+      child: AnimatedTextKit(
+        displayFullTextOnTap: false,
+        repeatForever: true,
+        animatedTexts: [
+          FadeAnimatedText('ABOOD'),
+          FadeAnimatedText('ABOOD'),
+          FadeAnimatedText('For All New!!!'),
+        ],
+        onTap: () {
+          print("Tap Event");
+        },
+      ),
+    ),
     actions: [
       IconButton(
           onPressed: () {
@@ -48,10 +63,13 @@ AppBar appbarmain(GlobalKey<ScaffoldState> scaffoldKey, context) {
               color: Colors.white,
             )),
       ),
+      const SizedBox(
+        width: 10,
+      ),
       Expanded(
         child: IconButton(
             onPressed: () {
-              Navigator.of(context).pushNamed("searchProduct");
+              Navigator.of(context).pushNamed("searchProductUser");
             },
             icon: const Icon(
               Icons.search,

@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:abood/controller/controlAdmin.dart';
 import 'package:http_parser/http_parser.dart';
 import 'package:async/async.dart';
 import 'package:abood/model/admin/dialog/dialog.dart';
@@ -11,11 +12,13 @@ import 'package:http/http.dart' as http;
 Future addImageApi(context, id, image) async {
   print(image);
   print(id);
+  ControllerAdmin controller = Get.put(ControllerAdmin());
+
   var request = http.MultipartRequest(
       'POST',
       Uri.parse(
           'https://eloquent-chatterjee.162-55-191-66.plesk.page/AboodBackOffice/api/items/add/image'));
-  request.fields.addAll({'ItemId': id.toString()});
+  request.fields.addAll({'ItemId': controller.idStore.toString()});
   request.files.add(await http.MultipartFile.fromPath('img', image.path));
 
   http.StreamedResponse response = await request.send();

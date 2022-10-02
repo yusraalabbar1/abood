@@ -91,7 +91,7 @@ class _offerState extends State<offer> {
           elevation: 5,
           // shadowColor: Colors.pink,
           title: Text(
-            "Product".tr,
+            "Offers".tr,
             style: TextStyle(color: Colors.white, fontSize: 25),
           ),
         ),

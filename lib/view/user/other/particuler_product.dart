@@ -1,9 +1,13 @@
 import 'package:abood/constant/colors.dart';
 import 'package:abood/constant/urls.dart';
+import 'package:abood/controller/ControlUser.dart';
 import 'package:abood/controller/controlProduct.dart';
 import 'package:abood/model/user/mycart/api/addcart.dart';
 import 'package:abood/model/user/mycart/api/my_cart.dart';
 import 'package:abood/model/user/mycart/dialog.dart';
+import 'package:abood/model/user/mylike/api/add_like.dart';
+import 'package:abood/model/user/mylike/api/delete_like.dart';
+import 'package:abood/model/user/mylike/api/mylike.dart';
 import 'package:abood/model/user/product/item/Rate/get_rateModel.dart';
 import 'package:abood/view/user/other/widget/MyColorPicker.dart';
 import 'package:abood/view/user/other/widget/SizeSelector.dart';
@@ -107,22 +111,62 @@ class _particulerProductState extends State<particulerProduct> {
     }
   }
 
+  Homecontroller controller1 = Get.put(Homecontroller());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           toolbarHeight: 60,
           backgroundColor: Colors.white,
-          title: Text(controller.ItemsById["itemName"].toString(),
-              style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'majallab',
-                  fontSize: 24,
-                  color: Colors.black)),
           elevation: 5,
           actions: [
-            IconButton(onPressed: () {}, icon: const Icon(Icons.share)),
-            IconButton(onPressed: () {}, icon: const Icon(Icons.favorite))
+            IconButton(
+                onPressed: () async {
+                  print(int.parse(widget.id.toString()));
+                  print(sizescelect);
+                  print(colorselect);
+                  if (sizescelect != 0 && colorselect != 0) {
+                    await addCartApi(context, int.parse(widget.id.toString()),
+                        sizescelect, colorselect);
+                    await myCartApi();
+                  } else if (sizescelect == 0 && colorselect != 0) {
+                    diaFaildCart(context, "Choose Size");
+                  } else if (sizescelect != 0 && colorselect == 0) {
+                    diaFaildCart(context, "Choose Color");
+                  } else if (sizescelect == 0 && colorselect == 0) {
+                    diaFaildCart(context, "Choose Size & Color");
+                  }
+                },
+                icon: const Icon(Icons.shopping_bag)),
+            IconButton(
+                onPressed: () async {
+                  if (controller.ItemsById["isWish"] == false) {
+                    //add and change color
+                    setState(() {
+                      // i = 1;
+                      controller.ItemsById["isWish"] = true;
+                    });
+                    await addLike(
+                        int.parse(widget.id.toString()), controller1.id);
+                    await myLikeApi(controller1.id);
+                  } else if (controller.ItemsById["isWish"] == true) {
+                    //delete
+                    setState(() {
+                      // i = 0;
+                      controller.ItemsById["isWish"] = false;
+                    });
+                    await deleteLike(
+                        controller1.id, int.parse(widget.id.toString()));
+                    await myLikeApi(controller1.id);
+                  }
+                },
+                icon: Icon(
+                  Icons.favorite_border,
+                  color: controller.ItemsById["isWish"] == true
+                      ? Colors.black
+                      : Colors.grey,
+                  size: 30,
+                ))
           ],
         ),
         body: Column(
@@ -133,7 +177,7 @@ class _particulerProductState extends State<particulerProduct> {
               child: ListView(
                 children: [
                   Container(
-                    height: MediaQuery.of(context).size.height / 4,
+                    height: MediaQuery.of(context).size.height / 2,
                     width: MediaQuery.of(context).size.width,
                     child: Expanded(
                       child: controller.ItemsById["itemImages"].length > 0
@@ -162,78 +206,103 @@ class _particulerProductState extends State<particulerProduct> {
                           : const Center(child: Text("Not found Image")),
                     ),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      stars(),
-                      Text("255",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontFamily: 'majallab',
-                              fontSize: 24,
-                              color: Colors.black)),
-                      Icon(Icons.navigate_next)
+                      const SizedBox(width: 10),
+                      Expanded(
+                        flex: 5,
+                        child: Center(
+                          child: Text(
+                            "Lorem ipsum dolor sit amet, consectetur adipiscing eliIn nsectetur adipiscing eliIn  ",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                color: AppColor.bodyColor,
+                                overflow: TextOverflow.ellipsis,
+                                fontSize: 13,
+                                height: 1.5),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: IconButton(
+                            onPressed: () {}, icon: const Icon(Icons.share)),
+                      )
                     ],
                   ),
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 10, horizontal: 20),
-                    child: Center(
-                      child: Text(
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In "
-                        "rutrum at ex non eleifend. Aenean sed eros a purus "
-                        "gravida scelerisque id in orci. Mauris elementum id "
-                        "nibh et dapibus. Maecenas lacinia volutpat magna",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: AppColor.bodyColor,
-                            fontSize: 14,
-                            height: 1.5),
+                  const SizedBox(height: 10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      const SizedBox(width: 10),
+                      Expanded(flex: 4, child: stars()),
+                      const Expanded(
+                        child: Text("(255)",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontFamily: 'majallab',
+                                fontSize: 15,
+                                color: Colors.black)),
                       ),
-                    ),
+                      Expanded(
+                        child: IconButton(
+                            onPressed: () {},
+                            icon: const Icon(Icons.navigate_next)),
+                      )
+                    ],
                   ),
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 10, horizontal: 30),
-                    child: const Text("Colors",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'majallab',
-                            fontSize: 24,
-                            color: Colors.black)),
+                  const SizedBox(height: 10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      const SizedBox(width: 10),
+                      Expanded(
+                          child: Container(
+                        alignment: Alignment.centerLeft,
+                        child: Text("JD ${controller.ItemsById["newPrice"]}",
+                            style: const TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 18)),
+                      )),
+                      Expanded(
+                          child: Container(
+                        alignment: Alignment.centerRight,
+                        child: Text(controller.ItemsById["itemName"].toString(),
+                            style: const TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 18)),
+                      )),
+                      const SizedBox(width: 15),
+                    ],
                   ),
+                  const SizedBox(height: 10),
                   Container(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 10, horizontal: 20),
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: const Text("Colors:",
+                        style: TextStyle(fontSize: 15, color: Colors.black)),
+                  ),
+                  const SizedBox(height: 10),
+                  Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
                       child: property()),
                   const SizedBox(height: 20),
                   Container(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 10, horizontal: 30),
-                    child: const Text("Sizes",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'majallab',
-                            fontSize: 24,
-                            color: Colors.black)),
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: const Text("Sizes:",
+                        style: TextStyle(fontSize: 15, color: Colors.black)),
                   ),
+                  const SizedBox(height: 10),
                   controller.ItemsById["itemSizes"].length > 0
                       ? Container(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 10, horizontal: 20),
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
                           child: SizedBox(
-                            height: 50,
+                            height: 30,
                             width: MediaQuery.of(context).size.width,
                             child: ListView.builder(
                                 itemCount:
                                     controller.ItemsById["itemSizes"].length,
                                 scrollDirection: Axis.horizontal,
                                 itemBuilder: (BuildContext context, int i) {
-                                  return Padding(
-                                    padding:
-                                        EdgeInsets.only(left: 10, right: 10),
-                                    child: InkWell(
+                                  return InkWell(
                                       onTap: () {
                                         setState(() {
                                           tappedIndex = i;
@@ -245,42 +314,56 @@ class _particulerProductState extends State<particulerProduct> {
                                                   [i]["itemSizeId"];
                                         });
                                       },
-                                      child: Container(
-                                        height: 50,
-                                        width: 60,
-                                        decoration: BoxDecoration(
-                                          // shape: BoxShape.circle,
+                                      child: Row(
+                                        children: [
+                                          Center(
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                // shape: BoxShape.circle,
+                                                color: Colors.white,
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                                border: Border.all(
+                                                  color: tappedIndex == i
+                                                      ? Colors.black
+                                                      : Colors.grey,
+                                                  width: 2.0,
+                                                ),
+                                              ),
+                                              child: Chip(
+                                                // elevation: 20,
+                                                // padding: EdgeInsets.all(8),
+                                                backgroundColor:
+                                                    Colors.transparent,
+                                                shadowColor: Colors.black,
 
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          border: Border.all(
-                                            color: tappedIndex == i
-                                                ? Colors.black
-                                                : Colors.grey,
-                                            width: 2.0,
+                                                label: Center(
+                                                  child: Text(
+                                                    controller.ItemsById[
+                                                            "itemSizes"][i]
+                                                        ["itemSizeDescEn"],
+                                                    style:
+                                                        TextStyle(fontSize: 15),
+                                                  ),
+                                                ), //Text
+                                              ),
+                                            ),
                                           ),
-                                        ),
-                                        child: Center(
-                                          child: Text(
-                                            controller.ItemsById["itemSizes"][i]
-                                                ["itemSizeDescEn"],
-                                            style: TextStyle(
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 15,
-                                                fontFamily: 'Almarai'),
+                                          const SizedBox(
+                                            width: 5,
                                           ),
-                                        ),
-                                      ),
-                                    ),
-                                  );
+                                        ],
+                                      ));
                                 }),
                           ),
                         )
                       : Container(),
+                  const SizedBox(height: 10),
+                  const Divider(
+                    thickness: 8,
+                  ),
                   Container(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 10, horizontal: 30),
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: Row(
                       children: [
                         const Text("Comments",
@@ -303,8 +386,7 @@ class _particulerProductState extends State<particulerProduct> {
                     child: Container(
                       width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.height / 4,
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 10, horizontal: 20),
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
                       child: SmartRefresher(
                         controller: refreshController,
                         enablePullUp: true,
@@ -345,8 +427,90 @@ class _particulerProductState extends State<particulerProduct> {
                 ],
               ),
             ),
-            bottomButton(
-                int.parse(widget.id.toString()), sizescelect, colorselect)
+            // bottomButton(int.parse(widget.id.toString()), sizescelect,
+            //     colorselect, controller.ItemsById["isWish"])
+            Expanded(
+              child: Align(
+                alignment: FractionalOffset.bottomCenter,
+                child: Container(
+                  padding: const EdgeInsets.only(right: 20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Expanded(
+                        flex: 6,
+                        child: FlatButton(
+                            color: Colors.black,
+                            height: 70,
+                            onPressed: () async {
+                              print(int.parse(widget.id.toString()));
+                              print(sizescelect);
+                              print(colorselect);
+                              if (sizescelect != 0 && colorselect != 0) {
+                                await addCartApi(
+                                    context,
+                                    int.parse(widget.id.toString()),
+                                    sizescelect,
+                                    colorselect);
+                                await myCartApi();
+                              } else if (sizescelect == 0 && colorselect != 0) {
+                                diaFaildCart(context, "Choose Size");
+                              } else if (sizescelect != 0 && colorselect == 0) {
+                                diaFaildCart(context, "Choose Color");
+                              } else if (sizescelect == 0 && colorselect == 0) {
+                                diaFaildCart(context, "Choose Size & Color");
+                              }
+                            },
+                            child: Text(
+                              "Add to Bag ",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 14,
+                                  color: Colors.white),
+                            )),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Expanded(
+                          child: IconButton(
+                              onPressed: () async {
+                                if (controller.ItemsById["isWish"] == false) {
+                                  //add and change color
+                                  setState(() {
+                                    // i = 1;
+                                    controller.ItemsById["isWish"] = true;
+                                  });
+                                  await addLike(int.parse(widget.id.toString()),
+                                      controller1.id);
+                                  await myLikeApi(controller1.id);
+                                } else if (controller.ItemsById["isWish"] ==
+                                    true) {
+                                  //delete
+                                  setState(() {
+                                    // i = 0;
+                                    controller.ItemsById["isWish"] = false;
+                                  });
+                                  await deleteLike(controller1.id,
+                                      int.parse(widget.id.toString()));
+                                  await myLikeApi(controller1.id);
+                                }
+                              },
+                              icon: Icon(
+                                Icons.favorite_border,
+                                color: controller.ItemsById["isWish"] == true
+                                    ? Colors.black
+                                    : Colors.grey,
+                                size: 30,
+                              )))
+                    ],
+                  ),
+                ),
+              ),
+            )
           ],
         ));
   }
@@ -376,12 +540,17 @@ class _particulerProductState extends State<particulerProduct> {
       initialRating: 3,
       minRating: 1,
       direction: Axis.horizontal,
-      allowHalfRating: true,
+      // allowHalfRating: true,
       itemCount: 5,
-      itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-      itemBuilder: (context, _) => Icon(
-        Icons.star_rounded,
-        color: Colors.amber,
+      // itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+      itemBuilder: (context, _) => Container(
+        // width: 2,
+        // height: 2,
+        child: Icon(
+          Icons.star_rounded,
+          color: Colors.amber,
+          size: 2,
+        ),
       ),
       onRatingUpdate: (rating) {
         print(rating);
@@ -478,38 +647,36 @@ class _particulerProductState extends State<particulerProduct> {
             // height: MediaQuery.of(context).size.,
             width: MediaQuery.of(context).size.width,
             child: SizedBox(
-              height: 50,
+              height: 25,
               width: MediaQuery.of(context).size.width,
               child: ListView.builder(
                   itemCount: controller.ItemsById["itemColors"].length,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (BuildContext context, int i) {
-                    return Padding(
-                      padding: EdgeInsets.only(left: 10, right: 10),
-                      child: InkWell(
-                        onTap: () {
-                          setState(() {
-                            tappedIndexColor = i;
-                            color =
-                                controller.ItemsById["itemColors"][i]["value"];
-                            colorselect = controller.ItemsById["itemColors"][i]
-                                ["itemColorId"];
-                          });
-                        },
-                        child: Container(
-                          height: 50,
-                          width: 50,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Color(int.parse(controller
-                                .ItemsById["itemColors"][i]["value"]
-                                .replaceAll("#", "0xff"))),
-                            border: Border.all(
-                              color: tappedIndexColor == i
-                                  ? Colors.black
-                                  : Colors.grey,
-                              width: 2.0,
-                            ),
+                    return InkWell(
+                      onTap: () {
+                        setState(() {
+                          tappedIndexColor = i;
+                          color =
+                              controller.ItemsById["itemColors"][i]["value"];
+                          colorselect = controller.ItemsById["itemColors"][i]
+                              ["itemColorId"];
+                        });
+                      },
+                      child: Container(
+                        margin: EdgeInsets.symmetric(horizontal: 5),
+                        height: 25,
+                        width: 25,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(25),
+                          color: Color(int.parse(controller
+                              .ItemsById["itemColors"][i]["value"]
+                              .replaceAll("#", "0xff"))),
+                          border: Border.all(
+                            color: tappedIndexColor == i
+                                ? Colors.black
+                                : Colors.white,
+                            width: 2.0,
                           ),
                         ),
                       ),
@@ -519,19 +686,26 @@ class _particulerProductState extends State<particulerProduct> {
         : Container();
   }
 
-  Widget bottomButton(itemId, itemSizeId, itemColorId) {
+  Widget bottomButton(itemId, itemSizeId, itemColorId, isWish) {
+    Homecontroller controller1 = Get.put(Homecontroller());
+    var i;
+    bool iswish = isWish;
     return Expanded(
       child: Align(
         alignment: FractionalOffset.bottomCenter,
         child: Container(
-          padding: EdgeInsets.only(right: 20),
+          padding: const EdgeInsets.only(right: 20),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
+              const SizedBox(
+                width: 10,
+              ),
+              Expanded(
+                flex: 6,
                 child: FlatButton(
                     color: Colors.black,
+                    height: 70,
                     onPressed: () async {
                       print(itemId);
                       print(itemSizeId);
@@ -549,19 +723,42 @@ class _particulerProductState extends State<particulerProduct> {
                       }
                     },
                     child: Text(
-                      "Add to Bag +",
+                      "Add to Bag ",
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 14,
                           color: Colors.white),
                     )),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: Text(r"$" + controller.ItemsById["newPrice"].toString(),
-                    style:
-                        TextStyle(fontWeight: FontWeight.w400, fontSize: 28)),
-              )
+              const SizedBox(
+                width: 10,
+              ),
+              Expanded(
+                  child: IconButton(
+                      onPressed: () async {
+                        if (iswish == false) {
+                          //add and change color
+                          setState(() {
+                            i = 1;
+                            iswish = true;
+                          });
+                          await addLike(itemId, controller1.id);
+                          await myLikeApi(controller1.id);
+                        } else if (iswish == true) {
+                          //delete
+                          setState(() {
+                            i = 0;
+                            iswish = false;
+                          });
+                          await deleteLike(controller1.id, itemId);
+                          await myLikeApi(controller1.id);
+                        }
+                      },
+                      icon: Icon(
+                        Icons.favorite_border,
+                        color: iswish == true ? Colors.black : Colors.grey,
+                        size: 30,
+                      )))
             ],
           ),
         ),

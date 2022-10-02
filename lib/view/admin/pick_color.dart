@@ -10,7 +10,8 @@ import 'package:get/get.dart';
 // import 'package:string_to_color/string_to_color.dart';
 
 class picColor extends StatefulWidget {
-  const picColor({super.key});
+  final id;
+  const picColor({super.key, this.id});
 
   @override
   State<picColor> createState() => _picColorState();
@@ -218,9 +219,9 @@ class _picColorState extends State<picColor> {
       height: 65,
       child: RaisedButton(
         onPressed: () {
+          controller.SaveIdStore(int.parse(widget.id.toString()));
           addItem(
               context,
-              id_stor,
               controller.nameItem.toString(),
               controller.desItem.toString(),
               controller.priceItem,

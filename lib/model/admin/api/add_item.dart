@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
-Future addItem(context, storeId, itemName, itemDescription, price, extraText,
+Future addItem(context, itemName, itemDescription, price, extraText,
     List<Map<String, String>> sizes, List<Map<String, String>> colors) async {
   ControllerAdmin controller = Get.put(ControllerAdmin());
   print("=========api==============");
@@ -28,7 +28,7 @@ Future addItem(context, storeId, itemName, itemDescription, price, extraText,
   var headers = {'Content-Type': 'application/json'};
   var request = http.Request('POST', Uri.parse(baseURL + '/api/items/add'));
   request.body = json.encode({
-    "StoreId": id_stor,
+    "StoreId": controller.idStore,
     "ItemName": itemName,
     "ItemDescription": itemDescription,
     "Price": double.parse(price.toString()),

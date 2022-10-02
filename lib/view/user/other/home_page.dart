@@ -55,35 +55,32 @@ class _homePageState extends State<homePage> {
         key: _bottomNavigationKey,
         index: 0,
         height: 60.0,
-        items: <Widget>[
+        items: const <Widget>[
           InkWell(
-            child: Image.asset(
-              "assets/images/home.png",
-              width: 28,
-              height: 28,
+              child: Icon(
+            Icons.home,
+            size: 25,
+            color: Colors.white,
+          )),
+          InkWell(
+            child: Icon(
+              Icons.new_releases,
+              size: 25,
+              color: Colors.white,
             ),
           ),
           InkWell(
-            child: Image.asset(
-              "assets/images/new.png",
-              width: 28,
-              height: 25,
-            ),
-          ),
+              child: Icon(
+            Icons.category,
+            size: 25,
+            color: Colors.white,
+          )),
           InkWell(
-            child: Image.asset(
-              "assets/images/filter.png",
-              width: 28,
-              height: 28,
-            ),
-          ),
-          InkWell(
-            child: Image.asset(
-              "assets/images/avatar.png",
-              width: 28,
-              height: 28,
-            ),
-          ),
+              child: Icon(
+            Icons.person,
+            size: 25,
+            color: Colors.white,
+          )),
         ],
         color: Colors.black,
         backgroundColor: Colors.transparent,

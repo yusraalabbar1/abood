@@ -32,7 +32,7 @@ class _notificationState extends State<notification> {
             Expanded(
               child: (ListView.builder(
                   shrinkWrap: true,
-                  itemCount: 8,
+                  itemCount: 5,
                   itemBuilder: (context, index) {
                     // final passenger = passengers[index];
                     return Padding(

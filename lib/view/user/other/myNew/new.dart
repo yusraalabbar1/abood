@@ -1,8 +1,13 @@
 import 'package:abood/constant/urls.dart';
+import 'package:abood/controller/ControlUser.dart';
+import 'package:abood/model/user/mylike/api/add_like.dart';
+import 'package:abood/model/user/mylike/api/delete_like.dart';
+import 'package:abood/model/user/mylike/api/mylike.dart';
 import 'package:abood/model/user/stor/items/get_items_id.dart';
 import 'package:abood/model/user/stor/stor_item/stor_item_model.dart';
 import 'package:abood/view/user/other/drawer_main.dart';
 import 'package:abood/view/user/other/particuler_product.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -72,164 +77,219 @@ class _NewState extends State<New> {
     }
   }
 
+  BoxDecoration box3(img) {
+    return BoxDecoration(
+        image: DecorationImage(
+            fit: BoxFit.fill,
+            image: CachedNetworkImageProvider(img.toString())));
+  }
+
+  Homecontroller controller = Get.put(Homecontroller());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Color(0xffF5F5F5),
-        appBar: AppBar(
-          toolbarHeight: 70,
-          elevation: 5,
-          backgroundColor: Colors.white,
-          leading: Image.asset("assets/images/Untitled design (14).png"),
-          title: Text(
-            "New Products",
-            style: TextStyle(
-                color: Colors.black,
-                fontFamily: 'majallab',
+        body: Column(children: [
+          Container(
+            width: MediaQuery.of(context).size.width,
+            height: 130,
+            decoration: box3("https://static.toiimg.com/photo/78170852.cms"),
+            child: Center(
+                child: DefaultTextStyle(
+              style: const TextStyle(
+                fontFamily: 'Nunito',
                 fontSize: 25,
-                fontWeight: FontWeight.bold),
+                color: Colors.white,
+                shadows: [
+                  Shadow(
+                    blurRadius: 10.0,
+                    color: Colors.black,
+                    offset: Offset(3, 0),
+                  ),
+                ],
+              ),
+              child: AnimatedTextKit(
+                repeatForever: true,
+                animatedTexts: [
+                  FlickerAnimatedText("DAILY NEW"),
+                  FlickerAnimatedText('For All Category!! ^^'),
+                  FlickerAnimatedText("C'est La Vie !"),
+                ],
+                onTap: () {
+                  print("Tap Event");
+                },
+              ),
+            )),
           ),
-        ),
-        body: Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Column(children: [
-              Slider(
-                value: account,
-                max: 3,
-                // divisions: 1,
-                min: 1,
-                activeColor: Colors.black,
-                label: account.round().toString(),
-                onChanged: (double value) {
-                  setState(() {
-                    account = value;
-                  });
-                },
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Expanded(
-                  child: SmartRefresher(
-                controller: refreshController,
-                enablePullUp: true,
-                onRefresh: () async {
-                  final result = await getPassengerData(isRefresh: true);
-                  if (result) {
-                    refreshController.refreshCompleted();
-                  } else {
-                    refreshController.refreshFailed();
-                  }
-                },
-                onLoading: () async {
-                  final result = await getPassengerData();
-                  if (result) {
-                    refreshController.loadComplete();
-                  } else {
-                    refreshController.loadFailed();
-                  }
-                },
-                child: GridView.builder(
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: account.round(),
-                        crossAxisSpacing: 20,
-                        mainAxisSpacing: 20),
-                    itemCount: passengers.length,
-                    itemBuilder: (context, index) {
-                      final passenger = passengers[index];
-                      return InkWell(
-                          onTap: () async {
-                            await getItemsIdApi(passenger.itemId);
-                            // Navigator.of(context)
-                            //     .pushNamed("particularProducte");
-                            print(passenger.itemId);
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    particulerProduct(id: passenger.itemId),
-                              ),
-                            );
-                          },
-                          child: Container(
-                              alignment: Alignment.center,
-                              //child: Text(myProducts[index]["name"]),
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(15)),
-                              child: Column(
-                                children: [
-                                  Expanded(
-                                      flex: 2,
-                                      child: Stack(
-                                        children: [
-                                          Container(
-                                              decoration:
-                                                  passenger.itemImages!.length >
-                                                          0
-                                                      ? box2(passenger
-                                                          .itemImages![0]
-                                                          .imageUrl)
-                                                      : box2(passenger.image)),
-                                          Positioned(
-                                              left: 10,
-                                              top: 0.0,
+          Slider(
+            value: account,
+            max: 3,
+            // divisions: 1,
+            min: 1,
+            activeColor: Colors.black,
+            label: account.round().toString(),
+            onChanged: (double value) {
+              setState(() {
+                account = value;
+              });
+            },
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Expanded(
+              child: SmartRefresher(
+            controller: refreshController,
+            enablePullUp: true,
+            onRefresh: () async {
+              final result = await getPassengerData(isRefresh: true);
+              if (result) {
+                refreshController.refreshCompleted();
+              } else {
+                refreshController.refreshFailed();
+              }
+            },
+            onLoading: () async {
+              final result = await getPassengerData();
+              if (result) {
+                refreshController.loadComplete();
+              } else {
+                refreshController.loadFailed();
+              }
+            },
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: GridView.builder(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: account.round(),
+                      crossAxisSpacing: 20,
+                      mainAxisSpacing: 20),
+                  itemCount: passengers.length,
+                  itemBuilder: (context, index) {
+                    final passenger = passengers[index];
+                    return InkWell(
+                        onTap: () async {
+                          await getItemsIdApi(passenger.itemId);
+                          // Navigator.of(context)
+                          //     .pushNamed("particularProducte");
+                          print(passenger.itemId);
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  particulerProduct(id: passenger.itemId),
+                            ),
+                          );
+                        },
+                        child: Container(
+                            alignment: Alignment.center,
+                            //child: Text(myProducts[index]["name"]),
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(15)),
+                            child: Column(
+                              children: [
+                                Expanded(
+                                    flex: 2,
+                                    child: Stack(
+                                      children: [
+                                        Container(
+                                            decoration:
+                                                passenger.itemImages!.length > 0
+                                                    ? box2(passenger
+                                                        .itemImages![0]
+                                                        .imageUrl)
+                                                    : box2(passenger.image)),
+                                        Positioned(
+                                            left: 10,
+                                            top: 0.0,
 
-                                              // (background container size) - (circle height / 2)
-                                              child: Column(
-                                                children: [
-                                                  SizedBox(
-                                                    height: 5,
-                                                  ),
-                                                  CircleAvatar(
-                                                    backgroundColor:
-                                                        Colors.red[100],
-                                                    child: Center(
-                                                      child: IconButton(
-                                                          icon: Icon(
-                                                            Icons
-                                                                .favorite_sharp,
-                                                            color: i == 1
-                                                                ? Colors.red
-                                                                : Colors.white,
-                                                            size: 20,
-                                                          ),
-                                                          onPressed: () async {
+                                            // (background container size) - (circle height / 2)
+                                            child: Column(
+                                              children: [
+                                                SizedBox(
+                                                  height: 5,
+                                                ),
+                                                CircleAvatar(
+                                                  backgroundColor:
+                                                      Color.fromARGB(
+                                                          255, 246, 231, 232),
+                                                  child: Center(
+                                                    child: IconButton(
+                                                        icon: Icon(
+                                                          Icons.favorite_sharp,
+                                                          color: passenger
+                                                                      .isWish ==
+                                                                  true
+                                                              ? Colors.black
+                                                              : Colors.white,
+                                                          size: 20,
+                                                        ),
+                                                        onPressed: () async {
+                                                          if (passenger
+                                                                  .isWish ==
+                                                              false) {
+                                                            //add and change color
                                                             setState(() {
                                                               i = 1;
+                                                              passenger.isWish =
+                                                                  true;
                                                             });
-                                                          }),
-                                                    ),
+                                                            await addLike(
+                                                                passenger
+                                                                    .itemId,
+                                                                controller.id);
+                                                            await myLikeApi(
+                                                                controller.id);
+                                                          } else if (passenger
+                                                                  .isWish ==
+                                                              true) {
+                                                            //delete
+                                                            setState(() {
+                                                              i = 0;
+                                                              passenger.isWish =
+                                                                  false;
+                                                            });
+                                                            await deleteLike(
+                                                                controller.id,
+                                                                passenger
+                                                                    .itemId);
+                                                            await myLikeApi(
+                                                                controller.id);
+                                                          }
+                                                        }),
                                                   ),
-                                                ],
-                                              ))
-                                        ],
-                                      )),
-                                  Expanded(
-                                      child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceAround,
-                                    children: [
-                                      InkWell(
-                                        onTap: () {},
-                                        child: Container(
-                                            width: 50,
-                                            height: 30,
-                                            decoration: boxd2(),
-                                            child: Center(
-                                                child: textBot(
-                                                    passenger.newPrice))),
-                                      ),
-                                      text3(
-                                        passenger.itemName.toString(),
-                                      ),
-                                    ],
-                                  )),
-                                ],
-                              )));
-                    }),
-              ))
-            ])));
+                                                ),
+                                              ],
+                                            ))
+                                      ],
+                                    )),
+                                Expanded(
+                                    child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  children: [
+                                    InkWell(
+                                      onTap: () {},
+                                      child: Container(
+                                          width: 50,
+                                          height: 30,
+                                          decoration: boxd2(),
+                                          child: Center(
+                                              child:
+                                                  textBot(passenger.newPrice))),
+                                    ),
+                                    text3(
+                                      passenger.itemName.toString(),
+                                    ),
+                                  ],
+                                )),
+                              ],
+                            )));
+                  }),
+            ),
+          ))
+        ]));
   }
 
   Text textBot(text) {
@@ -267,7 +327,7 @@ class _NewState extends State<New> {
     return BoxDecoration(
         shape: BoxShape.rectangle,
         borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(15.0), topRight: Radius.circular(15.0)),
+            topLeft: Radius.circular(10.0), topRight: Radius.circular(10.0)),
         image: DecorationImage(
             fit: BoxFit.fill,
             image: CachedNetworkImageProvider(imageAds + img.toString())));

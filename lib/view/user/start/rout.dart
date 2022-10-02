@@ -14,6 +14,7 @@ import 'package:abood/view/admin/pick_color.dart';
 import 'package:abood/view/admin/picker_mu_image.dart';
 import 'package:abood/view/admin/search_item.dart';
 import 'package:abood/view/admin/start_stor.dart';
+import 'package:abood/view/admin/stor_add.dart';
 import 'package:abood/view/admin/stor_by_merch.dart';
 import 'package:abood/view/user/auth/complet_forget.dart';
 import 'package:abood/view/user/auth/forget_password.dart';
@@ -29,6 +30,7 @@ import 'package:abood/view/user/other/myCart/mycart.dart';
 import 'package:abood/view/user/other/myCateg/offer..dart';
 import 'package:abood/view/user/other/myCateg/sub2cat.dart';
 import 'package:abood/view/user/other/myCateg/sub_cat.dart';
+import 'package:abood/view/user/other/myHome/search_user.dart';
 import 'package:abood/view/user/other/myNew/new.dart';
 import 'package:abood/view/user/other/particuler_product.dart';
 import 'package:abood/view/user/other/profile/edit_pass.dart';
@@ -77,6 +79,8 @@ class MyApp extends StatelessWidget {
         "AllItemsStoreoffer": ((context) => AllItemsStoreoffer()),
         "particulerProduct": ((context) => particulerProduct()),
         "AddProduct": ((context) => AddProduct()),
+        "StorByMerchAdd": ((context) => StorByMerchAdd()),
+        "searchProductUser": ((context) => searchProductUser()),
         "CompletCart": ((context) => CompletCart()),
         "EditItem": ((context) => EditItem(
               id: null,
