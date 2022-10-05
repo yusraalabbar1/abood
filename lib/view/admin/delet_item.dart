@@ -62,7 +62,7 @@ class _DeletItemState extends State<DeletItem> {
         toolbarHeight: 100,
         title: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [appText(" Delete Product")],
+          children: [appText(" Delete Product".tr)],
         ),
       ),
       body: FutureBuilder(
@@ -76,7 +76,7 @@ class _DeletItemState extends State<DeletItem> {
                     ),
                     Container(
                       alignment: Alignment.center,
-                      child: text1("Basic Information"),
+                      child: text1("Basic Information".tr),
                     ),
                     Container(
                       margin: EdgeInsets.all(10),
@@ -90,7 +90,7 @@ class _DeletItemState extends State<DeletItem> {
                             Container(
                                 alignment: Alignment.topLeft,
                                 margin: EdgeInsets.symmetric(horizontal: 30),
-                                child: appText2("Name:")),
+                                child: appText2("Name:".tr)),
                             Padding(
                               padding: const EdgeInsets.only(
                                   left: 20, right: 20, bottom: 20, top: 0),
@@ -102,7 +102,7 @@ class _DeletItemState extends State<DeletItem> {
                             Container(
                                 alignment: Alignment.topLeft,
                                 margin: EdgeInsets.symmetric(horizontal: 30),
-                                child: appText2("Price:")),
+                                child: appText2("Price:".tr)),
                             Padding(
                               padding: const EdgeInsets.only(
                                   left: 20, right: 20, bottom: 20, top: 0),
@@ -114,7 +114,7 @@ class _DeletItemState extends State<DeletItem> {
                             Container(
                                 alignment: Alignment.topLeft,
                                 margin: EdgeInsets.symmetric(horizontal: 30),
-                                child: appText2("Extra Text:")),
+                                child: appText2("Extra Text:".tr)),
                             Padding(
                               padding: const EdgeInsets.all(20.0),
                               child: Container(
@@ -125,7 +125,7 @@ class _DeletItemState extends State<DeletItem> {
                             Container(
                                 alignment: Alignment.topLeft,
                                 margin: EdgeInsets.symmetric(horizontal: 30),
-                                child: appText2("Description:")),
+                                child: appText2("Description:".tr)),
                             Padding(
                               padding: const EdgeInsets.only(
                                   left: 20, right: 20, bottom: 20, top: 0),
@@ -147,7 +147,7 @@ class _DeletItemState extends State<DeletItem> {
                         children: [
                           Container(
                             alignment: Alignment.center,
-                            child: text1("Delete Sub Section"),
+                            child: text1("Delete Sub Section".tr),
                           ),
                           SizedBox(
                             height: 10,
@@ -252,7 +252,7 @@ class _DeletItemState extends State<DeletItem> {
                                                     controllerPro
                                                         .ItemsById["itemSizes"]
                                                             [index]
-                                                            ["itemSizeDescAr"]
+                                                            ["itemSizeDescEn"]
                                                         .toString(),
                                                     style: TextStyle(
                                                         color: Colors.white),
@@ -351,7 +351,7 @@ class _DeletItemState extends State<DeletItem> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 30),
                       child: ButtonRegister2(Colors.black, Colors.white,
-                          "  Delete Product", 1, widget.id),
+                          " Delete product".tr, 1, widget.id),
                     ),
                   ],
                 )

@@ -72,7 +72,7 @@ class _SubCatState extends State<SubCat> {
         backgroundColor: Colors.white,
         leading: Image.asset("assets/images/Untitled design (14).png"),
         title: Text(
-          "Sub Category",
+          "Sub Category".tr,
           style: TextStyle(
               color: Colors.black,
               fontFamily: 'majallab',

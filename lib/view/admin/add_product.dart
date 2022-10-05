@@ -54,7 +54,7 @@ class _AddProductState extends State<AddProduct> {
         backgroundColor: Colors.white,
         toolbarHeight: 100,
         // centerTitle: false,
-        title: appText(" Add Product"),
+        title: appText(" Add Product".tr),
       ),
       body: ListView(
         children: [
@@ -76,7 +76,7 @@ class _AddProductState extends State<AddProduct> {
                   ),
                   Container(
                     // alignment: Alignment.center,
-                    child: text1("Basic Information"),
+                    child: text1("Basic Information".tr),
                   ),
                   SizedBox(
                     height: 20,
@@ -117,7 +117,8 @@ class _AddProductState extends State<AddProduct> {
           ),
           Padding(
             padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
-            child: ButtonRegister1(Colors.black, Colors.white, "Continue", 1),
+            child:
+                ButtonRegister1(Colors.black, Colors.white, "Continue".tr, 1),
           ),
         ],
       ),
@@ -129,7 +130,7 @@ class _AddProductState extends State<AddProduct> {
       keyboardType: TextInputType.text,
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
-        hintText: "اسم المنتج",
+        hintText: "Name Product".tr,
       ),
       validator: (text) {
         if (text!.length > 40) {
@@ -152,7 +153,7 @@ class _AddProductState extends State<AddProduct> {
       keyboardType: TextInputType.number,
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
-        hintText: " السعر",
+        hintText: "Price".tr,
       ),
       validator: (text) {
         if (text!.length > 40) {
@@ -176,7 +177,7 @@ class _AddProductState extends State<AddProduct> {
       maxLines: null,
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
-        hintText: "ملاحظة  ",
+        hintText: "Note".tr,
         prefixIcon: IconButton(onPressed: () {}, icon: Icon(Icons.note)),
       ),
       validator: (text) {
@@ -201,7 +202,7 @@ class _AddProductState extends State<AddProduct> {
       keyboardType: TextInputType.multiline,
       maxLines: null,
       decoration: InputDecoration(
-        hintText: " الوصف",
+        hintText: "Description".tr,
         prefixIcon: IconButton(onPressed: () {}, icon: Icon(Icons.description)),
         labelStyle: TextStyle(
             color: myFocusNode.hasFocus ? Color(0xffFAB10C) : Colors.black),

@@ -34,7 +34,7 @@ class _myLikeState extends State<myLike> {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 70,
-        title: text1("Favourite"),
+        title: text1("Favourite".tr),
       ),
       body: RefreshIndicator(
         onRefresh: () async {
@@ -207,7 +207,7 @@ class _myLikeState extends State<myLike> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Image.asset("assets/images/empty.png"),
-                      const Text("لم تضف أي شيئ",
+                      Text("You didn't add anything".tr,
                           style: TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.bold,
@@ -217,7 +217,7 @@ class _myLikeState extends State<myLike> {
                         height: 20,
                       ),
                       ButtonRegister2(
-                          Colors.black, Colors.white, "تصفح المتاجر")
+                          Colors.black, Colors.white, "Browse Stores")
                     ],
                   ),
                 ));

@@ -139,7 +139,7 @@ class _categoryState extends State<category>
                                           EdgeInsets.symmetric(vertical: 10),
                                       child: Text(
                                         controllerPro.saveAllCategwithout[index]
-                                                ["descAr"]
+                                                ["descEn"]
                                             .toString(),
                                         style: TextStyle(
                                             color: Colors.white,
@@ -154,7 +154,7 @@ class _categoryState extends State<category>
                                       margin: EdgeInsets.all(5),
                                       child: Text(
                                         controllerPro.saveAllCategwithout[index]
-                                                ["descAr"]
+                                                ["descEn"]
                                             .toString(),
                                         style: TextStyle(
                                             color: Colors.black,
@@ -250,7 +250,7 @@ class _categoryState extends State<category>
                                   alignment: Alignment.center,
                                   width: MediaQuery.of(context).size.width,
                                   child: text1(
-                                    passenger.descAr,
+                                    passenger.descEn,
                                   ),
                                 ),
                               ),
@@ -319,7 +319,7 @@ class _categoryState extends State<category>
               SizedBox(
                 height: 10,
               ),
-              text1("For Help, You Are Contact Us"),
+              text1("For Help, You Are Contact Us".tr),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

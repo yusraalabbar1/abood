@@ -70,7 +70,7 @@ class _CompletCartState extends State<CompletCart> {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 70,
-        title: text1("My Cart"),
+        title: text1("My Cart".tr),
       ),
       body: Form(
         key: formstate,
@@ -91,7 +91,7 @@ class _CompletCartState extends State<CompletCart> {
                 padding: const EdgeInsets.all(20),
                 child: ListView(
                   children: [
-                    textWidget("اسم المستخدم "),
+                    textWidget("Name".tr),
                     const SizedBox(
                       height: 10,
                     ),
@@ -99,7 +99,7 @@ class _CompletCartState extends State<CompletCart> {
                     const SizedBox(
                       height: 10,
                     ),
-                    textWidget("رقم هاتف"),
+                    textWidget("Mobile Number".tr),
                     const SizedBox(
                       height: 10,
                     ),
@@ -107,7 +107,7 @@ class _CompletCartState extends State<CompletCart> {
                     const SizedBox(
                       height: 10,
                     ),
-                    textWidget("المدينة"),
+                    textWidget("City".tr),
                     const SizedBox(
                       height: 10,
                     ),
@@ -132,10 +132,10 @@ class _CompletCartState extends State<CompletCart> {
                           Icons.arrow_downward,
                           color: Colors.black,
                         ),
-                        hint: const Padding(
+                        hint: Padding(
                           padding: EdgeInsets.symmetric(horizontal: 20),
                           child: Text(
-                            'اختر المدينة',
+                            "Select City".tr,
                             style: TextStyle(
                                 color: Colors.grey,
                                 fontSize: 17,
@@ -162,7 +162,7 @@ class _CompletCartState extends State<CompletCart> {
                         Expanded(
                             child: Column(
                           children: [
-                            textWidget("المنطقة"),
+                            textWidget("Region".tr),
                             const SizedBox(
                               height: 10,
                             ),
@@ -176,7 +176,7 @@ class _CompletCartState extends State<CompletCart> {
                         Expanded(
                             child: Column(
                           children: [
-                            textWidget("رقم الشقة"),
+                            textWidget("Apartment number".tr),
                             const SizedBox(
                               height: 10,
                             ),
@@ -190,7 +190,7 @@ class _CompletCartState extends State<CompletCart> {
                     const SizedBox(
                       height: 10,
                     ),
-                    textWidget("اسم الشارع"),
+                    textWidget("Street name".tr),
                     const SizedBox(
                       height: 10,
                     ),
@@ -240,7 +240,7 @@ class _CompletCartState extends State<CompletCart> {
                       }
                     },
                     child: Text(
-                      "Complete",
+                      "Complete".tr,
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 14,
@@ -289,7 +289,7 @@ class _CompletCartState extends State<CompletCart> {
       keyboardType: TextInputType.number,
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
-        hintText: "اكتب هنا",
+        hintText: "write here".tr,
         prefixIcon: IconButton(onPressed: () {}, icon: Icon(Icons.house)),
       ),
       validator: (text) {
@@ -335,7 +335,7 @@ class _CompletCartState extends State<CompletCart> {
       keyboardType: TextInputType.text,
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
-        hintText: "اكتب هنا",
+        hintText: "write here".tr,
         prefixIcon: IconButton(onPressed: () {}, icon: Icon(Icons.person)),
       ),
       validator: (text) {
@@ -358,7 +358,7 @@ class _CompletCartState extends State<CompletCart> {
       keyboardType: TextInputType.text,
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
-        hintText: "اكتب هنا",
+        hintText: "write here".tr,
         prefixIcon: IconButton(onPressed: () {}, icon: Icon(Icons.person)),
       ),
       validator: (text) {

@@ -16,7 +16,7 @@ class _contectState extends State<contect> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Contact Us"),
+        title: Text("Contact Us".tr),
         toolbarHeight: 60,
       ),
       body: Center(

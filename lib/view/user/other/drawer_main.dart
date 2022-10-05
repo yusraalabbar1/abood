@@ -58,7 +58,7 @@ Drawer drawermain(context) {
                           color: Colors.white,
                         ),
                       ),
-                      Container(child: text2("Terms and Conditions"))
+                      Container(child: text2("Terms and Conditions".tr))
                     ],
                   ),
                 ),
@@ -74,7 +74,7 @@ Drawer drawermain(context) {
                         color: Colors.white,
                       ),
                     ),
-                    Container(child: text2("Privacy policy"))
+                    Container(child: text2("Privacy policy".tr))
                   ],
                 ),
                 onTap: () {
@@ -92,7 +92,7 @@ Drawer drawermain(context) {
                         color: Colors.white,
                       ),
                     ),
-                    Container(child: text2("protection"))
+                    Container(child: text2("protection".tr))
                   ],
                 ),
                 onTap: () {
@@ -115,7 +115,7 @@ Drawer drawermain(context) {
                           color: Colors.white,
                         ),
                       ),
-                      Container(child: text2("About Us"))
+                      Container(child: text2("About Us".tr))
                     ],
                   ),
                 ),
@@ -136,7 +136,7 @@ Drawer drawermain(context) {
                           color: Colors.white,
                         ),
                       ),
-                      Container(child: text2("Contact Us"))
+                      Container(child: text2("Contact Us".tr))
                     ],
                   ),
                 ),
@@ -155,7 +155,7 @@ Drawer drawermain(context) {
                         color: Colors.white,
                       ),
                     ),
-                    Container(child: text2("Language"))
+                    Container(child: text2("Languages".tr))
                   ],
                 ),
               ),
@@ -175,7 +175,7 @@ Drawer drawermain(context) {
                         color: Colors.white,
                       ),
                     ),
-                    Container(child: text2("Log out"))
+                    Container(child: text2("Log out".tr))
                   ],
                 ),
               ),

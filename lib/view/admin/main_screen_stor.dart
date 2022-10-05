@@ -169,13 +169,13 @@ class _MainScreenStorState extends State<MainScreenStor> {
           builder: (context) => AlertDialog(
             backgroundColor: Colors.black,
             title: Center(
-              child: Text('الخروج من التطبيق',
+              child: Text('Exit the app'.tr,
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 13,
                       fontFamily: 'Almarai')),
             ),
-            content: Text(' هل أنت متأكد من الخروج',
+            content: Text('Are you sure you are going out?'.tr,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     color: Colors.white, fontSize: 13, fontFamily: 'Almarai')),
@@ -192,7 +192,7 @@ class _MainScreenStorState extends State<MainScreenStor> {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(25),
                           side: BorderSide(color: Colors.white, width: 2)),
-                      child: Text("الرئيسية",
+                      child: Text("Home".tr,
                           style: TextStyle(
                               color: Colors.black,
                               fontSize: 13,
@@ -211,7 +211,7 @@ class _MainScreenStorState extends State<MainScreenStor> {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(25),
                           side: BorderSide(color: MyColors.color1, width: 2)),
-                      child: Text("نعم",
+                      child: Text("Yes".tr,
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 13,
@@ -232,7 +232,7 @@ class _MainScreenStorState extends State<MainScreenStor> {
                           side: BorderSide(
                               color: Color.fromARGB(255, 231, 38, 64),
                               width: 2)),
-                      child: Text("لا",
+                      child: Text("No".tr,
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 13,
@@ -264,7 +264,7 @@ class _MainScreenStorState extends State<MainScreenStor> {
             padding: const EdgeInsets.only(left: 25.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
-              children: [appText(" MainScreen")],
+              children: [appText(" MainScreen".tr)],
             ),
           ),
           actions: [
@@ -330,7 +330,7 @@ class _MainScreenStorState extends State<MainScreenStor> {
                         child: Column(
                           children: [
                             Expanded(flex: 3, child: Container()),
-                            Expanded(child: widgetTitle("Add Product")),
+                            Expanded(child: widgetTitle("Add Product".tr)),
                           ],
                         ),
                       ),
@@ -355,7 +355,7 @@ class _MainScreenStorState extends State<MainScreenStor> {
                         child: Column(
                           children: [
                             Expanded(flex: 3, child: Container()),
-                            Expanded(child: widgetTitle("Add Offer")),
+                            Expanded(child: widgetTitle("Add Offer".tr)),
                           ],
                         ),
                       ),
@@ -383,7 +383,7 @@ class _MainScreenStorState extends State<MainScreenStor> {
                         child: Column(
                           children: [
                             Expanded(flex: 3, child: Container()),
-                            Expanded(child: widgetTitle("Edit pro")),
+                            Expanded(child: widgetTitle("Edit Product".tr)),
                           ],
                         ),
                       ),
@@ -408,7 +408,7 @@ class _MainScreenStorState extends State<MainScreenStor> {
                         child: Column(
                           children: [
                             Expanded(flex: 3, child: Container()),
-                            Expanded(child: widgetTitle("Delete Pro")),
+                            Expanded(child: widgetTitle(" Delete product".tr)),
                           ],
                         ),
                       ),
@@ -420,7 +420,7 @@ class _MainScreenStorState extends State<MainScreenStor> {
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: Text(
-                "All Products",
+                "All Products".tr,
                 style: TextStyle(
                     color: Colors.black, fontFamily: 'Nunito', fontSize: 20),
               ),
@@ -451,7 +451,7 @@ class _MainScreenStorState extends State<MainScreenStor> {
                     Center(
                         child: Image.asset(
                             "assets/images/Untitled design (11).png")),
-                    Center(child: appText3("Click^^ \nTo see \nAll Product"))
+                    Center(child: appText3("Click^^ \nTo see \nAll Product".tr))
                   ],
                 ),
               ),

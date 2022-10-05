@@ -65,7 +65,10 @@ class _EditItemState extends State<EditItem> {
         // centerTitle: false,
         title: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [appText(" Edit Product"), appText2("Basic operation")],
+          children: [
+            appText("Edit Product".tr),
+            appText2("Basic operation".tr)
+          ],
         ),
       ),
       body: FutureBuilder(
@@ -88,7 +91,7 @@ class _EditItemState extends State<EditItem> {
                             Container(
                                 alignment: Alignment.topLeft,
                                 margin: EdgeInsets.symmetric(horizontal: 30),
-                                child: appText2("Name Product:")),
+                                child: appText2("Name Product:".tr)),
                             const SizedBox(
                               height: 5,
                             ),
@@ -102,7 +105,7 @@ class _EditItemState extends State<EditItem> {
                             Container(
                                 alignment: Alignment.topLeft,
                                 margin: EdgeInsets.symmetric(horizontal: 30),
-                                child: appText2("Price:")),
+                                child: appText2("Price:".tr)),
                             const SizedBox(
                               height: 5,
                             ),
@@ -116,7 +119,7 @@ class _EditItemState extends State<EditItem> {
                             Container(
                                 alignment: Alignment.topLeft,
                                 margin: EdgeInsets.symmetric(horizontal: 30),
-                                child: appText2("Extra Text:")),
+                                child: appText2("Extra Text:".tr)),
                             const SizedBox(
                               height: 5,
                             ),
@@ -131,7 +134,7 @@ class _EditItemState extends State<EditItem> {
                             Container(
                                 alignment: Alignment.topLeft,
                                 margin: EdgeInsets.symmetric(horizontal: 30),
-                                child: appText2("Description:")),
+                                child: appText2("Description:".tr)),
                             const SizedBox(
                               height: 5,
                             ),
@@ -155,7 +158,7 @@ class _EditItemState extends State<EditItem> {
                       child: ButtonRegister1(
                           Colors.black,
                           Colors.white,
-                          "Edit Info",
+                          "Edit Info".tr,
                           1,
                           controllerPro.ItemsById["itemName"],
                           controllerPro.ItemsById["price"],

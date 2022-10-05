@@ -148,7 +148,10 @@ class _AllItemsStoreAddIMgState extends State<AllItemsStoreAddIMg> {
           toolbarHeight: 100,
           title: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [appText(" Add Image"), appText2("this is all product")],
+            children: [
+              appText(" Add Image".tr),
+              appText2("this is all product".tr)
+            ],
           ),
         ),
         body: Padding(
@@ -237,8 +240,8 @@ class _AllItemsStoreAddIMgState extends State<AllItemsStoreAddIMg> {
                                             width: 50,
                                             height: 30,
                                             decoration: boxd2(),
-                                            child:
-                                                Center(child: textBot("add"))),
+                                            child: Center(
+                                                child: textBot("add".tr))),
                                       ),
                                       text3(
                                         passenger.itemName.toString(),

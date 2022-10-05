@@ -124,7 +124,7 @@ class MyApp extends StatelessWidget {
               id: null,
             )),
       },
-      locale: Locale(controller.language),
+      locale: Locale("en"),
       // translations: Translation(),
     );
   }

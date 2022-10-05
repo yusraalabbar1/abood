@@ -78,7 +78,7 @@ class _AddOfferState extends State<AddOffer> {
           // centerTitle: false,
           title: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [appText(" Add Offer")],
+            children: [appText(" Add Offer".tr)],
           ),
         ),
         body: ListView(
@@ -119,7 +119,7 @@ class _AddOfferState extends State<AddOffer> {
                             Container(
                                 alignment: Alignment.topLeft,
                                 // margin: EdgeInsets.symmetric(horizontal: 30),
-                                child: appText4("Price:")),
+                                child: appText4("Price:".tr)),
                             Container(
                                 alignment: Alignment.topLeft,
                                 // margin: EdgeInsets.symmetric(horizontal: 30),
@@ -131,7 +131,7 @@ class _AddOfferState extends State<AddOffer> {
                             Container(
                                 alignment: Alignment.topLeft,
                                 // margin: EdgeInsets.symmetric(horizontal: 30),
-                                child: appText4("Name:")),
+                                child: appText4("Name:".tr)),
                             Container(
                                 alignment: Alignment.topLeft,
                                 // margin: EdgeInsets.symmetric(horizontal: 30),
@@ -153,7 +153,7 @@ class _AddOfferState extends State<AddOffer> {
                   Container(
                       alignment: Alignment.topLeft,
                       margin: EdgeInsets.symmetric(horizontal: 30),
-                      child: appText4("Price:")),
+                      child: appText4("Price:".tr)),
                   Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 20, vertical: 10),
@@ -163,7 +163,7 @@ class _AddOfferState extends State<AddOffer> {
                   Container(
                       alignment: Alignment.topLeft,
                       margin: EdgeInsets.symmetric(horizontal: 30),
-                      child: appText4("Name offer:")),
+                      child: appText4("Name offer:".tr)),
                   Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 20, vertical: 10),
@@ -176,7 +176,7 @@ class _AddOfferState extends State<AddOffer> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 30),
                     child: ButtonRegister2(
-                        Colors.black, Colors.white, "Add Offer", widget.id),
+                        Colors.black, Colors.white, "Add Offer".tr, widget.id),
                   ),
                 ],
               ),
@@ -185,7 +185,7 @@ class _AddOfferState extends State<AddOffer> {
               height: 30,
             ),
             widget.isoffer == false
-                ? Center(child: appText4("There is no previous offer"))
+                ? Center(child: appText4("There is no previous offer".tr))
                 : Container(),
             SizedBox(
               height: 10,
@@ -209,7 +209,7 @@ class _AddOfferState extends State<AddOffer> {
       keyboardType: TextInputType.text,
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
-        hintText: "اسم العرض",
+        hintText: "Name offer".tr,
       ),
       validator: (text) {
         if (text!.length > 40) {
@@ -232,7 +232,7 @@ class _AddOfferState extends State<AddOffer> {
       keyboardType: TextInputType.number,
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
-        hintText: " السعر الجديد ",
+        hintText: "New Price".tr,
       ),
       validator: (text) {
         if (text!.length > 40) {

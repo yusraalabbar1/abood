@@ -159,8 +159,8 @@ class _AllItemsStoreEditState extends State<AllItemsStoreEdit> {
           title: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              appText("Edit Product"),
-              appText2("this is all product")
+              appText("Edit Product".tr),
+              appText2("this is all product".tr)
             ],
           ),
         ),
@@ -250,8 +250,8 @@ class _AllItemsStoreEditState extends State<AllItemsStoreEdit> {
                                             width: 50,
                                             height: 30,
                                             decoration: boxd2(),
-                                            child:
-                                                Center(child: textBot("Edit"))),
+                                            child: Center(
+                                                child: textBot("Edit".tr))),
                                       ),
                                       text3(
                                         passenger.itemName.toString(),

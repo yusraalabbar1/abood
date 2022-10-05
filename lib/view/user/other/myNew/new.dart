@@ -113,9 +113,8 @@ class _NewState extends State<New> {
               child: AnimatedTextKit(
                 repeatForever: true,
                 animatedTexts: [
-                  FlickerAnimatedText("DAILY NEW"),
-                  FlickerAnimatedText('For All Category!! ^^'),
-                  FlickerAnimatedText("C'est La Vie !"),
+                  FlickerAnimatedText("DAILY NEW".tr),
+                  FlickerAnimatedText('For All Category!! ^^'.tr),
                 ],
                 onTap: () {
                   print("Tap Event");

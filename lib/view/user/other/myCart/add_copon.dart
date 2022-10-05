@@ -32,7 +32,7 @@ class _AddCoponState extends State<AddCopon> {
                   itemCount: controller.thirdMap.length,
                   itemBuilder: (BuildContext context, int index) {
                     return ListTile(
-                        trailing: text2("Total: " +
+                        trailing: text2("Total: ".tr +
                             controller.thirdMap[index][1].toString() +
                             "JD"),
                         title: Container(
@@ -42,9 +42,9 @@ class _AddCoponState extends State<AddCopon> {
                             textInputAction: TextInputAction.next,
                             decoration: InputDecoration(
                               hintText: newTotal == null
-                                  ? "Add Coupon Code" +
+                                  ? "Add Coupon Code".tr +
                                       controller.thirdMap[index][0].toString()
-                                  : "Add Coupon Code" + newTotal.toString(),
+                                  : "Add Coupon Code".tr + newTotal.toString(),
                             ),
                             onFieldSubmitted: (Value) {
                               setState(() {
@@ -65,7 +65,7 @@ class _AddCoponState extends State<AddCopon> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                text2("New Price"),
+                text2("New Price".tr),
                 const SizedBox(
                   width: 20,
                 ),
@@ -109,7 +109,7 @@ class _AddCoponState extends State<AddCopon> {
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(25.0))),
         child: Text(
-          "Next",
+          "Next".tr,
           style: TextStyle(
               color: c1,
               fontSize: 21,

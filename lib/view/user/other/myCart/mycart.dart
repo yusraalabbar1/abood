@@ -38,7 +38,7 @@ class _MyCartState extends State<MyCart> {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 70,
-        title: text1("My Cart"),
+        title: text1("My Cart".tr),
       ),
       // floatingActionButton: FloatingActionButton(
       //   onPressed: () {
@@ -54,8 +54,8 @@ class _MyCartState extends State<MyCart> {
           child: Column(
             children: [
               ListTile(
-                title: const Text("Estimated delivery time is 3 days"),
-                subtitle: const Text("Cannot be returned or exchanged"),
+                title: Text("Estimated delivery time is 3 days".tr),
+                subtitle: Text("Cannot be returned or exchanged".tr),
                 leading: Image.asset("assets/images/shipped.png"),
               ),
               Divider(
@@ -427,7 +427,7 @@ class _MyCartState extends State<MyCart> {
             width: 300,
             height: 300,
           ),
-          const Text("لم تضف أي شيئ",
+          Text("You didn't add anything".tr,
               style: TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
@@ -436,7 +436,7 @@ class _MyCartState extends State<MyCart> {
           const SizedBox(
             height: 20,
           ),
-          ButtonRegister2(Colors.black, Colors.white, "تصفح المتاجر")
+          ButtonRegister2(Colors.black, Colors.white, "Browse Stores".tr)
         ],
       ),
     );

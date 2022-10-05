@@ -159,8 +159,8 @@ class _AllItemsStoreDeletState extends State<AllItemsStoreDelet> {
           title: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              appText(" Delete product"),
-              appText2("this is all product")
+              appText(" Delete product".tr),
+              appText2("this is all product".tr)
             ],
           ),
         ),
@@ -248,7 +248,7 @@ class _AllItemsStoreDeletState extends State<AllItemsStoreDelet> {
                                             height: 30,
                                             decoration: boxd2(),
                                             child: Center(
-                                                child: textBot("Delete"))),
+                                                child: textBot("Delete".tr))),
                                       ),
                                       text3(
                                         passenger.itemName.toString(),

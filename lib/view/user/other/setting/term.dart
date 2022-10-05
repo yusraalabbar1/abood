@@ -16,7 +16,7 @@ class _TermState extends State<Term> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Term"),
+        title: Text("Term".tr),
         toolbarHeight: 60,
       ),
       body: Padding(

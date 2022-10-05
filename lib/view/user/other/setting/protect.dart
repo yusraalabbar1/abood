@@ -17,7 +17,7 @@ class _ProtectState extends State<Protect> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("protection"),
+        title: Text("protection".tr),
         toolbarHeight: 60,
       ),
       body: Padding(

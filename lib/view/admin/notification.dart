@@ -25,7 +25,7 @@ class _notificationStoreState extends State<notificationStore> {
     return Scaffold(
         appBar: AppBar(
           toolbarHeight: 80,
-          title: text1("Notifications"),
+          title: text1("Notifications".tr),
         ),
         body: Column(
           children: [

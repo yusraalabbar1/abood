@@ -7,6 +7,7 @@ import 'package:abood/view/user/other/myHome/page_view_banner.dart';
 import 'package:abood/view/user/other/widget/dialog_guest.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class AllHome extends StatefulWidget {
   const AllHome({super.key});
@@ -120,7 +121,7 @@ class _AllHomeState extends State<AllHome> {
           margin: const EdgeInsets.symmetric(horizontal: 10),
           child: Row(
             children: [
-              text1("Stores"),
+              text1("Stores".tr),
             ],
           ),
         ),

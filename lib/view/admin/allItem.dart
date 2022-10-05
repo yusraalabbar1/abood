@@ -140,8 +140,8 @@ class _AllItemsStoreState extends State<AllItemsStore> {
           title: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              appText(" All Products"),
-              appText2("this is all product")
+              appText(" All Products".tr),
+              appText2("this is all product".tr)
             ],
           ),
         ),

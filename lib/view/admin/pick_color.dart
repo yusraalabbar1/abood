@@ -66,8 +66,8 @@ class _picColorState extends State<picColor> {
         title: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            appText(" Additional Info"),
-            appText2("Pick Colors With Sizes")
+            appText(" Additional Info".tr),
+            appText2("Pick Colors With Sizes".tr)
           ],
         ),
       ),

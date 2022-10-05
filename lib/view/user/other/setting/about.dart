@@ -17,7 +17,7 @@ class _aboutState extends State<about> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text("About Us"),
+          title: Text("About Us".tr),
           toolbarHeight: 60,
         ),
         body: Padding(

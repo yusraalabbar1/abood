@@ -158,7 +158,10 @@ class _AllItemsStoreofferState extends State<AllItemsStoreoffer> {
           toolbarHeight: 100,
           title: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [appText(" Add Offer"), appText2("this is all product")],
+            children: [
+              appText(" Add Offer".tr),
+              appText2("this is all product".tr)
+            ],
           ),
         ),
         body: Padding(
@@ -255,8 +258,8 @@ class _AllItemsStoreofferState extends State<AllItemsStoreoffer> {
                                             width: 50,
                                             height: 30,
                                             decoration: boxd2(),
-                                            child:
-                                                Center(child: textBot("add"))),
+                                            child: Center(
+                                                child: textBot("add".tr))),
                                       ),
                                       text3(
                                         passenger.itemName.toString(),

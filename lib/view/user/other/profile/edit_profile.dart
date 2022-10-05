@@ -35,7 +35,7 @@ showLoadingUpdate(context) {
                             fontSize: 10),
                         textInputAction: TextInputAction.next,
                         decoration: InputDecoration(
-                          hintText: "Enter first name",
+                          hintText: "Enter first name".tr,
                         ),
                         validator: (text) {
                           if (text!.length > 15) {
@@ -67,7 +67,7 @@ showLoadingUpdate(context) {
                             fontSize: 10),
                         textInputAction: TextInputAction.next,
                         decoration: InputDecoration(
-                          hintText: "Enter Last name",
+                          hintText: "Enter Last name".tr,
                         ),
                         validator: (text) {
                           if (text!.length > 15) {

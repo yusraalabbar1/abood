@@ -165,7 +165,7 @@ class _searchProductUserState extends State<searchProductUser> {
                               // keyboardType: TextInputType.,
                               style: TextStyle(color: Colors.black),
                               decoration: InputDecoration(
-                                hintText: "Enter Name Product",
+                                hintText: "Enter Name Product".tr,
                                 prefixIcon: IconButton(
                                     icon: Icon(Icons.search),
                                     onPressed: () async {

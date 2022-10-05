@@ -27,7 +27,7 @@ class _notificationState extends State<notification> {
     return Scaffold(
         appBar: AppBar(
           toolbarHeight: 80,
-          title: text1("Notifications"),
+          title: text1("Notifications".tr),
         ),
         body: guest != true
             ? Column(

@@ -17,7 +17,7 @@ class _PrivecyState extends State<Privecy> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Privacy policy"),
+        title: Text("Privacy policy".tr),
         toolbarHeight: 60,
       ),
       body: Padding(

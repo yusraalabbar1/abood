@@ -235,7 +235,7 @@ class _myProfileState extends State<myProfile> {
                         children: [
                           Expanded(
                               child: Container(
-                            child: Text1("First Name"),
+                            child: Text1("First Name".tr),
                           )),
                           Expanded(
                               child: Row(
@@ -256,7 +256,7 @@ class _myProfileState extends State<myProfile> {
                         children: [
                           Expanded(
                               child: Container(
-                            child: Text1("Last Name"),
+                            child: Text1("Last Name".tr),
                           )),
                           Expanded(
                               child: Row(
@@ -277,7 +277,7 @@ class _myProfileState extends State<myProfile> {
                         children: [
                           Expanded(
                               child: Container(
-                            child: Text1("Mobile"),
+                            child: Text1("Mobile Number".tr),
                           )),
                           Expanded(
                               child: Row(

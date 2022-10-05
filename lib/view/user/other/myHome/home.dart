@@ -179,7 +179,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
                         label: i == index
                             ? Text(
-                                controllerPro.saveAllCateg[index]["descAr"]
+                                controllerPro.saveAllCateg[index]["descEn"]
                                     .toString(),
                                 style: TextStyle(
                                     color: Colors.white,
@@ -188,7 +188,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                     fontFamily: 'majallab'),
                               )
                             : Text(
-                                controllerPro.saveAllCateg[index]["descAr"]
+                                controllerPro.saveAllCateg[index]["descEn"]
                                     .toString(),
                                 style: TextStyle(
                                     color: Colors.black,
@@ -279,7 +279,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                     alignment: Alignment.center,
                                     width: MediaQuery.of(context).size.width,
                                     child: text1(
-                                      passenger.descAr,
+                                      passenger.descEn,
                                     ),
                                   ),
                                 ),

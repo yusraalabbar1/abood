@@ -292,7 +292,7 @@ class _particulerProductState extends State<particulerProduct> {
                   const SizedBox(height: 10),
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: const Text("Colors:",
+                    child: Text("Colors:".tr,
                         style: TextStyle(fontSize: 15, color: Colors.black)),
                   ),
                   const SizedBox(height: 10),
@@ -302,7 +302,7 @@ class _particulerProductState extends State<particulerProduct> {
                   const SizedBox(height: 20),
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: const Text("Sizes:",
+                    child: Text("Sizes:".tr,
                         style: TextStyle(fontSize: 15, color: Colors.black)),
                   ),
                   const SizedBox(height: 10),
@@ -384,7 +384,7 @@ class _particulerProductState extends State<particulerProduct> {
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: Row(
                       children: [
-                        const Text("Comments",
+                        Text("Comments".tr,
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontFamily: 'majallab',
@@ -487,18 +487,19 @@ class _particulerProductState extends State<particulerProduct> {
                                   await myCartApi();
                                 } else if (sizescelect == 0 &&
                                     colorselect != 0) {
-                                  diaFaildCart(context, "Choose Size");
+                                  diaFaildCart(context, "Choose Size".tr);
                                 } else if (sizescelect != 0 &&
                                     colorselect == 0) {
-                                  diaFaildCart(context, "Choose Color");
+                                  diaFaildCart(context, "Choose Color".tr);
                                 } else if (sizescelect == 0 &&
                                     colorselect == 0) {
-                                  diaFaildCart(context, "Choose Size & Color");
+                                  diaFaildCart(
+                                      context, "Choose Size & Color".tr);
                                 }
                               }
                             },
                             child: Text(
-                              "Add to Bag ",
+                              "Add to Bag ".tr,
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 14,
@@ -754,15 +755,15 @@ class _particulerProductState extends State<particulerProduct> {
                             context, itemId, itemSizeId, itemColorId);
                         await myCartApi();
                       } else if (itemSizeId == 0 && itemColorId != 0) {
-                        diaFaildCart(context, "Choose Size");
+                        diaFaildCart(context, "Choose Size".tr);
                       } else if (itemSizeId != 0 && itemColorId == 0) {
-                        diaFaildCart(context, "Choose Color");
+                        diaFaildCart(context, "Choose Color".tr);
                       } else if (itemSizeId == 0 && itemColorId == 0) {
-                        diaFaildCart(context, "Choose Size & Color");
+                        diaFaildCart(context, "Choose Size & Color".tr);
                       }
                     },
                     child: Text(
-                      "Add to Bag ",
+                      "Add to Bag ".tr,
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 14,
