@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:get/get.dart';
 import 'package:path/path.dart' as path;
 import 'package:abood/model/admin/api/add_image_item_api.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
@@ -53,7 +54,7 @@ class _muImageState extends State<muImage> {
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(20.0))),
         child: Text(
-          "Home",
+          "Home".tr,
           style: TextStyle(
               color: c1,
               fontSize: 18,
@@ -81,7 +82,7 @@ class _muImageState extends State<muImage> {
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(20.0))),
         child: Text(
-          "send photo",
+          "send photo".tr,
           style: TextStyle(
               color: c1,
               fontSize: 18,
@@ -187,7 +188,7 @@ class _muImageState extends State<muImage> {
         // centerTitle: false,
         title: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [appText(" pick Image")],
+          children: [appText("pick Image".tr)],
         ),
       ),
       body: ListView(
@@ -216,7 +217,7 @@ class _muImageState extends State<muImage> {
                       //   ],
                       // )
                     ),
-                    child: Center(child: appText2("photo \nCamera")),
+                    child: Center(child: appText2("photo \nCamera".tr)),
                   ),
                   Positioned(
                       left: 20,
@@ -258,7 +259,7 @@ class _muImageState extends State<muImage> {
                       color: Colors.black,
                       borderRadius: BorderRadius.all(Radius.circular(20)),
                     ),
-                    child: Center(child: appText2("photo \nGallery")),
+                    child: Center(child: appText2("photo \nGallery".tr)),
                   ),
                   Positioned(
                       left: 20,

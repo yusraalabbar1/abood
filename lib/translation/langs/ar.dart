@@ -124,5 +124,16 @@ const Map<String, String> ar = {
   "All Products": "",
   "Click^^ \nTo see \nAll Product": "",
   " Additional Info": "",
-  "Pick Colors With Sizes": ""
+  "Pick Colors With Sizes": "",
+  "Pick Colors": "",
+  "pick": "",
+  "Send Info Admin": "",
+  "Pick": "",
+  "Add Sizes": "",
+  "send photo": "",
+  "pick Image": "",
+  "photo \nCamera": "",
+  "photo \nGallery": "",
+  "All rights reserved to the application": "جميع الحقوق محفوظة لدى التطبيق ",
+  " All Stors": "",
 };

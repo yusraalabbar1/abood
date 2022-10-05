@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class pickSize extends StatefulWidget {
   const pickSize({super.key});
@@ -104,7 +105,7 @@ class _pickSizeState extends State<pickSize> {
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(20.0))),
         child: Text(
-          "Pick",
+          "Pick".tr,
           style: TextStyle(
               color: c1,
               fontSize: 15,
@@ -156,7 +157,7 @@ class _pickSizeState extends State<pickSize> {
         //     )),
         child: Column(
           children: [
-            text1size("Add Sizes"),
+            text1size("Add Sizes".tr),
             Divider(),
             Container(decoration: boxd(), child: TextFormFieldEng()),
             SizedBox(

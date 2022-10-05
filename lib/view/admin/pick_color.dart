@@ -97,7 +97,7 @@ class _picColorState extends State<picColor> {
             //     )),
             child: Column(
               children: [
-                Center(child: text1size("Pick Colors")),
+                Center(child: text1size("Pick Colors".tr)),
                 SizedBox(
                   height: 20,
                 ),
@@ -198,7 +198,7 @@ class _picColorState extends State<picColor> {
         shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(20.0))),
         child: Text(
-          "pick",
+          "pick".tr,
           style: TextStyle(
               color: c1,
               fontSize: 18,
@@ -232,7 +232,7 @@ class _picColorState extends State<picColor> {
         shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(25.0))),
         child: Text(
-          "Send Info Admin",
+          "Send Info Admin".tr,
           style: TextStyle(
               color: c1,
               fontSize: 18,

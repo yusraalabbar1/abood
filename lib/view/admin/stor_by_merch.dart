@@ -112,7 +112,7 @@ class _StorByMerchState extends State<StorByMerch> {
         title: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            appText(" All Stors"),
+            appText(" All Stors".tr),
           ],
         ),
       ),

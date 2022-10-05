@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class StartStore extends StatefulWidget {
   const StartStore({super.key});
@@ -75,7 +76,7 @@ class _StartStoreState extends State<StartStore>
             child: Container(
               margin: EdgeInsets.only(bottom: 20),
               child: Text(
-                "جميع الحقوق محفوظة لدى التطبيق ",
+                "All rights reserved to the application".tr,
                 style: TextStyle(
                     fontSize: 13, color: Colors.white, fontFamily: 'majallab'),
               ),
