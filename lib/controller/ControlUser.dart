@@ -18,9 +18,64 @@ class Homecontroller extends GetxController {
       idReg,
       identif,
       cityId;
+
   bool islogin = false;
   List<Map<dynamic, dynamic>> saveallCountry = [];
   List<Map<dynamic, dynamic>> allCity = [];
+  List<Map<dynamic, dynamic>> allSetting = [];
+  var face, whats, site, language = "en";
+  var about, term, privec, prot, idCity, page = 0;
+  SavePage(c) {
+    page = c;
+    update();
+  }
+
+  SaveLang(c) {
+    print(c);
+    language = c;
+    update();
+  }
+
+  SaveAllSetting(c) {
+    allSetting = c;
+    update();
+  }
+
+  SaveAbout(c) {
+    about = c;
+    update();
+  }
+
+  SaveTerm(c) {
+    term = c;
+    update();
+  }
+
+  SavePriv(c) {
+    privec = c;
+    update();
+  }
+
+  SaveProt(c) {
+    prot = c;
+    update;
+  }
+
+  SaveSite(c) {
+    site = c;
+    update();
+  }
+
+  SaveWhats(c) {
+    whats = c;
+    update();
+  }
+
+  SaveFaceBook(c) {
+    face = c;
+    update();
+  }
+
   ident(c) {
     identif = c;
     update();
@@ -28,6 +83,11 @@ class Homecontroller extends GetxController {
 
   SaveallCity(c) {
     allCity = c;
+    update();
+  }
+
+  SaveaCityId(c) {
+    idCity = c;
     update();
   }
 

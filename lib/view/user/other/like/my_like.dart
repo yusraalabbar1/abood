@@ -231,7 +231,9 @@ class _myLikeState extends State<myLike> {
       width: 250,
       height: 50,
       child: RaisedButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).pushReplacementNamed("homePage");
+        },
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(20.0))),
         child: Text(

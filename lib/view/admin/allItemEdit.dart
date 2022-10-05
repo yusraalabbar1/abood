@@ -64,7 +64,7 @@ class _AllItemsStoreEditState extends State<AllItemsStoreEdit> {
     var request = http.Request(
         'GET',
         Uri.parse(baseURL +
-            '/api/store/$idd/items/user/$id_user/pageIndex/$currentPage'));
+            '/api/store/items/users/$id_user/pageIndex/$currentPage'));
 
     final response = await request.send();
     var res = await http.Response.fromStream(response);

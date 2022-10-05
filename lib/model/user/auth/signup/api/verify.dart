@@ -73,3 +73,37 @@ Future verifyOtp(context, otp) async {
     mydiaFaild(context, c.message);
   }
 }
+
+Future verifyOtpForget(context, otp) async {
+  print("======================");
+
+  Homecontroller controller = Get.put(Homecontroller());
+
+  SharedPreferences preferences = await SharedPreferences.getInstance();
+  print(controller.idReg);
+  print(otp);
+  var headers = {'Content-Type': 'application/json'};
+  var request =
+      http.Request('POST', Uri.parse(baseURL + '/api/user/verifyOtp'));
+  request.body = json
+      .encode({"UserId": int.parse(controller.idReg.toString()), "Otp": otp});
+  request.headers.addAll(headers);
+
+  http.StreamedResponse response = await request.send();
+  var res = await http.Response.fromStream(response);
+  VerifyModel c = VerifyModel.fromJson(jsonDecode(res.body));
+  if (response.statusCode == 200) {
+    if (c.isSuccess == true) {
+      // Navigator.of(context).pushNamed("homePage");
+      Navigator.of(context).pushReplacementNamed("forgetPassword");
+      print(c.message);
+      /////////////////////////////////////////////
+    } else {
+      mydiaFaild(context, c.message);
+    }
+    // print(await response.stream.bytesToString());
+  } else {
+    // print(response.reasonPhrase);
+    mydiaFaild(context, c.message);
+  }
+}

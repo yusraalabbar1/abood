@@ -9,6 +9,8 @@ import 'package:abood/model/user/mycart/api/my_cart.dart';
 import 'package:abood/model/user/mycart/api/update_check.dart';
 import 'package:abood/model/user/mylike/api/delete_like.dart';
 import 'package:abood/model/user/mylike/api/mylike.dart';
+import 'package:abood/view/user/auth/start_account.dart';
+import 'package:abood/view/user/other/myCart/add_copon.dart';
 import 'package:abood/view/user/other/particuler_product.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +32,7 @@ class _MyCartState extends State<MyCart> {
   }
 
   Homecontroller controller1 = Get.put(Homecontroller());
-  var newTotal;
+  // var newTotal;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,6 +40,13 @@ class _MyCartState extends State<MyCart> {
         toolbarHeight: 70,
         title: text1("My Cart"),
       ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     // Add your onPressed code here!
+      //   },
+      //   backgroundColor: Colors.green,
+      //   child: const Icon(Icons.navigation),
+      // ),
       body: RefreshIndicator(
           onRefresh: () async {
             await myCartApi();
@@ -54,7 +63,7 @@ class _MyCartState extends State<MyCart> {
               ),
               SizedBox(
                 width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height / 2,
+                height: MediaQuery.of(context).size.height / 1.5,
                 child: GetBuilder<ControllerProduct>(builder: (controller) {
                   return (controller.myCart.length > 0
                       ? Container(
@@ -178,7 +187,7 @@ class _MyCartState extends State<MyCart> {
                       : nothingWidget());
                 }),
               ),
-              bottomButtoncuopon(),
+              // bottomButtoncuopon(),
               bottomButton()
             ],
           )),
@@ -262,27 +271,28 @@ class _MyCartState extends State<MyCart> {
     );
   }
 
+/*
   Widget bottomButtoncuopon() {
     return Expanded(
       child: Align(
           alignment: FractionalOffset.bottomCenter,
-          child: Column(
-            children: [
-              Expanded(
-                child: ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: controllerPro.thirdMap.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return ListTile(
-                          trailing: Text(
-                            "Total: " +
-                                controllerPro.thirdMap[index][1].toString() +
-                                "JD",
-                            style: TextStyle(color: Colors.black, fontSize: 15),
-                          ),
-                          title: GetBuilder<ControllerProduct>(
-                              builder: (controller) {
-                            return (TextFormField(
+          child: GetBuilder<ControllerProduct>(builder: (controller) {
+            return (Column(
+              children: [
+                Expanded(
+                  child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: controllerPro.thirdMap.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return ListTile(
+                            trailing: Text(
+                              "Total: " +
+                                  controllerPro.thirdMap[index][1].toString() +
+                                  "JD",
+                              style:
+                                  TextStyle(color: Colors.black, fontSize: 15),
+                            ),
+                            title: TextFormField(
                               keyboardType: TextInputType.text,
                               textInputAction: TextInputAction.next,
                               decoration: InputDecoration(
@@ -303,51 +313,64 @@ class _MyCartState extends State<MyCart> {
                                 });
                               },
                             ));
-                          }));
-                    }),
-              ),
-              // Text("data")
-            ],
-          )),
+                      }),
+                ),
+                // Text("data")
+              ],
+            ));
+          })),
     );
+  }
+*/
+  Text text2(text) {
+    return Text(text,
+        style: const TextStyle(
+            color: Colors.white,
+            fontSize: 21,
+            fontWeight: FontWeight.bold,
+            fontFamily: 'majallab'));
   }
 
   Widget bottomButton() {
-    return Expanded(
-      child: Align(
-        alignment: FractionalOffset.bottomCenter,
-        child: Container(
-          padding: EdgeInsets.only(right: 20),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: FlatButton(
-                    color: Colors.black,
-                    onPressed: () async {
-                      Navigator.of(context).pushNamed("CompletCart");
-                    },
-                    child: Text(
-                      "Continue",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 14,
-                          color: Colors.white),
-                    )),
+    List<Map<String, dynamic>> store = [];
+    return guest != true
+        ? Expanded(
+            child: Align(
+              alignment: FractionalOffset.bottomCenter,
+              child: Container(
+                padding: EdgeInsets.only(right: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: FlatButton(
+                          color: Colors.black,
+                          onPressed: () async {
+                            Navigator.of(context).pushNamed("CompletCart");
+                          },
+                          child: text2("Continue")),
+                    ),
+                    FlatButton(
+                        color: Colors.black,
+                        onPressed: () async {
+                          Navigator.of(context).pushNamed("AddCopon");
+                        },
+                        child: text2("Add Coupon")),
+                    Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: GetBuilder<ControllerProduct>(
+                            builder: (controller) {
+                          return (Text(r"JD" + controllerPro.total.toString(),
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w400, fontSize: 20)));
+                        }))
+                  ],
+                ),
               ),
-              Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: GetBuilder<ControllerProduct>(builder: (controller) {
-                    return (Text(r"JD" + controllerPro.total.toString(),
-                        style: TextStyle(
-                            fontWeight: FontWeight.w400, fontSize: 20)));
-                  }))
-            ],
-          ),
-        ),
-      ),
-    );
+            ),
+          )
+        : Container();
   }
 
   Widget sideWidget(idCart, isCheck) {
@@ -397,15 +420,19 @@ class _MyCartState extends State<MyCart> {
   Widget nothingWidget() {
     return Center(
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        // mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image.asset("assets/images/empty.png"),
+          Image.asset(
+            "assets/images/giphy (1).gif",
+            width: 300,
+            height: 300,
+          ),
           const Text("لم تضف أي شيئ",
               style: TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
                   fontSize: 20,
-                  fontFamily: 'Almarai')),
+                  fontFamily: 'Nunito')),
           const SizedBox(
             height: 20,
           ),
@@ -420,7 +447,9 @@ class _MyCartState extends State<MyCart> {
       width: 250,
       height: 50,
       child: RaisedButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).pushReplacementNamed("homePage");
+        },
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(20.0))),
         child: Text(

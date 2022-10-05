@@ -32,7 +32,7 @@ class _signupState extends State<signup> {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Text(
-              i['descAr'].toString(),
+              i['descEn'].toString(),
               style: TextStyle(color: Colors.black),
             ),
           ),
@@ -61,10 +61,10 @@ class _signupState extends State<signup> {
         child: ListView(
           children: [
             Container(
-              alignment: Alignment.centerRight,
+              // alignment: Alignment.ce,
               child: Padding(
-                  padding: const EdgeInsets.only(right: 20, top: 20),
-                  child: text1("أنشئ حساب ")),
+                  padding: const EdgeInsets.only(right: 20, top: 20, left: 20),
+                  child: text1("Creat Account".tr)),
             ),
             Padding(
               padding: const EdgeInsets.only(left: 20, right: 20),
@@ -112,10 +112,10 @@ class _signupState extends State<signup> {
                   Icons.arrow_downward,
                   color: Colors.black,
                 ),
-                hint: const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
+                hint: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Text(
-                    'اختر المدينة',
+                    "Choose the country".tr,
                     style: TextStyle(
                         color: Colors.grey,
                         fontSize: 17,
@@ -147,8 +147,8 @@ class _signupState extends State<signup> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  ButtonRegister1(Colors.white, Colors.black, "التالي", 1),
-                  ButtonRegister1(Colors.black, Colors.white, "لدي حساب", 2),
+                  ButtonRegister1(Colors.white, Colors.black, "Next".tr, 1),
+                  ButtonRegister1(Colors.black, Colors.white, 'Login'.tr, 2),
                 ],
               ),
             ),
@@ -163,7 +163,7 @@ class _signupState extends State<signup> {
       keyboardType: TextInputType.text,
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
-        hintText: "اسم الاول",
+        hintText: "First Name".tr,
         prefixIcon: IconButton(onPressed: () {}, icon: Icon(Icons.person)),
       ),
       validator: (text) {
@@ -186,7 +186,7 @@ class _signupState extends State<signup> {
       keyboardType: TextInputType.text,
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
-        hintText: "اسم الاخير",
+        hintText: "Last Name".tr,
       ),
       validator: (text) {
         String pattern = r'^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z]';
@@ -208,7 +208,7 @@ class _signupState extends State<signup> {
       keyboardType: TextInputType.phone,
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
-        hintText: "ادخل رقم هاتف",
+        hintText: "Mobile Number".tr,
         prefixIcon: IconButton(onPressed: () {}, icon: Icon(Icons.phone)),
       ),
       validator: (text) {
@@ -232,7 +232,7 @@ class _signupState extends State<signup> {
       keyboardType: TextInputType.emailAddress,
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
-        hintText: "البريد الالكتروني",
+        hintText: "Email".tr,
         prefixIcon: IconButton(onPressed: () {}, icon: Icon(Icons.email)),
       ),
       validator: (text) {
@@ -257,7 +257,7 @@ class _signupState extends State<signup> {
       textInputAction: TextInputAction.next,
       obscureText: _isObscure,
       decoration: InputDecoration(
-        hintText: "كلمة السر",
+        hintText: "PassWord".tr,
         prefixIcon: IconButton(onPressed: () {}, icon: Icon(Icons.password)),
         suffixIcon: IconButton(
             icon: Icon(_isObscure ? Icons.visibility_off : Icons.visibility),
@@ -291,7 +291,7 @@ class _signupState extends State<signup> {
       textInputAction: TextInputAction.next,
       obscureText: _isObscure,
       decoration: InputDecoration(
-        hintText: "تاكيد كلمة السر",
+        hintText: "Confirme PassWord".tr,
         prefixIcon: IconButton(onPressed: () {}, icon: Icon(Icons.password)),
         suffixIcon: IconButton(
             icon: Icon(_isObscure ? Icons.visibility_off : Icons.visibility),
@@ -382,13 +382,15 @@ class _signupState extends State<signup> {
                     controller.lastName,
                     controller.saveaCountryId);
               } else {
-                mydiaFaild(context, "كلمة المرور غير متطابقة");
+                mydiaFaild(context, "passwords do not match".tr);
               }
               // Navigator.of(context).pushNamed("otpSignup");
             } else {
               print("not validddddddddddddddd");
             }
-          } else {}
+          } else {
+            Navigator.of(context).pushNamed("login");
+          }
         },
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(25.0))),

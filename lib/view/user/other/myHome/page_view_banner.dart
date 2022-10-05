@@ -1,5 +1,10 @@
 import 'dart:async';
 import 'package:abood/constant/urls.dart';
+import 'package:abood/model/user/stor/items/get_items_id.dart';
+import 'package:abood/view/user/auth/start_account.dart';
+import 'package:abood/view/user/other/myCateg/sub2cat.dart';
+import 'package:abood/view/user/other/particuler_product.dart';
+import 'package:abood/view/user/other/widget/dialog_guest.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:abood/controller/controlProduct.dart';
 import 'package:flutter/material.dart';
@@ -52,7 +57,7 @@ class _CarouselBannerState extends State<CarouselBanner> {
     return Column(
       children: [
         SizedBox(
-          width: MediaQuery.of(context).size.width,
+          width: MediaQuery.of(context).size.width / 1.11,
           height: 140,
           child: PageView.builder(
               itemCount: controllerPro.saveContrilerBannerMapMain.length,
@@ -89,6 +94,26 @@ Widget slider(context, images, pagePosition, active) {
         if (!await launchUrl(_url)) {
           throw 'Could not launch $_url';
         }
+      } else if (images[pagePosition]["target"] == "STORE") {
+        guest != true
+            ? Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Sub2cat(
+                      id: int.parse(images[pagePosition]["value"].toString())),
+                ),
+              )
+            : diaGuest(context);
+      } else if (images[pagePosition]["target"] == "ITEM") {
+        await getItemsIdApi(
+            int.parse(images[pagePosition]["value"].toString()));
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => particulerProduct(
+                id: int.parse(images[pagePosition]["value"].toString())),
+          ),
+        );
       }
     },
     child: AnimatedContainer(

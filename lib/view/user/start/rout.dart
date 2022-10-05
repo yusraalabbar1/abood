@@ -1,3 +1,4 @@
+import 'package:abood/controller/ControlUser.dart';
 import 'package:abood/view/admin/add_offer.dart';
 import 'package:abood/view/admin/add_product.dart';
 import 'package:abood/view/admin/allItem.dart';
@@ -17,14 +18,17 @@ import 'package:abood/view/admin/start_stor.dart';
 import 'package:abood/view/admin/stor_add.dart';
 import 'package:abood/view/admin/stor_by_merch.dart';
 import 'package:abood/view/user/auth/complet_forget.dart';
+import 'package:abood/view/user/auth/forget_otp.dart';
 import 'package:abood/view/user/auth/forget_password.dart';
 import 'package:abood/view/user/auth/login.dart';
 import 'package:abood/view/user/auth/signup.dart';
 import 'package:abood/view/user/auth/start_account.dart';
 import 'package:abood/view/user/auth/otp_sigup.dart';
+import 'package:abood/view/user/auth/new_passw.dart';
 import 'package:abood/view/user/other/Notif/notification.dart';
 import 'package:abood/view/user/other/home_page.dart';
 import 'package:abood/view/user/other/like/my_like.dart';
+import 'package:abood/view/user/other/myCart/add_copon.dart';
 import 'package:abood/view/user/other/myCart/complet_cart.dart';
 import 'package:abood/view/user/other/myCart/mycart.dart';
 import 'package:abood/view/user/other/myCateg/offer..dart';
@@ -34,16 +38,23 @@ import 'package:abood/view/user/other/myHome/search_user.dart';
 import 'package:abood/view/user/other/myNew/new.dart';
 import 'package:abood/view/user/other/particuler_product.dart';
 import 'package:abood/view/user/other/profile/edit_pass.dart';
+import 'package:abood/view/user/other/setting/about.dart';
+import 'package:abood/view/user/other/setting/contact.dart';
+import 'package:abood/view/user/other/setting/privacy.dart';
+import 'package:abood/view/user/other/setting/protect.dart';
+import 'package:abood/view/user/other/setting/term.dart';
 import 'package:abood/view/user/start/finish_register.dart';
 import 'package:abood/view/user/start/lang.dart';
 import 'package:abood/view/user/start/thems.dart';
 import 'package:abood/view/user/start/welcom.dart';
+import 'package:abood/view/user/start/welcom2.dart';
 import 'package:abood/view/user/start/welcom_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
+  Homecontroller controller = Get.put(Homecontroller());
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
@@ -56,11 +67,19 @@ class MyApp extends StatelessWidget {
         "welcom": ((context) => welcom()),
         "welcomHome": ((context) => welcomHome()),
         "welcomStore": ((context) => welcomStore()),
+        "OnboardingWelcom": ((context) => OnboardingWelcom()),
+        "forgetPasswordNumber": ((context) => forgetPasswordNumber()),
         "startAccount": ((context) => startAccount()),
+        "OtpForget": ((context) => OtpForget()),
         "login": ((context) => login()),
         "StorByMerch": ((context) => StorByMerch()),
         "notificationStore": ((context) => notificationStore()),
         "signup": ((context) => signup()),
+        "Term": ((context) => Term()),
+        "Privecy": ((context) => Privecy()),
+        "Protect": ((context) => Protect()),
+        "about": ((context) => about()),
+        "contect": ((context) => contect()),
         "otpSignup": ((context) => otpSignup()),
         "SubCat": ((context) => SubCat()),
         "offer": ((context) => offer()),
@@ -70,6 +89,7 @@ class MyApp extends StatelessWidget {
         "completForget": ((context) => completForget()),
         "finishRegister": ((context) => finishRegister()),
         "MyCart": ((context) => MyCart()),
+        "AddCopon": ((context) => AddCopon()),
         "lang": ((context) => lang()),
         "editPassword": ((context) => editPassword()),
         "homePage": ((context) => homePage()),
@@ -104,7 +124,7 @@ class MyApp extends StatelessWidget {
               id: null,
             )),
       },
-      // locale: Locale("ar"),
+      locale: Locale(controller.language),
       // translations: Translation(),
     );
   }

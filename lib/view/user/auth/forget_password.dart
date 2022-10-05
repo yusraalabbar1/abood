@@ -1,4 +1,7 @@
+import 'package:abood/model/user/auth/profile/change_password.dart';
+import 'package:abood/model/user/mycart/dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class forgetPassword extends StatefulWidget {
   const forgetPassword({super.key});
@@ -21,11 +24,11 @@ class _forgetPasswordState extends State<forgetPassword> {
       ),
       body: Form(
         key: formstate,
-        child: Column(
+        child: ListView(
           children: [
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: text1("اهلا بعودتك"),
+              child: Center(child: text1("Reset Password".tr)),
             ),
             const Divider(
                 // height: MediaQuery.of(context).size.height,
@@ -38,7 +41,7 @@ class _forgetPasswordState extends State<forgetPassword> {
               alignment: Alignment.centerRight,
               child: Padding(
                   padding: const EdgeInsets.only(right: 20, top: 20),
-                  child: Center(child: text1("ادخل الرقم السري الجديد"))),
+                  child: Center(child: text1("Enter the new password".tr))),
             ),
             Padding(
               padding: const EdgeInsets.all(20.0),
@@ -48,7 +51,11 @@ class _forgetPasswordState extends State<forgetPassword> {
               padding: const EdgeInsets.all(20.0),
               child: Container(decoration: boxd(), child: TextFormFieldConf()),
             ),
-            ButtonRegister1(Colors.black, Colors.white, "دخول ", "login"),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 40),
+              child: ButtonRegister1(
+                  Colors.black, Colors.white, "Next".tr, "login"),
+            ),
             const SizedBox(
               height: 20,
             ),
@@ -80,7 +87,17 @@ class _forgetPasswordState extends State<forgetPassword> {
       child: RaisedButton(
         onPressed: () {
           print('Button Clicked.');
-          Navigator.of(context).pushNamed(nav);
+          var formdata = formstate.currentState;
+          if (formdata!.validate()) {
+            formdata.save();
+            print("========================");
+            if (passwordConf != password) {
+              diaFaildCart(context, "password_confirmation!=new_password");
+            } else {
+              changPassWordForget(context, password);
+            }
+          }
+          // Navigator.of(context).pushNamed(nav);
         },
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(25.0))),
@@ -105,7 +122,7 @@ class _forgetPasswordState extends State<forgetPassword> {
       textInputAction: TextInputAction.next,
       obscureText: _isObscure,
       decoration: InputDecoration(
-        hintText: "كلمة السر",
+        hintText: "Password".tr,
         prefixIcon: IconButton(onPressed: () {}, icon: Icon(Icons.password)),
         suffixIcon: IconButton(
             icon: Icon(_isObscure ? Icons.visibility_off : Icons.visibility),
@@ -138,7 +155,7 @@ class _forgetPasswordState extends State<forgetPassword> {
       textInputAction: TextInputAction.next,
       obscureText: _isObscure,
       decoration: InputDecoration(
-        hintText: "تاكيد كلمة السر",
+        hintText: "Confirme PassWord".tr,
         prefixIcon: IconButton(onPressed: () {}, icon: Icon(Icons.password)),
         suffixIcon: IconButton(
             icon: Icon(_isObscure ? Icons.visibility_off : Icons.visibility),

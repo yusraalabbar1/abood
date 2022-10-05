@@ -1,10 +1,12 @@
 import 'package:abood/controller/ControlUser.dart';
 import 'package:abood/model/user/mylike/api/mylike.dart';
+import 'package:abood/view/user/auth/start_account.dart';
 import 'package:abood/view/user/other/drawer_main.dart';
 import 'package:abood/view/user/other/myCateg/categ.dart';
 import 'package:abood/view/user/other/myHome/home.dart';
 import 'package:abood/view/user/other/myNew/new.dart';
 import 'package:abood/view/user/other/profile/my_profile.dart';
+import 'package:abood/view/user/other/widget/dialog_guest.dart';
 import 'package:abood/view/user/other/widget_appbar.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
@@ -16,13 +18,6 @@ class homePage extends StatefulWidget {
   @override
   State<homePage> createState() => _homePageState();
 }
-
-final List<Widget> widgetOptions = <Widget>[
-  Home(),
-  New(),
-  category(),
-  myProfile(),
-];
 
 class _homePageState extends State<homePage> {
   Homecontroller controller = Get.put(Homecontroller());
@@ -37,6 +32,12 @@ class _homePageState extends State<homePage> {
     });
   }
 
+  final List<Widget> widgetOptions = <Widget>[
+    Home(),
+    New(),
+    category(),
+    guest != true ? myProfile() : LoginGuest(),
+  ];
   @override
   void initState() {
     // TODO: implement initState

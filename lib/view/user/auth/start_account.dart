@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class startAccount extends StatefulWidget {
   const startAccount({super.key});
@@ -6,6 +7,8 @@ class startAccount extends StatefulWidget {
   @override
   State<startAccount> createState() => _startAccountState();
 }
+
+bool? guest = false;
 
 class _startAccountState extends State<startAccount> {
   @override
@@ -19,7 +22,7 @@ class _startAccountState extends State<startAccount> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Center(
-              child: text1("ليس لديك حساب  ؟"),
+              child: text1("Don't have an account?".tr),
             ),
           ),
           const Divider(
@@ -29,21 +32,22 @@ class _startAccountState extends State<startAccount> {
           const SizedBox(
             height: 50,
           ),
-          ButtonRegister1(Colors.black, Colors.white, "تسجيل دخول ", "login"),
+          ButtonRegister1(Colors.black, Colors.white, 'Login'.tr, "login"),
           const SizedBox(
             height: 20,
           ),
-          ButtonRegister1(Colors.white, Colors.black, "أنشئ حساب ", "signup"),
+          ButtonRegister1(Colors.white, Colors.black, "SignUp".tr, "signup"),
           const SizedBox(
             height: 30,
           ),
           InkWell(
               onTap: () {
+                guest = true;
                 Navigator.of(context).pushReplacementNamed("homePage");
               },
               child: Text(
-                "الدخول كضيف",
-                style: TextStyle(
+                "Guest".tr,
+                style: const TextStyle(
                     color: Colors.grey,
                     fontSize: 18,
                     fontFamily: 'majallab',
@@ -69,7 +73,7 @@ class _startAccountState extends State<startAccount> {
           print('Button Clicked.');
           Navigator.of(context).pushNamed(nav);
         },
-        shape: RoundedRectangleBorder(
+        shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(25.0))),
         child: Text(
           text,

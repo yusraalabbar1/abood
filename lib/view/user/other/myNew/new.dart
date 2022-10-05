@@ -5,8 +5,10 @@ import 'package:abood/model/user/mylike/api/delete_like.dart';
 import 'package:abood/model/user/mylike/api/mylike.dart';
 import 'package:abood/model/user/stor/items/get_items_id.dart';
 import 'package:abood/model/user/stor/stor_item/stor_item_model.dart';
+import 'package:abood/view/user/auth/start_account.dart';
 import 'package:abood/view/user/other/drawer_main.dart';
 import 'package:abood/view/user/other/particuler_product.dart';
+import 'package:abood/view/user/other/widget/dialog_guest.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -226,36 +228,45 @@ class _NewState extends State<New> {
                                                           size: 20,
                                                         ),
                                                         onPressed: () async {
-                                                          if (passenger
-                                                                  .isWish ==
-                                                              false) {
-                                                            //add and change color
-                                                            setState(() {
-                                                              i = 1;
-                                                              passenger.isWish =
-                                                                  true;
-                                                            });
-                                                            await addLike(
+                                                          if (guest == true) {
+                                                            diaGuest(context);
+                                                          } else {
+                                                            if (passenger
+                                                                    .isWish ==
+                                                                false) {
+                                                              //add and change color
+                                                              setState(() {
+                                                                i = 1;
                                                                 passenger
-                                                                    .itemId,
-                                                                controller.id);
-                                                            await myLikeApi(
-                                                                controller.id);
-                                                          } else if (passenger
-                                                                  .isWish ==
-                                                              true) {
-                                                            //delete
-                                                            setState(() {
-                                                              i = 0;
-                                                              passenger.isWish =
-                                                                  false;
-                                                            });
-                                                            await deleteLike(
-                                                                controller.id,
+                                                                        .isWish =
+                                                                    true;
+                                                              });
+                                                              await addLike(
+                                                                  passenger
+                                                                      .itemId,
+                                                                  controller
+                                                                      .id);
+                                                              await myLikeApi(
+                                                                  controller
+                                                                      .id);
+                                                            } else if (passenger
+                                                                    .isWish ==
+                                                                true) {
+                                                              //delete
+                                                              setState(() {
+                                                                i = 0;
                                                                 passenger
-                                                                    .itemId);
-                                                            await myLikeApi(
-                                                                controller.id);
+                                                                        .isWish =
+                                                                    false;
+                                                              });
+                                                              await deleteLike(
+                                                                  controller.id,
+                                                                  passenger
+                                                                      .itemId);
+                                                              await myLikeApi(
+                                                                  controller
+                                                                      .id);
+                                                            }
                                                           }
                                                         }),
                                                   ),

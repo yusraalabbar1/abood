@@ -27,7 +27,7 @@ abstract class CustomTheme {
           titleTextStyle: TextStyle(
               color: Colors.white,
               fontFamily: 'Nunito',
-              fontSize: 25,
+              fontSize: 20,
               fontWeight: FontWeight.bold),
         ),
         ///////////////////////////////////

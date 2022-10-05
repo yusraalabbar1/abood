@@ -11,9 +11,9 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 checkCoponApi(context, CouponCode, StoreId, Total) async {
-  print(CouponCode.runtimeType);
-  print(StoreId.runtimeType);
-  print(Total.runtimeType);
+  print(CouponCode);
+  print(StoreId);
+  print(Total);
 
   double t = 0.0;
 
@@ -34,37 +34,41 @@ checkCoponApi(context, CouponCode, StoreId, Total) async {
 
   if (response.statusCode == 200) {
     if (c.isSuccess == true) {
-      diaSuccCart(
-          context,
-          ("total : " +
-                  c.data!.total.toString() +
-                  "\t" +
-                  "discount : " +
-                  c.data!.discount.toString() +
-                  "\t" +
-                  "netTotal : " +
-                  c.data!.netTotal.toString())
-              .toString());
-      //edit total
-      print("========edit total===========");
-      for (var i = 0; i < controllerPro.thirdMap.length; i++) {
-        if (controllerPro.thirdMap[i][0] == int.parse(StoreId.toString())) {
-          print(controllerPro.thirdMap[i][1]);
-          controllerPro.thirdMap[i] = {0: StoreId, 1: c.data!.netTotal};
+      if (c.data != null) {
+        diaSuccCart(
+            context,
+            ("total : " +
+                    c.data!.total.toString() +
+                    "\t" +
+                    "discount : " +
+                    c.data!.discount.toString() +
+                    "\t" +
+                    "netTotal : " +
+                    c.data!.netTotal.toString())
+                .toString());
+
+        //edit total
+        print("========edit total===========");
+        for (var i = 0; i < controllerPro.thirdMap.length; i++) {
+          if (controllerPro.thirdMap[i][0] == int.parse(StoreId.toString())) {
+            print(controllerPro.thirdMap[i][1]);
+            controllerPro.thirdMap[i] = {0: StoreId, 1: c.data!.netTotal};
+          }
         }
+        print(controllerPro.thirdMap);
+        for (var i = 0; i < controllerPro.thirdMap.length; i++) {
+          t = t + controllerPro.thirdMap[i][1];
+          controllerPro.SaveMyCartTotal(t);
+        }
+        controllerPro.SaveThrid(controllerPro.thirdMap);
+        // await myCartApi();
+      } else {
+        diaFaildCart(context, "Error Coupon");
       }
-      print(controllerPro.thirdMap);
-      for (var i = 0; i < controllerPro.thirdMap.length; i++) {
-        t = t + controllerPro.thirdMap[i][1];
-        controllerPro.SaveMyCartTotal(t);
-      }
-      controllerPro.SaveThrid(controllerPro.thirdMap);
-      await myCartApi();
     } else {
       diaFaildCart(context, c.message);
     }
   } else {
     print("not response");
   }
-  return c.data!.netTotal.toString();
 }

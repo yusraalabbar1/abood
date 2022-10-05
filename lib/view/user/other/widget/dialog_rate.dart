@@ -35,6 +35,7 @@ showRate(context, idItem) async {
                       Container(
                         decoration: boxd(),
                         child: TextFormField(
+                          maxLength: 30,
                           keyboardType: TextInputType.text,
                           textInputAction: TextInputAction.next,
                           decoration: InputDecoration(

@@ -1,4 +1,6 @@
 import 'package:abood/constant/colors.dart';
+import 'package:abood/view/user/auth/start_account.dart';
+import 'package:abood/view/user/other/widget/dialog_guest.dart';
 import 'package:abood/view/user/other/widget/dialogs_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -44,7 +46,7 @@ Drawer drawermain(context) {
                 padding: const EdgeInsets.only(top: 10),
                 child: InkWell(
                   onTap: () {
-                    // Navigator.of(context).pushNamed("term");
+                    Navigator.of(context).pushNamed("Term");
                   },
                   child: Row(
                     children: [
@@ -76,14 +78,32 @@ Drawer drawermain(context) {
                   ],
                 ),
                 onTap: () {
-                  // Navigator.of(context).pushNamed("privecy");
+                  Navigator.of(context).pushNamed("Privecy");
+                },
+              ),
+              InkWell(
+                child: Row(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.all(10),
+                      child: Icon(
+                        Icons.security,
+                        size: 20,
+                        color: Colors.white,
+                      ),
+                    ),
+                    Container(child: text2("protection"))
+                  ],
+                ),
+                onTap: () {
+                  Navigator.of(context).pushNamed("Protect");
                 },
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 10),
                 child: InkWell(
                   onTap: () {
-                    // Navigator.of(context).pushNamed("aboutus");
+                    Navigator.of(context).pushNamed("about");
                   },
                   child: Row(
                     children: [
@@ -104,7 +124,7 @@ Drawer drawermain(context) {
                 padding: const EdgeInsets.only(top: 10),
                 child: InkWell(
                   onTap: () {
-                    // Navigator.of(context).pushNamed("contactus");
+                    Navigator.of(context).pushNamed("contect");
                   },
                   child: Row(
                     children: [
@@ -141,7 +161,9 @@ Drawer drawermain(context) {
               ),
               InkWell(
                 onTap: () async {
-                  showLoadingLogout(context);
+                  guest != true
+                      ? showLoadingLogout(context)
+                      : diaGuest(context);
                 },
                 child: Row(
                   children: [

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class completForget extends StatefulWidget {
   const completForget({super.key});
@@ -22,7 +23,7 @@ class _completForgetState extends State<completForget> {
           children: [
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: text1("هل نسيت كلمة السر ؟"),
+              child: text1("Forget Your Password?".tr),
             ),
             const Divider(
                 // height: MediaQuery.of(context).size.height,
@@ -35,7 +36,7 @@ class _completForgetState extends State<completForget> {
               alignment: Alignment.centerRight,
               child: Padding(
                   padding: const EdgeInsets.only(right: 20, top: 20),
-                  child: text1("ادخل رقم هاتف")),
+                  child: text1("Mobile Number".tr)),
             ),
             Padding(
               padding: const EdgeInsets.all(20.0),
@@ -45,7 +46,7 @@ class _completForgetState extends State<completForget> {
               height: 20,
             ),
             ButtonRegister1(
-                Colors.black, Colors.white, "التالي", "completForget"),
+                Colors.black, Colors.white, "Next".tr, "completForget"),
             const SizedBox(
               height: 20,
             ),
@@ -86,7 +87,7 @@ class _completForgetState extends State<completForget> {
       keyboardType: TextInputType.phone,
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
-        hintText: "ادخل رقم هاتف",
+        hintText: "Mobile Number".tr,
         prefixIcon: IconButton(onPressed: () {}, icon: Icon(Icons.phone)),
       ),
       validator: (text) {

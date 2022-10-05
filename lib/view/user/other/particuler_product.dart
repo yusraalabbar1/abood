@@ -9,8 +9,10 @@ import 'package:abood/model/user/mylike/api/add_like.dart';
 import 'package:abood/model/user/mylike/api/delete_like.dart';
 import 'package:abood/model/user/mylike/api/mylike.dart';
 import 'package:abood/model/user/product/item/Rate/get_rateModel.dart';
+import 'package:abood/view/user/auth/start_account.dart';
 import 'package:abood/view/user/other/widget/MyColorPicker.dart';
 import 'package:abood/view/user/other/widget/SizeSelector.dart';
+import 'package:abood/view/user/other/widget/dialog_guest.dart';
 import 'package:abood/view/user/other/widget/dialog_rate.dart';
 import 'package:abood/view/user/other/widget_appbar.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -50,6 +52,7 @@ class _particulerProductState extends State<particulerProduct> {
   int colorselect = 0;
   int? tappedIndex;
   int? tappedIndexColor;
+  String _enteredText = '';
   List<String> imagePath = [
     "assets/images/shoe_blue.png",
     "assets/images/shoe_green.png",
@@ -122,42 +125,50 @@ class _particulerProductState extends State<particulerProduct> {
           actions: [
             IconButton(
                 onPressed: () async {
-                  print(int.parse(widget.id.toString()));
-                  print(sizescelect);
-                  print(colorselect);
-                  if (sizescelect != 0 && colorselect != 0) {
-                    await addCartApi(context, int.parse(widget.id.toString()),
-                        sizescelect, colorselect);
-                    await myCartApi();
-                  } else if (sizescelect == 0 && colorselect != 0) {
-                    diaFaildCart(context, "Choose Size");
-                  } else if (sizescelect != 0 && colorselect == 0) {
-                    diaFaildCart(context, "Choose Color");
-                  } else if (sizescelect == 0 && colorselect == 0) {
-                    diaFaildCart(context, "Choose Size & Color");
+                  if (guest == true) {
+                    diaGuest(context);
+                  } else {
+                    print(int.parse(widget.id.toString()));
+                    print(sizescelect);
+                    print(colorselect);
+                    if (sizescelect != 0 && colorselect != 0) {
+                      await addCartApi(context, int.parse(widget.id.toString()),
+                          sizescelect, colorselect);
+                      await myCartApi();
+                    } else if (sizescelect == 0 && colorselect != 0) {
+                      diaFaildCart(context, "Choose Size");
+                    } else if (sizescelect != 0 && colorselect == 0) {
+                      diaFaildCart(context, "Choose Color");
+                    } else if (sizescelect == 0 && colorselect == 0) {
+                      diaFaildCart(context, "Choose Size & Color");
+                    }
                   }
                 },
                 icon: const Icon(Icons.shopping_bag)),
             IconButton(
                 onPressed: () async {
-                  if (controller.ItemsById["isWish"] == false) {
-                    //add and change color
-                    setState(() {
-                      // i = 1;
-                      controller.ItemsById["isWish"] = true;
-                    });
-                    await addLike(
-                        int.parse(widget.id.toString()), controller1.id);
-                    await myLikeApi(controller1.id);
-                  } else if (controller.ItemsById["isWish"] == true) {
-                    //delete
-                    setState(() {
-                      // i = 0;
-                      controller.ItemsById["isWish"] = false;
-                    });
-                    await deleteLike(
-                        controller1.id, int.parse(widget.id.toString()));
-                    await myLikeApi(controller1.id);
+                  if (guest == true) {
+                    diaGuest(context);
+                  } else {
+                    if (controller.ItemsById["isWish"] == false) {
+                      //add and change color
+                      setState(() {
+                        // i = 1;
+                        controller.ItemsById["isWish"] = true;
+                      });
+                      await addLike(
+                          int.parse(widget.id.toString()), controller1.id);
+                      await myLikeApi(controller1.id);
+                    } else if (controller.ItemsById["isWish"] == true) {
+                      //delete
+                      setState(() {
+                        // i = 0;
+                        controller.ItemsById["isWish"] = false;
+                      });
+                      await deleteLike(
+                          controller1.id, int.parse(widget.id.toString()));
+                      await myLikeApi(controller1.id);
+                    }
                   }
                 },
                 icon: Icon(
@@ -236,19 +247,24 @@ class _particulerProductState extends State<particulerProduct> {
                     children: [
                       const SizedBox(width: 10),
                       Expanded(flex: 4, child: stars()),
-                      const Expanded(
-                        child: Text("(255)",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontFamily: 'majallab',
-                                fontSize: 15,
-                                color: Colors.black)),
-                      ),
                       Expanded(
-                        child: IconButton(
-                            onPressed: () {},
-                            icon: const Icon(Icons.navigate_next)),
-                      )
+                          child: Row(
+                        children: [
+                          Expanded(
+                            child: Text("(255)",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontFamily: 'majallab',
+                                    fontSize: 15,
+                                    color: Colors.black)),
+                          ),
+                          Expanded(
+                            child: IconButton(
+                                onPressed: () {},
+                                icon: const Icon(Icons.navigate_next)),
+                          ),
+                        ],
+                      )),
                     ],
                   ),
                   const SizedBox(height: 10),
@@ -322,7 +338,7 @@ class _particulerProductState extends State<particulerProduct> {
                                                 // shape: BoxShape.circle,
                                                 color: Colors.white,
                                                 borderRadius:
-                                                    BorderRadius.circular(10),
+                                                    BorderRadius.circular(30),
                                                 border: Border.all(
                                                   color: tappedIndex == i
                                                       ? Colors.black
@@ -330,22 +346,24 @@ class _particulerProductState extends State<particulerProduct> {
                                                   width: 2.0,
                                                 ),
                                               ),
-                                              child: Chip(
-                                                // elevation: 20,
-                                                // padding: EdgeInsets.all(8),
-                                                backgroundColor:
-                                                    Colors.transparent,
-                                                shadowColor: Colors.black,
+                                              child: Center(
+                                                child: Chip(
+                                                  backgroundColor:
+                                                      Colors.transparent,
+                                                  shadowColor: Colors.black,
 
-                                                label: Center(
-                                                  child: Text(
-                                                    controller.ItemsById[
-                                                            "itemSizes"][i]
-                                                        ["itemSizeDescEn"],
-                                                    style:
-                                                        TextStyle(fontSize: 15),
-                                                  ),
-                                                ), //Text
+                                                  label: Center(
+                                                    child: Text(
+                                                      controller.ItemsById[
+                                                              "itemSizes"][i]
+                                                          ["itemSizeDescEn"],
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      style: const TextStyle(
+                                                          fontSize: 15),
+                                                    ),
+                                                  ), //Text
+                                                ),
                                               ),
                                             ),
                                           ),
@@ -374,13 +392,19 @@ class _particulerProductState extends State<particulerProduct> {
                                 color: Colors.black)),
                         IconButton(
                             onPressed: () {
-                              showRate(
-                                  context, int.parse(widget.id.toString()));
+                              if (guest == true) {
+                                diaGuest(context);
+                              } else {
+                                showRate(
+                                    context, int.parse(widget.id.toString()));
+                              }
                             },
                             icon: Icon(Icons.add_box))
                       ],
                     ),
                   ),
+                  // passengers.length != 0
+                  //     ?
                   Card(
                     shadowColor: Colors.grey,
                     child: Container(
@@ -423,17 +447,19 @@ class _particulerProductState extends State<particulerProduct> {
                             }),
                       ),
                     ),
-                  ),
+                  )
+                  // : Container()
                 ],
               ),
             ),
             // bottomButton(int.parse(widget.id.toString()), sizescelect,
             //     colorselect, controller.ItemsById["isWish"])
             Expanded(
+              flex: 2,
               child: Align(
                 alignment: FractionalOffset.bottomCenter,
                 child: Container(
-                  padding: const EdgeInsets.only(right: 20),
+                  // padding: const EdgeInsets.only(bottom: 20),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -446,22 +472,29 @@ class _particulerProductState extends State<particulerProduct> {
                             color: Colors.black,
                             height: 70,
                             onPressed: () async {
-                              print(int.parse(widget.id.toString()));
-                              print(sizescelect);
-                              print(colorselect);
-                              if (sizescelect != 0 && colorselect != 0) {
-                                await addCartApi(
-                                    context,
-                                    int.parse(widget.id.toString()),
-                                    sizescelect,
-                                    colorselect);
-                                await myCartApi();
-                              } else if (sizescelect == 0 && colorselect != 0) {
-                                diaFaildCart(context, "Choose Size");
-                              } else if (sizescelect != 0 && colorselect == 0) {
-                                diaFaildCart(context, "Choose Color");
-                              } else if (sizescelect == 0 && colorselect == 0) {
-                                diaFaildCart(context, "Choose Size & Color");
+                              if (guest == true) {
+                                diaGuest(context);
+                              } else {
+                                print(int.parse(widget.id.toString()));
+                                print(sizescelect);
+                                print(colorselect);
+                                if (sizescelect != 0 && colorselect != 0) {
+                                  await addCartApi(
+                                      context,
+                                      int.parse(widget.id.toString()),
+                                      sizescelect,
+                                      colorselect);
+                                  await myCartApi();
+                                } else if (sizescelect == 0 &&
+                                    colorselect != 0) {
+                                  diaFaildCart(context, "Choose Size");
+                                } else if (sizescelect != 0 &&
+                                    colorselect == 0) {
+                                  diaFaildCart(context, "Choose Color");
+                                } else if (sizescelect == 0 &&
+                                    colorselect == 0) {
+                                  diaFaildCart(context, "Choose Size & Color");
+                                }
                               }
                             },
                             child: Text(
@@ -478,25 +511,30 @@ class _particulerProductState extends State<particulerProduct> {
                       Expanded(
                           child: IconButton(
                               onPressed: () async {
-                                if (controller.ItemsById["isWish"] == false) {
-                                  //add and change color
-                                  setState(() {
-                                    // i = 1;
-                                    controller.ItemsById["isWish"] = true;
-                                  });
-                                  await addLike(int.parse(widget.id.toString()),
-                                      controller1.id);
-                                  await myLikeApi(controller1.id);
-                                } else if (controller.ItemsById["isWish"] ==
-                                    true) {
-                                  //delete
-                                  setState(() {
-                                    // i = 0;
-                                    controller.ItemsById["isWish"] = false;
-                                  });
-                                  await deleteLike(controller1.id,
-                                      int.parse(widget.id.toString()));
-                                  await myLikeApi(controller1.id);
+                                if (guest == true) {
+                                  diaGuest(context);
+                                } else {
+                                  if (controller.ItemsById["isWish"] == false) {
+                                    //add and change color
+                                    setState(() {
+                                      // i = 1;
+                                      controller.ItemsById["isWish"] = true;
+                                    });
+                                    await addLike(
+                                        int.parse(widget.id.toString()),
+                                        controller1.id);
+                                    await myLikeApi(controller1.id);
+                                  } else if (controller.ItemsById["isWish"] ==
+                                      true) {
+                                    //delete
+                                    setState(() {
+                                      // i = 0;
+                                      controller.ItemsById["isWish"] = false;
+                                    });
+                                    await deleteLike(controller1.id,
+                                        int.parse(widget.id.toString()));
+                                    await myLikeApi(controller1.id);
+                                  }
                                 }
                               },
                               icon: Icon(
@@ -522,12 +560,11 @@ class _particulerProductState extends State<particulerProduct> {
       direction: Axis.horizontal,
       allowHalfRating: true,
       itemCount: 5,
-
-      // itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+      itemSize: 20,
       itemBuilder: (context, _) => const Icon(
         Icons.star_rounded,
         color: Colors.amber,
-        size: 5,
+        // size: 20,
       ),
       onRatingUpdate: (rating) {
         print(rating);
@@ -542,6 +579,7 @@ class _particulerProductState extends State<particulerProduct> {
       direction: Axis.horizontal,
       // allowHalfRating: true,
       itemCount: 5,
+      itemSize: 20,
       // itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
       itemBuilder: (context, _) => Container(
         // width: 2,

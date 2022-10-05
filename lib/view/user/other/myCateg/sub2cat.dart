@@ -39,6 +39,7 @@ class _Sub2catState extends State<Sub2cat> {
     print("=====store id======");
     var c2 = int.parse(widget.id.toString());
     var id = int.parse(controller.id.toString());
+    print(id);
     if (isRefresh) {
       currentPage = 0;
       print("1");
@@ -215,6 +216,7 @@ class _Sub2catState extends State<Sub2cat> {
                     final passenger = passengers[index];
                     return InkWell(
                         onTap: () async {
+                          print(passenger.itemId);
                           await getItemsIdApi(passenger.itemId);
                           // Navigator.of(context)
                           //     .pushNamed("particularProducte");

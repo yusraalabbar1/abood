@@ -1,6 +1,10 @@
+import 'package:abood/view/user/auth/start_account.dart';
+import 'package:abood/view/user/other/myCateg/categ.dart';
+import 'package:abood/view/user/other/myHome/ads.dart';
 import 'package:abood/view/user/other/myHome/allStore.dart';
 import 'package:abood/view/user/other/myHome/page_view_ads.dart';
 import 'package:abood/view/user/other/myHome/page_view_banner.dart';
+import 'package:abood/view/user/other/widget/dialog_guest.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 
@@ -33,10 +37,13 @@ class _AllHomeState extends State<AllHome> {
   @override
   Widget build(BuildContext context) {
     return Column(
+      // shrinkWrap: true,
       children: [
         InkWell(
           onTap: () {
-            Navigator.of(context).pushNamed("offer");
+            guest != true
+                ? Navigator.of(context).pushNamed("offer")
+                : diaGuest(context);
           },
           child: Container(
               width: MediaQuery.of(context).size.width,
@@ -105,7 +112,7 @@ class _AllHomeState extends State<AllHome> {
             margin: const EdgeInsets.symmetric(horizontal: 10),
             height: MediaQuery.of(context).size.height / 6,
             decoration: box(),
-            child: Carousel()),
+            child: ads()),
         const SizedBox(
           height: 10,
         ),
@@ -119,7 +126,7 @@ class _AllHomeState extends State<AllHome> {
         ),
         Container(
             decoration: box(),
-            height: MediaQuery.of(context).size.height / 5,
+            height: MediaQuery.of(context).size.height,
             child: allStore())
       ],
     );

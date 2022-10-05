@@ -1,0 +1,25 @@
+const Map<String, String> en = {
+  'Login': 'Login',
+  'Phone Number Verification': 'Phone Number Verification',
+  "Enter the code sent to ": "Enter the code sent to ",
+  "*Please fill up all the cells properly":
+      "*Please fill up all the cells properly",
+  "Didn't receive the code? ": "Didn't receive the code? ",
+  "RESEND": "RESEND",
+  'Error': 'Error',
+  'time is over': 'time is over',
+  "VERIFY": "VERIFY",
+  "Reset Password": "Reset Password",
+  "Mobile Number": "Mobile Number",
+  "PassWord": "Password",
+  "Confirme PassWord": "Confirm Password",
+  "passwords do not match": "passwords do not match",
+  "Next": "Next",
+  "Password": "Password",
+  "Forget Your Password?": "Forget Your Password?",
+  "Don't have an account?": "Don't have an account?",
+  "SignUp": "SignUp",
+  "Guest": "Guest",
+  "Creat Account": "Creat Account",
+  "Choose the country": "Choose the country"
+};

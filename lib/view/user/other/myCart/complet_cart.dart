@@ -1,5 +1,7 @@
 import 'package:abood/controller/ControlUser.dart';
 import 'package:abood/controller/controlProduct.dart';
+import 'package:abood/model/user/mycart/api/payement.dart';
+import 'package:abood/model/user/mycart/json/object_payment.dart';
 import 'package:dropdown_below/dropdown_below.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,7 +17,7 @@ class CompletCart extends StatefulWidget {
 class _CompletCartState extends State<CompletCart> {
   ControllerProduct controllerPro = Get.put(ControllerProduct());
   GlobalKey<FormState> formstate = new GlobalKey<FormState>();
-  var name, phone, area, row;
+  var name, phone, area, row, house;
   Text text1(text) {
     return Text(text,
         style: const TextStyle(
@@ -37,7 +39,7 @@ class _CompletCartState extends State<CompletCart> {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Text(
-              i['descAr'].toString(),
+              i['cityAr'].toString(),
               style: TextStyle(color: Colors.black),
             ),
           ),
@@ -45,6 +47,12 @@ class _CompletCartState extends State<CompletCart> {
       );
     }
     return items;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _dropdownTestItems = buildDropdownTestItems(controller.allCity);
   }
 
   textWidget(text) {
@@ -55,13 +63,6 @@ class _CompletCartState extends State<CompletCart> {
             fontWeight: FontWeight.bold,
             fontSize: 13,
             fontFamily: 'Almarai'));
-  }
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    _dropdownTestItems = buildDropdownTestItems(controller.allCity);
   }
 
   @override
@@ -91,16 +92,25 @@ class _CompletCartState extends State<CompletCart> {
                 child: ListView(
                   children: [
                     textWidget("اسم المستخدم "),
+                    const SizedBox(
+                      height: 10,
+                    ),
                     Container(decoration: boxd(), child: TextFormField2()),
                     const SizedBox(
                       height: 10,
                     ),
                     textWidget("رقم هاتف"),
+                    const SizedBox(
+                      height: 10,
+                    ),
                     Container(decoration: boxd(), child: TextFormField1()),
                     const SizedBox(
                       height: 10,
                     ),
                     textWidget("المدينة"),
+                    const SizedBox(
+                      height: 10,
+                    ),
                     Container(
                       color: Colors.transparent,
                       // padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
@@ -139,7 +149,7 @@ class _CompletCartState extends State<CompletCart> {
                           setState(() {
                             selectedDayTime = selectedTest;
                             print(selectedDayTime["id"]);
-                            controller.SaveaCountryId(selectedDayTime["id"]);
+                            controller.SaveaCityId(selectedDayTime["id"]);
                           });
                         },
                       ),
@@ -153,6 +163,9 @@ class _CompletCartState extends State<CompletCart> {
                             child: Column(
                           children: [
                             textWidget("المنطقة"),
+                            const SizedBox(
+                              height: 10,
+                            ),
                             Container(
                                 decoration: boxd(), child: TextFormFieldarea()),
                           ],
@@ -164,11 +177,12 @@ class _CompletCartState extends State<CompletCart> {
                             child: Column(
                           children: [
                             textWidget("رقم الشقة"),
+                            const SizedBox(
+                              height: 10,
+                            ),
                             Container(
                                 decoration: boxd(),
-                                child: NumberInputWithIncrementDecrement(
-                                  controller: TextEditingController(),
-                                )),
+                                child: TextFormFieldHouse()),
                           ],
                         )),
                       ],
@@ -177,6 +191,9 @@ class _CompletCartState extends State<CompletCart> {
                       height: 10,
                     ),
                     textWidget("اسم الشارع"),
+                    const SizedBox(
+                      height: 10,
+                    ),
                     Container(decoration: boxd(), child: TextFormFieldrow()),
                     const SizedBox(
                       height: 300,
@@ -211,10 +228,15 @@ class _CompletCartState extends State<CompletCart> {
                       if (formdata!.validate()) {
                         formdata.save();
                         print(" validddddddddddddddd");
+                        print(controller1.id);
                         print(name);
                         print(phone);
+                        print(controller1.idCity);
                         print(area);
                         print(row);
+                        print(house);
+                        Payment p;
+                        // paymentApi(p(controller1.id,name,phone,controller1.idCity,area,row,house,));
                       }
                     },
                     child: Text(
@@ -258,6 +280,29 @@ class _CompletCartState extends State<CompletCart> {
       onSaved: (string) {
         name = string;
         print(name);
+      },
+    );
+  }
+
+  TextFormField TextFormFieldHouse() {
+    return TextFormField(
+      keyboardType: TextInputType.number,
+      textInputAction: TextInputAction.next,
+      decoration: InputDecoration(
+        hintText: "اكتب هنا",
+        prefixIcon: IconButton(onPressed: () {}, icon: Icon(Icons.house)),
+      ),
+      validator: (text) {
+        if (text!.length > 15) {
+          return "can not enter bigest than 15";
+        }
+        if (text.length < 1) {
+          return "can not enter less than 1";
+        }
+      },
+      onSaved: (string) {
+        house = string;
+        print(house);
       },
     );
   }

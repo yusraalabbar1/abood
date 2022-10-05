@@ -43,7 +43,7 @@ class _finishRegisterState extends State<finishRegister>
     await myCartApi();
     await cityGen();
     print(controller.id);
-    Navigator.of(context).pushReplacementNamed("lang");
+    Navigator.of(context).pushReplacementNamed("homePage");
   }
 
   @override

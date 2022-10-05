@@ -101,7 +101,8 @@ class _otpSignupState extends State<otpSignup> with TickerProviderStateMixin {
                     Padding(
                       padding: const EdgeInsets.all(20.0),
                       child: Center(
-                        child: text1("سيصلك رمز التحقق عبر الرسائل القصيرة"),
+                        child: text1(
+                            "You will receive a verification code via SMS.".tr),
                       ),
                     ),
                     const Divider(
@@ -114,7 +115,7 @@ class _otpSignupState extends State<otpSignup> with TickerProviderStateMixin {
                       child: Padding(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 30.0, vertical: 8),
-                          child: text2("ادخل رمز التحقق")),
+                          child: text2("Enter the code sent to ".tr)),
                     )
                     //   );
                     // })
@@ -125,8 +126,9 @@ class _otpSignupState extends State<otpSignup> with TickerProviderStateMixin {
                     Form(
                       key: formKey,
                       child: Container(
+                        margin: EdgeInsets.symmetric(horizontal: 30),
                         color: Colors.transparent,
-                        margin: EdgeInsets.only(left: 10, right: 10),
+                        // margin: EdgeInsets.only(left: 10, right: 10),
                         child: PinCodeTextField(
                           backgroundColor: Colors.transparent,
                           appContext: context,
@@ -190,7 +192,7 @@ class _otpSignupState extends State<otpSignup> with TickerProviderStateMixin {
                       padding: const EdgeInsets.symmetric(horizontal: 10.0),
                       child: Text(
                         hasError
-                            ? "*Please fill up all the cells properly"
+                            ? "*Please fill up all the cells properly".tr
                             : "",
                         style: TextStyle(
                             color: MyColors.color2,
@@ -204,10 +206,11 @@ class _otpSignupState extends State<otpSignup> with TickerProviderStateMixin {
                       children: [
                         InkWell(
                             onTap: () {
-                              infoDialog(context, "اعادة ارسال الرمز",
+                              infoDialog(context, "RESEND".tr,
                                   controller.mobileNumber);
                             },
-                            child: text1("لم يصلك الرمز للان ؟")),
+                            child:
+                                text1("You haven't received the code yet?".tr)),
                         Countdown(
                           animation: StepTween(
                             begin: levelClock, // THIS IS A USER ENTERED NUMBER
@@ -225,9 +228,9 @@ class _otpSignupState extends State<otpSignup> with TickerProviderStateMixin {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           ButtonRegister1(
-                              Colors.white, Colors.black, "تأكيد", 1),
+                              Colors.white, Colors.black, "VERIFY".tr, 1),
                           ButtonRegister1(
-                              Colors.black, Colors.white, "تعديل الرقم", 2),
+                              Colors.black, Colors.white, "Modify".tr, 2),
                         ],
                       ),
                     ),
@@ -285,13 +288,16 @@ class _otpSignupState extends State<otpSignup> with TickerProviderStateMixin {
         },
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(25.0))),
-        child: Text(
-          text,
-          style: TextStyle(
-              color: c1,
-              fontSize: 18,
-              fontFamily: 'majallab',
-              fontWeight: FontWeight.bold),
+        child: Center(
+          child: Text(
+            text,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                color: c1,
+                fontSize: 18,
+                fontFamily: 'majallab',
+                fontWeight: FontWeight.bold),
+          ),
         ),
         textColor: c1,
         splashColor: Colors.white,

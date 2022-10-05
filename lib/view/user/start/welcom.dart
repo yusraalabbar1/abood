@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:abood/constant/colors.dart';
 import 'package:abood/controller/ControlUser.dart';
 import 'package:abood/main.dart';
+import 'package:abood/model/setting/settingApi.dart';
 import 'package:abood/model/user/auth/signup/api/generate_city.dart';
 import 'package:abood/model/user/auth/signup/api/generate_country.dart';
 import 'package:abood/model/user/mycart/api/my_cart.dart';
@@ -11,6 +12,7 @@ import 'package:abood/model/user/other/banner/banneAdsrApi.dart';
 import 'package:abood/model/user/other/banner/bannerMainApi.dart';
 import 'package:abood/model/user/product/category/category.dart';
 import 'package:abood/model/user/stor/stor_by_userId_main_page/stor_by_userId_main_page_api.dart';
+import 'package:abood/view/user/auth/start_account.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -38,6 +40,7 @@ class _welcomState extends State<welcom> {
   }
 
   navigateHome() async {
+    guest = false;
     SharedPreferences preferences = await SharedPreferences.getInstance();
     Homecontroller controller = Get.put(Homecontroller());
     controller.Saveid(preferences.getInt('id'));
@@ -45,6 +48,7 @@ class _welcomState extends State<welcom> {
     controller.SavelastName(preferences.getString('lastName'));
     controller.SavemobileNumber(preferences.getString('mobileNumber'));
     controller.SavecountryId(preferences.getInt('countryId'));
+    controller.SaveLang(preferences.getString("lang"));
     if (preferences.getBool("isLogin") == true) {
       if (preferences.getInt("userType") == 1) {
         await myLikeApi(controller.id);
@@ -58,12 +62,20 @@ class _welcomState extends State<welcom> {
         print("no thing");
       }
     } else {
-      Navigator.of(context).pushReplacementNamed("startAccount");
+      Navigator.of(context).pushReplacementNamed("lang");
     }
   }
 
   @override
   void initState() {
+    settingAll();
+    Website();
+    whatsup();
+    facebook();
+    term();
+    aboutus();
+    privacy();
+    protection();
     countryGen();
     getInfo();
     GetStorByUser();

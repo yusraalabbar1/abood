@@ -1,5 +1,6 @@
 import 'package:abood/model/user/auth/login/api/loginApi.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class login extends StatefulWidget {
   const login({super.key});
@@ -30,7 +31,7 @@ class _loginState extends State<login> {
               alignment: Alignment.centerRight,
               child: Padding(
                   padding: const EdgeInsets.only(right: 20, top: 20),
-                  child: text1("تسجيل دخول ")),
+                  child: text1('Login'.tr)),
             ),
             Padding(
               padding: const EdgeInsets.all(20.0),
@@ -42,22 +43,21 @@ class _loginState extends State<login> {
             ),
             InkWell(
               onTap: () {
-                Navigator.of(context).pushNamed("forgetPassword");
+                Navigator.of(context).pushNamed("forgetPasswordNumber");
               },
               child: Container(
                   margin: EdgeInsets.only(top: 20, right: 40),
                   alignment: Alignment.centerRight,
-                  child: text2("هل نسيت كلمة السر ؟")),
+                  child: text2("Forget Your Password?".tr)),
             ),
             Padding(
               padding: const EdgeInsets.all(20.0),
-              child:
-                  ButtonRegister1(Colors.black, Colors.white, "تسجيل دخول ", 1),
+              child: ButtonRegister1(Colors.black, Colors.white, 'Login'.tr, 1),
             ),
             Padding(
               padding: const EdgeInsets.only(left: 20, right: 20),
               child:
-                  ButtonRegister1(Colors.white, Colors.black, "أنشئ حساب ", 2),
+                  ButtonRegister1(Colors.white, Colors.black, "SignUp".tr, 2),
             ),
           ],
         ),
@@ -70,7 +70,7 @@ class _loginState extends State<login> {
       keyboardType: TextInputType.phone,
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
-        hintText: "ادخل رقم هاتف",
+        hintText: "Mobile Number".tr,
         prefixIcon: IconButton(onPressed: () {}, icon: Icon(Icons.phone)),
       ),
       validator: (text) {
@@ -94,7 +94,7 @@ class _loginState extends State<login> {
       textInputAction: TextInputAction.next,
       obscureText: _isObscure,
       decoration: InputDecoration(
-        hintText: "الرقم السري ",
+        hintText: "PassWord".tr,
         prefixIcon: IconButton(onPressed: () {}, icon: Icon(Icons.password)),
         suffixIcon: IconButton(
             icon: Icon(_isObscure ? Icons.visibility_off : Icons.visibility),

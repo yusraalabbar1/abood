@@ -5,6 +5,7 @@ import 'package:abood/controller/ControlUser.dart';
 import 'package:abood/controller/controlProduct.dart';
 import 'package:abood/model/user/mycart/api/update_check.dart';
 import 'package:abood/model/user/mycart/json/my_cart_model.dart';
+import 'package:abood/model/user/mycart/json/object_payment.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -68,6 +69,7 @@ myCartApi() async {
       }
       print("===================stors price===================");
       print(storPrice);
+
       Map map3;
       for (var j = 0; j < stor.length; j++) {
         for (var i = 0; i < storPrice.length; i++) {
@@ -94,6 +96,17 @@ myCartApi() async {
       //   totalnew = totalnew + thirdMap[i][1];
       // }
       // print(totalnew);
+      // List<Payment> passengers = [];
+      // for (var j = 0; j < stor.length; j++) {
+      //   for (var i = 0; i < c.data!.length; i++) {
+      //     if (c.data![i].toJson()["storeId"] == stor[j]) {
+      //       if (c.data![i].toJson()["isCheck"] == true) {
+      //         passengers[i].stores![i].storeId = c.data![i].toJson()["storeId"];
+      //       }
+      //     }
+      //   }
+      // }
+      // print(passengers);
     }
   } else {
     print("not response");

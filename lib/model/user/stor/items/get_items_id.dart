@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:abood/constant/urls.dart';
+import 'package:abood/controller/ControlUser.dart';
 import 'package:abood/controller/controlProduct.dart';
 import 'package:abood/model/user/stor/items/get_items_id_model.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +10,12 @@ import 'package:http/http.dart' as http;
 
 Future getItemsIdApi(id) async {
   ControllerProduct controllerPro = Get.put(ControllerProduct());
-  var request = http.Request('GET', Uri.parse(baseURL + '/api/items/$id'));
+  Homecontroller controlleR = Get.put(Homecontroller());
+  int idUser = controlleR.id;
+  print(idUser);
+  print(id);
+  var request =
+      http.Request('GET', Uri.parse(baseURL + '/api/items/$id/user/$idUser'));
 
   http.StreamedResponse response = await request.send();
 

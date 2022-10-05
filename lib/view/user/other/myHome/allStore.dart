@@ -2,8 +2,10 @@ import 'package:abood/constant/urls.dart';
 import 'package:abood/controller/controlProduct.dart';
 import 'package:abood/model/user/stor/stor_by_section_sub/stor_by_section_sub_model.dart';
 import 'package:abood/model/user/stor/stor_by_userId_main_page/stor_by_userId_main_page_model.dart';
+import 'package:abood/view/user/auth/start_account.dart';
 import 'package:abood/view/user/other/myCateg/sub2cat.dart';
 import 'package:abood/view/user/other/myHome/items_store.dart';
+import 'package:abood/view/user/other/widget/dialog_guest.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -82,7 +84,7 @@ class _allStoreState extends State<allStore> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height / 5,
+      // height: MediaQuery.of(context).size.height / 5,
       child: GetBuilder<ControllerProduct>(builder: (controller) {
         return SmartRefresher(
           controller: refreshController,
@@ -105,21 +107,81 @@ class _allStoreState extends State<allStore> {
           },
           child: ListView.builder(
               itemCount: passengers.length,
+              physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
+              // scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
                 final passenger = passengers[index];
                 return InkWell(
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Sub2cat(id: passenger.id),
-                      ),
-                    );
+                    if (guest == true) {
+                      diaGuest(context);
+                    } else {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Sub2cat(id: passenger.id),
+                        ),
+                      );
+                    }
                   },
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 5),
                     child: Card(
+                      elevation: 5,
+                      color: Colors.white,
+                      child: Container(
+                        color: Colors.white,
+                        height: 120,
+                        child: Container(
+                          // padding: EdgeInsets.all(10),
+                          child: ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: CachedNetworkImage(
+                                imageUrl:
+                                    (imageAds + passenger.image.toString()),
+                                fit: BoxFit.cover,
+                              )),
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.rectangle,
+                            borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(4.0),
+                              bottomRight: Radius.circular(4.0),
+                            ),
+                          ),
+                          width: MediaQuery.of(context).size.height / 6,
+                          // height: 73,
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              }),
+        );
+      }),
+    );
+  }
+
+//  Card(
+//                       semanticContainer: true,
+//                       clipBehavior: Clip.antiAliasWithSaveLayer,
+//                       child: CachedNetworkImage(
+//                         imageUrl: (imageAds + passenger.image.toString()),
+//                         fit: BoxFit.cover,
+//                       ),
+//                       shape: RoundedRectangleBorder(
+//                         borderRadius: BorderRadius.circular(10.0),
+//                       ),
+//                       elevation: 5,
+//                       margin: EdgeInsets.all(10),
+//                     ),
+  Text text1(text) {
+    return Text(text,
+        style: const TextStyle(
+            fontSize: 20, fontWeight: FontWeight.bold, fontFamily: 'majallab'));
+  }
+  /*
+ Card(
                       elevation: 5,
                       color: Colors.white,
                       child: Container(
@@ -173,30 +235,6 @@ class _allStoreState extends State<allStore> {
                         ),
                       ),
                     ),
-                  ),
-                );
-              }),
-        );
-      }),
-    );
-  }
 
-//  Card(
-//                       semanticContainer: true,
-//                       clipBehavior: Clip.antiAliasWithSaveLayer,
-//                       child: CachedNetworkImage(
-//                         imageUrl: (imageAds + passenger.image.toString()),
-//                         fit: BoxFit.cover,
-//                       ),
-//                       shape: RoundedRectangleBorder(
-//                         borderRadius: BorderRadius.circular(10.0),
-//                       ),
-//                       elevation: 5,
-//                       margin: EdgeInsets.all(10),
-//                     ),
-  Text text1(text) {
-    return Text(text,
-        style: const TextStyle(
-            fontSize: 20, fontWeight: FontWeight.bold, fontFamily: 'majallab'));
-  }
+  */
 }

@@ -3,9 +3,11 @@ import 'package:abood/constant/urls.dart';
 import 'package:abood/controller/controlProduct.dart';
 import 'package:abood/model/user/product/subCategory/subCatModel.dart';
 import 'package:abood/model/user/product/subCategory/subCategoryApi.dart';
+import 'package:abood/view/user/auth/start_account.dart';
 import 'package:abood/view/user/other/myCateg/storeByIdSection.dart';
 import 'package:abood/view/user/other/myCateg/sub2cat.dart';
 import 'package:abood/view/user/other/myHome/allHome.dart';
+import 'package:abood/view/user/other/widget/dialog_guest.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
@@ -137,7 +139,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     return WillPopScope(
       onWillPop: _onwillPop,
       child: Scaffold(
-          body: Column(
+          body: ListView(
         children: [
           Container(
             height: 50,
@@ -244,21 +246,34 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                 print(passenger.descAr);
                                 print("=====sub section id======");
                                 print(passenger.id);
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => storeByIdSection(
-                                        id: passenger.id,
-                                        idd: passenger.sectionId),
-                                  ),
-                                );
+                                if (guest == true) {
+                                  diaGuest(context);
+                                } else {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => storeByIdSection(
+                                          id: passenger.id,
+                                          idd: passenger.sectionId),
+                                    ),
+                                  );
+                                }
                               },
                               child: Container(
                                 alignment: Alignment.center,
                                 child: Center(
                                   child: Container(
                                     decoration: BoxDecoration(
-                                        color: Colors.black,
+                                        color: Colors.white,
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.grey.withOpacity(
+                                                0.2), //color of shadow
+                                            spreadRadius: 5,
+                                            blurRadius: 7,
+                                            offset: Offset(0, 2),
+                                          ),
+                                        ],
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(15))),
                                     alignment: Alignment.center,
@@ -330,7 +345,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   Text text1(text) {
     return Text(text,
         style: const TextStyle(
-            color: Colors.white,
+            color: Colors.black,
             fontSize: 18,
             fontWeight: FontWeight.bold,
             fontFamily: 'majallab'));

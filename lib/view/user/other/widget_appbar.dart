@@ -64,7 +64,7 @@ AppBar appbarmain(GlobalKey<ScaffoldState> scaffoldKey, context) {
             )),
       ),
       const SizedBox(
-        width: 10,
+        width: 20,
       ),
       Expanded(
         child: IconButton(

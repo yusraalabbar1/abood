@@ -141,15 +141,16 @@ class _StorByMerchState extends State<StorByMerch> {
                 final passenger = passengers[index];
                 return InkWell(
                   onTap: () {
-                    if (widget.typeOperation == "deletePro") {
+                    print(widget.typeOperation.toString());
+                    if (widget.typeOperation.toString() == "deletePro") {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) =>
-                              AllItemsStoreoffer(id: passenger.id),
+                              AllItemsStoreDelet(id: passenger.id),
                         ),
                       );
-                    } else if (widget.typeOperation == "editPod") {
+                    } else if (widget.typeOperation.toString() == "editPod") {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -157,12 +158,12 @@ class _StorByMerchState extends State<StorByMerch> {
                               AllItemsStoreEdit(id: passenger.id),
                         ),
                       );
-                    } else if (widget.typeOperation == "addOffer") {
+                    } else if (widget.typeOperation.toString() == "addOffer") {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) =>
-                              AllItemsStoreDelet(id: passenger.id),
+                              AllItemsStoreoffer(id: passenger.id),
                         ),
                       );
                     }

@@ -59,8 +59,11 @@ class _searchProductUserState extends State<searchProductUser> {
     var headers = {'Content-Type': 'application/json'};
     var request =
         http.Request('POST', Uri.parse(baseURL + '/api/items/searchItems'));
-    request.body = json.encode(
-        {"LowPrice": 1.0, "HighPrice": 100000000.5, "ItemDesc": searchWord});
+    request.body = json.encode({
+      "LowPrice": 1.0,
+      "HighPrice": 999999999999999.0,
+      "ItemDesc": searchWord
+    });
     request.headers.addAll(headers);
 
     final response = await request.send();
