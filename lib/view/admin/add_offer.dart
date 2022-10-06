@@ -86,7 +86,8 @@ class _AddOfferState extends State<AddOffer> {
             Form(
               key: formstate,
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
                     alignment: Alignment.center,
@@ -151,7 +152,7 @@ class _AddOfferState extends State<AddOffer> {
                     height: 10,
                   ),
                   Container(
-                      alignment: Alignment.topLeft,
+                      // alignment: Alignment.topLeft,
                       margin: EdgeInsets.symmetric(horizontal: 30),
                       child: appText4("Price:".tr)),
                   Padding(
@@ -161,7 +162,7 @@ class _AddOfferState extends State<AddOffer> {
                         decoration: boxd(), child: TextFormFieldLast()),
                   ),
                   Container(
-                      alignment: Alignment.topLeft,
+                      // alignment: Alignment.topLeft,
                       margin: EdgeInsets.symmetric(horizontal: 30),
                       child: appText4("Name offer:".tr)),
                   Padding(

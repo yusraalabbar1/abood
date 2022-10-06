@@ -23,16 +23,10 @@ class Homecontroller extends GetxController {
   List<Map<dynamic, dynamic>> saveallCountry = [];
   List<Map<dynamic, dynamic>> allCity = [];
   List<Map<dynamic, dynamic>> allSetting = [];
-  var face, whats, site, language = "en";
+  var face, whats, site;
   var about, term, privec, prot, idCity, page = 0;
   SavePage(c) {
     page = c;
-    update();
-  }
-
-  SaveLang(c) {
-    print(c);
-    language = c;
     update();
   }
 

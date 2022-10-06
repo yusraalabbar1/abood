@@ -134,7 +134,7 @@ class _MainScreenStorState extends State<MainScreenStor> {
       textInputAction: TextInputAction.next,
       enabled: false,
       decoration: InputDecoration(
-        hintText: " Search",
+        hintText: " Search".tr,
       ),
       validator: (text) {
         if (text!.length > 40) {

@@ -1,4 +1,5 @@
 import 'package:abood/controller/ControlUser.dart';
+import 'package:abood/controller/controlProduct.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
@@ -13,6 +14,7 @@ class lang extends StatefulWidget {
 }
 
 class _langState extends State<lang> {
+  ControllerProduct controllerPro = Get.put(ControllerProduct());
   Text text1(text) {
     return Text(text,
         style: const TextStyle(
@@ -85,11 +87,16 @@ class _langState extends State<lang> {
           print('Button Clicked.');
           SharedPreferences preferences = await SharedPreferences.getInstance();
           if (n == 1) {
-            Navigator.of(context).pushNamed("startAccount");
             preferences.setString("lang", "ar");
+
+            controllerPro.SaveLang('ar');
+            Get.updateLocale(Locale('ar'));
+            Navigator.of(context).pushNamed("startAccount");
           } else {
             preferences.setString("lang", "en");
             // controller.SaveLang("en");
+            controllerPro.SaveLang('en');
+            Get.updateLocale(Locale('en'));
             Navigator.of(context).pushNamed("startAccount");
           }
         },

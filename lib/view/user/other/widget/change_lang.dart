@@ -1,5 +1,6 @@
 import 'package:abood/constant/colors.dart';
 import 'package:abood/controller/ControlUser.dart';
+import 'package:abood/controller/controlProduct.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -21,7 +22,7 @@ showLoadingLang(context) {
               SizedBox(
                 height: 30,
               ),
-              GetBuilder<Homecontroller>(builder: (controller) {
+              GetBuilder<ControllerProduct>(builder: (controller) {
                 return (Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

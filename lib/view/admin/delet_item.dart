@@ -85,10 +85,11 @@ class _DeletItemState extends State<DeletItem> {
                       child: Form(
                         key: formstate,
                         child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Container(
-                                alignment: Alignment.topLeft,
+                                // alignment: Alignment.topLeft,
                                 margin: EdgeInsets.symmetric(horizontal: 30),
                                 child: appText2("Name:".tr)),
                             Padding(
@@ -100,7 +101,7 @@ class _DeletItemState extends State<DeletItem> {
                                       controllerPro.ItemsById["itemName"])),
                             ),
                             Container(
-                                alignment: Alignment.topLeft,
+                                // alignment: Alignment.topLeft,
                                 margin: EdgeInsets.symmetric(horizontal: 30),
                                 child: appText2("Price:".tr)),
                             Padding(
@@ -112,7 +113,7 @@ class _DeletItemState extends State<DeletItem> {
                                       controllerPro.ItemsById["price"])),
                             ),
                             Container(
-                                alignment: Alignment.topLeft,
+                                // alignment: Alignment.topLeft,
                                 margin: EdgeInsets.symmetric(horizontal: 30),
                                 child: appText2("Extra Text:".tr)),
                             Padding(
@@ -123,12 +124,12 @@ class _DeletItemState extends State<DeletItem> {
                                       controllerPro.ItemsById["extraText"])),
                             ),
                             Container(
-                                alignment: Alignment.topLeft,
+                                // alignment: Alignment.topLeft,
                                 margin: EdgeInsets.symmetric(horizontal: 30),
                                 child: appText2("Description:".tr)),
                             Padding(
                               padding: const EdgeInsets.only(
-                                  left: 20, right: 20, bottom: 20, top: 0),
+                                  left: 20, right: 20, bottom: 20, top: 20),
                               child: Container(
                                   decoration: boxd(),
                                   child: TextFormField2(controllerPro

@@ -1,5 +1,6 @@
 import 'package:abood/constant/colors.dart';
 import 'package:abood/constant/urls.dart';
+import 'package:abood/controller/ControlUser.dart';
 import 'package:abood/controller/controlProduct.dart';
 import 'package:abood/model/user/product/subCategory/subCatModel.dart';
 import 'package:abood/model/user/product/subCategory/subCategoryApi.dart';
@@ -133,6 +134,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   }
 
   ControllerProduct controllerPro = Get.put(ControllerProduct());
+  Homecontroller controller = Get.put(Homecontroller());
   int i = 0;
   @override
   Widget build(BuildContext context) {
@@ -179,8 +181,13 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
                         label: i == index
                             ? Text(
-                                controllerPro.saveAllCateg[index]["descEn"]
-                                    .toString(),
+                                controllerPro.language == "en"
+                                    ? controllerPro.saveAllCateg[index]
+                                            ["descEn"]
+                                        .toString()
+                                    : controllerPro.saveAllCateg[index]
+                                            ["descAr"]
+                                        .toString(),
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 15,
@@ -188,8 +195,12 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                     fontFamily: 'majallab'),
                               )
                             : Text(
-                                controllerPro.saveAllCateg[index]["descEn"]
-                                    .toString(),
+                                controllerPro.language == "en"
+                                    ? controllerPro.saveAllCateg[index]
+                                            ["descEn"]
+                                        .toString()
+                                    : controllerPro.saveAllCateg[index]
+                                        ["descAr"],
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 15,
@@ -205,106 +216,113 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
           ),
           i == 0
               ? AllHome()
-              : SizedBox(
-                  height: MediaQuery.of(context).size.height - 214,
-                  child: SmartRefresher(
-                    controller: refreshController,
-                    enablePullUp: true,
-                    onRefresh: () async {
-                      final result = await getPassengerData(isRefresh: true);
-                      if (result) {
-                        refreshController.refreshCompleted();
-                      } else {
-                        refreshController.refreshFailed();
-                      }
-                    },
-                    onLoading: () async {
-                      final result = await getPassengerData(isRefresh: true);
-                      if (result) {
-                        refreshController.loadComplete();
-                      } else {
-                        refreshController.loadFailed();
-                      }
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: GridView.builder(
-                          // shrinkWrap: true,
-                          gridDelegate:
-                              const SliverGridDelegateWithMaxCrossAxisExtent(
-                                  maxCrossAxisExtent: 200,
-                                  childAspectRatio: 3 / 2.5,
-                                  crossAxisSpacing: 20,
-                                  mainAxisSpacing: 20),
-                          itemCount: passengers.length,
-                          itemBuilder: (BuildContext ctx, index) {
-                            final passenger = passengers[index];
-                            return Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: InkWell(
-                                onTap: () async {
-                                  print("=====section id======");
-                                  print(passenger.sectionId);
-                                  print(passenger.descAr);
-                                  print("=====sub section id======");
-                                  print(passenger.id);
-                                  if (guest == true) {
-                                    diaGuest(context);
-                                  } else {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => storeByIdSection(
-                                            id: passenger.id,
-                                            idd: passenger.sectionId),
-                                      ),
-                                    );
-                                  }
-                                },
-                                child: Container(
-                                  alignment: Alignment.center,
-                                  child: Center(
-                                    child: Column(
-                                      children: [
-                                        Expanded(
-                                          flex: 4,
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                                //Untitled design (15).png
-                                                image: DecorationImage(
-                                                    image: NetworkImage(
-                                                        "https://image.shutterstock.com/image-vector/fashion-boutique-pixel-perfect-linear-260nw-1779788189.jpg")),
-                                                color: Colors.white,
-                                                boxShadow: [
-                                                  BoxShadow(
-                                                    color: Colors.grey.withOpacity(
-                                                        0.2), //color of shadow
-                                                    spreadRadius: 5,
-                                                    blurRadius: 7,
-                                                    offset: Offset(0, 2),
-                                                  ),
-                                                ],
-                                                borderRadius: BorderRadius.all(
-                                                    Radius.circular(20))),
-                                            alignment: Alignment.center,
-                                            width: MediaQuery.of(context)
-                                                .size
-                                                .width,
+              : GetBuilder<ControllerProduct>(builder: (controllerPro) {
+                  return (SizedBox(
+                    height: MediaQuery.of(context).size.height - 214,
+                    child: SmartRefresher(
+                      controller: refreshController,
+                      enablePullUp: true,
+                      onRefresh: () async {
+                        final result = await getPassengerData(isRefresh: true);
+                        if (result) {
+                          refreshController.refreshCompleted();
+                        } else {
+                          refreshController.refreshFailed();
+                        }
+                      },
+                      onLoading: () async {
+                        final result = await getPassengerData(isRefresh: true);
+                        if (result) {
+                          refreshController.loadComplete();
+                        } else {
+                          refreshController.loadFailed();
+                        }
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: GridView.builder(
+                            // shrinkWrap: true,
+                            gridDelegate:
+                                const SliverGridDelegateWithMaxCrossAxisExtent(
+                                    maxCrossAxisExtent: 200,
+                                    childAspectRatio: 3 / 2.5,
+                                    crossAxisSpacing: 20,
+                                    mainAxisSpacing: 20),
+                            itemCount: passengers.length,
+                            itemBuilder: (BuildContext ctx, index) {
+                              final passenger = passengers[index];
+                              return Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: InkWell(
+                                  onTap: () async {
+                                    print("=====section id======");
+                                    print(passenger.sectionId);
+                                    print(passenger.descAr);
+                                    print("=====sub section id======");
+                                    print(passenger.id);
+                                    if (guest == true) {
+                                      diaGuest(context);
+                                    } else {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              storeByIdSection(
+                                                  id: passenger.id,
+                                                  idd: passenger.sectionId),
+                                        ),
+                                      );
+                                    }
+                                  },
+                                  child: Container(
+                                    alignment: Alignment.center,
+                                    child: Center(
+                                      child: Column(
+                                        children: [
+                                          Expanded(
+                                            flex: 4,
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                  //Untitled design (15).png
+                                                  image: DecorationImage(
+                                                      image: NetworkImage(
+                                                          "https://image.shutterstock.com/image-vector/fashion-boutique-pixel-perfect-linear-260nw-1779788189.jpg")),
+                                                  color: Colors.white,
+                                                  boxShadow: [
+                                                    BoxShadow(
+                                                      color: Colors.grey
+                                                          .withOpacity(
+                                                              0.2), //color of shadow
+                                                      spreadRadius: 5,
+                                                      blurRadius: 7,
+                                                      offset: Offset(0, 2),
+                                                    ),
+                                                  ],
+                                                  borderRadius:
+                                                      BorderRadius.all(
+                                                          Radius.circular(20))),
+                                              alignment: Alignment.center,
+                                              width: MediaQuery.of(context)
+                                                  .size
+                                                  .width,
+                                            ),
                                           ),
-                                        ),
-                                        text1(
-                                          passenger.descEn,
-                                        ),
-                                      ],
+                                          text1(
+                                            controllerPro.language == "en"
+                                                ? passenger.descEn
+                                                : passenger.descAr,
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                            );
-                          }),
+                              );
+                            }),
+                      ),
                     ),
-                  ),
-                )
+                  ));
+                })
           /*GetBuilder<ControllerProduct>(builder: (controllerPro) {
                   return (Padding(
                     padding: const EdgeInsets.all(10.0),

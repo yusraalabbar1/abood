@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:abood/constant/colors.dart';
 import 'package:abood/controller/ControlUser.dart';
+import 'package:abood/controller/controlProduct.dart';
 import 'package:abood/main.dart';
 import 'package:abood/model/setting/settingApi.dart';
 import 'package:abood/model/user/auth/signup/api/generate_city.dart';
@@ -42,12 +43,15 @@ class _welcomState extends State<welcom> {
   navigateHome() async {
     guest = false;
     SharedPreferences preferences = await SharedPreferences.getInstance();
+
+    ControllerProduct controllerPro = Get.put(ControllerProduct());
     Homecontroller controller = Get.put(Homecontroller());
     controller.Saveid(preferences.getInt('id'));
     controller.SavefirstName(preferences.getString('firstName'));
     controller.SavelastName(preferences.getString('lastName'));
     controller.SavemobileNumber(preferences.getString('mobileNumber'));
     controller.SavecountryId(preferences.getInt('countryId'));
+    controllerPro.SaveLang(preferences.getString("lang"));
     // controller.SaveLang(preferences.getString("lang"));
     if (preferences.getBool("isLogin") == true) {
       if (preferences.getInt("userType") == 1) {

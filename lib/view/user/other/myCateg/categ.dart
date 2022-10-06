@@ -138,9 +138,15 @@ class _categoryState extends State<category>
                                       margin:
                                           EdgeInsets.symmetric(vertical: 10),
                                       child: Text(
-                                        controllerPro.saveAllCategwithout[index]
-                                                ["descEn"]
-                                            .toString(),
+                                        controllerPro.language == "en"
+                                            ? controllerPro
+                                                .saveAllCategwithout[index]
+                                                    ["descEn"]
+                                                .toString()
+                                            : controllerPro
+                                                .saveAllCategwithout[index]
+                                                    ["descAr"]
+                                                .toString(),
                                         style: TextStyle(
                                             color: Colors.white,
                                             fontSize: 15,
@@ -153,9 +159,15 @@ class _categoryState extends State<category>
                                     child: Container(
                                       margin: EdgeInsets.all(5),
                                       child: Text(
-                                        controllerPro.saveAllCategwithout[index]
-                                                ["descEn"]
-                                            .toString(),
+                                        controllerPro.language == "en"
+                                            ? controllerPro
+                                                .saveAllCategwithout[index]
+                                                    ["descEn"]
+                                                .toString()
+                                            : controllerPro
+                                                .saveAllCategwithout[index]
+                                                    ["descAr"]
+                                                .toString(),
                                         style: TextStyle(
                                             color: Colors.black,
                                             fontSize: 15,
@@ -193,79 +205,84 @@ class _categoryState extends State<category>
                       refreshController.loadFailed();
                     }
                   },
-                  child: GridView.builder(
-                      shrinkWrap: true,
-                      gridDelegate:
-                          const SliverGridDelegateWithMaxCrossAxisExtent(
-                              maxCrossAxisExtent: 200,
-                              childAspectRatio: 3 / 2.5,
-                              crossAxisSpacing: 20,
-                              mainAxisSpacing: 20),
-                      itemCount: passengers.length,
-                      itemBuilder: (BuildContext ctx, index) {
-                        final passenger = passengers[index];
-                        return Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: InkWell(
-                            onTap: () async {
-                              print("=====section id======");
-                              print(passenger.sectionId);
-                              print(passenger.descAr);
-                              print("=====sub section id======");
-                              print(passenger.id);
-                              if (guest == true) {
-                                diaGuest(context);
-                              } else {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => storeByIdSection(
-                                        id: passenger.id,
-                                        idd: passenger.sectionId),
-                                  ),
-                                );
-                              }
-                            },
-                            child: Container(
-                              alignment: Alignment.center,
-                              child: Center(
-                                child: Column(
-                                  children: [
-                                    Expanded(
-                                      flex: 4,
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                            //Untitled design (15).png
-                                            image: DecorationImage(
-                                                image: NetworkImage(
-                                                    "https://image.shutterstock.com/image-vector/fashion-boutique-pixel-perfect-linear-260nw-1779788189.jpg")),
-                                            color: Colors.white,
-                                            boxShadow: [
-                                              BoxShadow(
-                                                color: Colors.grey.withOpacity(
-                                                    0.2), //color of shadow
-                                                spreadRadius: 5,
-                                                blurRadius: 7,
-                                                offset: Offset(0, 2),
-                                              ),
-                                            ],
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(20))),
-                                        alignment: Alignment.center,
-                                        width:
-                                            MediaQuery.of(context).size.width,
+                  child:
+                      GetBuilder<ControllerProduct>(builder: (controllerPro) {
+                    return (GridView.builder(
+                        shrinkWrap: true,
+                        gridDelegate:
+                            const SliverGridDelegateWithMaxCrossAxisExtent(
+                                maxCrossAxisExtent: 200,
+                                childAspectRatio: 3 / 2.5,
+                                crossAxisSpacing: 20,
+                                mainAxisSpacing: 20),
+                        itemCount: passengers.length,
+                        itemBuilder: (BuildContext ctx, index) {
+                          final passenger = passengers[index];
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: InkWell(
+                              onTap: () async {
+                                print("=====section id======");
+                                print(passenger.sectionId);
+                                print(passenger.descAr);
+                                print("=====sub section id======");
+                                print(passenger.id);
+                                if (guest == true) {
+                                  diaGuest(context);
+                                } else {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => storeByIdSection(
+                                          id: passenger.id,
+                                          idd: passenger.sectionId),
+                                    ),
+                                  );
+                                }
+                              },
+                              child: Container(
+                                alignment: Alignment.center,
+                                child: Center(
+                                  child: Column(
+                                    children: [
+                                      Expanded(
+                                        flex: 4,
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                              //Untitled design (15).png
+                                              image: DecorationImage(
+                                                  image: NetworkImage(
+                                                      "https://image.shutterstock.com/image-vector/fashion-boutique-pixel-perfect-linear-260nw-1779788189.jpg")),
+                                              color: Colors.white,
+                                              boxShadow: [
+                                                BoxShadow(
+                                                  color: Colors.grey.withOpacity(
+                                                      0.2), //color of shadow
+                                                  spreadRadius: 5,
+                                                  blurRadius: 7,
+                                                  offset: Offset(0, 2),
+                                                ),
+                                              ],
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(20))),
+                                          alignment: Alignment.center,
+                                          width:
+                                              MediaQuery.of(context).size.width,
+                                        ),
                                       ),
-                                    ),
-                                    text1(
-                                      passenger.descEn,
-                                    ),
-                                  ],
+                                      text1(
+                                        controllerPro.language == "en"
+                                            ? passenger.descEn
+                                            : passenger.descAr,
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                        );
-                      }),
+                          );
+                        }));
+                  }),
                 ),
               )
               /*GetBuilder<ControllerProduct>(builder: (controllerPro) {

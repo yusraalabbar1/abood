@@ -103,6 +103,7 @@ const Map<String, String> ar = {
   "Name Product": "اسم المنتج",
   "Price": "السعر",
   "Note": "ملاحظة",
+  "Description: ": " الوصف:",
   "Description": "الوصف",
   " Add Offer": "اضافة عرض",
   "add": "اضافة",
@@ -136,4 +137,5 @@ const Map<String, String> ar = {
   "photo \nGallery": "المعرض",
   "All rights reserved to the application": "جميع الحقوق محفوظة لدى التطبيق ",
   " All Stors": "كل المتاجر",
+  " Search": "بحث"
 };

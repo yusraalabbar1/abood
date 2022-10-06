@@ -138,4 +138,5 @@ const Map<String, String> en = {
   "All rights reserved to the application":
       "All rights reserved to the application",
   " All Stors": " All Stors",
+  " Search": "Search"
 };
