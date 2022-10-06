@@ -64,7 +64,7 @@ class _signupState extends State<signup> {
               // alignment: Alignment.ce,
               child: Padding(
                   padding: const EdgeInsets.only(right: 20, top: 20, left: 20),
-                  child: text1("Creat Account".tr)),
+                  child: text1("Create Account".tr)),
             ),
             Padding(
               padding: const EdgeInsets.only(left: 20, right: 20),
@@ -147,8 +147,8 @@ class _signupState extends State<signup> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  ButtonRegister1(Colors.white, Colors.black, "Next".tr, 1),
                   ButtonRegister1(Colors.black, Colors.white, 'Login'.tr, 2),
+                  ButtonRegister1(Colors.white, Colors.black, "Next".tr, 1),
                 ],
               ),
             ),
@@ -257,7 +257,7 @@ class _signupState extends State<signup> {
       textInputAction: TextInputAction.next,
       obscureText: _isObscure,
       decoration: InputDecoration(
-        hintText: "PassWord".tr,
+        hintText: "Password".tr,
         prefixIcon: IconButton(onPressed: () {}, icon: Icon(Icons.password)),
         suffixIcon: IconButton(
             icon: Icon(_isObscure ? Icons.visibility_off : Icons.visibility),
@@ -291,7 +291,7 @@ class _signupState extends State<signup> {
       textInputAction: TextInputAction.next,
       obscureText: _isObscure,
       decoration: InputDecoration(
-        hintText: "Confirme PassWord".tr,
+        hintText: "Confirm Password".tr,
         prefixIcon: IconButton(onPressed: () {}, icon: Icon(Icons.password)),
         suffixIcon: IconButton(
             icon: Icon(_isObscure ? Icons.visibility_off : Icons.visibility),

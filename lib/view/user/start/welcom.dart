@@ -48,7 +48,7 @@ class _welcomState extends State<welcom> {
     controller.SavelastName(preferences.getString('lastName'));
     controller.SavemobileNumber(preferences.getString('mobileNumber'));
     controller.SavecountryId(preferences.getInt('countryId'));
-    controller.SaveLang(preferences.getString("lang"));
+    // controller.SaveLang(preferences.getString("lang"));
     if (preferences.getBool("isLogin") == true) {
       if (preferences.getInt("userType") == 1) {
         await myLikeApi(controller.id);

@@ -47,104 +47,110 @@ class _editPasswordState extends State<editPassword> {
               Container(
                 padding: const EdgeInsets.only(left: 50, right: 50, bottom: 10),
                 child: Text(
-                  "new password".tr,
+                  "New Password".tr,
                   style: Theme.of(context).textTheme.headline4,
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 30, right: 30, bottom: 10),
-                child: Center(
-                    child:
-                        //   GetBuilder<homecontroller>(builder: (controller) {
-                        // return (
-                        TextFormField(
-                  textInputAction: TextInputAction.next,
-                  style: TextStyle(color: Colors.black),
-                  keyboardType: TextInputType.visiblePassword,
-                  validator: (text) {
-                    if (text!.length > 30) {
-                      return "can not enter bigest than 30";
-                    }
-                    if (text.length < 2) {
-                      return "can not enter less than 2";
-                    }
-                    return null;
-                  },
-                  obscureText: _isObscure1,
-                  decoration: InputDecoration(
-                    suffixIcon: IconButton(
-                        icon: Icon(_isObscure1
-                            ? Icons.visibility_off
-                            : Icons.visibility),
-                        onPressed: () {
-                          setState(() {
-                            _isObscure1 = !_isObscure1;
-                          });
-                        }),
-                    labelStyle: TextStyle(
-                        color: myFocusNode.hasFocus
-                            ? Color(0xffFAB10C)
-                            : Colors.black),
-                  ),
-                  onSaved: (string) {
-                    new_password = string;
-                    // controller.SavePassWord(string);
-                  },
-                )
-                    //   );
-                    // })
+                child: Container(
+                  decoration: boxd(),
+                  child: Center(
+                      child:
+                          //   GetBuilder<homecontroller>(builder: (controller) {
+                          // return (
+                          TextFormField(
+                    textInputAction: TextInputAction.next,
+                    style: TextStyle(color: Colors.black),
+                    keyboardType: TextInputType.visiblePassword,
+                    validator: (text) {
+                      if (text!.length > 30) {
+                        return "can not enter bigest than 30";
+                      }
+                      if (text.length < 2) {
+                        return "can not enter less than 2";
+                      }
+                      return null;
+                    },
+                    obscureText: _isObscure1,
+                    decoration: InputDecoration(
+                      suffixIcon: IconButton(
+                          icon: Icon(_isObscure1
+                              ? Icons.visibility_off
+                              : Icons.visibility),
+                          onPressed: () {
+                            setState(() {
+                              _isObscure1 = !_isObscure1;
+                            });
+                          }),
+                      labelStyle: TextStyle(
+                          color: myFocusNode.hasFocus
+                              ? Color(0xffFAB10C)
+                              : Colors.black),
                     ),
+                    onSaved: (string) {
+                      new_password = string;
+                      // controller.SavePassWord(string);
+                    },
+                  )
+                      //   );
+                      // })
+                      ),
+                ),
               ),
               Container(
                 padding: const EdgeInsets.only(left: 50, right: 50, bottom: 10),
                 child: Text(
-                  "password confirmation".tr,
+                  "Password Confirmation".tr,
                   style: Theme.of(context).textTheme.headline4,
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 30, right: 30, bottom: 10),
-                child: Center(
-                    child:
-                        //   GetBuilder<homecontroller>(builder: (controller) {
-                        // return (
-                        TextFormField(
-                  textInputAction: TextInputAction.next,
-                  style: TextStyle(color: Colors.black),
-                  keyboardType: TextInputType.visiblePassword,
-                  validator: (text) {
-                    if (text!.length > 30) {
-                      return "can not enter bigest than 30";
-                    }
-                    if (text.length < 2) {
-                      return "can not enter less than 2";
-                    }
-                    return null;
-                  },
-                  obscureText: _isObscure2,
-                  decoration: InputDecoration(
-                    suffixIcon: IconButton(
-                        icon: Icon(_isObscure2
-                            ? Icons.visibility_off
-                            : Icons.visibility),
-                        onPressed: () {
-                          setState(() {
-                            _isObscure2 = !_isObscure2;
-                          });
-                        }),
-                    labelStyle: TextStyle(
-                        color: myFocusNode.hasFocus
-                            ? Color(0xffFAB10C)
-                            : Colors.black),
-                  ),
-                  onSaved: (string) {
-                    password_confirmation = string;
-                    // controller.SavePassWord(string);
-                  },
-                )
-                    //   );
-                    // })
+                child: Container(
+                  decoration: boxd(),
+                  child: Center(
+                      child:
+                          //   GetBuilder<homecontroller>(builder: (controller) {
+                          // return (
+                          TextFormField(
+                    textInputAction: TextInputAction.next,
+                    style: TextStyle(color: Colors.black),
+                    keyboardType: TextInputType.visiblePassword,
+                    validator: (text) {
+                      if (text!.length > 30) {
+                        return "can not enter bigest than 30";
+                      }
+                      if (text.length < 2) {
+                        return "can not enter less than 2";
+                      }
+                      return null;
+                    },
+                    obscureText: _isObscure2,
+                    decoration: InputDecoration(
+                      suffixIcon: IconButton(
+                          icon: Icon(_isObscure2
+                              ? Icons.visibility_off
+                              : Icons.visibility),
+                          onPressed: () {
+                            setState(() {
+                              _isObscure2 = !_isObscure2;
+                            });
+                          }),
+                      labelStyle: TextStyle(
+                          color: myFocusNode.hasFocus
+                              ? Color(0xffFAB10C)
+                              : Colors.black),
                     ),
+                    onSaved: (string) {
+                      password_confirmation = string;
+                      // controller.SavePassWord(string);
+                    },
+                  )
+                      //   );
+                      // })
+                      ),
+                ),
               ),
               Center(
                 child: Container(
@@ -186,6 +192,21 @@ class _editPasswordState extends State<editPassword> {
           ),
         ),
       ),
+    );
+  }
+
+  BoxDecoration boxd() {
+    return BoxDecoration(
+      color: Colors.white,
+      borderRadius: BorderRadius.circular(10), //border corner radius
+      boxShadow: [
+        BoxShadow(
+          color: Colors.grey.withOpacity(0.2), //color of shadow
+          spreadRadius: 5,
+          blurRadius: 7,
+          offset: Offset(0, 2),
+        ),
+      ],
     );
   }
 }

@@ -155,7 +155,7 @@ class _forgetPasswordState extends State<forgetPassword> {
       textInputAction: TextInputAction.next,
       obscureText: _isObscure,
       decoration: InputDecoration(
-        hintText: "Confirme PassWord".tr,
+        hintText: "Confirm Password".tr,
         prefixIcon: IconButton(onPressed: () {}, icon: Icon(Icons.password)),
         suffixIcon: IconButton(
             icon: Icon(_isObscure ? Icons.visibility_off : Icons.visibility),

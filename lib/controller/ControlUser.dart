@@ -30,11 +30,11 @@ class Homecontroller extends GetxController {
     update();
   }
 
-  SaveLang(c) {
-    print(c);
-    language = c;
-    update();
-  }
+  // SaveLang(c) {
+  //   print(c);
+  //   language = c;
+  //   update();
+  // }
 
   SaveAllSetting(c) {
     allSetting = c;

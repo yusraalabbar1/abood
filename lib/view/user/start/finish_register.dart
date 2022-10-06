@@ -43,7 +43,14 @@ class _finishRegisterState extends State<finishRegister>
     await myCartApi();
     await cityGen();
     print(controller.id);
-    Navigator.of(context).pushReplacementNamed("homePage");
+    // Navigator.of(context).pushReplacementNamed("homePage");
+    if (preferences.getInt("userType") == 1) {
+      Navigator.of(context).pushReplacementNamed("homePage");
+    } else if (preferences.getInt("userType") == 2) {
+      Navigator.of(context).pushReplacementNamed("MainScreenStor");
+    } else {
+      print("no thing");
+    }
   }
 
   @override

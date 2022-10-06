@@ -28,9 +28,9 @@ class _loginState extends State<login> {
         child: ListView(
           children: [
             Container(
-              alignment: Alignment.centerRight,
+              // alignment: Alignment.centerRight,
               child: Padding(
-                  padding: const EdgeInsets.only(right: 20, top: 20),
+                  padding: const EdgeInsets.only(right: 20, top: 20, left: 20),
                   child: text1('Login'.tr)),
             ),
             Padding(
@@ -46,8 +46,8 @@ class _loginState extends State<login> {
                 Navigator.of(context).pushNamed("forgetPasswordNumber");
               },
               child: Container(
-                  margin: EdgeInsets.only(top: 20, right: 40),
-                  alignment: Alignment.centerRight,
+                  margin: EdgeInsets.only(top: 20, right: 40, left: 20),
+                  // alignment: Alignment.centerRight,
                   child: text2("Forget Your Password?".tr)),
             ),
             Padding(
@@ -94,7 +94,7 @@ class _loginState extends State<login> {
       textInputAction: TextInputAction.next,
       obscureText: _isObscure,
       decoration: InputDecoration(
-        hintText: "PassWord".tr,
+        hintText: "Password".tr,
         prefixIcon: IconButton(onPressed: () {}, icon: Icon(Icons.password)),
         suffixIcon: IconButton(
             icon: Icon(_isObscure ? Icons.visibility_off : Icons.visibility),

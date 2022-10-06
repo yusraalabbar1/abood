@@ -175,7 +175,7 @@ class _MainScreenStorState extends State<MainScreenStor> {
                       fontSize: 13,
                       fontFamily: 'Almarai')),
             ),
-            content: Text('Are you sure you are going out?'.tr,
+            content: Text('Are you sure you want to logout?'.tr,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     color: Colors.white, fontSize: 13, fontFamily: 'Almarai')),

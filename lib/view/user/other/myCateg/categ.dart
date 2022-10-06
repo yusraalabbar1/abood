@@ -319,7 +319,7 @@ class _categoryState extends State<category>
               SizedBox(
                 height: 10,
               ),
-              text1("For Help, You Are Contact Us".tr),
+              text1("For Help, Contact Us".tr),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
