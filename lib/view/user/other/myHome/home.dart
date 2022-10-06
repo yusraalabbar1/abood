@@ -226,67 +226,83 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                         refreshController.loadFailed();
                       }
                     },
-                    child: GridView.builder(
-                        // shrinkWrap: true,
-                        gridDelegate:
-                            const SliverGridDelegateWithMaxCrossAxisExtent(
-                                maxCrossAxisExtent: 200,
-                                childAspectRatio: 3 / 2,
-                                crossAxisSpacing: 20,
-                                mainAxisSpacing: 20),
-                        itemCount: passengers.length,
-                        itemBuilder: (BuildContext ctx, index) {
-                          final passenger = passengers[index];
-                          return Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: InkWell(
-                              onTap: () async {
-                                print("=====section id======");
-                                print(passenger.sectionId);
-                                print(passenger.descAr);
-                                print("=====sub section id======");
-                                print(passenger.id);
-                                if (guest == true) {
-                                  diaGuest(context);
-                                } else {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => storeByIdSection(
-                                          id: passenger.id,
-                                          idd: passenger.sectionId),
-                                    ),
-                                  );
-                                }
-                              },
-                              child: Container(
-                                alignment: Alignment.center,
-                                child: Center(
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: Colors.grey.withOpacity(
-                                                0.2), //color of shadow
-                                            spreadRadius: 5,
-                                            blurRadius: 7,
-                                            offset: Offset(0, 2),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: GridView.builder(
+                          // shrinkWrap: true,
+                          gridDelegate:
+                              const SliverGridDelegateWithMaxCrossAxisExtent(
+                                  maxCrossAxisExtent: 200,
+                                  childAspectRatio: 3 / 2.5,
+                                  crossAxisSpacing: 20,
+                                  mainAxisSpacing: 20),
+                          itemCount: passengers.length,
+                          itemBuilder: (BuildContext ctx, index) {
+                            final passenger = passengers[index];
+                            return Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: InkWell(
+                                onTap: () async {
+                                  print("=====section id======");
+                                  print(passenger.sectionId);
+                                  print(passenger.descAr);
+                                  print("=====sub section id======");
+                                  print(passenger.id);
+                                  if (guest == true) {
+                                    diaGuest(context);
+                                  } else {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => storeByIdSection(
+                                            id: passenger.id,
+                                            idd: passenger.sectionId),
+                                      ),
+                                    );
+                                  }
+                                },
+                                child: Container(
+                                  alignment: Alignment.center,
+                                  child: Center(
+                                    child: Column(
+                                      children: [
+                                        Expanded(
+                                          flex: 4,
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                                //Untitled design (15).png
+                                                image: DecorationImage(
+                                                    image: NetworkImage(
+                                                        "https://image.shutterstock.com/image-vector/fashion-boutique-pixel-perfect-linear-260nw-1779788189.jpg")),
+                                                color: Colors.white,
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                    color: Colors.grey.withOpacity(
+                                                        0.2), //color of shadow
+                                                    spreadRadius: 5,
+                                                    blurRadius: 7,
+                                                    offset: Offset(0, 2),
+                                                  ),
+                                                ],
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(20))),
+                                            alignment: Alignment.center,
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
                                           ),
-                                        ],
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(15))),
-                                    alignment: Alignment.center,
-                                    width: MediaQuery.of(context).size.width,
-                                    child: text1(
-                                      passenger.descEn,
+                                        ),
+                                        text1(
+                                          passenger.descEn,
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ),
                               ),
-                            ),
-                          );
-                        }),
+                            );
+                          }),
+                    ),
                   ),
                 )
           /*GetBuilder<ControllerProduct>(builder: (controllerPro) {

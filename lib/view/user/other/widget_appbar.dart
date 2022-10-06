@@ -63,9 +63,6 @@ AppBar appbarmain(GlobalKey<ScaffoldState> scaffoldKey, context) {
               color: Colors.white,
             )),
       ),
-      const SizedBox(
-        width: 20,
-      ),
       Expanded(
         child: IconButton(
             onPressed: () {

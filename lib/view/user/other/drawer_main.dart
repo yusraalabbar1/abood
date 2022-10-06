@@ -1,5 +1,6 @@
 import 'package:abood/constant/colors.dart';
 import 'package:abood/view/user/auth/start_account.dart';
+import 'package:abood/view/user/other/widget/change_lang.dart';
 import 'package:abood/view/user/other/widget/dialog_guest.dart';
 import 'package:abood/view/user/other/widget/dialogs_drawer.dart';
 import 'package:flutter/material.dart';
@@ -143,7 +144,7 @@ Drawer drawermain(context) {
               ),
               InkWell(
                 onTap: () async {
-                  // showLoadingLang(context);
+                  showLoadingLang(context);
                 },
                 child: Row(
                   children: [

@@ -3,6 +3,7 @@ import 'package:abood/constant/urls.dart';
 import 'package:abood/controller/ControlUser.dart';
 import 'package:abood/controller/controlProduct.dart';
 import 'package:abood/model/user/mycart/api/addcart.dart';
+import 'package:abood/model/user/mycart/api/cart_qty.dart';
 import 'package:abood/model/user/mycart/api/my_cart.dart';
 import 'package:abood/model/user/mycart/dialog.dart';
 import 'package:abood/model/user/mylike/api/add_like.dart';
@@ -218,6 +219,17 @@ class _particulerProductState extends State<particulerProduct> {
                   ),
                   const SizedBox(height: 10),
                   Row(
+                    children: [
+                      const SizedBox(width: 10),
+                      Text(controller.ItemsById["itemName"].toString(),
+                          style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 25,
+                              fontFamily: 'majallab')),
+                      const SizedBox(width: 15),
+                    ],
+                  ),
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       const SizedBox(width: 10),
@@ -246,7 +258,14 @@ class _particulerProductState extends State<particulerProduct> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       const SizedBox(width: 10),
-                      Expanded(flex: 4, child: stars()),
+                      Expanded(
+                          flex: 2,
+                          child: Text("JD ${controller.ItemsById["newPrice"]}",
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 25,
+                                  fontFamily: 'majallab'))),
+                      Expanded(flex: 2, child: stars()),
                       Expanded(
                           child: Row(
                         children: [
@@ -268,32 +287,14 @@ class _particulerProductState extends State<particulerProduct> {
                     ],
                   ),
                   const SizedBox(height: 10),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      const SizedBox(width: 10),
-                      Expanded(
-                          child: Container(
-                        alignment: Alignment.centerLeft,
-                        child: Text("JD ${controller.ItemsById["newPrice"]}",
-                            style: const TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 18)),
-                      )),
-                      Expanded(
-                          child: Container(
-                        alignment: Alignment.centerRight,
-                        child: Text(controller.ItemsById["itemName"].toString(),
-                            style: const TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 18)),
-                      )),
-                      const SizedBox(width: 15),
-                    ],
-                  ),
-                  const SizedBox(height: 10),
+
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: Text("Colors:".tr,
-                        style: TextStyle(fontSize: 15, color: Colors.black)),
+                        style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.black,
+                            fontFamily: 'majallab')),
                   ),
                   const SizedBox(height: 10),
                   Container(
@@ -303,7 +304,10 @@ class _particulerProductState extends State<particulerProduct> {
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: Text("Sizes:".tr,
-                        style: TextStyle(fontSize: 15, color: Colors.black)),
+                        style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.black,
+                            fontFamily: 'majallab')),
                   ),
                   const SizedBox(height: 10),
                   controller.ItemsById["itemSizes"].length > 0
@@ -332,40 +336,22 @@ class _particulerProductState extends State<particulerProduct> {
                                       },
                                       child: Row(
                                         children: [
-                                          Center(
-                                            child: Container(
-                                              decoration: BoxDecoration(
-                                                // shape: BoxShape.circle,
-                                                color: Colors.white,
-                                                borderRadius:
-                                                    BorderRadius.circular(30),
-                                                border: Border.all(
-                                                  color: tappedIndex == i
-                                                      ? Colors.black
-                                                      : Colors.grey,
-                                                  width: 2.0,
-                                                ),
-                                              ),
-                                              child: Center(
-                                                child: Chip(
-                                                  backgroundColor:
-                                                      Colors.transparent,
-                                                  shadowColor: Colors.black,
+                                          Chip(
+                                            backgroundColor: tappedIndex == i
+                                                ? Colors.black
+                                                : Colors.grey,
+                                            shadowColor: Colors.black,
 
-                                                  label: Center(
-                                                    child: Text(
-                                                      controller.ItemsById[
-                                                              "itemSizes"][i]
-                                                          ["itemSizeDescEn"],
-                                                      textAlign:
-                                                          TextAlign.center,
-                                                      style: const TextStyle(
-                                                          fontSize: 15),
-                                                    ),
-                                                  ), //Text
-                                                ),
-                                              ),
-                                            ),
+                                            label: Text(
+                                              controller.ItemsById["itemSizes"]
+                                                      [i]["itemSizeDescEn"]
+                                                  .toString()
+                                                  .toUpperCase(),
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 10),
+                                            ), //Text
                                           ),
                                           const SizedBox(
                                             width: 5,
@@ -377,6 +363,7 @@ class _particulerProductState extends State<particulerProduct> {
                         )
                       : Container(),
                   const SizedBox(height: 10),
+                  counter(controller.ItemsById["itemId"], 1),
                   const Divider(
                     thickness: 8,
                   ),
@@ -405,47 +392,47 @@ class _particulerProductState extends State<particulerProduct> {
                   ),
                   // passengers.length != 0
                   //     ?
-                  Card(
-                    shadowColor: Colors.grey,
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height / 4,
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: SmartRefresher(
-                        controller: refreshController,
-                        enablePullUp: true,
-                        onRefresh: () async {
-                          final result =
-                              await getPassengerData(isRefresh: true);
-                          if (result) {
-                            refreshController.refreshCompleted();
-                          } else {
-                            refreshController.refreshFailed();
-                          }
-                        },
-                        onLoading: () async {
-                          final result = await getPassengerData();
-                          if (result) {
-                            refreshController.loadComplete();
-                          } else {
-                            refreshController.loadFailed();
-                          }
-                        },
-                        child: ListView.builder(
-                            shrinkWrap: true,
-                            itemCount: passengers.length,
-                            itemBuilder: (context, index) {
-                              final passenger = passengers[index];
-                              return ListTile(
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height / 4,
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: SmartRefresher(
+                      controller: refreshController,
+                      enablePullUp: true,
+                      onRefresh: () async {
+                        final result = await getPassengerData(isRefresh: true);
+                        if (result) {
+                          refreshController.refreshCompleted();
+                        } else {
+                          refreshController.refreshFailed();
+                        }
+                      },
+                      onLoading: () async {
+                        final result = await getPassengerData();
+                        if (result) {
+                          refreshController.loadComplete();
+                        } else {
+                          refreshController.loadFailed();
+                        }
+                      },
+                      child: ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: passengers.length,
+                          itemBuilder: (context, index) {
+                            final passenger = passengers[index];
+                            return Card(
+                              elevation: 5,
+                              color: Colors.white,
+                              child: ListTile(
                                   trailing: rating(passenger.rate),
                                   subtitle: Text(
                                     passenger.fullName.toString(),
                                   ),
                                   title: Text(
                                     passenger.rateText.toString(),
-                                  ));
-                            }),
-                      ),
+                                  )),
+                            );
+                          }),
                     ),
                   )
                   // : Container()
@@ -552,6 +539,39 @@ class _particulerProductState extends State<particulerProduct> {
             )
           ],
         ));
+  }
+
+  Widget counter(cartId, quent) {
+    return Row(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            IconButton(
+                onPressed: () async {
+                  await qtyCartApi(cartId, quent + 1);
+                  await myCartApi();
+                },
+                icon: const Icon(
+                  Icons.add_circle,
+                  color: Colors.black,
+                )),
+            text1(quent.toString()),
+            IconButton(
+                onPressed: () async {
+                  if (quent > 1) {
+                    await qtyCartApi(cartId, quent - 1);
+                    await myCartApi();
+                  }
+                },
+                icon: const Icon(
+                  Icons.remove_circle,
+                  color: Colors.black,
+                ))
+          ],
+        ),
+      ],
+    );
   }
 
   Widget rating(num) {

@@ -87,22 +87,6 @@ class _langState extends State<lang> {
           if (n == 1) {
             Navigator.of(context).pushNamed("startAccount");
             preferences.setString("lang", "ar");
-            // controller.SaveLang("ar");
-            //   if (preferences.getInt("userType") == 1) {
-            //     Navigator.of(context).pushReplacementNamed("homePage");
-            //   } else if (preferences.getInt("userType") == 2) {
-            //     Navigator.of(context).pushReplacementNamed("MainScreenStor");
-            //   } else {
-            //     print("no thing");
-            //   }
-            // } else {
-            //   if (preferences.getInt("userType") == 1) {
-            //     Navigator.of(context).pushReplacementNamed("homePage");
-            //   } else if (preferences.getInt("userType") == 2) {
-            //     Navigator.of(context).pushReplacementNamed("MainScreenStor");
-            //   } else {
-            //     print("no thing");
-            //   }
           } else {
             preferences.setString("lang", "en");
             // controller.SaveLang("en");

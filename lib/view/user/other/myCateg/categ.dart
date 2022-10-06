@@ -198,7 +198,7 @@ class _categoryState extends State<category>
                       gridDelegate:
                           const SliverGridDelegateWithMaxCrossAxisExtent(
                               maxCrossAxisExtent: 200,
-                              childAspectRatio: 3 / 2,
+                              childAspectRatio: 3 / 2.5,
                               crossAxisSpacing: 20,
                               mainAxisSpacing: 20),
                       itemCount: passengers.length,
@@ -229,29 +229,37 @@ class _categoryState extends State<category>
                             child: Container(
                               alignment: Alignment.center,
                               child: Center(
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      //Untitled design (15).png
-                                      // image: DecorationImage(
-                                      //     image: AssetImage(
-                                      //         "assets/images/Untitled design (15).png")),
-                                      color: Colors.white,
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: Colors.grey.withOpacity(
-                                              0.2), //color of shadow
-                                          spreadRadius: 5,
-                                          blurRadius: 7,
-                                          offset: Offset(0, 2),
-                                        ),
-                                      ],
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(20))),
-                                  alignment: Alignment.center,
-                                  width: MediaQuery.of(context).size.width,
-                                  child: text1(
-                                    passenger.descEn,
-                                  ),
+                                child: Column(
+                                  children: [
+                                    Expanded(
+                                      flex: 4,
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                            //Untitled design (15).png
+                                            image: DecorationImage(
+                                                image: NetworkImage(
+                                                    "https://image.shutterstock.com/image-vector/fashion-boutique-pixel-perfect-linear-260nw-1779788189.jpg")),
+                                            color: Colors.white,
+                                            boxShadow: [
+                                              BoxShadow(
+                                                color: Colors.grey.withOpacity(
+                                                    0.2), //color of shadow
+                                                spreadRadius: 5,
+                                                blurRadius: 7,
+                                                offset: Offset(0, 2),
+                                              ),
+                                            ],
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(20))),
+                                        alignment: Alignment.center,
+                                        width:
+                                            MediaQuery.of(context).size.width,
+                                      ),
+                                    ),
+                                    text1(
+                                      passenger.descEn,
+                                    ),
+                                  ],
                                 ),
                               ),
                             ),

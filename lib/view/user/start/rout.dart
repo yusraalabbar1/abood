@@ -1,4 +1,5 @@
 import 'package:abood/controller/ControlUser.dart';
+import 'package:abood/main.dart';
 import 'package:abood/translation/translation.dart';
 import 'package:abood/view/admin/add_offer.dart';
 import 'package:abood/view/admin/add_product.dart';
@@ -53,7 +54,7 @@ import 'package:abood/view/user/start/welcom_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-String local = "ar";
+String local = "en";
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -127,7 +128,7 @@ class MyApp extends StatelessWidget {
               id: null,
             )),
       },
-      locale: Locale(local),
+      locale: language != null ? Locale(language!) : Locale('en'),
       //  translations: LocaleString(),
       translations: Translation(),
     );
