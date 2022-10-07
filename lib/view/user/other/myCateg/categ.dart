@@ -9,6 +9,7 @@ import 'package:abood/view/user/other/myCateg/storeByIdSection.dart';
 import 'package:abood/view/user/other/myCateg/sub2cat.dart';
 import 'package:abood/view/user/other/myHome/allHome.dart';
 import 'package:abood/view/user/other/widget/dialog_guest.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
@@ -251,8 +252,12 @@ class _categoryState extends State<category>
                                           decoration: BoxDecoration(
                                               //Untitled design (15).png
                                               image: DecorationImage(
-                                                  image: NetworkImage(
-                                                      "https://image.shutterstock.com/image-vector/fashion-boutique-pixel-perfect-linear-260nw-1779788189.jpg")),
+                                                  image:
+                                                      CachedNetworkImageProvider(
+                                                          imageAds +
+                                                              passenger.imageUrl
+                                                                  .toString()),
+                                                  fit: BoxFit.cover),
                                               color: Colors.white,
                                               boxShadow: [
                                                 BoxShadow(

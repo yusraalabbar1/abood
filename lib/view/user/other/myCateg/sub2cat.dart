@@ -143,22 +143,22 @@ class _Sub2catState extends State<Sub2cat> {
                       repeatForever: true,
                       animatedTexts: [
                         ColorizeAnimatedText(
-                          '30% OFF',
+                          '30% ' + "OFF".tr,
                           textStyle: colorizeTextStyle,
                           colors: colorizeColors,
                         ),
                         ColorizeAnimatedText(
-                          '50% OFF',
+                          '50% ' + "OFF".tr,
                           textStyle: colorizeTextStyle,
                           colors: colorizeColors,
                         ),
                         ColorizeAnimatedText(
-                          '20% OFF',
+                          '20% ' + "OFF".tr,
                           textStyle: colorizeTextStyle,
                           colors: colorizeColors,
                         ),
                         ColorizeAnimatedText(
-                          '10% OFF',
+                          '10% ' + "OFF".tr,
                           textStyle: colorizeTextStyle,
                           colors: colorizeColors,
                         ),
@@ -209,6 +209,7 @@ class _Sub2catState extends State<Sub2cat> {
               child: GridView.builder(
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: account.round(),
+                      childAspectRatio: 3 / 4.0,
                       crossAxisSpacing: 20,
                       mainAxisSpacing: 20),
                   itemCount: passengers.length,
@@ -234,11 +235,11 @@ class _Sub2catState extends State<Sub2cat> {
                             //child: Text(myProducts[index]["name"]),
                             decoration: BoxDecoration(
                                 color: Colors.white,
-                                borderRadius: BorderRadius.circular(15)),
+                                borderRadius: BorderRadius.circular(5)),
                             child: Column(
                               children: [
                                 Expanded(
-                                    flex: 2,
+                                    flex: 3,
                                     child: Stack(
                                       children: [
                                         Container(
@@ -249,7 +250,7 @@ class _Sub2catState extends State<Sub2cat> {
                                                         .imageUrl)
                                                     : box2(passenger.image)),
                                         Positioned(
-                                            left: 10,
+                                            left: 7,
                                             top: 0.0,
 
                                             // (background container size) - (circle height / 2)
@@ -258,53 +259,72 @@ class _Sub2catState extends State<Sub2cat> {
                                                 SizedBox(
                                                   height: 5,
                                                 ),
-                                                CircleAvatar(
-                                                  backgroundColor:
-                                                      Colors.red[100],
-                                                  child: Center(
-                                                    child: IconButton(
-                                                        icon: Icon(
-                                                          Icons.favorite_sharp,
-                                                          color: passenger
+                                                Container(
+                                                  height: 35.0,
+                                                  width: 35.0,
+                                                  child: Stack(
+                                                    children: [
+                                                      Center(
+                                                          child: Icon(
+                                                              Icons.favorite,
+                                                              color:
+                                                                  Colors.white,
+                                                              size: 25.0)),
+                                                      Center(
+                                                        child: IconButton(
+                                                            icon: Icon(
+                                                              Icons
+                                                                  .favorite_sharp,
+                                                              color: passenger
+                                                                          .isWish ==
+                                                                      true
+                                                                  ? Colors.black
+                                                                  : Colors
+                                                                      .white,
+                                                              size: 20,
+                                                            ),
+                                                            onPressed:
+                                                                () async {
+                                                              if (passenger
                                                                       .isWish ==
-                                                                  true
-                                                              ? Colors.black
-                                                              : Colors.white,
-                                                          size: 20,
-                                                        ),
-                                                        onPressed: () async {
-                                                          if (passenger
-                                                                  .isWish ==
-                                                              false) {
-                                                            //add and change color
-                                                            setState(() {
-                                                              i = 1;
-                                                              passenger.isWish =
-                                                                  true;
-                                                            });
-                                                            await addLike(
-                                                                passenger
-                                                                    .itemId,
-                                                                controller.id);
-                                                            await myLikeApi(
-                                                                controller.id);
-                                                          } else if (passenger
-                                                                  .isWish ==
-                                                              true) {
-                                                            //delete
-                                                            setState(() {
-                                                              i = 0;
-                                                              passenger.isWish =
-                                                                  false;
-                                                            });
-                                                            await deleteLike(
-                                                                controller.id,
-                                                                passenger
-                                                                    .itemId);
-                                                            await myLikeApi(
-                                                                controller.id);
-                                                          }
-                                                        }),
+                                                                  false) {
+                                                                //add and change color
+                                                                setState(() {
+                                                                  i = 1;
+                                                                  passenger
+                                                                          .isWish =
+                                                                      true;
+                                                                });
+                                                                await addLike(
+                                                                    passenger
+                                                                        .itemId,
+                                                                    controller
+                                                                        .id);
+                                                                await myLikeApi(
+                                                                    controller
+                                                                        .id);
+                                                              } else if (passenger
+                                                                      .isWish ==
+                                                                  true) {
+                                                                //delete
+                                                                setState(() {
+                                                                  i = 0;
+                                                                  passenger
+                                                                          .isWish =
+                                                                      false;
+                                                                });
+                                                                await deleteLike(
+                                                                    controller
+                                                                        .id,
+                                                                    passenger
+                                                                        .itemId);
+                                                                await myLikeApi(
+                                                                    controller
+                                                                        .id);
+                                                              }
+                                                            }),
+                                                      ),
+                                                    ],
                                                   ),
                                                 ),
                                               ],
@@ -374,7 +394,7 @@ class _Sub2catState extends State<Sub2cat> {
     return BoxDecoration(
         shape: BoxShape.rectangle,
         borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(15.0), topRight: Radius.circular(15.0)),
+            topLeft: Radius.circular(5.0), topRight: Radius.circular(5.0)),
         image: DecorationImage(
             fit: BoxFit.fill,
             image: CachedNetworkImageProvider(imageAds + img.toString())));

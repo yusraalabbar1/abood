@@ -1,5 +1,7 @@
 import 'package:abood/constant/urls.dart';
 import 'package:abood/controller/controlProduct.dart';
+import 'package:abood/view/user/auth/start_account.dart';
+import 'package:abood/view/user/other/widget/dialog_guest.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -19,34 +21,33 @@ class _adsState extends State<ads> {
     return SizedBox(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height / 6,
-      child: CarouselSlider(
-        options: CarouselOptions(
-          autoPlay: true,
-          autoPlayInterval: const Duration(seconds: 20),
-          autoPlayAnimationDuration: const Duration(milliseconds: 200),
-          // height: MediaQuery.of(context).size.height,
+      child: InkWell(
+        onTap: () {
+          guest != true
+              ? Navigator.of(context).pushNamed("offer")
+              : diaGuest(context);
+        },
+        child: CarouselSlider(
+          options: CarouselOptions(
+            autoPlay: true,
+
+            autoPlayInterval: const Duration(seconds: 20),
+            autoPlayAnimationDuration: const Duration(milliseconds: 200),
+            // height: MediaQuery.of(context).size.height,
+          ),
+          items: controllerPro.saveContrilerBannerMap.map((item) {
+            return Container(
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                image: CachedNetworkImageProvider(sliderurl + item["image"]),
+                // image: CachedNetworkImageProvider(
+                //     "https://img.freepik.com/free-psd/social-media-promo-template-sales_23-2149533432.jpg?w=2000"),
+                fit: BoxFit.cover,
+              )),
+            );
+          }).toList(),
         ),
-        items: controllerPro.saveContrilerBannerMap.map((item) {
-          return Container(
-            width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
-                image: DecorationImage(
-              image: CachedNetworkImageProvider(sliderurl + item["image"]),
-              // image: CachedNetworkImageProvider(
-              //     "https://img.freepik.com/free-psd/social-media-promo-template-sales_23-2149533432.jpg?w=2000"),
-              fit: BoxFit.cover,
-            )),
-            // child: Image.network(
-            //   sliderurl + item["image"],
-            //   fit: BoxFit.cover,
-            //   width: MediaQuery.of(context).size.width,
-            // ),
-            // footer: Container(
-            //   padding: const EdgeInsets.all(15),
-            //   color: Colors.black54,
-            // ),
-          );
-        }).toList(),
       ),
     );
   }

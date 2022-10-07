@@ -51,6 +51,7 @@ class _langState extends State<lang> {
                       fontWeight: FontWeight.bold,
                     ),
                     child: AnimatedTextKit(
+                      repeatForever: true,
                       animatedTexts: [
                         FadeAnimatedText('ABOOD Language'),
                         FadeAnimatedText('ARABIC!!'),

@@ -326,7 +326,7 @@ class _MyCartState extends State<MyCart> {
     return Text(text,
         style: const TextStyle(
             color: Colors.white,
-            fontSize: 21,
+            fontSize: 18,
             fontWeight: FontWeight.bold,
             fontFamily: 'majallab'));
   }
@@ -349,14 +349,14 @@ class _MyCartState extends State<MyCart> {
                           onPressed: () async {
                             Navigator.of(context).pushNamed("CompletCart");
                           },
-                          child: text2("Continue")),
+                          child: text2("Continue".tr)),
                     ),
                     FlatButton(
                         color: Colors.black,
                         onPressed: () async {
                           Navigator.of(context).pushNamed("AddCopon");
                         },
-                        child: text2("Add Coupon")),
+                        child: text2("Add Coupon".tr)),
                     Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10),
                         child: GetBuilder<ControllerProduct>(

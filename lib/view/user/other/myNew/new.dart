@@ -95,7 +95,8 @@ class _NewState extends State<New> {
           Container(
             width: MediaQuery.of(context).size.width,
             height: 130,
-            decoration: box3("https://static.toiimg.com/photo/78170852.cms"),
+            decoration: box3(
+                "https://technave.com/data/files/mall/article/201901311248084830.jpg"),
             child: Center(
                 child: DefaultTextStyle(
               style: const TextStyle(
@@ -163,6 +164,7 @@ class _NewState extends State<New> {
               child: GridView.builder(
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: account.round(),
+                      childAspectRatio: 3 / 4.0,
                       crossAxisSpacing: 20,
                       mainAxisSpacing: 20),
                   itemCount: passengers.length,
@@ -186,12 +188,22 @@ class _NewState extends State<New> {
                             alignment: Alignment.center,
                             //child: Text(myProducts[index]["name"]),
                             decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(15)),
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(5),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey
+                                      .withOpacity(0.2), //color of shadow
+                                  spreadRadius: 5,
+                                  blurRadius: 7,
+                                  offset: Offset(0, 2),
+                                ),
+                              ],
+                            ),
                             child: Column(
                               children: [
                                 Expanded(
-                                    flex: 2,
+                                    flex: 3,
                                     child: Stack(
                                       children: [
                                         Container(
@@ -211,63 +223,78 @@ class _NewState extends State<New> {
                                                 SizedBox(
                                                   height: 5,
                                                 ),
-                                                CircleAvatar(
-                                                  backgroundColor:
-                                                      Color.fromARGB(
-                                                          255, 246, 231, 232),
-                                                  child: Center(
-                                                    child: IconButton(
-                                                        icon: Icon(
-                                                          Icons.favorite_sharp,
-                                                          color: passenger
-                                                                      .isWish ==
-                                                                  true
-                                                              ? Colors.black
-                                                              : Colors.white,
-                                                          size: 20,
-                                                        ),
-                                                        onPressed: () async {
-                                                          if (guest == true) {
-                                                            diaGuest(context);
-                                                          } else {
-                                                            if (passenger
-                                                                    .isWish ==
-                                                                false) {
-                                                              //add and change color
-                                                              setState(() {
-                                                                i = 1;
-                                                                passenger
-                                                                        .isWish =
-                                                                    true;
-                                                              });
-                                                              await addLike(
-                                                                  passenger
-                                                                      .itemId,
-                                                                  controller
-                                                                      .id);
-                                                              await myLikeApi(
-                                                                  controller
-                                                                      .id);
-                                                            } else if (passenger
-                                                                    .isWish ==
-                                                                true) {
-                                                              //delete
-                                                              setState(() {
-                                                                i = 0;
-                                                                passenger
-                                                                        .isWish =
-                                                                    false;
-                                                              });
-                                                              await deleteLike(
-                                                                  controller.id,
-                                                                  passenger
-                                                                      .itemId);
-                                                              await myLikeApi(
-                                                                  controller
-                                                                      .id);
-                                                            }
-                                                          }
-                                                        }),
+                                                Container(
+                                                  height: 35.0,
+                                                  width: 35.0,
+                                                  child: Stack(
+                                                    children: [
+                                                      Center(
+                                                          child: Icon(
+                                                              Icons.favorite,
+                                                              color:
+                                                                  Colors.white,
+                                                              size: 25.0)),
+                                                      Center(
+                                                        child: IconButton(
+                                                            icon: Icon(
+                                                              Icons
+                                                                  .favorite_sharp,
+                                                              color: passenger
+                                                                          .isWish ==
+                                                                      true
+                                                                  ? Colors.black
+                                                                  : Colors
+                                                                      .white,
+                                                              size: 20,
+                                                            ),
+                                                            onPressed:
+                                                                () async {
+                                                              if (guest ==
+                                                                  true) {
+                                                                diaGuest(
+                                                                    context);
+                                                              } else {
+                                                                if (passenger
+                                                                        .isWish ==
+                                                                    false) {
+                                                                  //add and change color
+                                                                  setState(() {
+                                                                    i = 1;
+                                                                    passenger
+                                                                            .isWish =
+                                                                        true;
+                                                                  });
+                                                                  await addLike(
+                                                                      passenger
+                                                                          .itemId,
+                                                                      controller
+                                                                          .id);
+                                                                  await myLikeApi(
+                                                                      controller
+                                                                          .id);
+                                                                } else if (passenger
+                                                                        .isWish ==
+                                                                    true) {
+                                                                  //delete
+                                                                  setState(() {
+                                                                    i = 0;
+                                                                    passenger
+                                                                            .isWish =
+                                                                        false;
+                                                                  });
+                                                                  await deleteLike(
+                                                                      controller
+                                                                          .id,
+                                                                      passenger
+                                                                          .itemId);
+                                                                  await myLikeApi(
+                                                                      controller
+                                                                          .id);
+                                                                }
+                                                              }
+                                                            }),
+                                                      ),
+                                                    ],
                                                   ),
                                                 ),
                                               ],
@@ -337,7 +364,7 @@ class _NewState extends State<New> {
     return BoxDecoration(
         shape: BoxShape.rectangle,
         borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(10.0), topRight: Radius.circular(10.0)),
+            topLeft: Radius.circular(5.0), topRight: Radius.circular(5.0)),
         image: DecorationImage(
             fit: BoxFit.fill,
             image: CachedNetworkImageProvider(imageAds + img.toString())));

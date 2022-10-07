@@ -1,4 +1,5 @@
 import 'package:abood/controller/ControlUser.dart';
+import 'package:abood/controller/controlProduct.dart';
 import 'package:abood/model/admin/dialog/dialog.dart';
 import 'package:abood/model/user/auth/signup/api/register.dart';
 import 'package:dropdown_below/dropdown_below.dart';
@@ -19,7 +20,7 @@ class _signupState extends State<signup> {
   GlobalKey<FormState> formstate = new GlobalKey<FormState>();
   FocusNode myFocusNode = new FocusNode();
   Homecontroller controller = Get.put(Homecontroller());
-
+  ControllerProduct controller1 = Get.put(ControllerProduct());
   List<DropdownMenuItem<Object?>> _dropdownTestItems = [];
   var selectedDayTime;
   var idCountry;
@@ -32,7 +33,9 @@ class _signupState extends State<signup> {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Text(
-              i['descEn'].toString(),
+              controller1.language == "en"
+                  ? i['descEn'].toString()
+                  : i['descAr'].toString(),
               style: TextStyle(color: Colors.black),
             ),
           ),
@@ -107,10 +110,14 @@ class _signupState extends State<signup> {
                 // boxPadding: EdgeInsets.fromLTRB(13, 12, 13, 12),
                 boxWidth: MediaQuery.of(context).size.width,
                 boxHeight: 70,
-                boxDecoration: boxd(),
-                icon: const Icon(
-                  Icons.arrow_downward,
-                  color: Colors.black,
+                boxDecoration: boxdcountry(),
+                icon: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: const Icon(
+                    Icons.arrow_downward,
+                    color: Colors.grey,
+                    size: 20,
+                  ),
                 ),
                 hint: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -170,7 +177,7 @@ class _signupState extends State<signup> {
         String pattern = r'^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z]';
         RegExp regex = RegExp(pattern, unicode: true);
         if (text == null || text.isEmpty || !regex.hasMatch(text))
-          return 'Enter a valid Name';
+          return 'Enter a valid Name'.tr;
         else
           return null;
       },
@@ -192,7 +199,7 @@ class _signupState extends State<signup> {
         String pattern = r'^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z]';
         RegExp regex = RegExp(pattern, unicode: true);
         if (text == null || text.isEmpty || !regex.hasMatch(text))
-          return 'Enter a valid Name';
+          return 'Enter a valid Name'.tr;
         else
           return null;
       },
@@ -213,10 +220,10 @@ class _signupState extends State<signup> {
       ),
       validator: (text) {
         if (text!.length > 15) {
-          return "can not enter bigest than 15";
+          return "can\'t enter bigest than ".tr + "15" + "characters".tr;
         }
         if (text.length < 9) {
-          return "can not enter less than 9";
+          return "can\'t enter less than ".tr + "9" + "characters".tr;
         }
         return null;
       },
@@ -240,7 +247,7 @@ class _signupState extends State<signup> {
             r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
         RegExp regex = RegExp(pattern);
         if (text == null || text.isEmpty || !regex.hasMatch(text))
-          return 'Enter a valid Email';
+          return 'Enter a valid Email'.tr;
         else
           return null;
       },
@@ -271,10 +278,10 @@ class _signupState extends State<signup> {
       ),
       validator: (text) {
         if (text!.length > 40) {
-          return "can not enter bigest than 40";
+          return "can\'t enter bigest than ".tr + "40" + "characters".tr;
         }
         if (text.length < 6) {
-          return "can not enter less than 6";
+          return "can\'t enter less than ".tr + "6" + "characters".tr;
         }
         return null;
       },
@@ -305,10 +312,10 @@ class _signupState extends State<signup> {
       ),
       validator: (text) {
         if (text!.length > 40) {
-          return "can not enter bigest than 40";
+          return "can\'t enter bigest than ".tr + "40" + "characters".tr;
         }
         if (text.length < 6) {
-          return "can not enter less than 6";
+          return "can\'t enter less than ".tr + "6" + "characters".tr;
         }
         return null;
       },
@@ -327,14 +334,31 @@ class _signupState extends State<signup> {
 
   BoxDecoration boxd() {
     return BoxDecoration(
+      // color: Colors.white,
+      borderRadius: BorderRadius.circular(10), //border corner radius
+      boxShadow: [
+        BoxShadow(
+          color: Color.fromARGB(255, 201, 198, 198)
+              .withOpacity(0.2), //color of shadow
+          // spreadRadius: 5,
+          blurRadius: 4,
+          offset: Offset(1, 2),
+        ),
+      ],
+    );
+  }
+
+  BoxDecoration boxdcountry() {
+    return BoxDecoration(
       color: Colors.white,
       borderRadius: BorderRadius.circular(10), //border corner radius
       boxShadow: [
         BoxShadow(
-          color: Colors.grey.withOpacity(0.2), //color of shadow
-          spreadRadius: 5,
-          blurRadius: 7,
-          offset: Offset(0, 2),
+          color: Color.fromARGB(255, 201, 198, 198)
+              .withOpacity(0.2), //color of shadow
+          // spreadRadius: 5,
+          blurRadius: 4,
+          offset: Offset(1, 2),
         ),
       ],
     );
@@ -351,7 +375,7 @@ class _signupState extends State<signup> {
 
   Widget ButtonRegister1(c2, c1, text, x) {
     return Container(
-      width: 118,
+      width: 150,
       height: 53,
       child: RaisedButton(
         onPressed: () {

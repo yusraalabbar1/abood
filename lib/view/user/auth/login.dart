@@ -75,10 +75,10 @@ class _loginState extends State<login> {
       ),
       validator: (text) {
         if (text!.length > 15) {
-          return "can not enter bigest than 15";
+          return "can\'t enter bigest than ".tr + "15" + "characters".tr;
         }
         if (text.length < 9) {
-          return "can not enter less than 9";
+          return "can\'t enter less than ".tr + "9" + "characters".tr;
         }
       },
       onSaved: (string) {
@@ -108,10 +108,10 @@ class _loginState extends State<login> {
       ),
       validator: (text) {
         if (text!.length > 40) {
-          return "can not enter bigest than 40";
+          return "can\'t enter bigest than ".tr + "40" + "characters".tr;
         }
         if (text.length < 6) {
-          return "can not enter less than 6";
+          return "can\'t enter less than ".tr + "6" + "characters".tr;
         }
       },
       onSaved: (string) {
@@ -128,14 +128,15 @@ class _loginState extends State<login> {
 
   BoxDecoration boxd() {
     return BoxDecoration(
-      color: Colors.white,
+      // color: Colors.white,
       borderRadius: BorderRadius.circular(10), //border corner radius
       boxShadow: [
         BoxShadow(
-          color: Colors.grey.withOpacity(0.2), //color of shadow
-          spreadRadius: 5,
-          blurRadius: 7,
-          offset: Offset(0, 2),
+          color: Color.fromARGB(255, 201, 198, 198)
+              .withOpacity(0.2), //color of shadow
+          // spreadRadius: 5,
+          blurRadius: 4,
+          offset: Offset(1, 2),
         ),
       ],
     );

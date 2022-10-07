@@ -36,25 +36,27 @@ class CategoryModel {
 }
 
 class Datum {
-  Datum({
-    this.descAr,
-    this.descEn,
-    this.sortOrder,
-    this.active,
-    this.id,
-  });
+  Datum(
+      {this.descAr,
+      this.descEn,
+      this.sortOrder,
+      this.active,
+      this.id,
+      this.imageUrl});
 
   String? descAr;
   String? descEn;
   String? sortOrder;
   bool? active;
   int? id;
+  String? imageUrl;
 
   factory Datum.fromJson(Map<String, dynamic> json) => Datum(
         descAr: json["descAr"],
         descEn: json["descEn"],
         sortOrder: json["sortOrder"],
         active: json["active"],
+        imageUrl: json["imageUrl"],
         id: json["id"],
       );
 
@@ -63,6 +65,7 @@ class Datum {
         "descEn": descEn,
         "sortOrder": sortOrder,
         "active": active,
+        "imageUrl": imageUrl,
         "id": id,
       };
 }

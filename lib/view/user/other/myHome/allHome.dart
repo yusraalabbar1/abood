@@ -70,22 +70,22 @@ class _AllHomeState extends State<AllHome> {
                     repeatForever: true,
                     animatedTexts: [
                       ColorizeAnimatedText(
-                        '30% OFF',
+                        '30% ' + "OFF".tr,
                         textStyle: colorizeTextStyle,
                         colors: colorizeColors,
                       ),
                       ColorizeAnimatedText(
-                        '50% OFF',
+                        '50% ' + "OFF".tr,
                         textStyle: colorizeTextStyle,
                         colors: colorizeColors,
                       ),
                       ColorizeAnimatedText(
-                        '20% OFF',
+                        '20% ' + "OFF".tr,
                         textStyle: colorizeTextStyle,
                         colors: colorizeColors,
                       ),
                       ColorizeAnimatedText(
-                        '10% OFF',
+                        '10% ' + "OFF".tr,
                         textStyle: colorizeTextStyle,
                         colors: colorizeColors,
                       ),

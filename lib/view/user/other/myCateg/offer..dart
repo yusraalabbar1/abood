@@ -135,6 +135,7 @@ class _offerState extends State<offer> {
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: account.round(),
                         crossAxisSpacing: 20,
+                        childAspectRatio: 3 / 4.0,
                         mainAxisSpacing: 20),
                     itemCount: passengers.length,
                     itemBuilder: (context, index) {
@@ -157,7 +158,7 @@ class _offerState extends State<offer> {
                               //child: Text(myProducts[index]["name"]),
                               decoration: BoxDecoration(
                                   color: Colors.white,
-                                  borderRadius: BorderRadius.circular(15)),
+                                  borderRadius: BorderRadius.circular(5)),
                               child: Column(
                                 children: [
                                   Expanded(
@@ -262,7 +263,7 @@ class _offerState extends State<offer> {
     return BoxDecoration(
         shape: BoxShape.rectangle,
         borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(15.0), topRight: Radius.circular(15.0)),
+            topLeft: Radius.circular(5.0), topRight: Radius.circular(5.0)),
         image: DecorationImage(
             fit: BoxFit.fill,
             image: CachedNetworkImageProvider(imageAds + img.toString())));

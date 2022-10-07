@@ -17,7 +17,7 @@ showLoadingLang(context) {
               Text("Change Language".tr,
                   style: TextStyle(
                       color: Colors.black,
-                      fontSize: 13,
+                      fontSize: 20,
                       fontFamily: 'Almarai')),
               SizedBox(
                 height: 30,
@@ -31,7 +31,7 @@ showLoadingLang(context) {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(25),
                           side: BorderSide(color: Colors.black, width: 2)),
-                      child: Text("Arabic".tr,
+                      child: Text("العربية".tr,
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 13,

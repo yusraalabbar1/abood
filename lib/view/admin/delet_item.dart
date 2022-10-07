@@ -126,7 +126,7 @@ class _DeletItemState extends State<DeletItem> {
                             Container(
                                 // alignment: Alignment.topLeft,
                                 margin: EdgeInsets.symmetric(horizontal: 30),
-                                child: appText2("Description:".tr)),
+                                child: appText2("Description: ".tr)),
                             Padding(
                               padding: const EdgeInsets.only(
                                   left: 20, right: 20, bottom: 20, top: 20),
@@ -164,7 +164,7 @@ class _DeletItemState extends State<DeletItem> {
                                       Container(
                                         height: 70,
                                         width: 220,
-                                        decoration: boxd(),
+                                        // decoration: boxd(),
                                         child: ListView.builder(
                                           shrinkWrap: true,
                                           itemCount: controllerPro
@@ -172,27 +172,19 @@ class _DeletItemState extends State<DeletItem> {
                                           scrollDirection: Axis.horizontal,
                                           itemBuilder: (ctx, index) {
                                             return Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 5),
-                                              child: Container(
-                                                decoration: BoxDecoration(
-                                                  color: Color(int.parse(
-                                                      controllerPro.ItemsById[
+                                                padding: const EdgeInsets.only(
+                                                    left: 5),
+                                                child: CircleAvatar(
+                                                  radius: 10,
+                                                  backgroundColor: Color(
+                                                      int.parse(controllerPro
+                                                          .ItemsById[
                                                               "itemColors"]
                                                               [index]["value"]
                                                           .toString()
                                                           .replaceAll(
                                                               "#", "0xff"))),
-                                                  borderRadius:
-                                                      BorderRadius.all(
-                                                          Radius.circular(10)),
-                                                ),
-                                                margin: EdgeInsets.only(
-                                                    top: 10, bottom: 10),
-                                                width: 50,
-                                                height: 20,
-                                              ),
-                                            );
+                                                ));
                                           },
                                         ),
                                       ),
@@ -212,8 +204,11 @@ class _DeletItemState extends State<DeletItem> {
                                   ),
                                 )
                               : Container(),
-                          SizedBox(
-                            height: 10,
+                          const Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Divider(
+                              thickness: 3,
+                            ),
                           ),
                           controllerPro.ItemsById["itemSizes"] != null
                               ? Padding(
@@ -226,7 +221,7 @@ class _DeletItemState extends State<DeletItem> {
                                       Container(
                                         height: 70,
                                         width: 220,
-                                        decoration: boxd(),
+                                        // decoration: boxd(),
                                         child: ListView.builder(
                                           shrinkWrap: true,
                                           itemCount: controllerPro
@@ -234,22 +229,10 @@ class _DeletItemState extends State<DeletItem> {
                                           scrollDirection: Axis.horizontal,
                                           itemBuilder: (ctx, index) {
                                             return Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 5),
-                                              child: Container(
-                                                // color: Colors.black,
-                                                margin: EdgeInsets.only(
-                                                    top: 10, bottom: 10),
-                                                height: 10,
-                                                width: 50,
-                                                decoration: const BoxDecoration(
-                                                  color: Colors.black38,
-                                                  borderRadius:
-                                                      BorderRadius.all(
-                                                          Radius.circular(10)),
-                                                ),
-                                                child: Center(
-                                                  child: Text(
+                                                padding: const EdgeInsets.only(
+                                                    left: 5),
+                                                child: Chip(
+                                                  label: Text(
                                                     controllerPro
                                                         .ItemsById["itemSizes"]
                                                             [index]
@@ -258,9 +241,7 @@ class _DeletItemState extends State<DeletItem> {
                                                     style: TextStyle(
                                                         color: Colors.white),
                                                   ),
-                                                ),
-                                              ),
-                                            );
+                                                ));
                                           },
                                         ),
                                       ),
@@ -280,8 +261,11 @@ class _DeletItemState extends State<DeletItem> {
                                   ),
                                 )
                               : Container(),
-                          SizedBox(
-                            height: 10,
+                          const Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Divider(
+                              thickness: 3,
+                            ),
                           ),
                           controllerPro.ItemsById["itemImages"] != null
                               ? Padding(
@@ -294,7 +278,7 @@ class _DeletItemState extends State<DeletItem> {
                                       Container(
                                         height: 100,
                                         width: 220,
-                                        decoration: boxd(),
+                                        // decoration: boxd(),
                                         child: ListView.builder(
                                           shrinkWrap: true,
                                           itemCount: controllerPro
@@ -320,7 +304,7 @@ class _DeletItemState extends State<DeletItem> {
                                                   ),
                                                   borderRadius:
                                                       BorderRadius.all(
-                                                          Radius.circular(10)),
+                                                          Radius.circular(5)),
                                                 ),
                                               ),
                                             );

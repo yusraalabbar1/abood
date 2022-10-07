@@ -37,27 +37,27 @@ class GetItemsIdModel {
 }
 
 class DataGetItemsIdModel {
-  DataGetItemsIdModel({
-    this.id,
-    this.descEn,
-    this.descAr,
-    this.info,
-    this.image,
-    this.storeId,
-    this.itemId,
-    this.itemName,
-    this.itemDescription,
-    this.price,
-    this.newPrice,
-    this.extraText,
-    this.offerText,
-    this.isOffer,
-    this.isWish,
-    this.rate,
-    this.itemImages,
-    this.itemColors,
-    this.itemSizes,
-  });
+  DataGetItemsIdModel(
+      {this.id,
+      this.descEn,
+      this.descAr,
+      this.info,
+      this.image,
+      this.storeId,
+      this.itemId,
+      this.itemName,
+      this.itemDescription,
+      this.price,
+      this.newPrice,
+      this.extraText,
+      this.offerText,
+      this.isOffer,
+      this.isWish,
+      this.rate,
+      this.itemImages,
+      this.itemColors,
+      this.itemSizes,
+      this.Qty});
 
   int? id;
   String? descEn;
@@ -78,7 +78,7 @@ class DataGetItemsIdModel {
   List<ItemImage>? itemImages;
   List<ItemColor>? itemColors;
   List<ItemSize>? itemSizes;
-
+  dynamic Qty;
   factory DataGetItemsIdModel.fromJson(Map<String, dynamic> json) =>
       DataGetItemsIdModel(
         id: json["id"],
@@ -97,6 +97,7 @@ class DataGetItemsIdModel {
         isOffer: json["isOffer"],
         isWish: json["isWish"],
         rate: json["rate"],
+        Qty: json["Qty"],
         itemImages: json["itemImages"] != null
             ? List<ItemImage>.from(
                 json["itemImages"].map((x) => ItemImage.fromJson(x)))
@@ -128,6 +129,7 @@ class DataGetItemsIdModel {
         "isOffer": isOffer,
         "isWish": isWish,
         "rate": rate,
+        "Qty": Qty,
         "itemImages": List<dynamic>.from(itemImages!.map((x) => x.toJson())),
         "itemColors": List<dynamic>.from(itemColors!.map((x) => x.toJson())),
         "itemSizes": List<dynamic>.from(itemSizes!.map((x) => x.toJson())),

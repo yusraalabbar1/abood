@@ -19,7 +19,7 @@ showRate(context, idItem) async {
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Text("add Comment",
+              Text("add Comment".tr,
                   style: TextStyle(
                       color: Colors.black,
                       fontSize: 21,
@@ -39,7 +39,7 @@ showRate(context, idItem) async {
                           keyboardType: TextInputType.text,
                           textInputAction: TextInputAction.next,
                           decoration: InputDecoration(
-                            hintText: "Enter Comment",
+                            hintText: "Enter Comment".tr,
                             prefixIcon: IconButton(
                                 onPressed: () {}, icon: Icon(Icons.comment)),
                           ),
@@ -104,7 +104,7 @@ showRate(context, idItem) async {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(25.0))),
                   child: Text(
-                    "Ok",
+                    "Ok".tr,
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 21,

@@ -14,7 +14,7 @@ AllCategories() async {
       "id": 0,
       "descEn": "All",
       "descAr": "الكل",
-      "image":
+      "imageUrl":
           "https://myexpress.aqdeveloper.tech/core/public/storage/categories/8/QAkzOJ8dcGQaxaHEPxMOAaqkvjdv4m14MjjCq3rL.jpg"
     }
   ];

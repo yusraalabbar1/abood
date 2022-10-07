@@ -9,6 +9,7 @@ import 'package:abood/view/user/other/myCateg/storeByIdSection.dart';
 import 'package:abood/view/user/other/myCateg/sub2cat.dart';
 import 'package:abood/view/user/other/myHome/allHome.dart';
 import 'package:abood/view/user/other/widget/dialog_guest.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
@@ -30,11 +31,11 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     return (await showDialog(
           context: context,
           builder: (context) => AlertDialog(
-            backgroundColor: Color.fromARGB(255, 7, 44, 48),
-            title: Text("Exit the App".tr,
+            backgroundColor: Colors.black,
+            title: Text('Exit the app'.tr,
                 style: TextStyle(
                     color: Colors.white, fontSize: 13, fontFamily: 'Almarai')),
-            content: Text("Are you sure to get out??".tr,
+            content: Text('Are you sure you want to logout?'.tr,
                 style: TextStyle(
                     color: Colors.white, fontSize: 13, fontFamily: 'Almarai')),
             actions: <Widget>[
@@ -283,10 +284,12 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                             flex: 4,
                                             child: Container(
                                               decoration: BoxDecoration(
-                                                  //Untitled design (15).png
                                                   image: DecorationImage(
-                                                      image: NetworkImage(
-                                                          "https://image.shutterstock.com/image-vector/fashion-boutique-pixel-perfect-linear-260nw-1779788189.jpg")),
+                                                      image: CachedNetworkImageProvider(
+                                                          imageAds +
+                                                              passenger.imageUrl
+                                                                  .toString()),
+                                                      fit: BoxFit.cover),
                                                   color: Colors.white,
                                                   boxShadow: [
                                                     BoxShadow(

@@ -1,6 +1,7 @@
 import 'package:abood/constant/colors.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 Future diaGuest(context) {
   return AwesomeDialog(
@@ -11,7 +12,7 @@ Future diaGuest(context) {
           btnOkOnPress: () {
             Navigator.of(context).pushReplacementNamed("startAccount");
           },
-          body: const Text("To Access Services, Pleas Login",
+          body: Text("To Access Services, Pleas Login".tr,
               style: TextStyle(
                   color: Colors.black, fontSize: 14, fontFamily: 'Almarai')),
           dialogBackgroundColor: MyColors.color3,
@@ -27,7 +28,7 @@ class LoginGuest extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Text("To Access Services, Pleas Login",
+        Text("To Access Services, Pleas Login".tr,
             style: TextStyle(
                 color: Colors.black, fontSize: 14, fontFamily: 'Almarai')),
         Center(
@@ -35,7 +36,7 @@ class LoginGuest extends StatelessWidget {
             onPressed: () {
               Navigator.of(context).pushReplacementNamed("startAccount");
             },
-            child: Text("Login"),
+            child: Text("Login".tr),
           ),
         ),
       ],

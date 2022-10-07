@@ -194,7 +194,7 @@ Drawer drawermain(context) {
                         color: Colors.white,
                       ),
                     ),
-                    Container(child: text2("Delete Account"))
+                    Container(child: text2("Delete Account".tr))
                   ],
                 ),
               ),

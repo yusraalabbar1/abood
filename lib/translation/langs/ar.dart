@@ -137,5 +137,17 @@ const Map<String, String> ar = {
   "photo \nGallery": "المعرض",
   "All rights reserved to the application": "جميع الحقوق محفوظة لدى التطبيق ",
   " All Stors": "كل المتاجر",
-  " Search": "بحث"
+  " Search": "بحث",
+  "Add Coupon": "اضافة خصم",
+  "Finish": "انتهاء",
+  "Change Language": "تغيير اللغة",
+  "add Comment": "إضافة تعليق",
+  "Enter Comment": "أدخل التعليق",
+  "OFF": "خصم",
+  "To Access Services, Pleas Login": "للوصول للخدمات يرجى تسجيل الدخول",
+  "can\'t enter bigest than ": "لا يمكن أن تكون أكبر من",
+  "can\'t enter less than ": "لا يمكن أن تكون أصغر من",
+  'Enter a valid Name': 'أدخل اسم صحيح',
+  'Enter a valid Email': 'أدخل أيميل صحيح',
+  "characters": "أحرف"
 };

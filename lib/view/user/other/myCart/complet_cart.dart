@@ -77,8 +77,8 @@ class _CompletCartState extends State<CompletCart> {
         child: Column(
           children: [
             ListTile(
-              title: const Text("Estimated delivery time is 3 days"),
-              subtitle: const Text("Cannot be returned or exchanged"),
+              title: Text("Estimated delivery time is 3 days".tr),
+              subtitle: Text("Cannot be returned or exchanged".tr),
               leading: Image.asset("assets/images/shipped.png"),
             ),
             const Divider(
@@ -107,84 +107,99 @@ class _CompletCartState extends State<CompletCart> {
                     const SizedBox(
                       height: 10,
                     ),
-                    textWidget("City".tr),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Container(
-                      color: Colors.transparent,
-                      // padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
-                      child: DropdownBelow(
-                        itemWidth: MediaQuery.of(context).size.width,
-                        itemTextstyle: const TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.black),
-                        boxTextstyle: const TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.white54),
-                        // boxPadding: EdgeInsets.fromLTRB(13, 12, 13, 12),
-                        boxWidth: MediaQuery.of(context).size.width,
-                        boxHeight: 70,
-                        boxDecoration: boxd(),
-                        icon: const Icon(
-                          Icons.arrow_downward,
-                          color: Colors.black,
-                        ),
-                        hint: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 20),
-                          child: Text(
-                            "Select City".tr,
-                            style: TextStyle(
-                                color: Colors.grey,
-                                fontSize: 17,
-                                fontWeight: FontWeight.bold,
-                                fontFamily: 'majallab'),
-                          ),
-                        ),
-                        value: selectedDayTime,
-                        items: _dropdownTestItems,
-                        onChanged: (selectedTest) {
-                          setState(() {
-                            selectedDayTime = selectedTest;
-                            print(selectedDayTime["id"]);
-                            controller.SaveaCityId(selectedDayTime["id"]);
-                          });
-                        },
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
                     Row(
                       children: [
                         Expanded(
-                            child: Column(
-                          children: [
-                            textWidget("Region".tr),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Container(
-                                decoration: boxd(), child: TextFormFieldarea()),
-                          ],
-                        )),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              textWidget("City".tr),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Container(
+                                color: Colors.transparent,
+                                // padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
+                                child: DropdownBelow(
+                                  itemWidth: MediaQuery.of(context).size.width,
+                                  itemTextstyle: const TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w400,
+                                      color: Colors.black),
+                                  boxTextstyle: const TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w400,
+                                      color: Colors.white54),
+                                  // boxPadding: EdgeInsets.fromLTRB(13, 12, 13, 12),
+                                  boxWidth: MediaQuery.of(context).size.width,
+                                  boxHeight: 70,
+                                  boxDecoration: boxdcity(),
+                                  icon: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: const Icon(
+                                      Icons.arrow_downward,
+                                      color: Colors.grey,
+                                      size: 20,
+                                    ),
+                                  ),
+                                  hint: Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 20),
+                                    child: Text(
+                                      "Select City".tr,
+                                      style: TextStyle(
+                                          color: Colors.grey,
+                                          fontSize: 17,
+                                          fontWeight: FontWeight.bold,
+                                          fontFamily: 'majallab'),
+                                    ),
+                                  ),
+                                  value: selectedDayTime,
+                                  items: _dropdownTestItems,
+                                  onChanged: (selectedTest) {
+                                    setState(() {
+                                      selectedDayTime = selectedTest;
+                                      print(selectedDayTime["id"]);
+                                      controller.SaveaCityId(
+                                          selectedDayTime["id"]);
+                                    });
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                         const SizedBox(
-                          width: 20,
+                          width: 10,
                         ),
                         Expanded(
-                            child: Column(
-                          children: [
-                            textWidget("Apartment number".tr),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Container(
-                                decoration: boxd(),
-                                child: TextFormFieldHouse()),
-                          ],
-                        )),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              textWidget("Region".tr),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Container(
+                                  decoration: boxd(),
+                                  child: TextFormFieldarea()),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        textWidget("Apartment number".tr),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Container(
+                            decoration: boxd(), child: TextFormFieldHouse()),
                       ],
                     ),
                     const SizedBox(
@@ -240,7 +255,7 @@ class _CompletCartState extends State<CompletCart> {
                       }
                     },
                     child: Text(
-                      "Complete".tr,
+                      "Finish".tr,
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 14,
@@ -248,7 +263,7 @@ class _CompletCartState extends State<CompletCart> {
                     )),
               ),
               Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: GetBuilder<ControllerProduct>(builder: (controller) {
                     return (Text(r"JD" + controllerPro.total.toString(),
                         style: TextStyle(
@@ -270,11 +285,11 @@ class _CompletCartState extends State<CompletCart> {
         prefixIcon: IconButton(onPressed: () {}, icon: Icon(Icons.phone)),
       ),
       validator: (text) {
-        if (text!.length > 15) {
-          return "can not enter bigest than 15";
+        if (text!.length > 30) {
+          return "can\'t enter bigest than ".tr + "30" + "characters".tr;
         }
-        if (text.length < 9) {
-          return "can not enter less than 9";
+        if (text.length < 1) {
+          return "can\'t enter less than ".tr + "1" + "characters".tr;
         }
       },
       onSaved: (string) {
@@ -293,11 +308,11 @@ class _CompletCartState extends State<CompletCart> {
         prefixIcon: IconButton(onPressed: () {}, icon: Icon(Icons.house)),
       ),
       validator: (text) {
-        if (text!.length > 15) {
-          return "can not enter bigest than 15";
+        if (text!.length > 30) {
+          return "can\'t enter bigest than ".tr + "30" + "characters".tr;
         }
         if (text.length < 1) {
-          return "can not enter less than 1";
+          return "can\'t enter less than ".tr + "1" + "characters".tr;
         }
       },
       onSaved: (string) {
@@ -316,11 +331,11 @@ class _CompletCartState extends State<CompletCart> {
         prefixIcon: IconButton(onPressed: () {}, icon: Icon(Icons.person)),
       ),
       validator: (text) {
-        if (text!.length > 20) {
-          return "can not enter bigest than 20";
+        if (text!.length > 30) {
+          return "can\'t enter bigest than ".tr + "30" + "characters".tr;
         }
         if (text.length < 1) {
-          return "can not enter less than 1";
+          return "can\'t enter less than ".tr + "1" + "characters".tr;
         }
       },
       onSaved: (string) {
@@ -340,10 +355,10 @@ class _CompletCartState extends State<CompletCart> {
       ),
       validator: (text) {
         if (text!.length > 30) {
-          return "can not enter bigest than 30";
+          return "can\'t enter bigest than ".tr + "30" + "characters".tr;
         }
         if (text.length < 1) {
-          return "can not enter less than 1";
+          return "can\'t enter less than ".tr + "1" + "characters".tr;
         }
       },
       onSaved: (string) {
@@ -363,10 +378,10 @@ class _CompletCartState extends State<CompletCart> {
       ),
       validator: (text) {
         if (text!.length > 30) {
-          return "can not enter bigest than 30";
+          return "can\'t enter bigest than ".tr + "30" + "characters".tr;
         }
         if (text.length < 1) {
-          return "can not enter less than 1";
+          return "can\'t enter less than ".tr + "1" + "characters".tr;
         }
       },
       onSaved: (string) {
@@ -376,16 +391,31 @@ class _CompletCartState extends State<CompletCart> {
     );
   }
 
-  BoxDecoration boxd() {
+  BoxDecoration boxdcity() {
     return BoxDecoration(
       color: Colors.white,
       borderRadius: BorderRadius.circular(10), //border corner radius
       boxShadow: [
         BoxShadow(
           color: Colors.grey.withOpacity(0.2), //color of shadow
-          spreadRadius: 5,
-          blurRadius: 7,
+          // spreadRadius: 5,
+          blurRadius: 4,
           offset: Offset(0, 2),
+        ),
+      ],
+    );
+  }
+
+  BoxDecoration boxd() {
+    return BoxDecoration(
+      // color: Colors.white,
+      borderRadius: BorderRadius.circular(10), //border corner radius
+      boxShadow: [
+        BoxShadow(
+          color: Colors.grey.withOpacity(0.2), //color of shadow
+          // spreadRadius: 5,
+          blurRadius: 4,
+          offset: Offset(1, 2),
         ),
       ],
     );

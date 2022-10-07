@@ -35,14 +35,14 @@ class SubCatMobel {
 }
 
 class SubCatMobelData {
-  SubCatMobelData({
-    this.sectionId,
-    this.descAr,
-    this.descEn,
-    this.sortOrder,
-    this.active,
-    this.id,
-  });
+  SubCatMobelData(
+      {this.sectionId,
+      this.descAr,
+      this.descEn,
+      this.sortOrder,
+      this.active,
+      this.imageUrl,
+      this.id});
 
   int? sectionId;
   String? descAr;
@@ -50,6 +50,7 @@ class SubCatMobelData {
   String? sortOrder;
   bool? active;
   int? id;
+  String? imageUrl;
 
   factory SubCatMobelData.fromJson(Map<String, dynamic> json) =>
       SubCatMobelData(
@@ -58,6 +59,7 @@ class SubCatMobelData {
         descEn: json["descEn"],
         sortOrder: json["sortOrder"],
         active: json["active"],
+        imageUrl: json["imageUrl"],
         id: json["id"],
       );
 
@@ -67,6 +69,7 @@ class SubCatMobelData {
         "descEn": descEn,
         "sortOrder": sortOrder,
         "active": active,
+        "imageUrl": imageUrl,
         "id": id,
       };
 }
