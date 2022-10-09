@@ -341,54 +341,54 @@ class _categoryState extends State<category>
             ],
           ),
         ),
-        Expanded(
-            child: Container(
-          color: Colors.grey,
-          child: Column(
-            children: [
-              SizedBox(
-                height: 10,
-              ),
-              text1("For Help, Contact Us".tr),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  IconButton(
-                      onPressed: () async {
-                        //To remove the keyboard when button is pressed
-                        FocusManager.instance.primaryFocus?.unfocus();
+        // Expanded(
+        //     child: Container(
+        //   color: Colors.grey,
+        //   child: Column(
+        //     children: [
+        //       SizedBox(
+        //         height: 10,
+        //       ),
+        //       text1("For Help, Contact Us".tr),
+        //       Row(
+        //         mainAxisAlignment: MainAxisAlignment.center,
+        //         children: [
+        //           IconButton(
+        //               onPressed: () async {
+        //                 //To remove the keyboard when button is pressed
+        //                 FocusManager.instance.primaryFocus?.unfocus();
 
-                        var whatsappUrl =
-                            "whatsapp://send?phone=${controller.whats}" +
-                                "&text=${Uri.encodeComponent(" ")}";
-                        try {
-                          launch(whatsappUrl);
-                        } catch (e) {
-                          print("Unable to open whatsapp");
-                        }
-                      },
-                      icon: const Icon(Icons.whatsapp)),
-                  IconButton(
-                      onPressed: () async {
-                        final Uri _url = Uri.parse(controller.face);
-                        if (!await launchUrl(_url)) {
-                          throw 'Could not launch $_url';
-                        }
-                      },
-                      icon: const Icon(Icons.facebook)),
-                  IconButton(
-                      onPressed: () async {
-                        final Uri _url = Uri.parse(controller.site);
-                        if (!await launchUrl(_url)) {
-                          throw 'Could not launch $_url';
-                        }
-                      },
-                      icon: const Icon(Icons.web)),
-                ],
-              )
-            ],
-          ),
-        ))
+        //                 var whatsappUrl =
+        //                     "whatsapp://send?phone=${controller.whats}" +
+        //                         "&text=${Uri.encodeComponent(" ")}";
+        //                 try {
+        //                   launch(whatsappUrl);
+        //                 } catch (e) {
+        //                   print("Unable to open whatsapp");
+        //                 }
+        //               },
+        //               icon: const Icon(Icons.whatsapp)),
+        //           IconButton(
+        //               onPressed: () async {
+        //                 final Uri _url = Uri.parse(controller.face);
+        //                 if (!await launchUrl(_url)) {
+        //                   throw 'Could not launch $_url';
+        //                 }
+        //               },
+        //               icon: const Icon(Icons.facebook)),
+        //           IconButton(
+        //               onPressed: () async {
+        //                 final Uri _url = Uri.parse(controller.site);
+        //                 if (!await launchUrl(_url)) {
+        //                   throw 'Could not launch $_url';
+        //                 }
+        //               },
+        //               icon: const Icon(Icons.web)),
+        //         ],
+        //       )
+        //     ],
+        //   ),
+        // ))
       ],
     ));
   }

@@ -250,8 +250,9 @@ class _CompletCartState extends State<CompletCart> {
                         print(area);
                         print(row);
                         print(house);
-                        Payment p;
-                        // paymentApi(p(controller1.id,name,phone,controller1.idCity,area,row,house,));
+
+                        paymentApi(name, phone, controller1.idCity, area, row,
+                            house, controllerPro.listPayment);
                       }
                     },
                     child: Text(

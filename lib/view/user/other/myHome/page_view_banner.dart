@@ -58,7 +58,7 @@ class _CarouselBannerState extends State<CarouselBanner> {
       children: [
         SizedBox(
           width: MediaQuery.of(context).size.width / 1.11,
-          height: 140,
+          height: MediaQuery.of(context).size.height / 6,
           child: PageView.builder(
               itemCount: controllerPro.saveContrilerBannerMapMain.length,
               pageSnapping: true,

@@ -19,6 +19,12 @@ class ControllerProduct extends GetxController {
   List<Map<dynamic, dynamic>> myRate = [];
   dynamic total;
   String? language;
+  List<Map<dynamic, dynamic>> listPayment = [];
+  SaveListPayment(v) {
+    listPayment = v;
+    update();
+  }
+
   SaveLang(c) {
     print(c);
 

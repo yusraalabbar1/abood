@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:abood/constant/urls.dart';
 import 'package:abood/controller/ControlUser.dart';
 import 'package:abood/controller/controlProduct.dart';
+import 'package:abood/model/user/mycart/api/check_coupon.dart';
 import 'package:abood/model/user/mycart/api/update_check.dart';
 import 'package:abood/model/user/mycart/json/my_cart_model.dart';
 import 'package:abood/model/user/mycart/json/object_payment.dart';
@@ -52,6 +53,7 @@ myCartApi() async {
       controllerPro.SaveMyCartTotal(total);
 
       stor = stor.toSet().toList();
+
       print("===================stors id===================");
       print(stor);
       for (var j = 0; j < stor.length; j++) {
@@ -71,17 +73,19 @@ myCartApi() async {
       print(storPrice);
 
       Map map3;
+
       for (var j = 0; j < stor.length; j++) {
         for (var i = 0; i < storPrice.length; i++) {
           if (i == j) {
             map3 = {stor[i], storPrice[j]}.toList().asMap();
             print(map3);
             thirdMap.add(map3);
-            // thirdMap = [...thirdMap, map3];
+
             break;
           }
         }
       }
+
       print("===================thirdMap price===================");
       // print(thirdMap);
       final ids = thirdMap.map<int>((e) => e[0]).toSet();
@@ -91,22 +95,94 @@ myCartApi() async {
 
       print('Without duplicates $thirdMap');
       controllerPro.SaveThrid(thirdMap);
-      // print("===================thirdMap price total===================");
-      // for (var i = 0; i < thirdMap.length; i++) {
-      //   totalnew = totalnew + thirdMap[i][1];
-      // }
-      // print(totalnew);
-      // List<Payment> passengers = [];
-      // for (var j = 0; j < stor.length; j++) {
-      //   for (var i = 0; i < c.data!.length; i++) {
-      //     if (c.data![i].toJson()["storeId"] == stor[j]) {
-      //       if (c.data![i].toJson()["isCheck"] == true) {
-      //         passengers[i].stores![i].storeId = c.data![i].toJson()["storeId"];
-      //       }
-      //     }
-      //   }
-      // }
-      // print(passengers);
+
+      print("===========Details===============");
+      List<Map<String, dynamic>> detailsStros = [];
+      for (var j = 0; j < stor.length; j++) {
+        print(stor[j]);
+        for (var i = 0; i < c.data!.length; i++) {
+          if (c.data![i].toJson()["isCheck"] == true) {
+            if (c.data![i].toJson()["storeId"] == stor[j]) {
+              //add element
+              print("========Details========");
+              print(c.data![i].toJson()["itemId"]);
+              print(c.data![i].toJson()["itemSizes"]["itemSizeId"]);
+              print(c.data![i].toJson()["itemColors"]["itemColorId"]);
+              print(c.data![i].toJson()["qty"]);
+              print(c.data![i].toJson()["newPrice"]);
+              print((c.data![i].toJson()["newPrice"]) *
+                  (c.data![i].toJson()["qty"]));
+
+              detailsStros.add({
+                "StoreId": c.data![i].toJson()["storeId"],
+                "CouponCode": "H1234",
+                "Details": [
+                  {
+                    "ItemId": c.data![i].toJson()["itemId"],
+                    "ItemSizeId": c.data![i].toJson()["itemSizes"]
+                        ["itemSizeId"],
+                    "ItemColorId": c.data![i].toJson()["itemColors"]
+                        ["itemColorId"],
+                    "Qty": c.data![i].toJson()["qty"],
+                    "Total": (c.data![i].toJson()["newPrice"]) *
+                        (c.data![i].toJson()["qty"])
+                  }
+                ]
+              });
+              print("=======================");
+            }
+          }
+        }
+      }
+
+      print(detailsStros);
+      print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+      List<Map> newMap = [];
+
+      List storIds = [];
+      for (var i = 0; i < detailsStros.length; i++) {
+        if (!storIds.contains(detailsStros[i]["StoreId"])) {
+          print("object");
+          storIds.add(detailsStros[i]["StoreId"]);
+        }
+      }
+      print(storIds);
+
+      for (var id = 0; id < storIds.length; id++) {
+        int myId = storIds[id];
+        var neww = [];
+        dynamic newDetails = [];
+        for (var j = 0; j < detailsStros.length; j++) {
+          if (detailsStros[j]["StoreId"] == myId) {
+            neww = neww + detailsStros[j]["Details"];
+            print(neww);
+            // newDetails.add(detailsStros[j]["Details"]);
+          }
+        }
+        newMap.add({"StoreId": myId, "CouponCode": "H1234", "Details": neww});
+      }
+      print("@@@@@@@@@@@@@@@@newMap@@@@@@@@@@@@@@");
+      // print(storIds);
+      print(newMap);
+      controllerPro.SaveListPayment(newMap);
+      List<Map> newCoupon = listCoupon.toSet().toList();
+      print("@@@@@@@@@@@@@@@@newCoupon@@@@@@@@@@@@@@");
+      print(newCoupon);
+      print("@@@@@@@@@@@@@@@@newCoupon@@@@@@@@@@@@@@");
+      print(newCoupon);
+      for (var i = 0; i < newCoupon.length; i++) {
+        for (var j = 0; j < newMap.length; j++) {
+          if (newCoupon[i]["StoreId"] == newMap[j]["StoreId"]) {
+            //  newMap.update(j, (value) => newCoupon[i]);
+            var index = newCoupon.indexOf(newCoupon[i]);
+            print("index");
+            print(index);
+            newMap[index]["CouponCode"] = newCoupon[i]["CouponCode"];
+            print("newMap");
+            print(newMap);
+          }
+        }
+      }
     }
   } else {
     print("not response");

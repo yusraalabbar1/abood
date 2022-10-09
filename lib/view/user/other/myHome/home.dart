@@ -261,19 +261,18 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                     print(passenger.descAr);
                                     print("=====sub section id======");
                                     print(passenger.id);
-                                    if (guest == true) {
-                                      diaGuest(context);
-                                    } else {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              storeByIdSection(
-                                                  id: passenger.id,
-                                                  idd: passenger.sectionId),
-                                        ),
-                                      );
-                                    }
+                                    // if (guest == true) {
+                                    //   diaGuest(context);
+                                    // } else {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => storeByIdSection(
+                                            id: passenger.id,
+                                            idd: passenger.sectionId),
+                                      ),
+                                    );
+                                    // }
                                   },
                                   child: Container(
                                     alignment: Alignment.center,

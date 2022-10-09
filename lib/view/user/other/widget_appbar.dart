@@ -11,20 +11,17 @@ Text text1(text) {
 AppBar appbarmain(GlobalKey<ScaffoldState> scaffoldKey, context) {
   return AppBar(
     toolbarHeight: 70,
-    title: SizedBox(
-      width: 250.0,
-      child: AnimatedTextKit(
-        displayFullTextOnTap: false,
-        repeatForever: true,
-        animatedTexts: [
-          FadeAnimatedText('ABOOD'),
-          FadeAnimatedText('ABOOD'),
-          FadeAnimatedText('For All New!!!'),
-        ],
-        onTap: () {
-          print("Tap Event");
-        },
-      ),
+    title: AnimatedTextKit(
+      displayFullTextOnTap: false,
+      repeatForever: true,
+      animatedTexts: [
+        FadeAnimatedText('ABOOD'),
+        FadeAnimatedText('ABOOD'),
+        // FadeAnimatedText('For All New!!!'),
+      ],
+      onTap: () {
+        print("Tap Event");
+      },
     ),
     actions: [
       IconButton(
@@ -52,28 +49,27 @@ AppBar appbarmain(GlobalKey<ScaffoldState> scaffoldKey, context) {
             color: Colors.white,
           )),
     ],
-    leading: Row(children: [
-      Expanded(
-        child: IconButton(
-            onPressed: () {
-              scaffoldKey.currentState!.openDrawer();
-            },
-            icon: const Icon(
-              Icons.menu,
-              color: Colors.white,
-            )),
-      ),
-      Expanded(
-        child: IconButton(
-            onPressed: () {
-              Navigator.of(context).pushNamed("searchProductUser");
-            },
-            icon: const Icon(
-              Icons.search,
-              color: Colors.white,
-            )),
-      )
-    ]),
+    leading: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          IconButton(
+              onPressed: () {
+                scaffoldKey.currentState!.openDrawer();
+              },
+              icon: const Icon(
+                Icons.menu,
+                color: Colors.white,
+              )),
+          IconButton(
+              onPressed: () {
+                Navigator.of(context).pushNamed("searchProductUser");
+              },
+              icon: const Icon(
+                Icons.search,
+                color: Colors.white,
+              ))
+        ]),
   );
 }
 

@@ -10,13 +10,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
+List<Map<String, dynamic>> listCoupon = [];
 checkCoponApi(context, CouponCode, StoreId, Total) async {
   print(CouponCode);
   print(StoreId);
   print(Total);
 
   double t = 0.0;
-
   ControllerProduct controllerPro = Get.put(ControllerProduct());
   var headers = {'Content-Type': 'application/json'};
   var request =
@@ -35,6 +35,10 @@ checkCoponApi(context, CouponCode, StoreId, Total) async {
   if (response.statusCode == 200) {
     if (c.isSuccess == true) {
       if (c.data != null) {
+        listCoupon.add({"StoreId": StoreId, "CouponCode": CouponCode});
+
+        print("=============listCoupon==========");
+        print(listCoupon);
         diaSuccCart(
             context,
             ("total : " +

@@ -12,13 +12,30 @@ import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:http/http.dart' as http;
 
-paymentApi(Payment p) async {
+paymentApi(name, mobile, cityId, area, street, flat, listMap) async {
+  Homecontroller controller = Get.put(Homecontroller());
+  print(name);
+  print(mobile);
+  print(cityId);
+  print(area);
+  print(street);
+  print(flat);
+  print(listMap);
   var headers = {'Content-Type': 'application/json'};
   var request = http.Request(
       'POST',
       Uri.parse(
           'https://friendly-proskuriakova.162-55-191-66.plesk.page/AboodAPI/api/userRequest/add'));
-  request.body = json.encode(p);
+  request.body = json.encode({
+    "UserId": controller.id,
+    "FullName": name,
+    "MobileNo": mobile,
+    "CityId": cityId,
+    "Area": area,
+    "StreetName": street,
+    "BuildingNo": flat,
+    "Stores": listMap
+  });
   request.headers.addAll(headers);
 
   http.StreamedResponse response = await request.send();
