@@ -294,8 +294,8 @@ class _CompletCartState extends State<CompletCart> {
         }
       },
       onSaved: (string) {
-        name = string;
-        print(name);
+        phone = string;
+        print(phone);
       },
     );
   }
@@ -340,8 +340,8 @@ class _CompletCartState extends State<CompletCart> {
         }
       },
       onSaved: (string) {
-        phone = string;
-        print(phone);
+        name = string;
+        print(name);
       },
     );
   }

@@ -115,7 +115,7 @@ myCartApi() async {
 
               detailsStros.add({
                 "StoreId": c.data![i].toJson()["storeId"],
-                "CouponCode": "H1234",
+                "CouponCode": "",
                 "Details": [
                   {
                     "ItemId": c.data![i].toJson()["itemId"],
@@ -159,7 +159,7 @@ myCartApi() async {
             // newDetails.add(detailsStros[j]["Details"]);
           }
         }
-        newMap.add({"StoreId": myId, "CouponCode": "H1234", "Details": neww});
+        newMap.add({"StoreId": myId, "CouponCode": "", "Details": neww});
       }
       print("@@@@@@@@@@@@@@@@newMap@@@@@@@@@@@@@@");
       // print(storIds);

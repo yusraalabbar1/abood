@@ -36,6 +36,7 @@ paymentApi(name, mobile, cityId, area, street, flat, listMap) async {
     "BuildingNo": flat,
     "Stores": listMap
   });
+  print(request.body);
   request.headers.addAll(headers);
 
   http.StreamedResponse response = await request.send();

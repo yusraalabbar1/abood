@@ -5,6 +5,7 @@ import 'package:abood/view/user/other/drawer_main.dart';
 import 'package:abood/view/user/other/myCateg/categ.dart';
 import 'package:abood/view/user/other/myHome/home.dart';
 import 'package:abood/view/user/other/myNew/new.dart';
+import 'package:abood/view/user/other/myOrders/my_order.dart';
 import 'package:abood/view/user/other/profile/my_profile.dart';
 import 'package:abood/view/user/other/widget/dialog_guest.dart';
 import 'package:abood/view/user/other/widget_appbar.dart';
@@ -37,6 +38,7 @@ class _homePageState extends State<homePage> {
     New(),
     category(),
     guest != true ? myProfile() : LoginGuest(),
+    guest != true ? myOrders() : LoginGuest(),
   ];
   @override
   void initState() {
@@ -79,6 +81,12 @@ class _homePageState extends State<homePage> {
           InkWell(
               child: Icon(
             Icons.person,
+            size: 25,
+            color: Colors.white,
+          )),
+          InkWell(
+              child: Icon(
+            Icons.shopping_basket_sharp,
             size: 25,
             color: Colors.white,
           )),

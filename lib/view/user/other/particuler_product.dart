@@ -363,7 +363,7 @@ class _particulerProductState extends State<particulerProduct> {
                         )
                       : Container(),
                   const SizedBox(height: 10),
-                  counter(controller.ItemsById["itemId"], 1),
+                  // counter(controller.ItemsById["itemId"], 1),
                   const Divider(
                     thickness: 8,
                   ),

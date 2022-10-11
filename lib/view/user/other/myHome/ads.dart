@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:abood/constant/urls.dart';
 import 'package:abood/controller/controlProduct.dart';
 import 'package:abood/view/user/auth/start_account.dart';
@@ -16,12 +18,44 @@ class ads extends StatefulWidget {
 
 class _adsState extends State<ads> {
   ControllerProduct controllerPro = Get.put(ControllerProduct());
+  int _pos = 0;
+  Timer? _timer;
+
+  @override
+  void initState() {
+    _timer = Timer.periodic(Duration(seconds: 5), (Timer t) {
+      setState(() {
+        _pos = (_pos + 1) % controllerPro.saveContrilerBannerMap.length;
+      });
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _timer!.cancel();
+    _timer = null;
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height / 6,
-      child: InkWell(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height / 6,
+        child: InkWell(
+          onTap: () {
+            guest != true
+                ? Navigator.of(context).pushNamed("offer")
+                : diaGuest(context);
+          },
+          child: CachedNetworkImage(
+            fit: BoxFit.cover,
+            imageUrl: sliderurl +
+                controllerPro.saveContrilerBannerMap[_pos]["image"].toString(),
+          ),
+        )
+        /*InkWell(
         onTap: () {
           guest != true
               ? Navigator.of(context).pushNamed("offer")
@@ -30,10 +64,8 @@ class _adsState extends State<ads> {
         child: CarouselSlider(
           options: CarouselOptions(
             autoPlay: true,
-
-            autoPlayInterval: const Duration(seconds: 20),
+            autoPlayInterval: const Duration(seconds: 2),
             autoPlayAnimationDuration: const Duration(milliseconds: 200),
-            // height: MediaQuery.of(context).size.height,
           ),
           items: controllerPro.saveContrilerBannerMap.map((item) {
             return Container(
@@ -41,14 +73,12 @@ class _adsState extends State<ads> {
               decoration: BoxDecoration(
                   image: DecorationImage(
                 image: CachedNetworkImageProvider(sliderurl + item["image"]),
-                // image: CachedNetworkImageProvider(
-                //     "https://img.freepik.com/free-psd/social-media-promo-template-sales_23-2149533432.jpg?w=2000"),
                 fit: BoxFit.cover,
               )),
             );
           }).toList(),
         ),
-      ),
-    );
+      ),*/
+        );
   }
 }

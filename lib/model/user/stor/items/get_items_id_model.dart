@@ -141,22 +141,25 @@ class ItemColor {
     this.itemId,
     this.itemColorId,
     this.value,
+    this.qty,
   });
 
   int? itemId;
   int? itemColorId;
   String? value;
-
+  int? qty;
   factory ItemColor.fromJson(Map<String, dynamic> json) => ItemColor(
         itemId: json["itemId"],
         itemColorId: json["itemColorId"],
         value: json["value"],
+        qty: json["qty"],
       );
 
   Map<String, dynamic> toJson() => {
         "itemId": itemId,
         "itemColorId": itemColorId,
         "value": value,
+        "qty": qty,
       };
 }
 

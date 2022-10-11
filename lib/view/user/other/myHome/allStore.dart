@@ -28,26 +28,19 @@ class _allStoreState extends State<allStore> {
     print(controllerPro.saveStorUserId);
   }
 
-  int currentPage = 0;
-
   late int totalPages;
 
+  int currentPage = 0;
   List<StorSectionData> passengers = [];
-
   final RefreshController refreshController =
       RefreshController(initialRefresh: true);
   /////////////////////////////////////
-
   Future<bool> getPassengerData({bool isRefresh = false}) async {
     if (isRefresh) {
       currentPage = 0;
-      // print("1");
     } else {
-      // print("============================");
       print(totalPages);
-      // print("============================");
       if (currentPage > totalPages) {
-        // print("2");
         refreshController.loadNoData();
         return false;
       }
@@ -67,12 +60,8 @@ class _allStoreState extends State<allStore> {
       } else {
         passengers.addAll(result.data!);
       }
-
       currentPage++;
-
-      // totalPages = result.meta!.totalPages!;
       totalPages = 0;
-
       print(res.body);
       setState(() {});
       return true;

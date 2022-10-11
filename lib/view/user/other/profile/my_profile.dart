@@ -4,6 +4,7 @@ import 'package:abood/constant/colors.dart';
 import 'package:abood/controller/ControlUser.dart';
 import 'package:abood/controller/controlAdmin.dart';
 import 'package:abood/view/user/other/profile/edit_profile.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -143,92 +144,14 @@ class _myProfileState extends State<myProfile> {
                 child: GetBuilder<Homecontroller>(builder: (controller) {
                   return Column(
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         height: 30,
                       ),
-                      Row(
-                        children: [
-                          Expanded(
-                              flex: 1,
-                              child: Container(
-                                alignment: Alignment.topRight,
-                                width: 44,
-                                height: 44,
-                                child: CircleAvatar(
-                                  radius: 50,
-                                  backgroundColor: Colors.black,
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(50),
-                                    child:
-                                        // controller.saveTypeUser != "guest"
-                                        //     ? imageFile == null
-                                        //         ? Image.network(
-                                        //             controller
-                                        //                 .saveProfilephotoProfile,
-                                        //             width: 44,
-                                        //             height: 44,
-                                        //             fit: BoxFit.fill,
-                                        //           )
-                                        //         : Image.file(
-                                        //             File(imageFile!.path),
-                                        //             errorBuilder: (context,
-                                        //                     exception,
-                                        //                     stackTrack) =>
-                                        //                 Icon(
-                                        //               Icons.error,
-                                        //             ),
-                                        //           )
-                                        //     :
-                                        Image.network(
-                                      "https://simg.nicepng.com/png/small/128-1280406_view-user-icon-png-user-circle-icon-png.png",
-                                      width: 44,
-                                      height: 44,
-                                      fit: BoxFit.fill,
-                                    ),
-                                  ),
-                                ),
-                              )
-                              //   );
-                              // })
-                              ),
-                          Expanded(
-                              flex: 1,
-                              child: Text("",
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 13,
-                                      fontFamily: 'Almarai'))),
-                          Expanded(
-                              flex: 2,
-                              child: Container(
-                                width: 127,
-                                height: 37,
-                                child: RaisedButton.icon(
-                                  onPressed: () {
-                                    print('Button Clicked.');
-                                    _showChoiceDialog(context);
-                                    // Navigator.of(context).pushNamed("UploadImageScreen");
-                                  },
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(25.0))),
-                                  label: Text(
-                                    "Change  picture".tr,
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 11,
-                                        fontFamily: 'Almarai'),
-                                  ),
-                                  icon: Icon(
-                                    Icons.camera_alt,
-                                    color: Colors.white,
-                                  ),
-                                  textColor: Colors.white,
-                                  splashColor: Colors.white,
-                                  color: Colors.black,
-                                ),
-                              )),
-                        ],
+                      const CircleAvatar(
+                        backgroundColor: Colors.white,
+                        radius: 50,
+                        backgroundImage: CachedNetworkImageProvider(
+                            "http://cdn.onlinewebfonts.com/svg/img_81837.png"),
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
