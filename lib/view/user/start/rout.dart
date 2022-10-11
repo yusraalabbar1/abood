@@ -1,5 +1,6 @@
 import 'package:abood/controller/ControlUser.dart';
 import 'package:abood/main.dart';
+import 'package:abood/model/user/stor/items/get_items_id.dart';
 import 'package:abood/translation/translation.dart';
 import 'package:abood/view/admin/add_offer.dart';
 import 'package:abood/view/admin/add_product.dart';
@@ -56,15 +57,29 @@ import 'package:get/get.dart';
 
 String local = "en";
 
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   Homecontroller controller = Get.put(Homecontroller());
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       //isLogin == true ? welcomHome() :
-
+      onGenerateRoute: (RouteSettings settings) {
+        final routName = settings.name;
+        if (routName != null && routName.contains("")) {
+          print("generate");
+          getItemsIdApi(66);
+          setState(() => particulerProduct());
+        }
+        // return null;
+      },
       home: welcom(),
       theme: CustomTheme.lightTheme,
       routes: {

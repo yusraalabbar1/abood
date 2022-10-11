@@ -11,7 +11,13 @@ import 'package:http/http.dart' as http;
 Future getItemsIdApi(id) async {
   ControllerProduct controllerPro = Get.put(ControllerProduct());
   Homecontroller controlleR = Get.put(Homecontroller());
-  int idUser = controlleR.id;
+  int idUser;
+  if (controlleR.id != null) {
+    idUser = controlleR.id;
+  } else {
+    idUser = 0;
+  }
+
   print(idUser);
   print(id);
   var request =

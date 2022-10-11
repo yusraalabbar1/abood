@@ -19,6 +19,7 @@ import 'package:abood/view/user/other/widget_appbar.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:flutter_share/flutter_share.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
@@ -41,6 +42,14 @@ class _particulerProductState extends State<particulerProduct> {
     super.initState();
     print("====================");
     print(controller.ItemsById["itemImages"]);
+  }
+
+  Future<void> share() async {
+    await FlutterShare.share(
+        title: 'Share Link ',
+        text: 'Share Link Product in Abood Application',
+        linkUrl: 'http://flutterbooksampleMyAbood.com/66',
+        chooserTitle: 'Share Link Product');
   }
 
   ControllerProduct controller = Get.put(ControllerProduct());
@@ -249,7 +258,10 @@ class _particulerProductState extends State<particulerProduct> {
                       ),
                       Expanded(
                         child: IconButton(
-                            onPressed: () {}, icon: const Icon(Icons.share)),
+                            onPressed: () {
+                              share();
+                            },
+                            icon: const Icon(Icons.share)),
                       )
                     ],
                   ),

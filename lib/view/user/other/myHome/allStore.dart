@@ -103,16 +103,16 @@ class _allStoreState extends State<allStore> {
                 final passenger = passengers[index];
                 return InkWell(
                   onTap: () {
-                    if (guest == true) {
-                      diaGuest(context);
-                    } else {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => Sub2cat(id: passenger.id),
-                        ),
-                      );
-                    }
+                    // if (guest == true) {
+                    //   diaGuest(context);
+                    // } else {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Sub2cat(id: passenger.id),
+                      ),
+                    );
+                    // }
                   },
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 5),

@@ -37,8 +37,18 @@ class _Sub2catState extends State<Sub2cat> {
 
   Future<bool> getPassengerData({bool isRefresh = false}) async {
     print("=====store id======");
-    var c2 = int.parse(widget.id.toString());
-    var id = int.parse(controller.id.toString());
+    var c2;
+    var id;
+    if (widget.id == null) {
+      c2 = 0;
+    } else {
+      c2 = int.parse(widget.id.toString());
+    }
+    if (controller.id == null) {
+      id = 0;
+    } else {
+      id = int.parse(controller.id.toString());
+    }
     print(id);
     if (isRefresh) {
       currentPage = 0;
@@ -48,7 +58,7 @@ class _Sub2catState extends State<Sub2cat> {
       print("thisssssssssssssssssssss");
       print("============================");
     }
-    print(widget.id);
+    // print(widget.id);
     var request = http.Request(
         'GET',
         Uri.parse(

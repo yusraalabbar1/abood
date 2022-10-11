@@ -20,7 +20,8 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class welcom extends StatefulWidget {
-  const welcom({super.key});
+  final id;
+  const welcom({super.key, this.id});
 
   @override
   State<welcom> createState() => _welcomState();

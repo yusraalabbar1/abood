@@ -148,7 +148,7 @@ class _categoryState extends State<category>
                                                 .saveAllCategwithout[index]
                                                     ["descAr"]
                                                 .toString(),
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             color: Colors.white,
                                             fontSize: 15,
                                             fontWeight: FontWeight.bold,
@@ -169,7 +169,7 @@ class _categoryState extends State<category>
                                                 .saveAllCategwithout[index]
                                                     ["descAr"]
                                                 .toString(),
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             color: Colors.black,
                                             fontSize: 15,
                                             fontWeight: FontWeight.bold,
@@ -290,105 +290,9 @@ class _categoryState extends State<category>
                   }),
                 ),
               )
-              /*GetBuilder<ControllerProduct>(builder: (controllerPro) {
-                      return (Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: SizedBox(
-                          height: MediaQuery.of(context).size.height - 214,
-                          child: GridView.builder(
-                              // shrinkWrap: true,
-                              gridDelegate:
-                                  const SliverGridDelegateWithMaxCrossAxisExtent(
-                                      maxCrossAxisExtent: 200,
-                                      childAspectRatio: 3 / 2,
-                                      crossAxisSpacing: 20,
-                                      mainAxisSpacing: 20),
-                              itemCount: controllerPro.saveSubCateg.length,
-                              itemBuilder: (BuildContext ctx, index) {
-                                return InkWell(
-                                  onTap: () async {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => storeByIdSection(
-                                            id: controllerPro.saveSubCateg[index]
-                                                ["id"]),
-                                      ),
-                                    );
-                                  },
-                                  child: Container(
-                                    alignment: Alignment.center,
-                                    child: Center(
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                            color: Colors.black,
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(15))),
-                                        alignment: Alignment.center,
-                                        width: MediaQuery.of(context).size.width,
-                                        child: text1(
-                                          controllerPro.saveSubCateg[index]
-                                              ["descAr"],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                );
-                              }),
-                        ),
-                      ));
-                    })*/
             ],
           ),
         ),
-        // Expanded(
-        //     child: Container(
-        //   color: Colors.grey,
-        //   child: Column(
-        //     children: [
-        //       SizedBox(
-        //         height: 10,
-        //       ),
-        //       text1("For Help, Contact Us".tr),
-        //       Row(
-        //         mainAxisAlignment: MainAxisAlignment.center,
-        //         children: [
-        //           IconButton(
-        //               onPressed: () async {
-        //                 //To remove the keyboard when button is pressed
-        //                 FocusManager.instance.primaryFocus?.unfocus();
-
-        //                 var whatsappUrl =
-        //                     "whatsapp://send?phone=${controller.whats}" +
-        //                         "&text=${Uri.encodeComponent(" ")}";
-        //                 try {
-        //                   launch(whatsappUrl);
-        //                 } catch (e) {
-        //                   print("Unable to open whatsapp");
-        //                 }
-        //               },
-        //               icon: const Icon(Icons.whatsapp)),
-        //           IconButton(
-        //               onPressed: () async {
-        //                 final Uri _url = Uri.parse(controller.face);
-        //                 if (!await launchUrl(_url)) {
-        //                   throw 'Could not launch $_url';
-        //                 }
-        //               },
-        //               icon: const Icon(Icons.facebook)),
-        //           IconButton(
-        //               onPressed: () async {
-        //                 final Uri _url = Uri.parse(controller.site);
-        //                 if (!await launchUrl(_url)) {
-        //                   throw 'Could not launch $_url';
-        //                 }
-        //               },
-        //               icon: const Icon(Icons.web)),
-        //         ],
-        //       )
-        //     ],
-        //   ),
-        // ))
       ],
     ));
   }

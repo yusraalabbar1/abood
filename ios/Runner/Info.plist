@@ -10,7 +10,7 @@
     <key>CFBundleTypeRole</key>
     <string>Editor</string>
     <key>CFBundleURLName</key>
-    <string>flutterbooksample.com</string>
+    <string>flutterbooksampleMyAbood.com</string>
     <key>CFBundleURLSchemes</key>
     <array>
     <string>customscheme</string>
