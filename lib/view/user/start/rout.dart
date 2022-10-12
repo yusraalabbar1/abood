@@ -70,25 +70,21 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      //isLogin == true ? welcomHome() :
       onGenerateRoute: (RouteSettings settings) {
         final routName = settings.name;
-        if (routName != null && routName.contains("")) {
-          print("generate");
-          getItemsIdApi(66);
-          setState(() => particulerProduct());
+        if (routName != null && routName.contains('/product')) {
+          controller.ChangePage(const particulerProduct(id: 66));
         }
-        // return null;
       },
-      home: welcom(),
+      home: controller.pageRout,
       theme: CustomTheme.lightTheme,
       routes: {
-        "welcom": ((context) => welcom()),
+        "welcom": ((context) => const welcom()),
         "welcomHome": ((context) => welcomHome()),
         "welcomStore": ((context) => welcomStore()),
-        "OnboardingWelcom": ((context) => OnboardingWelcom()),
-        "forgetPasswordNumber": ((context) => forgetPasswordNumber()),
-        "startAccount": ((context) => startAccount()),
+        "OnboardingWelcom": ((context) => const OnboardingWelcom()),
+        "forgetPasswordNumber": ((context) => const forgetPasswordNumber()),
+        "startAccount": ((context) => const startAccount()),
         "OtpForget": ((context) => OtpForget()),
         "login": ((context) => login()),
         "StorByMerch": ((context) => StorByMerch()),

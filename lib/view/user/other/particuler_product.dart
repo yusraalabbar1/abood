@@ -10,6 +10,7 @@ import 'package:abood/model/user/mylike/api/add_like.dart';
 import 'package:abood/model/user/mylike/api/delete_like.dart';
 import 'package:abood/model/user/mylike/api/mylike.dart';
 import 'package:abood/model/user/product/item/Rate/get_rateModel.dart';
+import 'package:abood/model/user/stor/items/get_items_id.dart';
 import 'package:abood/view/user/auth/start_account.dart';
 import 'package:abood/view/user/other/widget/MyColorPicker.dart';
 import 'package:abood/view/user/other/widget/SizeSelector.dart';
@@ -42,6 +43,7 @@ class _particulerProductState extends State<particulerProduct> {
     super.initState();
     print("====================");
     print(controller.ItemsById["itemImages"]);
+    getItemsIdApi(66);
   }
 
   Future<void> share() async {
@@ -128,429 +130,459 @@ class _particulerProductState extends State<particulerProduct> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          toolbarHeight: 60,
-          backgroundColor: Colors.white,
-          elevation: 5,
-          actions: [
-            IconButton(
-                onPressed: () async {
-                  if (guest == true) {
-                    diaGuest(context);
-                  } else {
-                    print(int.parse(widget.id.toString()));
-                    print(sizescelect);
-                    print(colorselect);
-                    if (sizescelect != 0 && colorselect != 0) {
-                      await addCartApi(context, int.parse(widget.id.toString()),
-                          sizescelect, colorselect);
-                      await myCartApi();
-                    } else if (sizescelect == 0 && colorselect != 0) {
-                      diaFaildCart(context, "Choose Size");
-                    } else if (sizescelect != 0 && colorselect == 0) {
-                      diaFaildCart(context, "Choose Color");
-                    } else if (sizescelect == 0 && colorselect == 0) {
-                      diaFaildCart(context, "Choose Size & Color");
-                    }
+      appBar: AppBar(
+        toolbarHeight: 60,
+        backgroundColor: Colors.white,
+        elevation: 5,
+        actions: [
+          IconButton(
+              onPressed: () async {
+                if (guest == true) {
+                  diaGuest(context);
+                } else {
+                  print(int.parse(widget.id.toString()));
+                  print(sizescelect);
+                  print(colorselect);
+                  if (sizescelect != 0 && colorselect != 0) {
+                    await addCartApi(context, int.parse(widget.id.toString()),
+                        sizescelect, colorselect);
+                    await myCartApi();
+                  } else if (sizescelect == 0 && colorselect != 0) {
+                    diaFaildCart(context, "Choose Size");
+                  } else if (sizescelect != 0 && colorselect == 0) {
+                    diaFaildCart(context, "Choose Color");
+                  } else if (sizescelect == 0 && colorselect == 0) {
+                    diaFaildCart(context, "Choose Size & Color");
                   }
-                },
-                icon: const Icon(Icons.shopping_bag)),
-            IconButton(
-                onPressed: () async {
-                  if (guest == true) {
-                    diaGuest(context);
-                  } else {
-                    if (controller.ItemsById["isWish"] == false) {
-                      //add and change color
-                      setState(() {
-                        // i = 1;
-                        controller.ItemsById["isWish"] = true;
-                      });
-                      await addLike(
-                          int.parse(widget.id.toString()), controller1.id);
-                      await myLikeApi(controller1.id);
-                    } else if (controller.ItemsById["isWish"] == true) {
-                      //delete
-                      setState(() {
-                        // i = 0;
-                        controller.ItemsById["isWish"] = false;
-                      });
-                      await deleteLike(
-                          controller1.id, int.parse(widget.id.toString()));
-                      await myLikeApi(controller1.id);
-                    }
+                }
+              },
+              icon: const Icon(Icons.shopping_bag)),
+          IconButton(
+              onPressed: () async {
+                if (guest == true) {
+                  diaGuest(context);
+                } else {
+                  if (controller.ItemsById["isWish"] == false) {
+                    //add and change color
+                    setState(() {
+                      // i = 1;
+                      controller.ItemsById["isWish"] = true;
+                    });
+                    await addLike(
+                        int.parse(widget.id.toString()), controller1.id);
+                    await myLikeApi(controller1.id);
+                  } else if (controller.ItemsById["isWish"] == true) {
+                    //delete
+                    setState(() {
+                      // i = 0;
+                      controller.ItemsById["isWish"] = false;
+                    });
+                    await deleteLike(
+                        controller1.id, int.parse(widget.id.toString()));
+                    await myLikeApi(controller1.id);
                   }
-                },
-                icon: Icon(
-                  Icons.favorite_border,
-                  color: controller.ItemsById["isWish"] == true
-                      ? Colors.black
-                      : Colors.grey,
-                  size: 30,
-                ))
-          ],
-        ),
-        body: Column(
-          children: [
-            SizedBox(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height / 1.2,
-              child: ListView(
-                children: [
-                  Container(
-                    height: MediaQuery.of(context).size.height / 2,
-                    width: MediaQuery.of(context).size.width,
-                    child: controller.ItemsById["itemImages"].length > 0
-                        ? ListView.builder(
-                            shrinkWrap: true,
-                            itemCount:
-                                controller.ItemsById["itemImages"].length,
-                            scrollDirection: Axis.horizontal,
-                            itemBuilder: (BuildContext context, int i) {
-                              return InkWell(
-                                onTap: () {},
-                                child: Container(
-                                  height:
-                                      MediaQuery.of(context).size.height / 4,
-                                  width: MediaQuery.of(context).size.width,
-                                  decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                          fit: BoxFit.cover,
-                                          image: CachedNetworkImageProvider(
-                                              imageAds +
-                                                  controller.ItemsById[
-                                                          "itemImages"][i]
-                                                      ["imageUrl"]))),
+                }
+              },
+              icon: Icon(
+                Icons.favorite_border,
+                color: controller.ItemsById["isWish"] == true
+                    ? Colors.black
+                    : Colors.grey,
+                size: 30,
+              ))
+        ],
+      ),
+      body: FutureBuilder(
+        future: getItemsIdApi(widget.id),
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          return snapshot.hasData
+              ? Column(
+                  children: [
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.height / 1.2,
+                      child: ListView(
+                        children: [
+                          Container(
+                            height: MediaQuery.of(context).size.height / 2,
+                            width: MediaQuery.of(context).size.width,
+                            child: controller.ItemsById["itemImages"].length > 0
+                                ? ListView.builder(
+                                    shrinkWrap: true,
+                                    itemCount: controller
+                                        .ItemsById["itemImages"].length,
+                                    scrollDirection: Axis.horizontal,
+                                    itemBuilder: (BuildContext context, int i) {
+                                      return InkWell(
+                                        onTap: () {},
+                                        child: Container(
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height /
+                                              4,
+                                          width:
+                                              MediaQuery.of(context).size.width,
+                                          decoration: BoxDecoration(
+                                              image: DecorationImage(
+                                                  fit: BoxFit.cover,
+                                                  image: CachedNetworkImageProvider(
+                                                      imageAds +
+                                                          controller.ItemsById[
+                                                                  "itemImages"][
+                                                              i]["imageUrl"]))),
+                                        ),
+                                      );
+                                    })
+                                : const Center(child: Text("Not found Image")),
+                          ),
+                          const SizedBox(height: 10),
+                          Row(
+                            children: [
+                              const SizedBox(width: 10),
+                              Text(controller.ItemsById["itemName"].toString(),
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 25,
+                                      fontFamily: 'majallab')),
+                              const SizedBox(width: 15),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              const SizedBox(width: 10),
+                              Expanded(
+                                flex: 5,
+                                child: Center(
+                                  child: Text(
+                                    "Lorem ipsum dolor sit amet, consectetur adipiscing eliIn nsectetur adipiscing eliIn  ",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        color: AppColor.bodyColor,
+                                        overflow: TextOverflow.ellipsis,
+                                        fontSize: 13,
+                                        height: 1.5),
+                                  ),
                                 ),
-                              );
-                            })
-                        : const Center(child: Text("Not found Image")),
-                  ),
-                  const SizedBox(height: 10),
-                  Row(
-                    children: [
-                      const SizedBox(width: 10),
-                      Text(controller.ItemsById["itemName"].toString(),
-                          style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 25,
-                              fontFamily: 'majallab')),
-                      const SizedBox(width: 15),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      const SizedBox(width: 10),
-                      Expanded(
-                        flex: 5,
-                        child: Center(
-                          child: Text(
-                            "Lorem ipsum dolor sit amet, consectetur adipiscing eliIn nsectetur adipiscing eliIn  ",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                color: AppColor.bodyColor,
-                                overflow: TextOverflow.ellipsis,
-                                fontSize: 13,
-                                height: 1.5),
+                              ),
+                              Expanded(
+                                child: IconButton(
+                                    onPressed: () {
+                                      share();
+                                    },
+                                    icon: const Icon(Icons.share)),
+                              )
+                            ],
+                          ),
+                          const SizedBox(height: 10),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              const SizedBox(width: 10),
+                              Expanded(
+                                  flex: 2,
+                                  child: Text(
+                                      "JD ${controller.ItemsById["newPrice"]}",
+                                      style: const TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 25,
+                                          fontFamily: 'majallab'))),
+                              Expanded(flex: 2, child: stars()),
+                              Expanded(
+                                  child: Row(
+                                children: [
+                                  Expanded(
+                                    child: Text("(255)",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontFamily: 'majallab',
+                                            fontSize: 15,
+                                            color: Colors.black)),
+                                  ),
+                                  Expanded(
+                                    child: IconButton(
+                                        onPressed: () {},
+                                        icon: const Icon(Icons.navigate_next)),
+                                  ),
+                                ],
+                              )),
+                            ],
+                          ),
+                          const SizedBox(height: 10),
+
+                          Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            child: Text("Colors:".tr,
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.black,
+                                    fontFamily: 'majallab')),
+                          ),
+                          const SizedBox(height: 10),
+                          Container(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 10),
+                              child: property()),
+                          const SizedBox(height: 20),
+                          Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            child: Text("Sizes:".tr,
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.black,
+                                    fontFamily: 'majallab')),
+                          ),
+                          const SizedBox(height: 10),
+                          controller.ItemsById["itemSizes"].length > 0
+                              ? Container(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10),
+                                  child: SizedBox(
+                                    height: 30,
+                                    width: MediaQuery.of(context).size.width,
+                                    child: ListView.builder(
+                                        shrinkWrap: true,
+                                        itemCount: controller
+                                            .ItemsById["itemSizes"].length,
+                                        scrollDirection: Axis.horizontal,
+                                        itemBuilder:
+                                            (BuildContext context, int i) {
+                                          return InkWell(
+                                              onTap: () {
+                                                setState(() {
+                                                  tappedIndex = i;
+                                                  size = controller.ItemsById[
+                                                          "itemSizes"][i]
+                                                      ["itemSizeDescEn"];
+                                                  sizescelect =
+                                                      controller.ItemsById[
+                                                              "itemSizes"][i]
+                                                          ["itemSizeId"];
+                                                });
+                                              },
+                                              child: Row(
+                                                children: [
+                                                  Chip(
+                                                    backgroundColor:
+                                                        tappedIndex == i
+                                                            ? Colors.black
+                                                            : Colors.grey,
+                                                    shadowColor: Colors.black,
+
+                                                    label: Text(
+                                                      controller.ItemsById[
+                                                              "itemSizes"][i]
+                                                              ["itemSizeDescEn"]
+                                                          .toString()
+                                                          .toUpperCase(),
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      style: TextStyle(
+                                                          color: Colors.white,
+                                                          fontSize: 10),
+                                                    ), //Text
+                                                  ),
+                                                  const SizedBox(
+                                                    width: 5,
+                                                  ),
+                                                ],
+                                              ));
+                                        }),
+                                  ),
+                                )
+                              : Container(),
+                          const SizedBox(height: 10),
+                          // counter(controller.ItemsById["itemId"], 1),
+                          const Divider(
+                            thickness: 8,
+                          ),
+                          Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            child: Row(
+                              children: [
+                                Text("Comments".tr,
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontFamily: 'majallab',
+                                        fontSize: 24,
+                                        color: Colors.black)),
+                                IconButton(
+                                    onPressed: () {
+                                      if (guest == true) {
+                                        diaGuest(context);
+                                      } else {
+                                        showRate(context,
+                                            int.parse(widget.id.toString()));
+                                      }
+                                    },
+                                    icon: Icon(Icons.add_box))
+                              ],
+                            ),
+                          ),
+                          // passengers.length != 0
+                          //     ?
+                          Container(
+                            width: MediaQuery.of(context).size.width,
+                            height: MediaQuery.of(context).size.height / 4,
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            child: SmartRefresher(
+                              controller: refreshController,
+                              enablePullUp: true,
+                              onRefresh: () async {
+                                final result =
+                                    await getPassengerData(isRefresh: true);
+                                if (result) {
+                                  refreshController.refreshCompleted();
+                                } else {
+                                  refreshController.refreshFailed();
+                                }
+                              },
+                              onLoading: () async {
+                                final result = await getPassengerData();
+                                if (result) {
+                                  refreshController.loadComplete();
+                                } else {
+                                  refreshController.loadFailed();
+                                }
+                              },
+                              child: ListView.builder(
+                                  shrinkWrap: true,
+                                  itemCount: passengers.length,
+                                  itemBuilder: (context, index) {
+                                    final passenger = passengers[index];
+                                    return Card(
+                                      elevation: 5,
+                                      color: Colors.white,
+                                      child: ListTile(
+                                          trailing: rating(passenger.rate),
+                                          subtitle: Text(
+                                            passenger.fullName.toString(),
+                                          ),
+                                          title: Text(
+                                            passenger.rateText.toString(),
+                                          )),
+                                    );
+                                  }),
+                            ),
+                          )
+                          // : Container()
+                        ],
+                      ),
+                    ),
+                    // bottomButton(int.parse(widget.id.toString()), sizescelect,
+                    //     colorselect, controller.ItemsById["isWish"])
+                    Expanded(
+                      flex: 2,
+                      child: Align(
+                        alignment: FractionalOffset.bottomCenter,
+                        child: Container(
+                          // padding: const EdgeInsets.only(bottom: 20),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Expanded(
+                                flex: 6,
+                                child: FlatButton(
+                                    color: Colors.black,
+                                    height: 70,
+                                    onPressed: () async {
+                                      if (guest == true) {
+                                        diaGuest(context);
+                                      } else {
+                                        print(int.parse(widget.id.toString()));
+                                        print(sizescelect);
+                                        print(colorselect);
+                                        if (sizescelect != 0 &&
+                                            colorselect != 0) {
+                                          await addCartApi(
+                                              context,
+                                              int.parse(widget.id.toString()),
+                                              sizescelect,
+                                              colorselect);
+                                          await myCartApi();
+                                        } else if (sizescelect == 0 &&
+                                            colorselect != 0) {
+                                          diaFaildCart(
+                                              context, "Choose Size".tr);
+                                        } else if (sizescelect != 0 &&
+                                            colorselect == 0) {
+                                          diaFaildCart(
+                                              context, "Choose Color".tr);
+                                        } else if (sizescelect == 0 &&
+                                            colorselect == 0) {
+                                          diaFaildCart(context,
+                                              "Choose Size & Color".tr);
+                                        }
+                                      }
+                                    },
+                                    child: Text(
+                                      "Add to Bag ".tr,
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 14,
+                                          color: Colors.white),
+                                    )),
+                              ),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Expanded(
+                                  child: IconButton(
+                                      onPressed: () async {
+                                        if (guest == true) {
+                                          diaGuest(context);
+                                        } else {
+                                          if (controller.ItemsById["isWish"] ==
+                                              false) {
+                                            //add and change color
+                                            setState(() {
+                                              // i = 1;
+                                              controller.ItemsById["isWish"] =
+                                                  true;
+                                            });
+                                            await addLike(
+                                                int.parse(widget.id.toString()),
+                                                controller1.id);
+                                            await myLikeApi(controller1.id);
+                                          } else if (controller
+                                                  .ItemsById["isWish"] ==
+                                              true) {
+                                            //delete
+                                            setState(() {
+                                              // i = 0;
+                                              controller.ItemsById["isWish"] =
+                                                  false;
+                                            });
+                                            await deleteLike(
+                                                controller1.id,
+                                                int.parse(
+                                                    widget.id.toString()));
+                                            await myLikeApi(controller1.id);
+                                          }
+                                        }
+                                      },
+                                      icon: Icon(
+                                        Icons.favorite_border,
+                                        color: controller.ItemsById["isWish"] ==
+                                                true
+                                            ? Colors.black
+                                            : Colors.grey,
+                                        size: 30,
+                                      )))
+                            ],
                           ),
                         ),
                       ),
-                      Expanded(
-                        child: IconButton(
-                            onPressed: () {
-                              share();
-                            },
-                            icon: const Icon(Icons.share)),
-                      )
-                    ],
-                  ),
-                  const SizedBox(height: 10),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      const SizedBox(width: 10),
-                      Expanded(
-                          flex: 2,
-                          child: Text("JD ${controller.ItemsById["newPrice"]}",
-                              style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 25,
-                                  fontFamily: 'majallab'))),
-                      Expanded(flex: 2, child: stars()),
-                      Expanded(
-                          child: Row(
-                        children: [
-                          Expanded(
-                            child: Text("(255)",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: 'majallab',
-                                    fontSize: 15,
-                                    color: Colors.black)),
-                          ),
-                          Expanded(
-                            child: IconButton(
-                                onPressed: () {},
-                                icon: const Icon(Icons.navigate_next)),
-                          ),
-                        ],
-                      )),
-                    ],
-                  ),
-                  const SizedBox(height: 10),
-
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: Text("Colors:".tr,
-                        style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.black,
-                            fontFamily: 'majallab')),
-                  ),
-                  const SizedBox(height: 10),
-                  Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: property()),
-                  const SizedBox(height: 20),
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: Text("Sizes:".tr,
-                        style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.black,
-                            fontFamily: 'majallab')),
-                  ),
-                  const SizedBox(height: 10),
-                  controller.ItemsById["itemSizes"].length > 0
-                      ? Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 10),
-                          child: SizedBox(
-                            height: 30,
-                            width: MediaQuery.of(context).size.width,
-                            child: ListView.builder(
-                                shrinkWrap: true,
-                                itemCount:
-                                    controller.ItemsById["itemSizes"].length,
-                                scrollDirection: Axis.horizontal,
-                                itemBuilder: (BuildContext context, int i) {
-                                  return InkWell(
-                                      onTap: () {
-                                        setState(() {
-                                          tappedIndex = i;
-                                          size =
-                                              controller.ItemsById["itemSizes"]
-                                                  [i]["itemSizeDescEn"];
-                                          sizescelect =
-                                              controller.ItemsById["itemSizes"]
-                                                  [i]["itemSizeId"];
-                                        });
-                                      },
-                                      child: Row(
-                                        children: [
-                                          Chip(
-                                            backgroundColor: tappedIndex == i
-                                                ? Colors.black
-                                                : Colors.grey,
-                                            shadowColor: Colors.black,
-
-                                            label: Text(
-                                              controller.ItemsById["itemSizes"]
-                                                      [i]["itemSizeDescEn"]
-                                                  .toString()
-                                                  .toUpperCase(),
-                                              textAlign: TextAlign.center,
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 10),
-                                            ), //Text
-                                          ),
-                                          const SizedBox(
-                                            width: 5,
-                                          ),
-                                        ],
-                                      ));
-                                }),
-                          ),
-                        )
-                      : Container(),
-                  const SizedBox(height: 10),
-                  // counter(controller.ItemsById["itemId"], 1),
-                  const Divider(
-                    thickness: 8,
-                  ),
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: Row(
-                      children: [
-                        Text("Comments".tr,
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontFamily: 'majallab',
-                                fontSize: 24,
-                                color: Colors.black)),
-                        IconButton(
-                            onPressed: () {
-                              if (guest == true) {
-                                diaGuest(context);
-                              } else {
-                                showRate(
-                                    context, int.parse(widget.id.toString()));
-                              }
-                            },
-                            icon: Icon(Icons.add_box))
-                      ],
-                    ),
-                  ),
-                  // passengers.length != 0
-                  //     ?
-                  Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height / 4,
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: SmartRefresher(
-                      controller: refreshController,
-                      enablePullUp: true,
-                      onRefresh: () async {
-                        final result = await getPassengerData(isRefresh: true);
-                        if (result) {
-                          refreshController.refreshCompleted();
-                        } else {
-                          refreshController.refreshFailed();
-                        }
-                      },
-                      onLoading: () async {
-                        final result = await getPassengerData();
-                        if (result) {
-                          refreshController.loadComplete();
-                        } else {
-                          refreshController.loadFailed();
-                        }
-                      },
-                      child: ListView.builder(
-                          shrinkWrap: true,
-                          itemCount: passengers.length,
-                          itemBuilder: (context, index) {
-                            final passenger = passengers[index];
-                            return Card(
-                              elevation: 5,
-                              color: Colors.white,
-                              child: ListTile(
-                                  trailing: rating(passenger.rate),
-                                  subtitle: Text(
-                                    passenger.fullName.toString(),
-                                  ),
-                                  title: Text(
-                                    passenger.rateText.toString(),
-                                  )),
-                            );
-                          }),
-                    ),
-                  )
-                  // : Container()
-                ],
-              ),
-            ),
-            // bottomButton(int.parse(widget.id.toString()), sizescelect,
-            //     colorselect, controller.ItemsById["isWish"])
-            Expanded(
-              flex: 2,
-              child: Align(
-                alignment: FractionalOffset.bottomCenter,
-                child: Container(
-                  // padding: const EdgeInsets.only(bottom: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Expanded(
-                        flex: 6,
-                        child: FlatButton(
-                            color: Colors.black,
-                            height: 70,
-                            onPressed: () async {
-                              if (guest == true) {
-                                diaGuest(context);
-                              } else {
-                                print(int.parse(widget.id.toString()));
-                                print(sizescelect);
-                                print(colorselect);
-                                if (sizescelect != 0 && colorselect != 0) {
-                                  await addCartApi(
-                                      context,
-                                      int.parse(widget.id.toString()),
-                                      sizescelect,
-                                      colorselect);
-                                  await myCartApi();
-                                } else if (sizescelect == 0 &&
-                                    colorselect != 0) {
-                                  diaFaildCart(context, "Choose Size".tr);
-                                } else if (sizescelect != 0 &&
-                                    colorselect == 0) {
-                                  diaFaildCart(context, "Choose Color".tr);
-                                } else if (sizescelect == 0 &&
-                                    colorselect == 0) {
-                                  diaFaildCart(
-                                      context, "Choose Size & Color".tr);
-                                }
-                              }
-                            },
-                            child: Text(
-                              "Add to Bag ".tr,
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 14,
-                                  color: Colors.white),
-                            )),
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Expanded(
-                          child: IconButton(
-                              onPressed: () async {
-                                if (guest == true) {
-                                  diaGuest(context);
-                                } else {
-                                  if (controller.ItemsById["isWish"] == false) {
-                                    //add and change color
-                                    setState(() {
-                                      // i = 1;
-                                      controller.ItemsById["isWish"] = true;
-                                    });
-                                    await addLike(
-                                        int.parse(widget.id.toString()),
-                                        controller1.id);
-                                    await myLikeApi(controller1.id);
-                                  } else if (controller.ItemsById["isWish"] ==
-                                      true) {
-                                    //delete
-                                    setState(() {
-                                      // i = 0;
-                                      controller.ItemsById["isWish"] = false;
-                                    });
-                                    await deleteLike(controller1.id,
-                                        int.parse(widget.id.toString()));
-                                    await myLikeApi(controller1.id);
-                                  }
-                                }
-                              },
-                              icon: Icon(
-                                Icons.favorite_border,
-                                color: controller.ItemsById["isWish"] == true
-                                    ? Colors.black
-                                    : Colors.grey,
-                                size: 30,
-                              )))
-                    ],
-                  ),
-                ),
-              ),
-            )
-          ],
-        ));
+                    )
+                  ],
+                )
+              : Container();
+        },
+      ),
+    );
   }
 
   Widget counter(cartId, quent) {

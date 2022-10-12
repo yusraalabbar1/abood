@@ -134,6 +134,7 @@ class _pickSizeState extends State<pickSize> {
     );
   }
 
+  List sizess = ['M', 'L', 'XL', 'XXL', 'XXXL'];
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -160,13 +161,50 @@ class _pickSizeState extends State<pickSize> {
             text1size("Add Sizes".tr),
             Divider(),
             Container(decoration: boxd(), child: TextFormFieldEng()),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
             Container(decoration: boxd(), child: TextFormFieldArabic()),
-            Divider(),
-            ButtonRegister2Size(Colors.black, Colors.white),
+            const Divider(
+              thickness: 3,
+            ),
             SizedBox(
+              width: MediaQuery.of(context).size.width,
+              height: 80,
+              child: Center(
+                child: ListView.builder(
+                    itemCount: sizess.length,
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: InkWell(
+                          onTap: () {
+                            setState(() {
+                              myListMapize.add({
+                                "DescAr": sizess[index].toString(),
+                                "DescEn": sizess[index].toString()
+                              });
+                            });
+                          },
+                          child: CircleAvatar(
+                            backgroundColor: Colors.grey,
+                            child: Text(
+                              sizess[index].toString(),
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                        ),
+                      );
+                    }),
+              ),
+            ),
+            const Divider(
+              thickness: 3,
+            ),
+            ButtonRegister2Size(Colors.black, Colors.white),
+            const SizedBox(
               height: 20,
             ),
             GridView.builder(
@@ -191,7 +229,7 @@ class _pickSizeState extends State<pickSize> {
                                 Center(
                                     child:
                                         text2(myListMapize[index]["DescEn"])),
-                                Divider(
+                                const Divider(
                                   color: Colors.black,
                                   thickness: 2,
                                 ),

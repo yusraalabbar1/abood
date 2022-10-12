@@ -295,15 +295,18 @@ class _MainScreenStorState extends State<MainScreenStor> {
         ),
         body: ListView(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Container(
-                  decoration: boxd(),
-                  child: InkWell(
-                      onTap: () {
-                        Navigator.of(context).pushNamed("searchProduct");
-                      },
-                      child: TextFormFieldFirst())),
+            // Padding(
+            //   padding: const EdgeInsets.all(20.0),
+            //   child: Container(
+            //       decoration: boxd(),
+            //       child: InkWell(
+            //           onTap: () {
+            //             Navigator.of(context).pushNamed("searchProduct");
+            //           },
+            //           child: TextFormFieldFirst())),
+            // ),
+            SizedBox(
+              height: 30,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,

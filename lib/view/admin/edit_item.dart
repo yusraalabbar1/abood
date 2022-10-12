@@ -7,7 +7,10 @@ import 'package:abood/model/admin/api/deletItemApi.dart';
 import 'package:abood/model/admin/api/editItem.dart';
 import 'package:abood/model/user/stor/items/get_items_id.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:get/get.dart';
+
+import '../../model/admin/api/edit_color.dart';
 
 class EditItem extends StatefulWidget {
   final id;
@@ -19,10 +22,11 @@ class EditItem extends StatefulWidget {
 
 class _EditItemState extends State<EditItem> {
   ControllerProduct controllerPro = Get.put(ControllerProduct());
-  var nameItem, priceItem, noteItem, desItem;
+  var nameItem, priceItem, noteItem, desItem, ar, en;
   ControllerAdmin controller = Get.put(ControllerAdmin());
 
   GlobalKey<FormState> formstate = new GlobalKey<FormState>();
+  GlobalKey<FormState> formstate1 = new GlobalKey<FormState>();
   FocusNode myFocusNode = new FocusNode();
 
   Text text3(text) {
@@ -55,6 +59,9 @@ class _EditItemState extends State<EditItem> {
         ));
   }
 
+  var quent = 1;
+  var c;
+  String colCut = "";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -166,11 +173,314 @@ class _EditItemState extends State<EditItem> {
                           controllerPro.ItemsById["extraText"],
                           controllerPro.ItemsById["itemDescription"]),
                     ),
+                    Padding(
+                      padding: const EdgeInsets.all(20),
+                      child: appText2("Edit Colors".tr),
+                    ),
+                    controllerPro.ItemsById["itemColors"] != null
+                        ? GetBuilder<ControllerProduct>(
+                            builder: (controllerPro) {
+                            return ListView.builder(
+                                itemCount: controllerPro
+                                    .ItemsById["itemColors"].length,
+                                shrinkWrap: true,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return Container(
+                                    margin: EdgeInsets.all(10),
+                                    // color: Colors.white,
+                                    decoration: boxd(),
+                                    child: ListTile(
+                                        leading: IconButton(
+                                            onPressed: () {
+                                              showDialog(
+                                                context: context,
+                                                builder:
+                                                    (BuildContext context) {
+                                                  return StatefulBuilder(
+                                                    builder:
+                                                        (BuildContext context,
+                                                            setState) {
+                                                      return AlertDialog(
+                                                        title: text1(
+                                                            "Pick Colors".tr),
+                                                        content: Column(
+                                                          children: [
+                                                            ColorPicker(
+                                                              pickerColor:
+                                                                  Colors.red,
+                                                              onColorChanged:
+                                                                  (Color
+                                                                      color) {
+                                                                print(color);
+                                                                c = color;
+                                                                colCut = color
+                                                                    .toString()
+                                                                    .substring(
+                                                                        6,
+                                                                        color.toString().length -
+                                                                            1);
+                                                                print(colCut);
+                                                                colCut = colCut
+                                                                    .toString()
+                                                                    .replaceAll(
+                                                                        "0xff",
+                                                                        "#");
+                                                              },
+                                                            ),
+                                                            Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .center,
+                                                              children: [
+                                                                appText2(
+                                                                    "Quantity per Color"
+                                                                        .tr),
+                                                                const SizedBox(
+                                                                  width: 5,
+                                                                ),
+                                                                Row(
+                                                                  children: [
+                                                                    Container(
+                                                                      width: MediaQuery.of(context)
+                                                                              .size
+                                                                              .width /
+                                                                          3,
+                                                                      height:
+                                                                          40,
+                                                                      decoration:
+                                                                          boxd(),
+                                                                      child:
+                                                                          Center(
+                                                                        child:
+                                                                            Row(
+                                                                          mainAxisAlignment:
+                                                                              MainAxisAlignment.center,
+                                                                          children: [
+                                                                            IconButton(
+                                                                                onPressed: () async {
+                                                                                  setState(() {
+                                                                                    quent = quent + 1;
+                                                                                  });
+                                                                                },
+                                                                                icon: const Icon(
+                                                                                  Icons.add,
+                                                                                  color: Colors.black,
+                                                                                )),
+                                                                            text1(quent),
+                                                                            IconButton(
+                                                                                onPressed: () async {
+                                                                                  if (quent > 1) {
+                                                                                    setState(() {
+                                                                                      quent = quent - 1;
+                                                                                    });
+                                                                                  }
+                                                                                },
+                                                                                icon: const Icon(
+                                                                                  Icons.remove,
+                                                                                  color: Colors.black,
+                                                                                ))
+                                                                          ],
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                )
+                                                              ],
+                                                            ),
+                                                          ],
+                                                        ),
+                                                        actions: <Widget>[
+                                                          FlatButton(
+                                                            child: const Text(
+                                                                "OK"),
+                                                            onPressed: () {
+                                                              edit_color(
+                                                                  context,
+                                                                  controllerPro.ItemsById[
+                                                                              "itemColors"]
+                                                                          [
+                                                                          index]
+                                                                      [
+                                                                      "itemColorId"],
+                                                                  quent,
+                                                                  colCut);
+                                                              setState(() {
+                                                                controllerPro.ItemsById[
+                                                                            "itemColors"]
+                                                                        [index][
+                                                                    "value"] = colCut;
+                                                                controllerPro.ItemsById[
+                                                                            "itemColors"]
+                                                                        [index][
+                                                                    "qty"] = quent;
+                                                              });
+
+                                                              Navigator.of(
+                                                                      context)
+                                                                  .pop();
+                                                            },
+                                                          ),
+                                                        ],
+                                                      );
+                                                    },
+                                                  );
+                                                },
+                                              );
+                                            },
+                                            icon: Icon(Icons.edit_note)),
+                                        trailing: CircleAvatar(
+                                          radius: 10,
+                                          backgroundColor: Color(int.parse(
+                                              controllerPro
+                                                  .ItemsById["itemColors"]
+                                                      [index]["value"]
+                                                  .toString()
+                                                  .replaceAll("#", "0xff"))),
+                                        ),
+                                        title: Text("Quantity \t".tr +
+                                            controllerPro
+                                                .ItemsById["itemColors"][index]
+                                                    ["qty"]
+                                                .toString())),
+                                  );
+                                });
+                          })
+                        : Container(child: Text("No Thing")),
+                    Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: appText2("Edit Sizes".tr),
+                    ),
+                    controllerPro.ItemsById["itemSizes"] != null
+                        ? ListView.builder(
+                            itemCount:
+                                controllerPro.ItemsById["itemSizes"].length,
+                            shrinkWrap: true,
+                            itemBuilder: (BuildContext context, int index) {
+                              return Container(
+                                margin: EdgeInsets.all(10),
+                                // color: Colors.white,
+                                decoration: boxd(),
+                                child: ListTile(
+                                    leading: IconButton(
+                                        onPressed: () {
+                                          var formdata =
+                                              formstate1.currentState;
+                                          if (formdata!.validate()) {
+                                            formdata.save();
+
+                                            print(
+                                                "=========valid==============");
+                                            print(ar);
+                                            print(en);
+                                            edit_size(
+                                                context,
+                                                controllerPro
+                                                        .ItemsById["itemSizes"]
+                                                    [index]["itemSizeId"],
+                                                ar,
+                                                en);
+                                            print("=========api==============");
+
+                                            // Navigator.of(context).pushNamed("picColor");
+                                          } else {
+                                            print("not validddddddddddddddd");
+                                          }
+                                        },
+                                        icon: const Icon(Icons.edit_note)),
+                                    title: Form(
+                                      key: formstate1,
+                                      child: Row(
+                                        children: [
+                                          Expanded(
+                                              child: TextFormFieldSizeAR(
+                                                  controllerPro.ItemsById[
+                                                          "itemSizes"][index]
+                                                      ["itemSizeDescAr"])),
+                                          Expanded(
+                                              child: TextFormFieldSizeEN(
+                                                  controllerPro.ItemsById[
+                                                          "itemSizes"][index]
+                                                      ["itemSizeDescEn"])),
+                                        ],
+                                      ),
+                                    )),
+                              );
+                            })
+                        : Container(child: Text("No Thing")),
+                    // Padding(
+                    //   padding: const EdgeInsets.all(20.0),
+                    //   child: appText2("Edit Images".tr),
+                    // ),
+                    // controllerPro.ItemsById["itemImages"] != null
+                    //     ? ListView.builder(
+                    //         itemCount:
+                    //             controllerPro.ItemsById["itemImages"].length,
+                    //         shrinkWrap: true,
+                    //         itemBuilder: (BuildContext context, int index) {
+                    //           return Container(
+                    //             margin: EdgeInsets.all(10),
+                    //             // color: Colors.white,
+                    //             decoration: boxd(),
+                    //             child: ListTile(
+                    //               leading: const Icon(Icons.edit_note),
+                    //               trailing: Container(
+                    //                 width: 100,
+                    //                 height: 100,
+                    //                 child: Image.network(imageAds +
+                    //                     controllerPro.ItemsById["itemImages"]
+                    //                         [index]["imageUrl"]),
+                    //               ),
+                    //             ),
+                    //           );
+                    //         })
+                    //     : Container(child: Text("No Thing")),
                   ],
                 )
               : CircularProgressIndicator();
         },
       ),
+    );
+  }
+
+  TextFormField TextFormFieldSizeEN(text) {
+    return TextFormField(
+      keyboardType: TextInputType.text,
+      textInputAction: TextInputAction.next,
+      decoration: InputDecoration(
+        hintText: text,
+      ),
+      validator: (text) {
+        if (text!.length > 40) {
+          return "can not enter bigest than 40";
+        }
+
+        return null;
+      },
+      onSaved: (string) {
+        en = string;
+        // controller.SavenameItem(string);
+      },
+    );
+  }
+
+  TextFormField TextFormFieldSizeAR(text) {
+    return TextFormField(
+      keyboardType: TextInputType.text,
+      textInputAction: TextInputAction.next,
+      decoration: InputDecoration(
+        hintText: text,
+      ),
+      validator: (text) {
+        if (text!.length > 40) {
+          return "can not enter bigest than 40";
+        }
+
+        return null;
+      },
+      onSaved: (string) {
+        ar = string;
+        // controller.SavenameItem(string);
+      },
     );
   }
 
@@ -265,7 +575,7 @@ class _EditItemState extends State<EditItem> {
   }
 
   Text text1(text) {
-    return Text(text,
+    return Text(text.toString(),
         style: const TextStyle(
             fontSize: 25, fontWeight: FontWeight.bold, fontFamily: 'majallab'));
   }

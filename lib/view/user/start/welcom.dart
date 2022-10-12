@@ -72,6 +72,13 @@ class _welcomState extends State<welcom> {
   }
 
   @override
+  void dispose() {
+    // ignore: avoid_print
+    print('Dispose used');
+    super.dispose();
+  }
+
+  @override
   void initState() {
     settingAll();
     Website();

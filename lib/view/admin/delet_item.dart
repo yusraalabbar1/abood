@@ -282,7 +282,12 @@ class _DeletItemState extends State<DeletItem> {
                                         child: ListView.builder(
                                           shrinkWrap: true,
                                           itemCount: controllerPro
-                                              .ItemsById["itemSizes"].length,
+                                                      .ItemsById["itemImages"]
+                                                      .length >
+                                                  0
+                                              ? controllerPro
+                                                  .ItemsById["itemSizes"].length
+                                              : 0,
                                           scrollDirection: Axis.horizontal,
                                           itemBuilder: (ctx, index) {
                                             return Padding(

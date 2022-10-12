@@ -149,5 +149,10 @@ const Map<String, String> ar = {
   "can\'t enter less than ": "لا يمكن أن تكون أصغر من",
   'Enter a valid Name': 'أدخل اسم صحيح',
   'Enter a valid Email': 'أدخل أيميل صحيح',
-  "characters": "أحرف"
+  "characters": "أحرف",
+  "Quantity per Color": "الكمية لكل لون",
+  "Edit Colors": "تحرير الألوان",
+  "Edit Sizes": "تحرير الأحجام",
+  "Edit Images": "تحرير الصور",
+  "Quantity": "الكمية"
 };

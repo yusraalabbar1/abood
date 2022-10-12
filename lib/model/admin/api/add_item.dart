@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 Future addItem(context, itemName, itemDescription, price, extraText,
-    List<Map<String, String>> sizes, List<Map<String, String>> colors) async {
+    List<Map<String, String>> sizes, List<Map<String, dynamic>> colors) async {
   ControllerAdmin controller = Get.put(ControllerAdmin());
   print("=========api==============");
   print(itemName);

@@ -18,7 +18,7 @@ class picColor extends StatefulWidget {
 }
 
 List<Map<String, dynamic>> myListMapColors = [];
-List<Map<String, String>> myListMapColorsFinal = [];
+List<Map<String, dynamic>> myListMapColorsFinal = [];
 
 class _picColorState extends State<picColor> {
   var c;
@@ -56,6 +56,7 @@ class _picColorState extends State<picColor> {
         ));
   }
 
+  int quent = 1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -112,6 +113,54 @@ class _picColorState extends State<picColor> {
                     print(colCut);
                   },
                 ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    text1("Quantity per Color".tr),
+                    const SizedBox(
+                      width: 5,
+                    ),
+                    Row(
+                      children: [
+                        Container(
+                          width: MediaQuery.of(context).size.width / 3,
+                          height: 40,
+                          decoration: boxd(),
+                          child: Center(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                IconButton(
+                                    onPressed: () async {
+                                      setState(() {
+                                        quent = quent + 1;
+                                      });
+                                    },
+                                    icon: const Icon(
+                                      Icons.add,
+                                      color: Colors.black,
+                                    )),
+                                text1(quent),
+                                IconButton(
+                                    onPressed: () async {
+                                      if (quent > 1) {
+                                        setState(() {
+                                          quent = quent - 1;
+                                        });
+                                      }
+                                    },
+                                    icon: const Icon(
+                                      Icons.remove,
+                                      color: Colors.black,
+                                    ))
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
+                )
               ],
             ),
           ),
@@ -146,6 +195,10 @@ class _picColorState extends State<picColor> {
                                   borderRadius: const BorderRadius.all(
                                       Radius.elliptical(20.0, 20.0)),
                                 ),
+                                child: Center(
+                                  child: text1(
+                                      myListMapColors[index]["Qty"].toString()),
+                                ),
                               ),
                             ),
                             Positioned(
@@ -157,6 +210,7 @@ class _picColorState extends State<picColor> {
                                     print(index);
                                     print(myListMapColors);
                                     myListMapColors.removeAt(index);
+
                                     myListMapColorsFinal.removeAt(index);
                                     print(myListMapColors);
                                   });
@@ -181,6 +235,27 @@ class _picColorState extends State<picColor> {
     );
   }
 
+  Text text1(text) {
+    return Text(text.toString(),
+        style: const TextStyle(
+            fontSize: 25, fontWeight: FontWeight.bold, fontFamily: 'majallab'));
+  }
+
+  BoxDecoration boxd() {
+    return BoxDecoration(
+      color: Colors.white,
+      borderRadius: BorderRadius.circular(30), //border corner radius
+      boxShadow: [
+        BoxShadow(
+          color: Colors.grey.withOpacity(0.2), //color of shadow
+          spreadRadius: 5,
+          blurRadius: 7,
+          offset: Offset(0, 2),
+        ),
+      ],
+    );
+  }
+
   Widget ButtonRegister1color(c2, c1) {
     return Container(
       width: 200,
@@ -188,10 +263,12 @@ class _picColorState extends State<picColor> {
       child: RaisedButton(
         onPressed: () {
           setState(() {
-            myListMapColors.add({"Value": c});
+            myListMapColors.add({"Value": c, "Qty": quent});
             print(myListMapColors);
-            myListMapColorsFinal
-                .add({"Value": colCut.toString().replaceAll("0xff", "#")});
+            myListMapColorsFinal.add({
+              "Value": colCut.toString().replaceAll("0xff", "#"),
+              "Qty": quent
+            });
             print(myListMapColorsFinal);
           });
         },

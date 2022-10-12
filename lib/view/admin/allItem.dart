@@ -207,10 +207,44 @@ class _AllItemsStoreState extends State<AllItemsStore> {
                                               child: Padding(
                                                 padding: const EdgeInsets.only(
                                                     top: 5),
-                                                child: Column(
+                                                child: Row(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.end,
                                                   mainAxisAlignment:
                                                       MainAxisAlignment.center,
                                                   children: [
+                                                    CircleAvatar(
+                                                      backgroundColor:
+                                                          Colors.black54,
+                                                      child: Center(
+                                                        child: IconButton(
+                                                            icon: const Icon(
+                                                              Icons
+                                                                  .edit_calendar,
+                                                              color:
+                                                                  Colors.white,
+                                                              size: 20,
+                                                            ),
+                                                            onPressed:
+                                                                () async {
+                                                              setState(() {
+                                                                i = 1;
+                                                                // deletItemApi();
+                                                                Navigator.push(
+                                                                  context,
+                                                                  MaterialPageRoute(
+                                                                    builder: (context) =>
+                                                                        EditItem(
+                                                                            id: passenger.itemId),
+                                                                  ),
+                                                                );
+                                                              });
+                                                            }),
+                                                      ),
+                                                    ),
+                                                    SizedBox(
+                                                      width: 10,
+                                                    ),
                                                     CircleAvatar(
                                                       backgroundColor:
                                                           Colors.black54,
@@ -273,35 +307,6 @@ class _AllItemsStoreState extends State<AllItemsStore> {
                                                     ),
                                                     SizedBox(
                                                       width: 10,
-                                                    ),
-                                                    CircleAvatar(
-                                                      backgroundColor:
-                                                          Colors.black54,
-                                                      child: Center(
-                                                        child: IconButton(
-                                                            icon: const Icon(
-                                                              Icons
-                                                                  .edit_calendar,
-                                                              color:
-                                                                  Colors.white,
-                                                              size: 20,
-                                                            ),
-                                                            onPressed:
-                                                                () async {
-                                                              setState(() {
-                                                                i = 1;
-                                                                // deletItemApi();
-                                                                Navigator.push(
-                                                                  context,
-                                                                  MaterialPageRoute(
-                                                                    builder: (context) =>
-                                                                        EditItem(
-                                                                            id: passenger.itemId),
-                                                                  ),
-                                                                );
-                                                              });
-                                                            }),
-                                                      ),
                                                     ),
                                                   ],
                                                 ),

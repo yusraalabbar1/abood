@@ -29,13 +29,22 @@ class _storeByIdSectionState extends State<storeByIdSection> {
 
   Future<bool> getPassengerData({bool isRefresh = false}) async {
     print("=====sub section id======");
-
+    var c1, c2;
     print(widget.id);
     print("===== section id======");
 
     print(widget.idd);
-    var c1 = int.parse(widget.idd.toString());
-    var c2 = int.parse(widget.id.toString());
+    if (widget.idd == null) {
+      c1 = 0;
+    } else {
+      c1 = int.parse(widget.idd.toString());
+    }
+    if (widget.idd == null) {
+      c2 = 0;
+    } else {
+      var c2 = int.parse(widget.id.toString());
+    }
+
     if (isRefresh) {
       currentPage = 0;
       // print("1");

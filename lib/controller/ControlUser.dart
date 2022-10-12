@@ -1,3 +1,5 @@
+import 'package:abood/view/user/start/welcom.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class Homecontroller extends GetxController {
@@ -25,6 +27,12 @@ class Homecontroller extends GetxController {
   List<Map<dynamic, dynamic>> allSetting = [];
   var face, whats, site;
   var about, term, privec, prot, idCity, page = 0;
+  StatefulWidget pageRout = const welcom();
+  ChangePage(c) {
+    pageRout = c;
+    update();
+  }
+
   SavePage(c) {
     page = c;
     update();

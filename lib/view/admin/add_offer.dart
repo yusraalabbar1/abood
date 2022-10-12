@@ -176,8 +176,10 @@ class _AddOfferState extends State<AddOffer> {
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 30),
-                    child: ButtonRegister2(
-                        Colors.black, Colors.white, "Add Offer".tr, widget.id),
+                    child: Center(
+                      child: ButtonRegister2(Colors.black, Colors.white,
+                          "Add Offer".tr, widget.id),
+                    ),
                   ),
                 ],
               ),
