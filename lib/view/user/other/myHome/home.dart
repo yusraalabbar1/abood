@@ -264,12 +264,22 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                     // if (guest == true) {
                                     //   diaGuest(context);
                                     // } else {
+                                    // Navigator.push(
+                                    //   context,
+                                    //   MaterialPageRoute(
+                                    //     builder: (context) => storeByIdSection(
+                                    //         id: passenger.id,
+                                    //         idd: passenger.sectionId),
+                                    //   ),
+                                    // );
+                                    controller.SavrIdSec(passenger.sectionId);
+                                    controller.SaveIdSubSec(passenger.id);
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
                                         builder: (context) => storeByIdSection(
-                                            id: passenger.id,
-                                            idd: passenger.sectionId),
+                                            idSec: passenger.sectionId,
+                                            idSub: passenger.id),
                                       ),
                                     );
                                     // }

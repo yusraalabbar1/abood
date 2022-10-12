@@ -2,11 +2,12 @@ import 'dart:convert';
 
 import 'package:abood/model/admin/dialog/dialog.dart';
 import 'package:abood/model/admin/jsonModel/onlyItemDelete.dart';
+import 'package:abood/model/user/stor/items/get_items_id.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
-edit_color(context, id, qty, value) async {
+edit_color(context, id, qty, value, idd) async {
   print(id);
   print(qty);
   print(value);
@@ -25,8 +26,9 @@ edit_color(context, id, qty, value) async {
   http.StreamedResponse response = await request.send();
 
   if (response.statusCode == 200) {
-    print(await response.stream.bytesToString());
+    // print(await response.stream.bytesToString());
     // await myDialog2(context, c.message);
+    getItemsIdApi(int.parse(idd.toString()));
   } else {
     print(response.reasonPhrase);
   }

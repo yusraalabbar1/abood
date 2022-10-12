@@ -223,10 +223,12 @@ class _categoryState extends State<category>
                             padding: const EdgeInsets.all(8.0),
                             child: InkWell(
                               onTap: () async {
-                                print("=====section id======");
+                                print(
+                                    "=====section id======++++++++++++++++++++++++");
                                 print(passenger.sectionId);
-                                print(passenger.descAr);
-                                print("=====sub section id======");
+                                controller.SavrIdSec(passenger.sectionId);
+                                controller.SaveIdSubSec(passenger.id);
+                                // print(sub);
                                 print(passenger.id);
                                 // if (guest == true) {
                                 //   diaGuest(context);
@@ -235,8 +237,9 @@ class _categoryState extends State<category>
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => storeByIdSection(
-                                        id: passenger.id,
-                                        idd: passenger.sectionId),
+                                        idSec: passenger.sectionId,
+                                        idSub:
+                                            int.parse(passenger.id.toString())),
                                   ),
                                 );
                                 // }

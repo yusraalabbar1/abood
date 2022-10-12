@@ -113,16 +113,16 @@ class _myOrdersState extends State<myOrders> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            rowInfo("Order No: ", passenger.id.toString()),
+                            rowInfo("Order No: ".tr, passenger.id.toString()),
                             rowInfoStatus(
-                                "Status: ",
+                                "Status: ".tr,
                                 passenger.statusDesc.toString(),
                                 passenger.statusId),
                           ],
                         ),
-                        rowInfo(
-                            "Date & Time: ", passenger.requestDate.toString()),
-                        rowInfo("Total Price: ", passenger.total.toString()),
+                        rowInfo("Date & Time: ".tr,
+                            passenger.requestDate.toString()),
+                        rowInfo("Total Price: ".tr, passenger.total.toString()),
                         SizedBox(
                           height: 130,
                           child: Column(
@@ -158,7 +158,7 @@ class _myOrdersState extends State<myOrders> {
                                       );
                                     }),
                               ),
-                              rowInfo("Products No: ",
+                              rowInfo("Products No: ".tr,
                                   passenger.details!.length.toString()),
                             ],
                           ),
@@ -177,9 +177,9 @@ class _myOrdersState extends State<myOrders> {
                             });
                           },
                           child: i != passenger.id
-                              ? rowLink("Order Details")
+                              ? rowLink("Order Details".tr)
                               : rowLinkdeta(
-                                  "Order Details",
+                                  "Order Details".tr,
                                   passenger.fullName,
                                   passenger.mobileNo,
                                   passenger.area,
@@ -253,7 +253,7 @@ class _myOrdersState extends State<myOrders> {
             const SizedBox(
               width: 10,
             ),
-            Textst1("Address: "),
+            Textst1("Address: ".tr),
           ],
         ),
         Padding(

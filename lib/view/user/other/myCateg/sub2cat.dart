@@ -228,7 +228,7 @@ class _Sub2catState extends State<Sub2cat> {
                     return InkWell(
                         onTap: () async {
                           print(passenger.itemId);
-                          await getItemsIdApi(passenger.itemId);
+                          // await getItemsIdApi(passenger.itemId);
                           // Navigator.of(context)
                           //     .pushNamed("particularProducte");
                           print(passenger.itemId);

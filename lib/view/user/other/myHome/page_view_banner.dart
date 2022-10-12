@@ -105,8 +105,8 @@ Widget slider(context, images, pagePosition, active) {
               )
             : diaGuest(context);
       } else if (images[pagePosition]["target"] == "ITEM") {
-        await getItemsIdApi(
-            int.parse(images[pagePosition]["value"].toString()));
+        // await getItemsIdApi(
+        //     int.parse(images[pagePosition]["value"].toString()));
         Navigator.push(
           context,
           MaterialPageRoute(

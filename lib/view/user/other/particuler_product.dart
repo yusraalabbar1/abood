@@ -43,7 +43,7 @@ class _particulerProductState extends State<particulerProduct> {
     super.initState();
     print("====================");
     print(controller.ItemsById["itemImages"]);
-    getItemsIdApi(66);
+    // getItemsIdApi(66);
   }
 
   Future<void> share() async {
@@ -579,7 +579,7 @@ class _particulerProductState extends State<particulerProduct> {
                     )
                   ],
                 )
-              : Container();
+              : Center(child: CircularProgressIndicator());
         },
       ),
     );

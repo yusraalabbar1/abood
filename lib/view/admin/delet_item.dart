@@ -176,14 +176,7 @@ class _DeletItemState extends State<DeletItem> {
                                                     left: 5),
                                                 child: CircleAvatar(
                                                   radius: 10,
-                                                  backgroundColor: Color(
-                                                      int.parse(controllerPro
-                                                          .ItemsById[
-                                                              "itemColors"]
-                                                              [index]["value"]
-                                                          .toString()
-                                                          .replaceAll(
-                                                              "#", "0xff"))),
+                                                  backgroundColor: Colors.red,
                                                 ));
                                           },
                                         ),

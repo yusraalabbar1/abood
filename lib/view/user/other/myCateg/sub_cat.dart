@@ -122,7 +122,7 @@ class _SubCatState extends State<SubCat> {
                       context,
                       MaterialPageRoute(
                         builder: (context) => storeByIdSection(
-                            id: passenger.id, idd: passenger.sectionId),
+                            idSec: passenger.sectionId, idSub: sub),
                       ),
                     );
                   },

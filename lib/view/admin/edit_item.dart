@@ -303,17 +303,8 @@ class _EditItemState extends State<EditItem> {
                                                                       [
                                                                       "itemColorId"],
                                                                   quent,
-                                                                  colCut);
-                                                              setState(() {
-                                                                controllerPro.ItemsById[
-                                                                            "itemColors"]
-                                                                        [index][
-                                                                    "value"] = colCut;
-                                                                controllerPro.ItemsById[
-                                                                            "itemColors"]
-                                                                        [index][
-                                                                    "qty"] = quent;
-                                                              });
+                                                                  colCut,
+                                                                  widget.id);
 
                                                               Navigator.of(
                                                                       context)

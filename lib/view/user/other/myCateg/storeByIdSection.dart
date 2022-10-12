@@ -1,4 +1,5 @@
 import 'package:abood/constant/urls.dart';
+import 'package:abood/controller/ControlUser.dart';
 import 'package:abood/model/user/stor/stor_by_section_sub/stor_by_section_sub_model.dart';
 import 'package:abood/view/user/other/myCateg/sub2cat.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -8,9 +9,9 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:http/http.dart' as http;
 
 class storeByIdSection extends StatefulWidget {
-  final id;
-  final idd;
-  const storeByIdSection({super.key, this.id, this.idd});
+  final idSec;
+  final idSub;
+  const storeByIdSection({super.key, this.idSec, this.idSub});
 
   @override
   State<storeByIdSection> createState() => _storeByIdSectionState();
@@ -27,33 +28,31 @@ class _storeByIdSectionState extends State<storeByIdSection> {
       RefreshController(initialRefresh: true);
   /////////////////////////////////////
 
+  Homecontroller controller = Get.put(Homecontroller());
   Future<bool> getPassengerData({bool isRefresh = false}) async {
     print("=====sub section id======");
-    var c1, c2;
-    print(widget.id);
-    print("===== section id======");
-
-    print(widget.idd);
-    if (widget.idd == null) {
+    var c1 = controller.idSec, c2 = controller.idSubSec;
+    //////////////////////////
+    if (c1 == null) {
       c1 = 0;
     } else {
-      c1 = int.parse(widget.idd.toString());
+      c1 = int.parse(c1 = controller.idSec.toString());
     }
-    if (widget.idd == null) {
+    ///////////////////////////////
+    if (c2 == null) {
       c2 = 0;
     } else {
-      var c2 = int.parse(widget.id.toString());
+      var c2 = int.parse(controller.idSubSec.toString());
     }
-
+    print("++++++++++++++++++++++++++");
+    print(c2);
+    print(c1);
+////////////////////////////
     if (isRefresh) {
       currentPage = 0;
-      // print("1");
     } else {
-      // print("============================");
       print(totalPages);
-      // print("============================");
       if (currentPage > totalPages) {
-        // print("2");
         refreshController.loadNoData();
         return false;
       }

@@ -154,5 +154,12 @@ const Map<String, String> ar = {
   "Edit Colors": "تحرير الألوان",
   "Edit Sizes": "تحرير الأحجام",
   "Edit Images": "تحرير الصور",
-  "Quantity": "الكمية"
+  "Quantity": "الكمية",
+  "Order No: ": "رقم الطلب:",
+  "Date & Time: ": "التاريخ والوقت:",
+  "Total Price: ": "السعر الكلي: ",
+  "Products No: ": "رقم المنتجات",
+  "Order Details": "تفاصيل الطلب",
+  "Address: ": "العنوان",
+  "Status: ": "حالة: "
 };
