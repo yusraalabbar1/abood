@@ -3,6 +3,7 @@ import 'package:abood/constant/colors.dart';
 import 'package:abood/constant/urls.dart';
 import 'package:abood/controller/ControlUser.dart';
 import 'package:abood/model/user/auth/login/json/loginModel.dart';
+import 'package:abood/model/user/notification/notification_user.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -60,7 +61,7 @@ Future loginApi(context, mobile, password) async {
       /////////////////////////////////////////////
       preferences.setBool("isLogin", true);
       controller.SaveaisLogin(preferences.getBool('isLogin'));
-
+      notificationApiUser();
       //diaSucc(context, c);
     } else {
       print(c.message);

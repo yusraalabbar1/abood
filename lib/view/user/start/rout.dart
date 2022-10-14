@@ -66,6 +66,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   Homecontroller controller = Get.put(Homecontroller());
+  StatefulWidget pageRout = const welcom();
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
@@ -73,10 +74,15 @@ class _MyAppState extends State<MyApp> {
       onGenerateRoute: (RouteSettings settings) {
         final routName = settings.name;
         if (routName != null && routName.contains('/product')) {
-          controller.ChangePage(const particulerProduct(id: 66));
+          print("))))))))))))))))))))))))))))))))");
+          print(routName);
+          print(routName.split('=').last);
+          setState(() {
+            pageRout = particulerProduct(id: 66);
+          });
         }
       },
-      home: controller.pageRout,
+      home: pageRout,
       theme: CustomTheme.lightTheme,
       routes: {
         "welcom": ((context) => const welcom()),

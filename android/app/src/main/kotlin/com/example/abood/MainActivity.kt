@@ -1,4 +1,4 @@
-package com.example.abood
+package com.aqdeveloper.abood
 
 import io.flutter.embedding.android.FlutterActivity
 

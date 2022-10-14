@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "811081089987",
+    "project_id": "aboodstore-67c07",
+    "storage_bucket": "aboodstore-67c07.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:811081089987:android:a6f6065f5da5f28a53b376",
+        "android_client_info": {
+          "package_name": "com.aqdeveloper.abood"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "811081089987-1ijaksq6f6l0pf08b4ap7d5m0tqdeup1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxt3mSXs8XIntJNzVqoXw_MOpiACK2MYA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "811081089987-1ijaksq6f6l0pf08b4ap7d5m0tqdeup1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -3,6 +3,8 @@ import 'package:abood/view/user/auth/start_account.dart';
 import 'package:abood/view/user/other/widget/dialog_guest.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class notification extends StatefulWidget {
   notification({Key? key}) : super(key: key);
@@ -21,6 +23,45 @@ class _notificationState extends State<notification> {
         style: const TextStyle(
             fontSize: 25, fontWeight: FontWeight.bold, fontFamily: 'majallab'));
   }
+
+  // List<StorSectionData> passengers = [];
+  // final RefreshController refreshController =
+  //     RefreshController(initialRefresh: true);
+  // /////////////////////////////////////
+  // Future<bool> getPassengerData({bool isRefresh = false}) async {
+  //   if (isRefresh) {
+  //     currentPage = 0;
+  //   } else {
+  //     print(totalPages);
+  //     if (currentPage > totalPages) {
+  //       refreshController.loadNoData();
+  //       return false;
+  //     }
+  //   }
+  //   var request = http.Request(
+  //       'GET',
+  //       Uri.parse(baseURL +
+  //           '/api/store/sectionId/0/subsectionId/0/pageIndex/$currentPage'));
+
+  //   final response = await request.send();
+  //   var res = await http.Response.fromStream(response);
+  //   if (response.statusCode == 200) {
+  //     final result = StorSectionFromJson(res.body);
+
+  //     if (isRefresh) {
+  //       passengers = result.data!;
+  //     } else {
+  //       passengers.addAll(result.data!);
+  //     }
+  //     currentPage++;
+  //     totalPages = 0;
+  //     print(res.body);
+  //     setState(() {});
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
