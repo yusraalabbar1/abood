@@ -55,6 +55,7 @@ class _particulerProductState extends State<particulerProduct> {
   }
 
   ControllerProduct controller = Get.put(ControllerProduct());
+  Homecontroller controllerPro = Get.put(Homecontroller());
   List<Color> colors = [Colors.blue, Colors.green, Colors.yellow, Colors.pink];
   String select = '30';
   Color _color = Colors.blue;
@@ -137,57 +138,16 @@ class _particulerProductState extends State<particulerProduct> {
         actions: [
           IconButton(
               onPressed: () async {
-                if (guest == true) {
-                  diaGuest(context);
-                } else {
-                  print(int.parse(widget.id.toString()));
-                  print(sizescelect);
-                  print(colorselect);
-                  if (sizescelect != 0 && colorselect != 0) {
-                    await addCartApi(context, int.parse(widget.id.toString()),
-                        sizescelect, colorselect);
-                    await myCartApi();
-                  } else if (sizescelect == 0 && colorselect != 0) {
-                    diaFaildCart(context, "Choose Size");
-                  } else if (sizescelect != 0 && colorselect == 0) {
-                    diaFaildCart(context, "Choose Color");
-                  } else if (sizescelect == 0 && colorselect == 0) {
-                    diaFaildCart(context, "Choose Size & Color");
-                  }
-                }
+                Navigator.of(context).pushNamed("MyCart");
               },
               icon: const Icon(Icons.shopping_bag)),
           IconButton(
               onPressed: () async {
-                if (guest == true) {
-                  diaGuest(context);
-                } else {
-                  if (controller.ItemsById["isWish"] == false) {
-                    //add and change color
-                    setState(() {
-                      // i = 1;
-                      controller.ItemsById["isWish"] = true;
-                    });
-                    await addLike(
-                        int.parse(widget.id.toString()), controller1.id);
-                    await myLikeApi(controller1.id);
-                  } else if (controller.ItemsById["isWish"] == true) {
-                    //delete
-                    setState(() {
-                      // i = 0;
-                      controller.ItemsById["isWish"] = false;
-                    });
-                    await deleteLike(
-                        controller1.id, int.parse(widget.id.toString()));
-                    await myLikeApi(controller1.id);
-                  }
-                }
+                Navigator.of(context).pushNamed("myLike");
               },
               icon: Icon(
-                Icons.favorite_border,
-                color: controller.ItemsById["isWish"] == true
-                    ? Colors.black
-                    : Colors.grey,
+                Icons.favorite,
+                color: Colors.black,
                 size: 30,
               ))
         ],

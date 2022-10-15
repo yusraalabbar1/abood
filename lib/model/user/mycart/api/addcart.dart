@@ -11,6 +11,7 @@ import 'package:http/http.dart' as http;
 
 addCartApi(context, itemId, itemSizeId, itemColorId) async {
   Homecontroller controllerPro = Get.put(Homecontroller());
+  print(controllerPro.id);
   var headers = {'Content-Type': 'application/json'};
   var request = http.Request('POST', Uri.parse(baseURL + '/api/cart/add'));
   request.body = json.encode({

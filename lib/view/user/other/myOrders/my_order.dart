@@ -1,4 +1,5 @@
 import 'package:abood/constant/urls.dart';
+import 'package:abood/controller/controlProduct.dart';
 import 'package:abood/model/user/myOrder/order_model.dart';
 import 'package:abood/view/user/other/myOrders/details.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -71,6 +72,7 @@ class _myOrdersState extends State<myOrders> {
 
   @override
   Widget build(BuildContext context) {
+    ControllerProduct controllerPro = Get.put(ControllerProduct());
     return Scaffold(
       body: SmartRefresher(
         controller: refreshController,
@@ -109,17 +111,33 @@ class _myOrdersState extends State<myOrders> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            rowInfo("Order No: ".tr, passenger.id.toString()),
-                            rowInfoStatus(
-                                "Status: ".tr,
-                                passenger.statusDesc.toString(),
-                                passenger.statusId),
-                          ],
-                        ),
+                        controllerPro.language == "en"
+                            ? Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  rowInfo("Store Order: ".tr,
+                                      passenger.StoreDescEn.toString()),
+                                  rowInfoStatus(
+                                      "Status: ".tr,
+                                      passenger.statusDesc.toString(),
+                                      passenger.statusId),
+                                ],
+                              )
+                            : Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  rowInfo("Store Order: ".tr,
+                                      passenger.StoreDescAr.toString()),
+                                  rowInfoStatus(
+                                      "Status: ".tr,
+                                      passenger.statusDesc.toString(),
+                                      passenger.statusId),
+                                ],
+                              ),
                         rowInfo("Date & Time: ".tr,
                             passenger.requestDate.toString()),
                         rowInfo("Total Price: ".tr, passenger.total.toString()),

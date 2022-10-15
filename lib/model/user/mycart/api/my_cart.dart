@@ -7,6 +7,7 @@ import 'package:abood/model/user/mycart/api/check_coupon.dart';
 import 'package:abood/model/user/mycart/api/update_check.dart';
 import 'package:abood/model/user/mycart/json/my_cart_model.dart';
 import 'package:abood/model/user/mycart/json/object_payment.dart';
+import 'package:abood/view/user/other/myHome/allStore.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -76,12 +77,19 @@ myCartApi() async {
 
       for (var j = 0; j < stor.length; j++) {
         for (var i = 0; i < storPrice.length; i++) {
-          if (i == j) {
-            map3 = {stor[i], storPrice[j]}.toList().asMap();
-            print(map3);
-            thirdMap.add(map3);
+          for (var k = 0; k < nameStors.length; k++) {
+            if (i == j && stor[j] == nameStors[k]["id"]) {
+              map3 = {
+                stor[i],
+                storPrice[j],
+                nameStors[k]["nameEn"],
+                nameStors[k]["nameAr"]
+              }.toList().asMap();
+              print(map3);
+              thirdMap.add(map3);
 
-            break;
+              break;
+            }
           }
         }
       }

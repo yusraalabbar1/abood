@@ -77,6 +77,7 @@ class _MyAppState extends State<MyApp> {
           print("))))))))))))))))))))))))))))))))");
           print(routName);
           print(routName.split('=').last);
+
           setState(() {
             pageRout = particulerProduct(id: 66);
           });

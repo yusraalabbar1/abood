@@ -1,5 +1,6 @@
 import 'package:abood/controller/controlProduct.dart';
 import 'package:abood/model/user/mycart/api/check_coupon.dart';
+import 'package:abood/model/user/mycart/dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,6 +14,7 @@ class AddCopon extends StatefulWidget {
 
 class _AddCoponState extends State<AddCopon> {
   var newTotal;
+  var copon = "";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,35 +33,90 @@ class _AddCoponState extends State<AddCopon> {
                   shrinkWrap: true,
                   itemCount: controller.thirdMap.length,
                   itemBuilder: (BuildContext context, int index) {
-                    return ListTile(
-                        trailing: text2("Total: ".tr +
-                            controller.thirdMap[index][1].toString() +
-                            "JD"),
-                        title: Container(
-                          decoration: boxd(),
-                          child: TextFormField(
-                            // keyboardType: TextInputType.text,
-                            textInputAction: TextInputAction.next,
-                            decoration: InputDecoration(
-                              hintText: newTotal == null
-                                  ? "Add Coupon Code".tr +
-                                      controller.thirdMap[index][0].toString()
-                                  : "Add Coupon Code".tr + newTotal.toString(),
-                            ),
-                            onFieldSubmitted: (Value) {
-                              setState(() {
-                                print(Value);
-                                newTotal = checkCoponApi(
-                                    context,
-                                    Value,
-                                    controller.thirdMap[index][0],
-                                    controller.thirdMap[index][1]);
-                                print("============newTotal==========");
-                                print(newTotal);
-                              });
-                            },
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Card(
+                        elevation: 5,
+                        child: Container(
+                          padding: const EdgeInsets.all(8.0),
+                          color: Colors.white,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 15),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    controller.language == "en"
+                                        ? text2(controller.thirdMap[index][2]
+                                            .toString())
+                                        : text2(controller.thirdMap[index][3]
+                                            .toString()),
+                                    text2("Total: ".tr +
+                                        controller.thirdMap[index][1]
+                                            .toString() +
+                                        "JD"),
+                                  ],
+                                ),
+                              ),
+                              ListTile(
+                                  trailing: Container(
+                                    decoration: boxd(),
+                                    child: IconButton(
+                                        onPressed: () {
+                                          if (controller.thirdMap[index][4] !=
+                                              1) {
+                                            setState(() {
+                                              newTotal = checkCoponApi(
+                                                  context,
+                                                  copon,
+                                                  controller.thirdMap[index][0],
+                                                  controller.thirdMap[index]
+                                                      [1]);
+                                              print(
+                                                  "============newTotal==========");
+                                              print(newTotal);
+                                            });
+                                          } else {
+                                            diaFaildCart(
+                                                context, "Using Coupon");
+                                          }
+                                        },
+                                        icon: Icon(Icons.send)),
+                                  ),
+                                  title: Container(
+                                    decoration: boxd(),
+                                    child: TextFormField(
+                                      // keyboardType: TextInputType.text,
+                                      textInputAction: TextInputAction.next,
+                                      decoration: InputDecoration(
+                                          hintText: "Add Coupon Code".tr),
+                                      onChanged: (Value) {
+                                        copon = Value;
+                                      },
+                                      onFieldSubmitted: (Value) {
+                                        setState(() {
+                                          print(Value);
+                                          newTotal = checkCoponApi(
+                                              context,
+                                              Value,
+                                              controller.thirdMap[index][0],
+                                              controller.thirdMap[index][1]);
+                                          print(
+                                              "============newTotal==========");
+                                          print(newTotal);
+                                        });
+                                      },
+                                    ),
+                                  )),
+                            ],
                           ),
-                        ));
+                        ),
+                      ),
+                    );
                   }),
             ),
             Row(

@@ -263,6 +263,18 @@ class _CompletCartState extends State<CompletCart> {
                           color: Colors.white),
                     )),
               ),
+              FlatButton(
+                  color: Colors.black,
+                  onPressed: () async {
+                    Navigator.of(context).pushReplacementNamed("homePage");
+                  },
+                  child: Text(
+                    "Home".tr,
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 14,
+                        color: Colors.white),
+                  )),
               Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: GetBuilder<ControllerProduct>(builder: (controller) {

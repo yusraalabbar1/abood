@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:abood/constant/urls.dart';
 import 'package:abood/controller/controlProduct.dart';
+import 'package:abood/model/user/mycart/api/my_cart.dart';
 import 'package:abood/model/user/stor/stor_by_section_sub/stor_by_section_sub_model.dart';
 import 'package:abood/model/user/stor/stor_by_userId_main_page/stor_by_userId_main_page_model.dart';
 import 'package:abood/view/user/auth/start_account.dart';
@@ -18,6 +21,8 @@ class allStore extends StatefulWidget {
   @override
   State<allStore> createState() => _allStoreState();
 }
+
+List<Map<dynamic, dynamic>> nameStors = [];
 
 class _allStoreState extends State<allStore> {
   ControllerProduct controllerPro = Get.put(ControllerProduct());
@@ -52,6 +57,8 @@ class _allStoreState extends State<allStore> {
 
     final response = await request.send();
     var res = await http.Response.fromStream(response);
+
+    StorSection c = StorSection.fromJson(jsonDecode(res.body));
     if (response.statusCode == 200) {
       final result = StorSectionFromJson(res.body);
 
@@ -60,9 +67,17 @@ class _allStoreState extends State<allStore> {
       } else {
         passengers.addAll(result.data!);
       }
+      for (var i = 0; i < c.data!.length; i++) {
+        nameStors.add({
+          "id": c.data![i].id,
+          "nameEn": c.data![i].descEn,
+          "nameAr": c.data![i].descAr
+        });
+      }
       currentPage++;
       totalPages = 0;
       print(res.body);
+      myCartApi();
       setState(() {});
       return true;
     } else {

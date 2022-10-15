@@ -39,6 +39,8 @@ class DatumOrders {
   DatumOrders({
     this.id,
     this.storeId,
+    this.StoreDescEn,
+    this.StoreDescAr,
     this.userId,
     this.requestNo,
     this.requestDate,
@@ -60,6 +62,8 @@ class DatumOrders {
   int? id;
   int? storeId;
   int? userId;
+  String? StoreDescEn;
+  String? StoreDescAr;
   String? requestNo;
   DateTime? requestDate;
   String? couponCode;
@@ -80,6 +84,8 @@ class DatumOrders {
         id: json["id"],
         storeId: json["storeId"],
         userId: json["userId"],
+        StoreDescEn: json["StoreDescEn"],
+        StoreDescAr: json["StoreDescAr"],
         requestNo: json["requestNo"],
         requestDate: DateTime.parse(json["requestDate"]),
         couponCode: json["couponCode"],
@@ -102,6 +108,8 @@ class DatumOrders {
         "id": id,
         "storeId": storeId,
         "userId": userId,
+        "StoreDescEn": StoreDescEn,
+        "StoreDescAr": StoreDescAr,
         "requestNo": requestNo,
         "requestDate": requestDate!.toIso8601String(),
         "couponCode": couponCode,

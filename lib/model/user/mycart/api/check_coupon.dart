@@ -5,6 +5,7 @@ import 'package:abood/controller/controlProduct.dart';
 import 'package:abood/model/user/mycart/api/my_cart.dart';
 import 'package:abood/model/user/mycart/dialog.dart';
 import 'package:abood/model/user/mycart/json/check_copon_api.dart';
+import 'package:abood/view/user/other/myHome/allStore.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -55,8 +56,18 @@ checkCoponApi(context, CouponCode, StoreId, Total) async {
         print("========edit total===========");
         for (var i = 0; i < controllerPro.thirdMap.length; i++) {
           if (controllerPro.thirdMap[i][0] == int.parse(StoreId.toString())) {
-            print(controllerPro.thirdMap[i][1]);
-            controllerPro.thirdMap[i] = {0: StoreId, 1: c.data!.netTotal};
+            for (var k = 0; k < nameStors.length; k++) {
+              if (controllerPro.thirdMap[i][0] == nameStors[k]["id"]) {
+                print(controllerPro.thirdMap[i][1]);
+                controllerPro.thirdMap[i] = {
+                  0: StoreId,
+                  1: c.data!.netTotal,
+                  2: nameStors[k]["nameEn"],
+                  3: nameStors[k]["nameAr"],
+                  4: 1
+                };
+              }
+            }
           }
         }
         print(controllerPro.thirdMap);
