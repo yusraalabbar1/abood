@@ -9,6 +9,7 @@ import 'package:abood/model/user/auth/signup/api/generate_city.dart';
 import 'package:abood/model/user/auth/signup/api/generate_country.dart';
 import 'package:abood/model/user/mycart/api/my_cart.dart';
 import 'package:abood/model/user/mylike/api/mylike.dart';
+import 'package:abood/model/user/notification/number_notifapi.dart';
 import 'package:abood/model/user/other/banner/banneAdsrApi.dart';
 import 'package:abood/model/user/other/banner/bannerMainApi.dart';
 import 'package:abood/model/user/product/category/category.dart';
@@ -55,13 +56,16 @@ class _welcomState extends State<welcom> {
     controllerPro.SaveLang(preferences.getString("lang"));
     // controller.SaveLang(preferences.getString("lang"));
     if (preferences.getBool("isLogin") == true) {
+      guest = false;
       if (preferences.getInt("userType") == 1) {
+        await numberNotificationApi();
         await myLikeApi(controller.id);
         await myCartApi();
         await cityGen();
         print(controller.id);
         Navigator.of(context).pushReplacementNamed("homePage");
       } else if (preferences.getInt("userType") == 2) {
+        await numberNotificationApi();
         Navigator.of(context).pushReplacementNamed("MainScreenStor");
       } else {
         print("no thing");

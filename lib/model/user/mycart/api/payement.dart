@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:abood/constant/urls.dart';
 import 'package:abood/controller/ControlUser.dart';
 import 'package:abood/controller/controlProduct.dart';
+import 'package:abood/model/user/mycart/dialog.dart';
 import 'package:abood/model/user/mycart/json/addcart_model.dart';
 import 'package:abood/model/user/mycart/json/my_cart_model.dart';
 import 'package:abood/model/user/mycart/json/object_payment.dart';
@@ -12,7 +13,7 @@ import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:http/http.dart' as http;
 
-paymentApi(name, mobile, cityId, area, street, flat, listMap) async {
+paymentApi(context, name, mobile, cityId, area, street, flat, listMap) async {
   Homecontroller controller = Get.put(Homecontroller());
   print(name);
   print(mobile);
@@ -41,9 +42,16 @@ paymentApi(name, mobile, cityId, area, street, flat, listMap) async {
 
   http.StreamedResponse response = await request.send();
 
+  var res = await http.Response.fromStream(response);
+
+  MyPymentModel c = MyPymentModel.fromJson(jsonDecode(res.body));
   if (response.statusCode == 200) {
-    print(await response.stream.bytesToString());
+    if (c.isSuccess == true) {
+      diaSuccCart(context, "Success Payment");
+    } else {
+      diaFaildCart(context, "Error Payment");
+    }
   } else {
-    print(response.reasonPhrase);
+    diaFaildCart(context, "Error");
   }
 }

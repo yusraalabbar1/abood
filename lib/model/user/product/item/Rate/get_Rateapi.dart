@@ -24,12 +24,12 @@ addRate(context, idItem, idUser, rate, comment) async {
   if (response.statusCode == 200) {
     if (c.isSuccess == true) {
       // diaSuccRate(context, c);
-      for (var i = 0; i < c.data!.length; i++) {
-        myRate.add(c.data![i].toJson());
-      }
-      print("========favorit===============");
-      print(myRate);
-      controllerPro.SaveMyRate(myRate);
+      // for (var i = 0; i < c.data!.length; i++) {
+      //   myRate.add(c.data![i].toJson());
+      // }
+      // print("========myRate===============");
+      // print(myRate);
+      // controllerPro.SaveMyRate(myRate);
     } else {
       // diaFaildRate(context, c);
     }

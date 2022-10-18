@@ -4,6 +4,8 @@ import 'package:abood/constant/urls.dart';
 import 'package:abood/controller/ControlUser.dart';
 import 'package:abood/model/admin/dialog/dialog.dart';
 import 'package:abood/model/user/auth/signup/json/verify_model.dart';
+import 'package:abood/model/user/notification/notification_user.dart';
+import 'package:abood/view/user/start/finish_register.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -30,7 +32,12 @@ Future verifyOtp(context, otp) async {
   if (response.statusCode == 200) {
     if (c.isSuccess == true) {
       // Navigator.of(context).pushNamed("homePage");
-      Navigator.of(context).pushReplacementNamed("finishRegister");
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => finishRegister()),
+        (Route<dynamic> route) => false,
+      );
+      // Navigator.of(context).pushReplacementNamed("finishRegister");
       print(c.message);
       /////////////////////////////////////////////
       preferences.setInt("id", int.parse(controller.idReg.toString()));
@@ -64,6 +71,7 @@ Future verifyOtp(context, otp) async {
       /////////////////////////////////////////////
       preferences.setBool("isLogin", true);
       controller.SaveaisLogin(preferences.getBool('isLogin'));
+      notificationApiUser();
     } else {
       mydiaFaild(context, c.message);
     }

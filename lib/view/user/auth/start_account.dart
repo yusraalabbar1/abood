@@ -65,6 +65,7 @@ class _startAccountState extends State<startAccount> {
   }
 
   Widget ButtonRegister1(c2, c1, text, nav) {
+    guest = false;
     return Container(
       width: 300,
       height: 53,

@@ -4,13 +4,13 @@
 
 import 'dart:convert';
 
-MyPymentModel welcomeFromJson(String str) =>
-    MyPymentModel.fromJson(json.decode(str));
+NumberNotification welcomeFromJson(String str) =>
+    NumberNotification.fromJson(json.decode(str));
 
-String welcomeToJson(MyPymentModel data) => json.encode(data.toJson());
+String welcomeToJson(NumberNotification data) => json.encode(data.toJson());
 
-class MyPymentModel {
-  MyPymentModel({
+class NumberNotification {
+  NumberNotification({
     this.isSuccess,
     this.message,
     this.data,
@@ -18,9 +18,10 @@ class MyPymentModel {
 
   bool? isSuccess;
   String? message;
-  String? data;
+  int? data;
 
-  factory MyPymentModel.fromJson(Map<String, dynamic> json) => MyPymentModel(
+  factory NumberNotification.fromJson(Map<String, dynamic> json) =>
+      NumberNotification(
         isSuccess: json["isSuccess"],
         message: json["message"],
         data: json["data"],

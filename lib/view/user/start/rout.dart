@@ -73,13 +73,12 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       onGenerateRoute: (RouteSettings settings) {
         final routName = settings.name;
-        if (routName != null && routName.contains('/product')) {
-          print("))))))))))))))))))))))))))))))))");
+        if (routName != null) {
           print(routName);
           print(routName.split('=').last);
-
+          int id = int.parse(routName.toString().split('=').last);
           setState(() {
-            pageRout = particulerProduct(id: 66);
+            pageRout = particulerProduct(id: id);
           });
         }
       },
@@ -124,6 +123,7 @@ class _MyAppState extends State<MyApp> {
         "StorByMerchAdd": ((context) => StorByMerchAdd()),
         "searchProductUser": ((context) => searchProductUser()),
         "CompletCart": ((context) => CompletCart()),
+        "notification": ((context) => notification()),
         "EditItem": ((context) => EditItem(
               id: null,
             )),

@@ -4,6 +4,12 @@ class ControllerAdmin extends GetxController {
   var idProduct;
 
   var nameItem, priceItem, noteItem, desItem, idStore;
+  Map<dynamic, dynamic> ItemsById = {};
+  SaveItemsById(v) {
+    ItemsById = v;
+    update();
+  }
+
   SavepriceItem(v) {
     priceItem = v;
     update();

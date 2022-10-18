@@ -148,7 +148,7 @@ class _myProfileState extends State<myProfile> {
                         height: 30,
                       ),
                       const CircleAvatar(
-                        backgroundColor: Colors.white,
+                        backgroundColor: Colors.grey,
                         radius: 50,
                         backgroundImage: CachedNetworkImageProvider(
                             "http://cdn.onlinewebfonts.com/svg/img_81837.png"),

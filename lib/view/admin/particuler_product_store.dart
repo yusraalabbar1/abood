@@ -1,6 +1,7 @@
 import 'package:abood/constant/colors.dart';
 import 'package:abood/constant/urls.dart';
 import 'package:abood/controller/ControlUser.dart';
+import 'package:abood/controller/controlAdmin.dart';
 import 'package:abood/controller/controlProduct.dart';
 import 'package:abood/model/user/mycart/api/addcart.dart';
 import 'package:abood/model/user/mycart/api/cart_qty.dart';
@@ -28,15 +29,15 @@ import 'package:http/http.dart' as http;
 
 import '../../../model/user/product/item/Rate/get_Rateapi.dart';
 
-class particulerProduct extends StatefulWidget {
+class particulerProductStore extends StatefulWidget {
   final id;
-  const particulerProduct({super.key, this.id});
+  const particulerProductStore({super.key, this.id});
 
   @override
-  State<particulerProduct> createState() => _particulerProductState();
+  State<particulerProductStore> createState() => _particulerProductStoreState();
 }
 
-class _particulerProductState extends State<particulerProduct> {
+class _particulerProductStoreState extends State<particulerProductStore> {
   @override
   void initState() {
     // TODO: implement initState
@@ -45,15 +46,7 @@ class _particulerProductState extends State<particulerProduct> {
     print(controller.ItemsById["itemImages"]);
   }
 
-  Future<void> share(id) async {
-    await FlutterShare.share(
-        title: 'Share Link ',
-        text: 'Share Link Product in Abood Application',
-        linkUrl: 'http://flutterbooksampleMyAbood.com/product=$id',
-        chooserTitle: 'Share Link Product');
-  }
-
-  ControllerProduct controller = Get.put(ControllerProduct());
+  ControllerAdmin controller = Get.put(ControllerAdmin());
   Homecontroller controllerPro = Get.put(Homecontroller());
   List<Color> colors = [Colors.blue, Colors.green, Colors.yellow, Colors.pink];
   String select = '30';
@@ -84,51 +77,6 @@ class _particulerProductState extends State<particulerProduct> {
       RefreshController(initialRefresh: true);
   /////////////////////////////////////
 
-  Future<bool> getPassengerData({bool isRefresh = false}) async {
-    int idd = int.parse(widget.id.toString());
-    if (isRefresh) {
-      currentPage = 0;
-      // print("1");
-    } else {
-      // print("============================");
-      print(totalPages);
-      // print("============================");
-      if (currentPage > totalPages) {
-        // print("2");
-        refreshController.loadNoData();
-        return false;
-      }
-    }
-    var request =
-        http.Request('GET', Uri.parse(baseURL + '/api/items/$idd/rate'));
-    request.body = '''''';
-
-    http.StreamedResponse response = await request.send();
-    var res = await http.Response.fromStream(response);
-    if (response.statusCode == 200) {
-      final result = RateFromJson(res.body);
-
-      if (isRefresh) {
-        totalRate = result.data!.rate;
-        numberRate = result.data!.totalOfRate;
-        passengers = result.data!.itemRates!;
-      } else {
-        passengers.addAll(result.data!.itemRates!);
-      }
-
-      currentPage++;
-
-      // totalPages = result.meta!.totalPages!;
-      totalPages = 0;
-
-      print(res.body);
-      setState(() {});
-      return true;
-    } else {
-      return false;
-    }
-  }
-
   Homecontroller controller1 = Get.put(Homecontroller());
   @override
   Widget build(BuildContext context) {
@@ -155,7 +103,7 @@ class _particulerProductState extends State<particulerProduct> {
         ],
       ),
       body: FutureBuilder(
-        future: getItemsIdApi(widget.id),
+        future: getItemsIdApiStore(widget.id),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           return snapshot.hasData
               ? Column(
@@ -217,7 +165,7 @@ class _particulerProductState extends State<particulerProduct> {
                                 flex: 5,
                                 child: Center(
                                   child: Text(
-                                    "Lorem ipsum dolor sit amet, consectetur adipiscing eliIn nsectetur adipiscing eliIn  ",
+                                    " ${controller.ItemsById["info"]}",
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                         color: AppColor.bodyColor,
@@ -229,9 +177,7 @@ class _particulerProductState extends State<particulerProduct> {
                               ),
                               Expanded(
                                 child: IconButton(
-                                    onPressed: () {
-                                      share(controller.ItemsById["itemId"]);
-                                    },
+                                    onPressed: () {},
                                     icon: const Icon(Icons.share)),
                               )
                             ],
@@ -359,75 +305,7 @@ class _particulerProductState extends State<particulerProduct> {
                           const Divider(
                             thickness: 8,
                           ),
-                          Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 10),
-                            child: Row(
-                              children: [
-                                Text("Comments".tr,
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontFamily: 'majallab',
-                                        fontSize: 24,
-                                        color: Colors.black)),
-                                IconButton(
-                                    onPressed: () {
-                                      if (guest == true) {
-                                        diaGuest(context);
-                                      } else {
-                                        showRate(context,
-                                            int.parse(widget.id.toString()));
-                                      }
-                                    },
-                                    icon: Icon(Icons.add_box))
-                              ],
-                            ),
-                          ),
-                          // passengers.length != 0
-                          //     ?
-                          Container(
-                            width: MediaQuery.of(context).size.width,
-                            height: MediaQuery.of(context).size.height / 4,
-                            padding: const EdgeInsets.symmetric(horizontal: 10),
-                            child: SmartRefresher(
-                              controller: refreshController,
-                              enablePullUp: true,
-                              onRefresh: () async {
-                                final result =
-                                    await getPassengerData(isRefresh: true);
-                                if (result) {
-                                  refreshController.refreshCompleted();
-                                } else {
-                                  refreshController.refreshFailed();
-                                }
-                              },
-                              onLoading: () async {
-                                final result = await getPassengerData();
-                                if (result) {
-                                  refreshController.loadComplete();
-                                } else {
-                                  refreshController.loadFailed();
-                                }
-                              },
-                              child: ListView.builder(
-                                  shrinkWrap: true,
-                                  itemCount: passengers.length,
-                                  itemBuilder: (context, index) {
-                                    final passenger = passengers[index];
-                                    return Card(
-                                      elevation: 5,
-                                      color: Colors.white,
-                                      child: ListTile(
-                                          trailing: rating(passenger.rate),
-                                          subtitle: Text(
-                                            passenger.fullName.toString(),
-                                          ),
-                                          title: Text(
-                                            passenger.rateText.toString(),
-                                          )),
-                                    );
-                                  }),
-                            ),
-                          )
+
                           // : Container()
                         ],
                       ),

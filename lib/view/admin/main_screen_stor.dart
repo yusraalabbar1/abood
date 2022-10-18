@@ -4,6 +4,7 @@ import 'package:abood/view/admin/stor_add.dart';
 import 'package:abood/view/admin/stor_by_merch.dart';
 import 'package:abood/view/user/other/widget/dialogs_drawer.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:get/get.dart';
@@ -270,15 +271,27 @@ class _MainScreenStorState extends State<MainScreenStor> {
           actions: [
             Container(
               // padding: const EdgeInsets.only(right: 25.0),
-              child: IconButton(
-                  onPressed: () {
-                    Navigator.of(context).pushNamed("notificationStore");
-                  },
-                  icon: const Icon(
-                    Icons.notifications,
-                    color: Colors.black,
-                    size: 30,
-                  )),
+              child: GetBuilder<Homecontroller>(builder: (controller) {
+                return Badge(
+                  position: BadgePosition.topEnd(top: 10, end: 8),
+                  animationDuration: Duration(milliseconds: 300),
+                  animationType: BadgeAnimationType.slide,
+                  badgeColor: Colors.red,
+                  borderRadius: BorderRadius.circular(8),
+                  badgeContent: controller.numNotif != 0
+                      ? Text(controller.numNotif.toString(),
+                          style: TextStyle(color: Colors.white, fontSize: 7))
+                      : Text(""),
+                  child: IconButton(
+                      onPressed: () {
+                        Navigator.of(context).pushNamed("notification");
+                      },
+                      icon: const Icon(
+                        Icons.notifications,
+                        color: Colors.black,
+                      )),
+                );
+              }),
             ),
             Container(
               child: IconButton(
@@ -288,7 +301,7 @@ class _MainScreenStorState extends State<MainScreenStor> {
                   icon: const Icon(
                     Icons.logout,
                     color: Colors.black,
-                    size: 30,
+                    size: 25,
                   )),
             ),
           ],

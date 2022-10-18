@@ -1,4 +1,5 @@
 import 'package:abood/constant/urls.dart';
+import 'package:abood/controller/ControlUser.dart';
 import 'package:abood/controller/controlProduct.dart';
 import 'package:abood/model/user/myOrder/order_model.dart';
 import 'package:abood/view/user/other/myOrders/details.dart';
@@ -23,6 +24,7 @@ class _myOrdersState extends State<myOrders> {
   var i = 0;
   List<DatumOrders> passengers = [];
 
+  Homecontroller controller = Get.put(Homecontroller());
   final RefreshController refreshController =
       RefreshController(initialRefresh: true);
   /////////////////////////////////////
@@ -41,10 +43,11 @@ class _myOrdersState extends State<myOrders> {
         return false;
       }
     }
+    int id = int.parse(controller.id.toString());
     var request = http.Request(
         'GET',
         Uri.parse(baseURL +
-            '/api/userRequest/getByUserId/22/pageIndex/$currentPage'));
+            '/api/userRequest/getByUserId/$id/pageIndex/$currentPage'));
 
     final response = await request.send();
     var res = await http.Response.fromStream(response);
@@ -118,11 +121,9 @@ class _myOrdersState extends State<myOrders> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   rowInfo("Store Order: ".tr,
-                                      passenger.StoreDescEn.toString()),
-                                  rowInfoStatus(
-                                      "Status: ".tr,
-                                      passenger.statusDesc.toString(),
-                                      passenger.statusId),
+                                      passenger.storeDescEn.toString()),
+                                  rowInfoStatus("Status: ".tr,
+                                      passenger.statusDesc, passenger.statusId),
                                 ],
                               )
                             : Row(
@@ -131,7 +132,7 @@ class _myOrdersState extends State<myOrders> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   rowInfo("Store Order: ".tr,
-                                      passenger.StoreDescAr.toString()),
+                                      passenger.storeDescAr.toString()),
                                   rowInfoStatus(
                                       "Status: ".tr,
                                       passenger.statusDesc.toString(),
@@ -303,7 +304,7 @@ class _myOrdersState extends State<myOrders> {
                 fontWeight: FontWeight.bold,
                 fontFamily: 'majallab')),
         id == 1
-            ? Text(text2,
+            ? Text(text2.toString(),
                 style: const TextStyle(
                     fontSize: 17,
                     fontWeight: FontWeight.bold,

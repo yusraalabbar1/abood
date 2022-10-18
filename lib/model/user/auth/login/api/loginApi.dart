@@ -4,6 +4,7 @@ import 'package:abood/constant/urls.dart';
 import 'package:abood/controller/ControlUser.dart';
 import 'package:abood/model/user/auth/login/json/loginModel.dart';
 import 'package:abood/model/user/notification/notification_user.dart';
+import 'package:abood/view/user/start/finish_register.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -26,7 +27,12 @@ Future loginApi(context, mobile, password) async {
 
   if (response.statusCode == 200) {
     if (c.isSuccess == true) {
-      Navigator.of(context).pushReplacementNamed("finishRegister");
+      // Navigator.of(context).pushReplacementNamed("finishRegister");
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => finishRegister()),
+        (Route<dynamic> route) => false,
+      );
       print(c.message);
       /////////////////////////////////////////////
       preferences.setInt("id", int.parse(c.data!.id.toString()));

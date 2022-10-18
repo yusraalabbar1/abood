@@ -28,7 +28,13 @@ class Homecontroller extends GetxController {
   var face, whats, site;
   var about, term, privec, prot, idCity, page = 0;
   StatefulWidget pageRout = const welcom();
-  var idSec, idSubSec;
+  var idSec, idSubSec, numNotif;
+
+  SaveNumberNotif(c) {
+    numNotif = c;
+    update();
+  }
+
   SaveIdSubSec(c) {
     idSubSec = c;
     update();

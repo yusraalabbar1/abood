@@ -17,26 +17,48 @@ class ModelRate {
 
   bool? isSuccess;
   String? message;
-  List<DatumRate>? data;
+  DatumRate? data;
 
   factory ModelRate.fromJson(Map<String, dynamic> json) => ModelRate(
         isSuccess: json["isSuccess"],
         message: json["message"],
-        data: json["data"] != null
-            ? List<DatumRate>.from(
-                json["data"].map((x) => DatumRate.fromJson(x)))
-            : null,
+        data: DatumRate.fromJson(json["data"]),
       );
 
   Map<String, dynamic> toJson() => {
         "isSuccess": isSuccess,
         "message": message,
-        "data": List<dynamic>.from(data!.map((x) => x.toJson())),
+        "data": data!.toJson(),
       };
 }
 
 class DatumRate {
   DatumRate({
+    this.totalOfRate,
+    this.rate,
+    this.itemRates,
+  });
+
+  dynamic? totalOfRate;
+  dynamic? rate;
+  List<ItemRate>? itemRates;
+
+  factory DatumRate.fromJson(Map<String, dynamic> json) => DatumRate(
+        totalOfRate: json["totalOfRate"],
+        rate: json["rate"],
+        itemRates: List<ItemRate>.from(
+            json["itemRates"].map((x) => ItemRate.fromJson(x))),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "totalOfRate": totalOfRate,
+        "rate": rate,
+        "itemRates": List<dynamic>.from(itemRates!.map((x) => x.toJson())),
+      };
+}
+
+class ItemRate {
+  ItemRate({
     this.id,
     this.userId,
     this.fullName,
@@ -47,10 +69,10 @@ class DatumRate {
   int? id;
   int? userId;
   String? fullName;
-  double? rate;
+  dynamic? rate;
   String? rateText;
 
-  factory DatumRate.fromJson(Map<String, dynamic> json) => DatumRate(
+  factory ItemRate.fromJson(Map<String, dynamic> json) => ItemRate(
         id: json["id"],
         userId: json["userId"],
         fullName: json["fullName"],

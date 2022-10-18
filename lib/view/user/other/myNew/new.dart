@@ -172,9 +172,6 @@ class _NewState extends State<New> {
                     final passenger = passengers[index];
                     return InkWell(
                         onTap: () async {
-                          // await getItemsIdApi(passenger.itemId);
-                          // Navigator.of(context)
-                          //     .pushNamed("particularProducte");
                           print(passenger.itemId);
                           Navigator.push(
                             context,

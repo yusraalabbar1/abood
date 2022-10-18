@@ -38,10 +38,15 @@ class _CompletCartState extends State<CompletCart> {
           value: i,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: Text(
-              i['cityAr'].toString(),
-              style: TextStyle(color: Colors.black),
-            ),
+            child: controllerPro.language == "en"
+                ? Text(
+                    i['cityOt'].toString(),
+                    style: TextStyle(color: Colors.black),
+                  )
+                : Text(
+                    i['cityAr'].toString(),
+                    style: TextStyle(color: Colors.black),
+                  ),
           ),
         ),
       );
@@ -251,8 +256,8 @@ class _CompletCartState extends State<CompletCart> {
                         print(row);
                         print(house);
 
-                        paymentApi(name, phone, controller1.idCity, area, row,
-                            house, controllerPro.listPayment);
+                        paymentApi(context, name, phone, controller1.idCity,
+                            area, row, house, controllerPro.listPayment);
                       }
                     },
                     child: Text(
