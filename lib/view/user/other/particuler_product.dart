@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:abood/constant/colors.dart';
 import 'package:abood/constant/urls.dart';
 import 'package:abood/controller/ControlUser.dart';
@@ -135,7 +137,7 @@ class _particulerProductState extends State<particulerProduct> {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 60,
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.black,
         elevation: 5,
         actions: [
           IconButton(
@@ -149,7 +151,7 @@ class _particulerProductState extends State<particulerProduct> {
               },
               icon: Icon(
                 Icons.favorite,
-                color: Colors.black,
+                color: Colors.white,
                 size: 30,
               ))
         ],
@@ -370,12 +372,15 @@ class _particulerProductState extends State<particulerProduct> {
                                         fontSize: 24,
                                         color: Colors.black)),
                                 IconButton(
-                                    onPressed: () {
+                                    onPressed: () async {
                                       if (guest == true) {
                                         diaGuest(context);
                                       } else {
-                                        showRate(context,
+                                        await showRate(context,
                                             int.parse(widget.id.toString()));
+                                        Timer(Duration(seconds: 2), () {
+                                          showRateWait(context);
+                                        });
                                       }
                                     },
                                     icon: Icon(Icons.add_box))

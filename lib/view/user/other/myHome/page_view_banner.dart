@@ -120,7 +120,7 @@ Widget slider(context, images, pagePosition, active) {
       margin: EdgeInsets.all(margin),
       decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: const BorderRadius.all(Radius.circular(20)),
+          borderRadius: const BorderRadius.all(Radius.circular(5)),
           image: DecorationImage(
             image: CachedNetworkImageProvider(
                 sliderurl + images[pagePosition]["image"]),

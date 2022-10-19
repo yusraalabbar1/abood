@@ -127,7 +127,7 @@ class _AllHomeState extends State<AllHome> {
         ),
         Container(
             decoration: box(),
-            height: MediaQuery.of(context).size.height,
+            height: MediaQuery.of(context).size.height / 2,
             child: allStore())
       ],
     );

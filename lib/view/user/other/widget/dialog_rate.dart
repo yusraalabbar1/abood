@@ -20,7 +20,7 @@ showRate(context, idItem) async {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text("add Comment".tr,
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: Colors.black,
                       fontSize: 21,
                       fontFamily: 'majallab',
@@ -100,6 +100,51 @@ showRate(context, idItem) async {
                       print("========================");
                       Navigator.pop(context);
                     }
+                  },
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(25.0))),
+                  child: Text(
+                    "Ok".tr,
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 21,
+                        fontFamily: 'majallab',
+                        fontWeight: FontWeight.bold),
+                  ),
+                  textColor: Colors.white,
+                  splashColor: Colors.white,
+                  color: Colors.black,
+                ),
+              )
+            ],
+          ),
+        );
+      });
+}
+
+showRateWait(context) async {
+  return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text("Waiting for review Rate".tr,
+                  style: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 21,
+                      fontFamily: 'majallab',
+                      fontWeight: FontWeight.bold)),
+              const SizedBox(
+                height: 30,
+              ),
+              Container(
+                width: 300,
+                height: 53,
+                child: RaisedButton(
+                  onPressed: () {
+                    Navigator.pop(context);
                   },
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(25.0))),

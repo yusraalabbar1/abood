@@ -167,44 +167,46 @@ Drawer drawermain(context) {
                           ],
                         ),
                       ),
-                      InkWell(
-                        onTap: () async {
-                          guest != true
-                              ? showLoadingLogout(context)
-                              : diaGuest(context);
-                        },
-                        child: Row(
-                          children: [
-                            Container(
-                              margin: EdgeInsets.all(10),
-                              child: Icon(
-                                Icons.logout,
-                                size: 20,
-                                color: Colors.white,
+                      guest != true
+                          ? InkWell(
+                              onTap: () async {
+                                showLoadingLogout(context);
+                              },
+                              child: Row(
+                                children: [
+                                  Container(
+                                    margin: EdgeInsets.all(10),
+                                    child: Icon(
+                                      Icons.logout,
+                                      size: 20,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  Container(child: text2("Log out".tr))
+                                ],
                               ),
-                            ),
-                            Container(child: text2("Log out".tr))
-                          ],
-                        ),
-                      ),
-                      InkWell(
-                        onTap: () async {
-                          // showLoadingDelet(context);
-                        },
-                        child: Row(
-                          children: [
-                            Container(
-                              margin: EdgeInsets.all(10),
-                              child: Icon(
-                                Icons.delete_forever,
-                                size: 20,
-                                color: Colors.white,
+                            )
+                          : Container(),
+                      guest != true
+                          ? InkWell(
+                              onTap: () async {
+                                // showLoadingDelet(context);
+                              },
+                              child: Row(
+                                children: [
+                                  Container(
+                                    margin: EdgeInsets.all(10),
+                                    child: Icon(
+                                      Icons.delete_forever,
+                                      size: 20,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  Container(child: text2("Delete Account".tr))
+                                ],
                               ),
-                            ),
-                            Container(child: text2("Delete Account".tr))
-                          ],
-                        ),
-                      ),
+                            )
+                          : Container(),
                     ],
                   )),
               Expanded(

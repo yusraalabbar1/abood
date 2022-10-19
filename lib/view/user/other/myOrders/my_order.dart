@@ -78,143 +78,168 @@ class _myOrdersState extends State<myOrders> {
     ControllerProduct controllerPro = Get.put(ControllerProduct());
     return Scaffold(
       body: SmartRefresher(
-        controller: refreshController,
-        enablePullUp: true,
-        onRefresh: () async {
-          final result = await getPassengerData(isRefresh: true);
-          if (result) {
-            refreshController.refreshCompleted();
-          } else {
-            refreshController.refreshFailed();
-          }
-        },
-        onLoading: () async {
-          final result = await getPassengerData();
-          if (result) {
-            refreshController.loadComplete();
-          } else {
-            refreshController.loadFailed();
-          }
-        },
-        child: ListView.builder(
-            itemCount: passengers.length,
-            itemBuilder: (BuildContext context, int index) {
-              final passenger = passengers[index];
-              return Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Card(
-                  elevation: 4,
-                  color: Colors.white,
-                  child: Container(
-                    padding: const EdgeInsets.all(8.0),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        controllerPro.language == "en"
-                            ? Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  rowInfo("Store Order: ".tr,
-                                      passenger.storeDescEn.toString()),
-                                  rowInfoStatus("Status: ".tr,
-                                      passenger.statusDesc, passenger.statusId),
-                                ],
-                              )
-                            : Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  rowInfo("Store Order: ".tr,
-                                      passenger.storeDescAr.toString()),
-                                  rowInfoStatus(
-                                      "Status: ".tr,
-                                      passenger.statusDesc.toString(),
-                                      passenger.statusId),
-                                ],
-                              ),
-                        rowInfo("Date & Time: ".tr,
-                            passenger.requestDate.toString()),
-                        rowInfo("Total Price: ".tr, passenger.total.toString()),
-                        SizedBox(
-                          height: 130,
-                          child: Column(
-                            children: [
-                              Expanded(
-                                child: ListView.builder(
-                                    scrollDirection: Axis.horizontal,
-                                    itemCount: passenger.details!.length,
-                                    itemBuilder: (BuildContext context, int i) {
-                                      return Row(
+          controller: refreshController,
+          enablePullUp: true,
+          onRefresh: () async {
+            final result = await getPassengerData(isRefresh: true);
+            if (result) {
+              refreshController.refreshCompleted();
+            } else {
+              refreshController.refreshFailed();
+            }
+          },
+          onLoading: () async {
+            final result = await getPassengerData();
+            if (result) {
+              refreshController.loadComplete();
+            } else {
+              refreshController.loadFailed();
+            }
+          },
+          child: Column(
+            children: [
+              SizedBox(
+                height: 10,
+              ),
+              Container(
+                child: Center(
+                    child: Text("My Order".tr,
+                        style: const TextStyle(
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'majallab'))),
+              ),
+              Expanded(
+                child: ListView.builder(
+                    itemCount: passengers.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      final passenger = passengers[index];
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Card(
+                          elevation: 4,
+                          color: Colors.white,
+                          child: Container(
+                            padding: const EdgeInsets.all(8.0),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                controllerPro.language == "en"
+                                    ? Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Container(
-                                            height: 70,
-                                            width: 60,
-                                            decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(5),
-                                                image: DecorationImage(
-                                                    image:
-                                                        CachedNetworkImageProvider(
-                                                            imageAds +
-                                                                passenger
-                                                                    .details![i]
-                                                                    .images![0]
-                                                                    .imageUrl
-                                                                    .toString()),
-                                                    fit: BoxFit.cover)),
-                                          ),
-                                          SizedBox(
-                                            width: 5,
-                                          )
+                                          rowInfo("Store Order: ".tr,
+                                              passenger.storeDescEn.toString()),
+                                          rowInfoStatus(
+                                              "Status: ".tr,
+                                              passenger.statusDesc,
+                                              passenger.statusId),
                                         ],
-                                      );
-                                    }),
-                              ),
-                              rowInfo("Products No: ".tr,
-                                  passenger.details!.length.toString()),
-                            ],
+                                      )
+                                    : Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          rowInfo("Store Order: ".tr,
+                                              passenger.storeDescAr.toString()),
+                                          rowInfoStatus(
+                                              "Status: ".tr,
+                                              passenger.statusDesc.toString(),
+                                              passenger.statusId),
+                                        ],
+                                      ),
+                                rowInfo("Date & Time: ".tr,
+                                    passenger.requestDate.toString()),
+                                rowInfo("Total Price: ".tr,
+                                    passenger.total.toString()),
+                                SizedBox(
+                                  height: 130,
+                                  child: Column(
+                                    children: [
+                                      Expanded(
+                                        child: ListView.builder(
+                                            scrollDirection: Axis.horizontal,
+                                            itemCount:
+                                                passenger.details!.length,
+                                            itemBuilder:
+                                                (BuildContext context, int i) {
+                                              return Row(
+                                                children: [
+                                                  Container(
+                                                    height: 70,
+                                                    width: 60,
+                                                    decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(5),
+                                                        image: DecorationImage(
+                                                            image: CachedNetworkImageProvider(
+                                                                imageAds +
+                                                                    passenger
+                                                                        .details![
+                                                                            i]
+                                                                        .images![
+                                                                            0]
+                                                                        .imageUrl
+                                                                        .toString()),
+                                                            fit: BoxFit.cover)),
+                                                  ),
+                                                  SizedBox(
+                                                    width: 5,
+                                                  )
+                                                ],
+                                              );
+                                            }),
+                                      ),
+                                      rowInfo("Products No: ".tr,
+                                          passenger.details!.length.toString()),
+                                    ],
+                                  ),
+                                ),
+                                Divider(
+                                  thickness: 3,
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                    setState(() {
+                                      if (i == 0) {
+                                        i = passenger.id!;
+                                      } else {
+                                        i = 0;
+                                      }
+                                    });
+                                  },
+                                  child: i != passenger.id
+                                      ? rowLink("Order Details".tr)
+                                      : rowLinkdeta(
+                                          "Order Details".tr,
+                                          passenger.fullName,
+                                          passenger.mobileNo,
+                                          passenger.area,
+                                          passenger.streetName,
+                                          passenger.buildingNo,
+                                          passenger.total,
+                                          passenger.discount,
+                                          passenger.statusDesc),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                        Divider(
-                          thickness: 3,
-                        ),
-                        InkWell(
-                          onTap: () {
-                            setState(() {
-                              if (i == 0) {
-                                i = passenger.id!;
-                              } else {
-                                i = 0;
-                              }
-                            });
-                          },
-                          child: i != passenger.id
-                              ? rowLink("Order Details".tr)
-                              : rowLinkdeta(
-                                  "Order Details".tr,
-                                  passenger.fullName,
-                                  passenger.mobileNo,
-                                  passenger.area,
-                                  passenger.streetName,
-                                  passenger.buildingNo,
-                                  passenger.total,
-                                  passenger.discount,
-                                  passenger.statusDesc),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              );
-            }),
-      ),
+                      );
+                    }),
+              )
+            ],
+          )),
     );
   }
 

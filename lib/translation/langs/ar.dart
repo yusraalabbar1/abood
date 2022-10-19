@@ -162,5 +162,7 @@ const Map<String, String> ar = {
   "Order Details": "تفاصيل الطلب",
   "Address: ": "العنوان",
   "Status: ": "حالة: ",
-  "Store Order: ": "متجر الطلبية"
+  "Store Order: ": "متجر الطلبية",
+  "Waiting for review Rate": "في انتظار المراجعة",
+  "My Order": "طلباتي"
 };

@@ -27,6 +27,9 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  flutter_localizations: 
+      sdk: flutter
+  localization: ^2.1.0
   animated_text_kit: ^4.2.2
   awesome_dialog: ^2.2.1
   badges: ^2.0.3
@@ -58,6 +61,7 @@ dependencies:
   pull_to_refresh: ^2.0.0
   rflutter_alert: ^2.0.4
   shared_preferences: ^2.0.15
+  shimmer: ^2.0.0
   uni_links: ^0.5.1
   url_launcher: ^6.1.5
   vertical_card_pager: ^1.5.0

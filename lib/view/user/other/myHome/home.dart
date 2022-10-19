@@ -175,6 +175,13 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                     child: Center(
                       child: Chip(
                         // elevation: 20,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(5),
+                                bottomLeft: Radius.circular(5),
+                                topRight: Radius.circular(5),
+                                bottomRight: Radius.circular(5))),
+
                         padding: EdgeInsets.all(8),
                         backgroundColor:
                             i == index ? Colors.black : MyColors.color3,
@@ -312,7 +319,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                                   ],
                                                   borderRadius:
                                                       BorderRadius.all(
-                                                          Radius.circular(20))),
+                                                          Radius.circular(5))),
                                               alignment: Alignment.center,
                                               width: MediaQuery.of(context)
                                                   .size

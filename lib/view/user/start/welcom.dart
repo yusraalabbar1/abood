@@ -71,7 +71,8 @@ class _welcomState extends State<welcom> {
         print("no thing");
       }
     } else {
-      Navigator.of(context).pushReplacementNamed("lang");
+      guest = true;
+      Navigator.of(context).pushReplacementNamed("homePage");
     }
   }
 

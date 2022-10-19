@@ -5,8 +5,10 @@ import 'package:abood/controller/controlProduct.dart';
 import 'package:abood/model/user/mylike/api/delete_like.dart';
 import 'package:abood/model/user/mylike/api/mylike.dart';
 import 'package:abood/model/user/stor/items/get_items_id.dart';
+import 'package:abood/view/user/auth/start_account.dart';
 import 'package:abood/view/user/other/drawer_main.dart';
 import 'package:abood/view/user/other/particuler_product.dart';
+import 'package:abood/view/user/other/widget/dialog_guest.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -37,160 +39,170 @@ class _myLikeState extends State<myLike> {
         toolbarHeight: 70,
         title: text1("Favourite".tr),
       ),
-      body: RefreshIndicator(
-        onRefresh: () async {
-          await myLikeApi(controller1.id);
-        },
-        child: GetBuilder<ControllerProduct>(builder: (controller) {
-          return (controller.myFavorite.length > 0
-              ? Container(
-                  child: Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: GridView.builder(
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 2,
-                                childAspectRatio: 3 / 4.0,
-                                crossAxisSpacing: 20,
-                                mainAxisSpacing: 20),
-                        itemCount: controller.myFavorite.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return InkWell(
-                              onTap: () async {
-                                print(controller.myFavorite[index]["itemId"]);
-                                await getItemsIdApi(
-                                    controller.myFavorite[index]["itemId"]);
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => particulerProduct(
-                                            id: controller.myFavorite[index]
-                                                ["itemId"],
-                                          )),
-                                );
-                              },
-                              child: Container(
-                                  alignment: Alignment.center,
-                                  //child: Text(myProducts[index]["name"]),
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(5),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.grey
-                                            .withOpacity(0.2), //color of shadow
-                                        spreadRadius: 5,
-                                        blurRadius: 7,
-                                        offset: Offset(0, 2),
-                                      ),
-                                    ],
-                                  ),
-                                  child: Column(
-                                    children: [
-                                      Expanded(
-                                          flex: 3,
-                                          child: Stack(
-                                            children: [
-                                              Container(
-                                                  decoration: box2(imageAds +
-                                                      controller.myFavorite[
-                                                                  index]
-                                                              ["itemImages"][0]
-                                                          ["imageUrl"])),
-                                              Positioned(
-                                                  left: 10,
-                                                  top: 0.0,
-
-                                                  // (background container size) - (circle height / 2)
-                                                  child: Column(
-                                                    children: [
-                                                      SizedBox(
-                                                        height: 5,
-                                                      ),
-                                                      Container(
-                                                        height: 35.0,
-                                                        width: 35.0,
-                                                        child: Center(
-                                                          child: IconButton(
-                                                            onPressed:
-                                                                () async {
-                                                              await deleteLike(
-                                                                  controller1
-                                                                      .id,
-                                                                  controller.myFavorite[
-                                                                          index]
-                                                                      [
-                                                                      "itemId"]);
-                                                              await myLikeApi(
-                                                                  controller1
-                                                                      .id);
-                                                              print("delete");
-                                                            },
-                                                            icon: Icon(
-                                                              Icons.delete,
-                                                              color:
-                                                                  Colors.black,
-                                                              size: 30,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ))
-                                            ],
-                                          )),
-                                      Expanded(
-                                          child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceAround,
-                                        children: [
-                                          InkWell(
-                                            onTap: () {},
-                                            child: Container(
-                                                // width: 50,
-                                                height: 30,
-                                                decoration: boxd2(),
-                                                child: Center(
-                                                  child: textBot(controller
+      body: guest != true
+          ? RefreshIndicator(
+              onRefresh: () async {
+                await myLikeApi(controller1.id);
+              },
+              child: GetBuilder<ControllerProduct>(builder: (controller) {
+                return (controller.myFavorite.length > 0
+                    ? Container(
+                        child: Padding(
+                          padding: const EdgeInsets.all(15.0),
+                          child: GridView.builder(
+                              gridDelegate:
+                                  const SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: 2,
+                                      childAspectRatio: 3 / 4.0,
+                                      crossAxisSpacing: 20,
+                                      mainAxisSpacing: 20),
+                              itemCount: controller.myFavorite.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                return InkWell(
+                                    onTap: () async {
+                                      print(controller.myFavorite[index]
+                                          ["itemId"]);
+                                      await getItemsIdApi(controller
+                                          .myFavorite[index]["itemId"]);
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                particulerProduct(
+                                                  id: controller
                                                           .myFavorite[index]
-                                                              ["newPrice"]
-                                                          .toString() +
-                                                      " JD \t "),
+                                                      ["itemId"],
                                                 )),
-                                          ),
-                                          text3(
-                                            controller.myFavorite[index]
-                                                    ["itemName"]
-                                                .toString(),
-                                          ),
-                                        ],
-                                      )),
-                                    ],
-                                  )));
-                        }),
-                  ),
-                )
-              : Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset("assets/images/empty.png"),
-                      Text("You didn't add anything".tr,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20,
-                              fontFamily: 'Almarai')),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      ButtonRegister2(
-                          Colors.black, Colors.white, "Browse Stores")
-                    ],
-                  ),
-                ));
-        }),
-      ),
+                                      );
+                                    },
+                                    child: Container(
+                                        alignment: Alignment.center,
+                                        //child: Text(myProducts[index]["name"]),
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: Colors.grey.withOpacity(
+                                                  0.2), //color of shadow
+                                              spreadRadius: 5,
+                                              blurRadius: 7,
+                                              offset: Offset(0, 2),
+                                            ),
+                                          ],
+                                        ),
+                                        child: Column(
+                                          children: [
+                                            Expanded(
+                                                flex: 3,
+                                                child: Stack(
+                                                  children: [
+                                                    Container(
+                                                        decoration: box2(imageAds +
+                                                            controller.myFavorite[
+                                                                        index][
+                                                                    "itemImages"]
+                                                                [
+                                                                0]["imageUrl"])),
+                                                    Positioned(
+                                                        left: 10,
+                                                        top: 0.0,
+
+                                                        // (background container size) - (circle height / 2)
+                                                        child: Column(
+                                                          children: [
+                                                            SizedBox(
+                                                              height: 5,
+                                                            ),
+                                                            Container(
+                                                              height: 35.0,
+                                                              width: 35.0,
+                                                              child: Center(
+                                                                child:
+                                                                    IconButton(
+                                                                  onPressed:
+                                                                      () async {
+                                                                    await deleteLike(
+                                                                        controller1
+                                                                            .id,
+                                                                        controller.myFavorite[index]
+                                                                            [
+                                                                            "itemId"]);
+                                                                    await myLikeApi(
+                                                                        controller1
+                                                                            .id);
+                                                                    print(
+                                                                        "delete");
+                                                                  },
+                                                                  icon: Icon(
+                                                                    Icons
+                                                                        .delete,
+                                                                    color: Colors
+                                                                        .black,
+                                                                    size: 30,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ))
+                                                  ],
+                                                )),
+                                            Expanded(
+                                                child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.spaceAround,
+                                              children: [
+                                                InkWell(
+                                                  onTap: () {},
+                                                  child: Container(
+                                                      // width: 50,
+                                                      height: 30,
+                                                      decoration: boxd2(),
+                                                      child: Center(
+                                                        child: textBot(controller
+                                                                .myFavorite[
+                                                                    index]
+                                                                    ["newPrice"]
+                                                                .toString() +
+                                                            " JD \t "),
+                                                      )),
+                                                ),
+                                                text3(
+                                                  controller.myFavorite[index]
+                                                          ["itemName"]
+                                                      .toString(),
+                                                ),
+                                              ],
+                                            )),
+                                          ],
+                                        )));
+                              }),
+                        ),
+                      )
+                    : Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset("assets/images/empty.png"),
+                            Text("You didn't add anything".tr,
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20,
+                                    fontFamily: 'Almarai')),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            ButtonRegister2(
+                                Colors.black, Colors.white, "Browse Stores")
+                          ],
+                        ),
+                      ));
+              }),
+            )
+          : LoginGuest(),
     );
   }
 

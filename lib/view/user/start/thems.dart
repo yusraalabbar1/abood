@@ -21,7 +21,7 @@ abstract class CustomTheme {
           toolbarHeight: 183,
           // iconTheme: IconThemeData(color: Colors.black),
           iconTheme: IconThemeData(
-              color: Colors.black, // <-- SEE HERE
+              color: Colors.white, // <-- SEE HERE
               size: 30),
 
           titleTextStyle: TextStyle(

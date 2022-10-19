@@ -15,19 +15,48 @@ Text text1(text) {
 AppBar appbarmain(GlobalKey<ScaffoldState> scaffoldKey, context) {
   ControllerProduct controllerPro = Get.put(ControllerProduct());
   return AppBar(
-    toolbarHeight: 70,
-    title: AnimatedTextKit(
-      displayFullTextOnTap: false,
-      repeatForever: true,
-      animatedTexts: [
-        FadeAnimatedText('ABOOD'),
-        FadeAnimatedText('ABOOD'),
-        // FadeAnimatedText('For All New!!!'),
+    toolbarHeight: 70, titleSpacing: 0.0, automaticallyImplyLeading: false,
+    centerTitle: true,
+    title: Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: <Widget>[
+        IconButton(
+            onPressed: () {
+              scaffoldKey.currentState!.openDrawer();
+            },
+            icon: const Icon(
+              Icons.menu,
+              color: Colors.white,
+            )),
+        IconButton(
+            onPressed: () {
+              Navigator.of(context).pushNamed("searchProductUser");
+            },
+            icon: const Icon(
+              Icons.search,
+              color: Colors.white,
+            )),
+        Expanded(
+          child: Center(
+            child: AnimatedTextKit(
+              displayFullTextOnTap: false,
+              repeatForever: true,
+              animatedTexts: [
+                FadeAnimatedText('ABOOD'),
+                FadeAnimatedText('ABOOD'),
+                // FadeAnimatedText('For All New!!!'),
+              ],
+              onTap: () {
+                print("Tap Event");
+              },
+            ),
+          ),
+        )
       ],
-      onTap: () {
-        print("Tap Event");
-      },
     ),
+    // automaticallyImplyLeading: false,
+
     actions: [
       GetBuilder<Homecontroller>(builder: (controller) {
         return Badge(
@@ -36,7 +65,7 @@ AppBar appbarmain(GlobalKey<ScaffoldState> scaffoldKey, context) {
           animationType: BadgeAnimationType.slide,
           badgeColor: Colors.red,
           borderRadius: BorderRadius.circular(8),
-          badgeContent: controller.numNotif != 0
+          badgeContent: controller.numNotif != 0 && controller.numNotif != null
               ? Text(controller.numNotif.toString(),
                   style: TextStyle(color: Colors.white, fontSize: 7))
               : Text(""),
@@ -93,27 +122,28 @@ AppBar appbarmain(GlobalKey<ScaffoldState> scaffoldKey, context) {
         );
       }),
     ],
-    leading: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          IconButton(
-              onPressed: () {
-                scaffoldKey.currentState!.openDrawer();
-              },
-              icon: const Icon(
-                Icons.menu,
-                color: Colors.white,
-              )),
-          IconButton(
-              onPressed: () {
-                Navigator.of(context).pushNamed("searchProductUser");
-              },
-              icon: const Icon(
-                Icons.search,
-                color: Colors.white,
-              ))
-        ]),
+    // leading: Row(children: [
+    //   Expanded(
+    //     child: IconButton(
+    //         onPressed: () {
+    //           scaffoldKey.currentState!.openDrawer();
+    //         },
+    //         icon: const Icon(
+    //           Icons.menu,
+    //           color: Colors.white,
+    //         )),
+    //   ),
+    //   Expanded(
+    //     child: IconButton(
+    //         onPressed: () {
+    //           Navigator.of(context).pushNamed("searchProductUser");
+    //         },
+    //         icon: const Icon(
+    //           Icons.search,
+    //           color: Colors.white,
+    //         )),
+    //   ),
+    // ]),
   );
 }
 

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:abood/controller/ControlUser.dart';
 import 'package:abood/main.dart';
 import 'package:abood/model/user/stor/items/get_items_id.dart';
@@ -53,7 +55,9 @@ import 'package:abood/view/user/start/welcom.dart';
 import 'package:abood/view/user/start/welcom2.dart';
 import 'package:abood/view/user/start/welcom_loader.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
+import 'dart:ui' as ui;
 
 String local = "en";
 
@@ -67,9 +71,14 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   Homecontroller controller = Get.put(Homecontroller());
   StatefulWidget pageRout = const welcom();
+
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      locale: language != null
+          ? Locale(language!)
+          : Locale(Platform.localeName.substring(0, 2)),
+      translations: Translation(),
       debugShowCheckedModeBanner: false,
       onGenerateRoute: (RouteSettings settings) {
         final routName = settings.name;
@@ -146,9 +155,6 @@ class _MyAppState extends State<MyApp> {
               id: null,
             )),
       },
-      locale: language != null ? Locale(language!) : Locale('en'),
-      //  translations: LocaleString(),
-      translations: Translation(),
     );
   }
 

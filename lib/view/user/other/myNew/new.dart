@@ -15,6 +15,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:http/http.dart' as http;
+import 'package:shimmer/shimmer.dart';
 
 class New extends StatefulWidget {
   const New({super.key});
@@ -146,16 +147,20 @@ class _NewState extends State<New> {
             onRefresh: () async {
               final result = await getPassengerData(isRefresh: true);
               if (result) {
+                print("onRefresh1");
                 refreshController.refreshCompleted();
               } else {
+                print("onRefresh2");
                 refreshController.refreshFailed();
               }
             },
             onLoading: () async {
               final result = await getPassengerData();
               if (result) {
+                print("onLoading1");
                 refreshController.loadComplete();
               } else {
+                print("onLoading2");
                 refreshController.loadFailed();
               }
             },

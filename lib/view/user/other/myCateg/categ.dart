@@ -33,12 +33,18 @@ class _categoryState extends State<category>
 
   List<SubCatMobelData> passengers = [];
   int currentPage = 1;
+  ControllerProduct controllerPro = Get.put(ControllerProduct());
+  int i = 0;
   var sub;
-  late int totalPages;
+  int totalPages = 1;
 
   /////////////////////////////////////
 
   Future<bool> getPassengerData({bool isRefresh = false}) async {
+    if (sub == null) {
+      sub = controllerPro.saveAllCategwithout[0]["id"];
+    } else {}
+
     if (isRefresh) {
       currentPage = 1;
       print("1===========================");
@@ -57,12 +63,15 @@ class _categoryState extends State<category>
 
     final response = await request.send();
     var res = await http.Response.fromStream(response);
+    print(res.statusCode);
+    print(res.body);
     if (response.statusCode == 200) {
       final result = SubCatMobelFromJson(res.body);
       if (isRefresh) {
         print("refreshhhhhhhhhhhhhhhhhhhhh");
         passengers = result.data!;
       } else {
+        print("addAlllllllllllllllllll");
         passengers.addAll(result.data!);
       }
 
@@ -74,6 +83,7 @@ class _categoryState extends State<category>
       });
       return true;
     } else {
+      print("elseeeeeeeeeeeeeeeeeeeee");
       return false;
     }
   }
@@ -83,8 +93,6 @@ class _categoryState extends State<category>
     super.initState();
   }
 
-  ControllerProduct controllerPro = Get.put(ControllerProduct());
-  var i;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -228,11 +236,7 @@ class _categoryState extends State<category>
                                 print(passenger.sectionId);
                                 controller.SavrIdSec(passenger.sectionId);
                                 controller.SaveIdSubSec(passenger.id);
-                                // print(sub);
                                 print(passenger.id);
-                                // if (guest == true) {
-                                //   diaGuest(context);
-                                // } else {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -272,7 +276,7 @@ class _categoryState extends State<category>
                                                 ),
                                               ],
                                               borderRadius: BorderRadius.all(
-                                                  Radius.circular(20))),
+                                                  Radius.circular(5))),
                                           alignment: Alignment.center,
                                           width:
                                               MediaQuery.of(context).size.width,

@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:abood/constant/urls.dart';
+import 'package:abood/controller/ControlUser.dart';
 import 'package:abood/controller/controlProduct.dart';
 import 'package:abood/model/user/mycart/api/my_cart.dart';
 import 'package:abood/model/user/stor/stor_by_section_sub/stor_by_section_sub_model.dart';
@@ -26,6 +27,8 @@ List<Map<dynamic, dynamic>> nameStors = [];
 
 class _allStoreState extends State<allStore> {
   ControllerProduct controllerPro = Get.put(ControllerProduct());
+
+  Homecontroller controller = Get.put(Homecontroller());
   @override
   void initState() {
     // TODO: implement initState
@@ -77,7 +80,7 @@ class _allStoreState extends State<allStore> {
       currentPage++;
       totalPages = 0;
       print(res.body);
-      myCartApi();
+      controller.id != null ? myCartApi() : print("");
       setState(() {});
       return true;
     } else {
@@ -111,8 +114,8 @@ class _allStoreState extends State<allStore> {
           },
           child: ListView.builder(
               itemCount: passengers.length,
-              physics: const NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
+              // physics: const NeverScrollableScrollPhysics(),
+              // shrinkWrap: true,
               // scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
                 final passenger = passengers[index];
@@ -140,7 +143,7 @@ class _allStoreState extends State<allStore> {
                         child: Container(
                           // padding: EdgeInsets.all(10),
                           child: ClipRRect(
-                              borderRadius: BorderRadius.circular(10),
+                              borderRadius: BorderRadius.circular(5),
                               child: CachedNetworkImage(
                                 imageUrl:
                                     (imageAds + passenger.image.toString()),

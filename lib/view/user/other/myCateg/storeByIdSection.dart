@@ -137,19 +137,21 @@ class _storeByIdSectionState extends State<storeByIdSection> {
                     elevation: 5,
                     child: Container(
                       // height: 100,
+                      color: Color.fromARGB(255, 237, 235, 235),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           Container(
-                            padding: EdgeInsets.all(10),
+                            padding: EdgeInsets.all(5),
                             child: ClipRRect(
-                                borderRadius: BorderRadius.circular(10),
+                                borderRadius: BorderRadius.circular(5),
                                 child: CachedNetworkImage(
                                   imageUrl:
                                       (imageAds + passenger.image.toString()),
                                   fit: BoxFit.cover,
                                 )),
                             decoration: const BoxDecoration(
+                              color: Color.fromARGB(255, 237, 235, 235),
                               shape: BoxShape.rectangle,
                               borderRadius: BorderRadius.only(
                                 topRight: Radius.circular(4.0),
