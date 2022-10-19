@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:abood/controller/ControlUser.dart';
 import 'package:abood/main.dart';
 import 'package:abood/model/user/stor/items/get_items_id.dart';
+import 'package:abood/model/user/stor/stor_item/stor_item_model.dart';
 import 'package:abood/translation/translation.dart';
 import 'package:abood/view/admin/add_offer.dart';
 import 'package:abood/view/admin/add_product.dart';
@@ -134,13 +135,13 @@ class _MyAppState extends State<MyApp> {
         "CompletCart": ((context) => CompletCart()),
         "notification": ((context) => notification()),
         "EditItem": ((context) => EditItem(
-              id: null,
+              pass: StorItemsData(),
             )),
         "AddOffer": ((context) => AddOffer(
               id: null,
             )),
         "DeletItem": ((context) => DeletItem(
-              id: null,
+              pass: StorItemsData(),
             )),
         "picColor": ((context) => picColor()),
         "muImage": ((context) => muImage(

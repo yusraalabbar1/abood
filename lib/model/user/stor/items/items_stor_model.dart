@@ -4,11 +4,13 @@
 
 import 'dart:convert';
 
-StorItems StorItemsFromJson(String str) => StorItems.fromJson(json.decode(str));
-String StorItemsToJson(StorItems data) => json.encode(data.toJson());
+ItemsStoreModel welcomeFromJson(String str) =>
+    ItemsStoreModel.fromJson(json.decode(str));
 
-class StorItems {
-  StorItems({
+String welcomeToJson(ItemsStoreModel data) => json.encode(data.toJson());
+
+class ItemsStoreModel {
+  ItemsStoreModel({
     this.isSuccess,
     this.message,
     this.data,
@@ -16,15 +18,13 @@ class StorItems {
 
   bool? isSuccess;
   String? message;
-  List<StorItemsData>? data;
+  List<Datum>? data;
 
-  factory StorItems.fromJson(Map<String, dynamic> json) => StorItems(
+  factory ItemsStoreModel.fromJson(Map<String, dynamic> json) =>
+      ItemsStoreModel(
         isSuccess: json["isSuccess"],
         message: json["message"],
-        data: json["data"] != null
-            ? List<StorItemsData>.from(
-                json["data"].map((x) => StorItemsData.fromJson(x)))
-            : null,
+        data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -34,8 +34,8 @@ class StorItems {
       };
 }
 
-class StorItemsData {
-  StorItemsData({
+class Datum {
+  Datum({
     this.id,
     this.descEn,
     this.descAr,
@@ -66,18 +66,18 @@ class StorItemsData {
   int? itemId;
   String? itemName;
   String? itemDescription;
-  dynamic? price;
-  dynamic? newPrice;
-  dynamic? extraText;
+  dynamic price;
+  dynamic newPrice;
+  String? extraText;
   dynamic? offerText;
   bool? isOffer;
   bool? isWish;
-  int? rate;
-  List<ItemImage>? itemImages;
+  dynamic? rate;
+  List<dynamic>? itemImages;
   List<ItemColor>? itemColors;
   List<ItemSize>? itemSizes;
 
-  factory StorItemsData.fromJson(Map<String, dynamic> json) => StorItemsData(
+  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
         id: json["id"],
         descEn: json["descEn"],
         descAr: json["descAr"],
@@ -87,25 +87,18 @@ class StorItemsData {
         itemId: json["itemId"],
         itemName: json["itemName"],
         itemDescription: json["itemDescription"],
-        price: json["price"].toDouble(),
+        price: json["price"],
         newPrice: json["newPrice"],
         extraText: json["extraText"],
         offerText: json["offerText"],
         isOffer: json["isOffer"],
         isWish: json["isWish"],
         rate: json["rate"],
-        itemImages: json["itemImages"] != null
-            ? List<ItemImage>.from(
-                json["itemImages"].map((x) => ItemImage.fromJson(x)))
-            : null,
-        itemColors: json["itemColors"] != null
-            ? List<ItemColor>.from(
-                json["itemColors"].map((x) => ItemColor.fromJson(x)))
-            : null,
-        itemSizes: json["itemSizes"] != null
-            ? List<ItemSize>.from(
-                json["itemSizes"].map((x) => ItemSize.fromJson(x)))
-            : null,
+        itemImages: List<dynamic>.from(json["itemImages"].map((x) => x)),
+        itemColors: List<ItemColor>.from(
+            json["itemColors"].map((x) => ItemColor.fromJson(x))),
+        itemSizes: List<ItemSize>.from(
+            json["itemSizes"].map((x) => ItemSize.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -125,7 +118,7 @@ class StorItemsData {
         "isOffer": isOffer,
         "isWish": isWish,
         "rate": rate,
-        "itemImages": List<dynamic>.from(itemImages!.map((x) => x.toJson())),
+        "itemImages": List<dynamic>.from(itemImages!.map((x) => x)),
         "itemColors": List<dynamic>.from(itemColors!.map((x) => x.toJson())),
         "itemSizes": List<dynamic>.from(itemSizes!.map((x) => x.toJson())),
       };
@@ -135,14 +128,14 @@ class ItemColor {
   ItemColor({
     this.itemId,
     this.itemColorId,
-    this.qty,
     this.value,
+    this.qty,
   });
 
   int? itemId;
   int? itemColorId;
   String? value;
-  dynamic qty;
+  int? qty;
 
   factory ItemColor.fromJson(Map<String, dynamic> json) => ItemColor(
         itemId: json["itemId"],
@@ -156,30 +149,6 @@ class ItemColor {
         "itemColorId": itemColorId,
         "value": value,
         "qty": qty,
-      };
-}
-
-class ItemImage {
-  ItemImage({
-    this.itemId,
-    this.itemImageId,
-    this.imageUrl,
-  });
-
-  int? itemId;
-  int? itemImageId;
-  String? imageUrl;
-
-  factory ItemImage.fromJson(Map<String, dynamic> json) => ItemImage(
-        itemId: json["itemId"],
-        itemImageId: json["itemImageId"],
-        imageUrl: json["imageUrl"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "itemId": itemId,
-        "itemImageId": itemImageId,
-        "imageUrl": imageUrl,
       };
 }
 

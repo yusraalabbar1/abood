@@ -26,15 +26,15 @@ edit_color(context, id, qty, value, idd) async {
   http.StreamedResponse response = await request.send();
 
   if (response.statusCode == 200) {
-    // print(await response.stream.bytesToString());
+    print(await response.stream.bytesToString());
     // await myDialog2(context, c.message);
-    getItemsIdApi(int.parse(idd.toString()));
+    // updateStoreItems(idd);
   } else {
     print(response.reasonPhrase);
   }
 }
 
-edit_size(context, id, ar, en) async {
+edit_size(context, id, ar, en, idStore) async {
   print(id);
   var headers = {'Content-Type': 'application/json'};
   var request = http.Request(
@@ -43,6 +43,25 @@ edit_size(context, id, ar, en) async {
           'https://friendly-proskuriakova.162-55-191-66.plesk.page/AboodAPI/api/items/update/size'));
   request.body = json.encode({"Id": id, "DescAr": ar, "DescEn": en});
   request.headers.addAll(headers);
+
+  http.StreamedResponse response = await request.send();
+
+  if (response.statusCode == 200) {
+    print(await response.stream.bytesToString());
+
+    // print("=========api==============");
+    // print(idStore);
+    // updateStoreItems(idStore);
+  } else {
+    // print(response.reasonPhrase);
+  }
+}
+
+updateStoreItems(id) async {
+  var request = http.Request(
+      'GET',
+      Uri.parse(
+          'https://friendly-proskuriakova.162-55-191-66.plesk.page/AboodAPI/api/store/$id/items/pageIndex/0'));
 
   http.StreamedResponse response = await request.send();
 

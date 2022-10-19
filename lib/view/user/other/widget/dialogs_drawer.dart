@@ -1,4 +1,5 @@
 import 'package:abood/constant/colors.dart';
+import 'package:abood/view/user/auth/login.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -42,7 +43,12 @@ showLoadingLogout(context) async {
                           SharedPreferences preferences =
                               await SharedPreferences.getInstance();
                           preferences.setBool("isLogin", false);
-                          Navigator.of(context).pushReplacementNamed("welcom");
+                          Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(builder: (context) => login()),
+                            (Route<dynamic> route) => false,
+                          );
+                          // Navigator.of(context).pushReplacementNamed("login");
                         },
                       ),
                       SizedBox(

@@ -1,4 +1,5 @@
 import 'package:abood/controller/ControlUser.dart';
+import 'package:abood/model/admin/api/edit_color.dart';
 import 'package:abood/view/admin/add_offer.dart';
 import 'package:abood/view/admin/delet_item.dart';
 import 'package:abood/view/admin/edit_item.dart';
@@ -150,6 +151,13 @@ class _AllItemsStoreEditState extends State<AllItemsStoreEdit> {
   }
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    print('All Item Edit');
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
@@ -203,14 +211,12 @@ class _AllItemsStoreEditState extends State<AllItemsStoreEdit> {
                       final passenger = passengers[index];
                       return InkWell(
                           onTap: () async {
-                            // Navigator.of(context)
-                            //     .pushNamed("particularProducte");
-                            // Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(
-                            //     builder: (context) => particulerProduct(id: 2),
-                            //   ),
-                            // );
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => EditItem(pass: passenger),
+                              ),
+                            );
                           },
                           child: Container(
                               alignment: Alignment.center,
@@ -243,7 +249,8 @@ class _AllItemsStoreEditState extends State<AllItemsStoreEdit> {
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) => EditItem(
-                                                    id: passenger.itemId)),
+                                                      pass: passenger,
+                                                    )),
                                           );
                                         },
                                         child: Container(

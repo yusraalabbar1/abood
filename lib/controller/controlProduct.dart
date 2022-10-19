@@ -20,6 +20,12 @@ class ControllerProduct extends GetxController {
   dynamic total;
   String? language;
   List<Map<dynamic, dynamic>> listPayment = [];
+  var colorSave;
+  SaveColor(v) {
+    colorSave = v;
+    update();
+  }
+
   SaveListPayment(v) {
     listPayment = v;
     update();

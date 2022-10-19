@@ -249,8 +249,13 @@ class _AllItemsStoreofferState extends State<AllItemsStoreoffer> {
                                                       isoffer:
                                                           passenger.isOffer,
                                                       image: passenger
-                                                          .itemImages![0]
-                                                          .imageUrl,
+                                                                  .itemImages!
+                                                                  .length >
+                                                              0
+                                                          ? passenger
+                                                              .itemImages![0]
+                                                              .imageUrl
+                                                          : "",
                                                     )),
                                           );
                                         },

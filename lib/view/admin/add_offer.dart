@@ -100,9 +100,11 @@ class _AddOfferState extends State<AddOffer> {
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                         image: DecorationImage(
                             fit: BoxFit.cover,
-                            image: CachedNetworkImageProvider(
-                                // "https://cdn11.bigcommerce.com/s-9p889rxpkb/product_images/uploaded_images/15-ygt-690x480-min-resize.jpg"
-                                imageAds + widget.image.toString()))),
+                            image: widget.image.toString() != ""
+                                ? CachedNetworkImageProvider(
+                                    imageAds + widget.image.toString())
+                                : CachedNetworkImageProvider(
+                                    "https://www.drupal.org/files/project-images/Nothing.jpg"))),
                   ),
                   Container(
                     margin: EdgeInsets.symmetric(horizontal: 30),

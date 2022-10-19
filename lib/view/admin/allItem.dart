@@ -235,7 +235,8 @@ class _AllItemsStoreState extends State<AllItemsStore> {
                                                                   MaterialPageRoute(
                                                                     builder: (context) =>
                                                                         EditItem(
-                                                                            id: passenger.itemId),
+                                                                            pass:
+                                                                                passenger),
                                                                   ),
                                                                 );
                                                               });
@@ -266,7 +267,8 @@ class _AllItemsStoreState extends State<AllItemsStore> {
                                                                   MaterialPageRoute(
                                                                     builder: (context) =>
                                                                         DeletItem(
-                                                                            id: passenger.itemId),
+                                                                            pass:
+                                                                                passenger),
                                                                   ),
                                                                 );
                                                               });

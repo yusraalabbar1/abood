@@ -4,12 +4,13 @@ import 'package:abood/controller/controlProduct.dart';
 import 'package:abood/model/admin/api/deletItemApi.dart';
 import 'package:abood/model/admin/api/editItem.dart';
 import 'package:abood/model/user/stor/items/get_items_id.dart';
+import 'package:abood/model/user/stor/stor_item/stor_item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class DeletItem extends StatefulWidget {
-  final id;
-  const DeletItem({super.key, this.id});
+  final StorItemsData pass;
+  const DeletItem({super.key, required this.pass});
 
   @override
   State<DeletItem> createState() => _DeletItemState();
@@ -66,7 +67,6 @@ class _DeletItemState extends State<DeletItem> {
         ),
       ),
       body: FutureBuilder(
-        future: getItemsIdApi(widget.id),
         builder: (context, AsyncSnapshot<dynamic> snapshot) {
           return snapshot.hasData != null
               ? ListView(
@@ -97,8 +97,8 @@ class _DeletItemState extends State<DeletItem> {
                                   left: 20, right: 20, bottom: 20, top: 0),
                               child: Container(
                                   decoration: boxd(),
-                                  child: TextFormFieldFirst(
-                                      controllerPro.ItemsById["itemName"])),
+                                  child:
+                                      TextFormFieldFirst(widget.pass.itemName)),
                             ),
                             Container(
                                 // alignment: Alignment.topLeft,
@@ -109,8 +109,7 @@ class _DeletItemState extends State<DeletItem> {
                                   left: 20, right: 20, bottom: 20, top: 0),
                               child: Container(
                                   decoration: boxd(),
-                                  child: TextFormFieldLast(
-                                      controllerPro.ItemsById["price"])),
+                                  child: TextFormFieldLast(widget.pass.price)),
                             ),
                             Container(
                                 // alignment: Alignment.topLeft,
@@ -120,8 +119,7 @@ class _DeletItemState extends State<DeletItem> {
                               padding: const EdgeInsets.all(20.0),
                               child: Container(
                                   decoration: boxd(),
-                                  child: TextFormField1(
-                                      controllerPro.ItemsById["extraText"])),
+                                  child: TextFormField1(widget.pass.extraText)),
                             ),
                             Container(
                                 // alignment: Alignment.topLeft,
@@ -132,8 +130,8 @@ class _DeletItemState extends State<DeletItem> {
                                   left: 20, right: 20, bottom: 20, top: 20),
                               child: Container(
                                   decoration: boxd(),
-                                  child: TextFormField2(controllerPro
-                                      .ItemsById["itemDescription"])),
+                                  child: TextFormField2(
+                                      widget.pass.itemDescription)),
                             ),
                           ],
                         ),
@@ -153,7 +151,7 @@ class _DeletItemState extends State<DeletItem> {
                           SizedBox(
                             height: 10,
                           ),
-                          controllerPro.ItemsById["itemColors"] != null
+                          widget.pass.itemColors != null
                               ? Padding(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 20),
@@ -167,8 +165,8 @@ class _DeletItemState extends State<DeletItem> {
                                         // decoration: boxd(),
                                         child: ListView.builder(
                                           shrinkWrap: true,
-                                          itemCount: controllerPro
-                                              .ItemsById["itemColors"].length,
+                                          itemCount:
+                                              widget.pass.itemColors!.length,
                                           scrollDirection: Axis.horizontal,
                                           itemBuilder: (ctx, index) {
                                             return Padding(
@@ -186,7 +184,7 @@ class _DeletItemState extends State<DeletItem> {
                                         child: IconButton(
                                             onPressed: () {
                                               deletItemColorApi(
-                                                  context, widget.id);
+                                                  context, widget.pass.id);
                                             },
                                             icon: Icon(
                                               Icons.delete,
@@ -203,7 +201,7 @@ class _DeletItemState extends State<DeletItem> {
                               thickness: 3,
                             ),
                           ),
-                          controllerPro.ItemsById["itemSizes"] != null
+                          widget.pass.itemSizes != null
                               ? Padding(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 20),
@@ -217,8 +215,8 @@ class _DeletItemState extends State<DeletItem> {
                                         // decoration: boxd(),
                                         child: ListView.builder(
                                           shrinkWrap: true,
-                                          itemCount: controllerPro
-                                              .ItemsById["itemSizes"].length,
+                                          itemCount:
+                                              widget.pass.itemSizes!.length,
                                           scrollDirection: Axis.horizontal,
                                           itemBuilder: (ctx, index) {
                                             return Padding(
@@ -226,10 +224,10 @@ class _DeletItemState extends State<DeletItem> {
                                                     left: 5),
                                                 child: Chip(
                                                   label: Text(
-                                                    controllerPro
-                                                        .ItemsById["itemSizes"]
-                                                            [index]
-                                                            ["itemSizeDescEn"]
+                                                    widget
+                                                        .pass
+                                                        .itemSizes![index]
+                                                        .itemSizeDescEn
                                                         .toString(),
                                                     style: TextStyle(
                                                         color: Colors.white),
@@ -243,7 +241,7 @@ class _DeletItemState extends State<DeletItem> {
                                         child: IconButton(
                                             onPressed: () {
                                               deletItemSizeApi(
-                                                  context, widget.id);
+                                                  context, widget.pass.id);
                                             },
                                             icon: Icon(
                                               Icons.delete,
@@ -260,7 +258,7 @@ class _DeletItemState extends State<DeletItem> {
                               thickness: 3,
                             ),
                           ),
-                          controllerPro.ItemsById["itemImages"] != null
+                          widget.pass.itemImages != null
                               ? Padding(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 20),
@@ -274,13 +272,11 @@ class _DeletItemState extends State<DeletItem> {
                                         // decoration: boxd(),
                                         child: ListView.builder(
                                           shrinkWrap: true,
-                                          itemCount: controllerPro
-                                                      .ItemsById["itemImages"]
-                                                      .length >
-                                                  0
-                                              ? controllerPro
-                                                  .ItemsById["itemSizes"].length
-                                              : 0,
+                                          itemCount:
+                                              widget.pass.itemImages!.length > 0
+                                                  ? widget
+                                                      .pass.itemImages!.length
+                                                  : 0,
                                           scrollDirection: Axis.horizontal,
                                           itemBuilder: (ctx, index) {
                                             return Padding(
@@ -294,10 +290,14 @@ class _DeletItemState extends State<DeletItem> {
                                                 decoration: BoxDecoration(
                                                   color: Colors.black38,
                                                   image: DecorationImage(
-                                                    image: NetworkImage(imageAds +
-                                                        controllerPro.ItemsById[
-                                                                "itemImages"][
-                                                            index]["imageUrl"]),
+                                                    image: NetworkImage(
+                                                        imageAds +
+                                                            widget
+                                                                .pass
+                                                                .itemImages![
+                                                                    index]
+                                                                .imageUrl
+                                                                .toString()),
                                                     fit: BoxFit.fill,
                                                   ),
                                                   borderRadius:
@@ -314,7 +314,7 @@ class _DeletItemState extends State<DeletItem> {
                                         child: IconButton(
                                             onPressed: () {
                                               deletItemImageApi(
-                                                  context, widget.id);
+                                                  context, widget.pass.id);
                                             },
                                             icon: Icon(
                                               Icons.delete,
@@ -334,7 +334,7 @@ class _DeletItemState extends State<DeletItem> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 30),
                       child: ButtonRegister2(Colors.black, Colors.white,
-                          " Delete product".tr, 1, widget.id),
+                          " Delete product".tr, 1, widget.pass.id),
                     ),
                   ],
                 )
@@ -444,7 +444,7 @@ class _DeletItemState extends State<DeletItem> {
             print(controller.desItem);
             editItemApi(
                 context,
-                int.parse(widget.id.toString()),
+                int.parse(widget.pass.id.toString()),
                 controller.nameItem,
                 controller.desItem,
                 int.parse(controller.priceItem.toString()),

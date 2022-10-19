@@ -278,7 +278,8 @@ class _MainScreenStorState extends State<MainScreenStor> {
                   animationType: BadgeAnimationType.slide,
                   badgeColor: Colors.red,
                   borderRadius: BorderRadius.circular(8),
-                  badgeContent: controller.numNotif != 0
+                  badgeContent: controller.numNotif != 0 &&
+                          controller.numNotif != null
                       ? Text(controller.numNotif.toString(),
                           style: TextStyle(color: Colors.white, fontSize: 7))
                       : Text(""),

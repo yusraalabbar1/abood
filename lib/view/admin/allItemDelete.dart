@@ -203,14 +203,12 @@ class _AllItemsStoreDeletState extends State<AllItemsStoreDelet> {
                       final passenger = passengers[index];
                       return InkWell(
                           onTap: () async {
-                            // Navigator.of(context)
-                            //     .pushNamed("particularProducte");
-                            // Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(
-                            //     builder: (context) => particulerProduct(id: 2),
-                            //   ),
-                            // );
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      DeletItem(pass: passenger)),
+                            );
                           },
                           child: Container(
                               alignment: Alignment.center,
@@ -239,8 +237,8 @@ class _AllItemsStoreDeletState extends State<AllItemsStoreDelet> {
                                           Navigator.push(
                                             context,
                                             MaterialPageRoute(
-                                                builder: (context) => DeletItem(
-                                                    id: passenger.itemId)),
+                                                builder: (context) =>
+                                                    DeletItem(pass: passenger)),
                                           );
                                         },
                                         child: Container(

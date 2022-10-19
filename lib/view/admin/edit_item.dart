@@ -1,3 +1,4 @@
+import 'package:abood/model/user/stor/stor_item/stor_item_model.dart';
 import 'package:flutter/material.dart';
 
 import 'package:abood/constant/urls.dart';
@@ -13,8 +14,8 @@ import 'package:get/get.dart';
 import '../../model/admin/api/edit_color.dart';
 
 class EditItem extends StatefulWidget {
-  final id;
-  const EditItem({super.key, this.id});
+  final StorItemsData pass;
+  const EditItem({super.key, required this.pass});
 
   @override
   State<EditItem> createState() => _EditItemState();
@@ -26,7 +27,7 @@ class _EditItemState extends State<EditItem> {
   ControllerAdmin controller = Get.put(ControllerAdmin());
 
   GlobalKey<FormState> formstate = new GlobalKey<FormState>();
-  GlobalKey<FormState> formstate1 = new GlobalKey<FormState>();
+  // GlobalKey<FormState> formstate1 = new GlobalKey<FormState>();
   FocusNode myFocusNode = new FocusNode();
 
   Text text3(text) {
@@ -78,7 +79,7 @@ class _EditItemState extends State<EditItem> {
         ),
       ),
       body: FutureBuilder(
-        future: getItemsIdApi(widget.id),
+        // future: getItemsIdApi(widget.id),
         builder: (context, AsyncSnapshot<dynamic> snapshot) {
           return snapshot.hasData != null
               ? ListView(
@@ -109,7 +110,7 @@ class _EditItemState extends State<EditItem> {
                                 child: Container(
                                     decoration: boxd(),
                                     child: TextFormFieldFirst(
-                                        controllerPro.ItemsById["itemName"]))),
+                                        widget.pass.itemName))),
                             Container(
                                 // alignment: Alignment.topLeft,
                                 margin: EdgeInsets.symmetric(horizontal: 30),
@@ -122,8 +123,8 @@ class _EditItemState extends State<EditItem> {
                                     left: 20, right: 20, bottom: 20, top: 0),
                                 child: Container(
                                     decoration: boxd(),
-                                    child: TextFormFieldLast(
-                                        controllerPro.ItemsById["price"]))),
+                                    child:
+                                        TextFormFieldLast(widget.pass.price))),
                             Container(
                                 // alignment: Alignment.topLeft,
                                 margin: EdgeInsets.symmetric(horizontal: 30),
@@ -136,8 +137,7 @@ class _EditItemState extends State<EditItem> {
                                   left: 20, right: 20, bottom: 20, top: 0),
                               child: Container(
                                   decoration: boxd(),
-                                  child: TextFormField1(
-                                      controllerPro.ItemsById["extraText"])),
+                                  child: TextFormField1(widget.pass.extraText)),
                             ),
                             Container(
                                 // alignment: Alignment.topLeft,
@@ -151,8 +151,8 @@ class _EditItemState extends State<EditItem> {
                                   left: 20, right: 20, bottom: 20, top: 0),
                               child: Container(
                                   decoration: boxd(),
-                                  child: TextFormField2(controllerPro
-                                      .ItemsById["itemDescription"])),
+                                  child: TextFormField2(
+                                      widget.pass.itemDescription)),
                             ),
                           ],
                         ),
@@ -168,23 +168,24 @@ class _EditItemState extends State<EditItem> {
                           Colors.white,
                           "Edit Info".tr,
                           1,
-                          controllerPro.ItemsById["itemName"],
-                          controllerPro.ItemsById["price"],
-                          controllerPro.ItemsById["extraText"],
-                          controllerPro.ItemsById["itemDescription"]),
+                          widget.pass.itemName,
+                          widget.pass.price,
+                          widget.pass.extraText,
+                          widget.pass.itemDescription),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(20),
                       child: appText2("Edit Colors".tr),
                     ),
-                    controllerPro.ItemsById["itemColors"] != null
+                    widget.pass.itemColors != null
                         ? GetBuilder<ControllerProduct>(
                             builder: (controllerPro) {
                             return ListView.builder(
-                                itemCount: controllerPro
-                                    .ItemsById["itemColors"].length,
+                                itemCount: widget.pass.itemColors!.length,
                                 shrinkWrap: true,
                                 itemBuilder: (BuildContext context, int index) {
+                                  controllerPro.colorSave =
+                                      widget.pass.itemColors![index].value;
                                   return Container(
                                     margin: EdgeInsets.all(10),
                                     // color: Colors.white,
@@ -220,6 +221,9 @@ class _EditItemState extends State<EditItem> {
                                                                         color.toString().length -
                                                                             1);
                                                                 print(colCut);
+                                                                controllerPro
+                                                                    .SaveColor(
+                                                                        colCut);
                                                                 colCut = colCut
                                                                     .toString()
                                                                     .replaceAll(
@@ -296,15 +300,15 @@ class _EditItemState extends State<EditItem> {
                                                             onPressed: () {
                                                               edit_color(
                                                                   context,
-                                                                  controllerPro.ItemsById[
-                                                                              "itemColors"]
-                                                                          [
+                                                                  widget
+                                                                      .pass
+                                                                      .itemColors![
                                                                           index]
-                                                                      [
-                                                                      "itemColorId"],
+                                                                      .itemColorId,
                                                                   quent,
                                                                   colCut,
-                                                                  widget.id);
+                                                                  widget
+                                                                      .pass.id);
 
                                                               Navigator.of(
                                                                       context)
@@ -322,16 +326,12 @@ class _EditItemState extends State<EditItem> {
                                         trailing: CircleAvatar(
                                           radius: 10,
                                           backgroundColor: Color(int.parse(
-                                              controllerPro
-                                                  .ItemsById["itemColors"]
-                                                      [index]["value"]
+                                              controllerPro.colorSave
                                                   .toString()
                                                   .replaceAll("#", "0xff"))),
                                         ),
                                         title: Text("Quantity \t".tr +
-                                            controllerPro
-                                                .ItemsById["itemColors"][index]
-                                                    ["qty"]
+                                            widget.pass.itemColors![index].qty
                                                 .toString())),
                                   );
                                 });
@@ -341,10 +341,9 @@ class _EditItemState extends State<EditItem> {
                       padding: const EdgeInsets.all(20.0),
                       child: appText2("Edit Sizes".tr),
                     ),
-                    controllerPro.ItemsById["itemSizes"] != null
+                    widget.pass.itemSizes != null
                         ? ListView.builder(
-                            itemCount:
-                                controllerPro.ItemsById["itemSizes"].length,
+                            itemCount: widget.pass.itemSizes!.length,
                             shrinkWrap: true,
                             itemBuilder: (BuildContext context, int index) {
                               return Container(
@@ -354,77 +353,45 @@ class _EditItemState extends State<EditItem> {
                                 child: ListTile(
                                     leading: IconButton(
                                         onPressed: () {
-                                          var formdata =
-                                              formstate1.currentState;
-                                          if (formdata!.validate()) {
-                                            formdata.save();
-
-                                            print(
-                                                "=========valid==============");
-                                            print(ar);
-                                            print(en);
-                                            edit_size(
-                                                context,
-                                                controllerPro
-                                                        .ItemsById["itemSizes"]
-                                                    [index]["itemSizeId"],
-                                                ar,
-                                                en);
-                                            print("=========api==============");
-
-                                            // Navigator.of(context).pushNamed("picColor");
-                                          } else {
-                                            print("not validddddddddddddddd");
+                                          print(ar);
+                                          print(en);
+                                          if (ar == null) {
+                                            ar = widget.pass.itemSizes![index]
+                                                .itemSizeDescAr;
                                           }
+                                          if (en == null) {
+                                            en = widget.pass.itemSizes![index]
+                                                .itemSizeDescEn;
+                                          }
+                                          edit_size(
+                                              context,
+                                              widget.pass.itemSizes![index]
+                                                  .itemSizeId,
+                                              ar,
+                                              en,
+                                              widget.pass.id);
                                         },
                                         icon: const Icon(Icons.edit_note)),
                                     title: Form(
-                                      key: formstate1,
+                                      // key: formstate1,
                                       child: Row(
                                         children: [
                                           Expanded(
-                                              child: TextFormFieldSizeAR(
-                                                  controllerPro.ItemsById[
-                                                          "itemSizes"][index]
-                                                      ["itemSizeDescAr"])),
+                                              child: TextFormFieldSizeAR(widget
+                                                  .pass
+                                                  .itemSizes![index]
+                                                  .itemSizeDescAr)),
                                           Expanded(
-                                              child: TextFormFieldSizeEN(
-                                                  controllerPro.ItemsById[
-                                                          "itemSizes"][index]
-                                                      ["itemSizeDescEn"])),
+                                              child: TextFormFieldSizeEN(widget
+                                                  .pass
+                                                  .itemSizes![index]
+                                                  .itemSizeDescEn)),
                                         ],
                                       ),
                                     )),
                               );
                             })
                         : Container(child: Text("No Thing")),
-                    // Padding(
-                    //   padding: const EdgeInsets.all(20.0),
-                    //   child: appText2("Edit Images".tr),
-                    // ),
-                    // controllerPro.ItemsById["itemImages"] != null
-                    //     ? ListView.builder(
-                    //         itemCount:
-                    //             controllerPro.ItemsById["itemImages"].length,
-                    //         shrinkWrap: true,
-                    //         itemBuilder: (BuildContext context, int index) {
-                    //           return Container(
-                    //             margin: EdgeInsets.all(10),
-                    //             // color: Colors.white,
-                    //             decoration: boxd(),
-                    //             child: ListTile(
-                    //               leading: const Icon(Icons.edit_note),
-                    //               trailing: Container(
-                    //                 width: 100,
-                    //                 height: 100,
-                    //                 child: Image.network(imageAds +
-                    //                     controllerPro.ItemsById["itemImages"]
-                    //                         [index]["imageUrl"]),
-                    //               ),
-                    //             ),
-                    //           );
-                    //         })
-                    //     : Container(child: Text("No Thing")),
                   ],
                 )
               : CircularProgressIndicator();
@@ -447,7 +414,11 @@ class _EditItemState extends State<EditItem> {
 
         return null;
       },
-      onSaved: (string) {
+      // onSaved: (string) {
+      //   en = string;
+      //   // controller.SavenameItem(string);
+      // },
+      onChanged: (string) {
         en = string;
         // controller.SavenameItem(string);
       },
@@ -468,7 +439,11 @@ class _EditItemState extends State<EditItem> {
 
         return null;
       },
-      onSaved: (string) {
+      // onSaved: (string) {
+      //   ar = string;
+      //   // controller.SavenameItem(string);
+      // },
+      onChanged: (string) {
         ar = string;
         // controller.SavenameItem(string);
       },
@@ -623,7 +598,7 @@ class _EditItemState extends State<EditItem> {
             print(priceItem);
             print(noteItem);
             print(desItem);
-            editItemApi(context, int.parse(widget.id.toString()), nameItem,
+            editItemApi(context, int.parse(widget.pass.id.toString()), nameItem,
                 desItem, double.parse(priceItem.toString()), noteItem);
             print("=========api==============");
 
