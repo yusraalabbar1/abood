@@ -473,16 +473,46 @@ class _particulerProductState extends State<particulerProduct> {
                                           await myCartApi();
                                         } else if (sizescelect == 0 &&
                                             colorselect != 0) {
-                                          diaFaildCart(
-                                              context, "Choose Size".tr);
+                                          Get.snackbar(
+                                            "Note".tr,
+                                            "Choose Size".tr,
+                                            colorText: Colors.white,
+
+                                            backgroundColor:
+                                                Colors.grey.withOpacity(0.4),
+                                            // icon: Icon(Icons.attachment, color: Colors.white),
+                                            snackPosition: SnackPosition.BOTTOM,
+                                          );
+                                          // diaFaildCart(
+                                          //     context, "Choose Size".tr);
                                         } else if (sizescelect != 0 &&
                                             colorselect == 0) {
-                                          diaFaildCart(
-                                              context, "Choose Color".tr);
+                                          Get.snackbar(
+                                            "Note".tr,
+                                            "Choose Color".tr,
+                                            colorText: Colors.white,
+
+                                            backgroundColor:
+                                                Colors.grey.withOpacity(0.4),
+                                            // icon: Icon(Icons.attachment, color: Colors.white),
+                                            snackPosition: SnackPosition.BOTTOM,
+                                          );
+                                          // diaFaildCart(
+                                          //     context, "Choose Color".tr);
                                         } else if (sizescelect == 0 &&
                                             colorselect == 0) {
-                                          diaFaildCart(context,
-                                              "Choose Size & Color".tr);
+                                          Get.snackbar(
+                                            "Note".tr,
+                                            "Choose Size & Color".tr,
+                                            colorText: Colors.white,
+
+                                            backgroundColor:
+                                                Colors.grey.withOpacity(0.4),
+                                            // icon: Icon(Icons.attachment, color: Colors.white),
+                                            snackPosition: SnackPosition.BOTTOM,
+                                          );
+                                          // diaFaildCart(context,
+                                          //     "Choose Size & Color".tr);
                                         }
                                       }
                                     },
@@ -514,6 +544,7 @@ class _particulerProductState extends State<particulerProduct> {
                                             await addLike(
                                                 int.parse(widget.id.toString()),
                                                 controller1.id);
+
                                             await myLikeApi(controller1.id);
                                           } else if (controller
                                                   .ItemsById["isWish"] ==
@@ -611,6 +642,7 @@ class _particulerProductState extends State<particulerProduct> {
       minRating: 1,
       direction: Axis.horizontal,
       // allowHalfRating: true,
+
       itemCount: 5,
       itemSize: 20,
       // itemPadding: EdgeInsets.symmetric(horizontal: 4.0),

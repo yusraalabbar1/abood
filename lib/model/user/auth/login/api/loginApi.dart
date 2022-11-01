@@ -85,7 +85,7 @@ Future diaSucc(context, c) {
           headerAnimationLoop: true,
           dialogType: DialogType.SUCCES,
           btnOkOnPress: () {},
-          body: Text(c.message.toString(),
+          body: Text(c.message.toString().tr,
               style: const TextStyle(
                   color: Colors.black, fontSize: 14, fontFamily: 'Almarai')),
           dialogBackgroundColor: MyColors.color3,
@@ -100,7 +100,7 @@ Future diaFaild(context, c) {
           dialogType: DialogType.ERROR,
           headerAnimationLoop: true,
           btnOkOnPress: () {},
-          body: Text(c.message.toString(),
+          body: Text(c.message.toString().tr,
               style: const TextStyle(
                   color: Colors.black, fontSize: 14, fontFamily: 'Almarai')),
           dialogBackgroundColor: MyColors.color3,

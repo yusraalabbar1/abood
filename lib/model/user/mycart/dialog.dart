@@ -1,6 +1,7 @@
 import 'package:abood/constant/colors.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 Future diaSuccCart(context, c) {
   return AwesomeDialog(
@@ -9,7 +10,7 @@ Future diaSuccCart(context, c) {
           headerAnimationLoop: true,
           dialogType: DialogType.SUCCES,
           btnOkOnPress: () {},
-          body: Text(c.toString(),
+          body: Text(c.toString().tr,
               style: const TextStyle(
                   color: Colors.black, fontSize: 14, fontFamily: 'Almarai')),
           dialogBackgroundColor: MyColors.color3,
@@ -24,7 +25,7 @@ Future diaFaildCart(context, c) {
           dialogType: DialogType.ERROR,
           headerAnimationLoop: true,
           btnOkOnPress: () {},
-          body: Text(c.toString(),
+          body: Text(c.toString().tr,
               style: const TextStyle(
                   color: Colors.black, fontSize: 14, fontFamily: 'Almarai')),
           dialogBackgroundColor: MyColors.color3,

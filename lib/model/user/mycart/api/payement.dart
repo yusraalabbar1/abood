@@ -47,9 +47,9 @@ paymentApi(context, name, mobile, cityId, area, street, flat, listMap) async {
   MyPymentModel c = MyPymentModel.fromJson(jsonDecode(res.body));
   if (response.statusCode == 200) {
     if (c.isSuccess == true) {
-      diaSuccCart(context, "Success Payment");
+      diaSuccCart(context, "The Request was successfully completed".tr);
     } else {
-      diaFaildCart(context, "Error Payment");
+      diaFaildCart(context, "Request Faild".tr);
     }
   } else {
     diaFaildCart(context, "Error");

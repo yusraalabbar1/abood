@@ -129,6 +129,17 @@ class _searchProductUserState extends State<searchProductUser> {
             imageAds + img.toString())));
   }
 
+  BoxDecoration boxdefault() {
+    return BoxDecoration(
+        shape: BoxShape.rectangle,
+        borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(15.0), topRight: Radius.circular(15.0)),
+        image: DecorationImage(
+            fit: BoxFit.cover,
+            image: CachedNetworkImageProvider(
+                "https://www.mobismea.com/upload/iblock/2a0/2f5hleoupzrnz9o3b8elnbv82hxfh4ld/No%20Product%20Image%20Available.png")));
+  }
+
   BoxDecoration boxd() {
     return BoxDecoration(
       color: Colors.white,
@@ -281,9 +292,14 @@ class _searchProductUserState extends State<searchProductUser> {
                                           child: Stack(
                                             children: [
                                               Container(
-                                                  decoration: box2(passenger
-                                                      .itemImages![0]
-                                                      .imageUrl)),
+                                                  decoration: passenger
+                                                              .itemImages!
+                                                              .length !=
+                                                          0
+                                                      ? box2(passenger
+                                                          .itemImages![0]
+                                                          .imageUrl)
+                                                      : boxdefault()),
                                             ],
                                           )),
                                       Expanded(

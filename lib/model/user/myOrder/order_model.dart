@@ -55,7 +55,8 @@ class DatumOrders {
     this.discount,
     this.netTotal,
     this.statusId,
-    this.statusDesc,
+    this.statusDescAr,
+    this.statusDescEn,
     this.details,
   });
 
@@ -77,7 +78,8 @@ class DatumOrders {
   dynamic? discount;
   dynamic? netTotal;
   dynamic? statusId;
-  dynamic? statusDesc;
+  dynamic? statusDescAr;
+  dynamic? statusDescEn;
   List<Detail>? details;
 
   factory DatumOrders.fromJson(Map<String, dynamic> json) => DatumOrders(
@@ -99,7 +101,8 @@ class DatumOrders {
         discount: json["discount"],
         netTotal: json["netTotal"],
         statusId: json["statusId"],
-        statusDesc: json["statusDesc"],
+        statusDescAr: json["statusDescAr"],
+        statusDescEn: json["statusDescEn"],
         details:
             List<Detail>.from(json["details"].map((x) => Detail.fromJson(x))),
       );
@@ -123,7 +126,8 @@ class DatumOrders {
         "discount": discount,
         "netTotal": netTotal,
         "statusId": statusId,
-        "statusDesc": statusDesc,
+        "statusDescAr": statusDescAr,
+        "statusDescEn": statusDescEn,
         "details": List<dynamic>.from(details!.map((x) => x.toJson())),
       };
 }

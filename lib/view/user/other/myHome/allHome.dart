@@ -56,7 +56,7 @@ class _AllHomeState extends State<AllHome> {
                   const SizedBox(
                     width: 20,
                   ),
-                  const Text("Go See Offers",
+                  Text("Click to Go See Offers".tr,
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 18,

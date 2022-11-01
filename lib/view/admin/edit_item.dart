@@ -1,3 +1,4 @@
+import 'package:abood/model/admin/dialog/dialog.dart';
 import 'package:abood/model/user/stor/stor_item/stor_item_model.dart';
 import 'package:flutter/material.dart';
 
@@ -63,6 +64,7 @@ class _EditItemState extends State<EditItem> {
   var quent = 1;
   var c;
   String colCut = "";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -82,322 +84,327 @@ class _EditItemState extends State<EditItem> {
         // future: getItemsIdApi(widget.id),
         builder: (context, AsyncSnapshot<dynamic> snapshot) {
           return snapshot.hasData != null
-              ? ListView(
+              ? Column(
                   children: [
-                    Container(
-                      margin: EdgeInsets.all(10),
-                      width: MediaQuery.of(context).size.width,
-                      child: Form(
-                        key: formstate,
-                        child: Column(
-                          // mainAxisAlignment: MainAxisAlignment.center,
+                    Expanded(
+                      child: ListView(
+                        children: [
+                          Container(
+                            margin: EdgeInsets.all(10),
+                            width: MediaQuery.of(context).size.width,
+                            child: Form(
+                              key: formstate,
+                              child: Column(
+                                // mainAxisAlignment: MainAxisAlignment.center,
 
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const SizedBox(
-                              height: 20,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const SizedBox(
+                                    height: 20,
+                                  ),
+                                  Container(
+                                      // alignment: Alignment.topLeft,
+                                      margin:
+                                          EdgeInsets.symmetric(horizontal: 30),
+                                      child: appText2("Name:".tr)),
+                                  const SizedBox(
+                                    height: 5,
+                                  ),
+                                  Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 20,
+                                          right: 20,
+                                          bottom: 20,
+                                          top: 0),
+                                      child: Container(
+                                          decoration: boxd(),
+                                          child: TextFormFieldFirst(
+                                              widget.pass.itemName))),
+                                  Container(
+                                      // alignment: Alignment.topLeft,
+                                      margin:
+                                          EdgeInsets.symmetric(horizontal: 30),
+                                      child: appText2("Price:".tr)),
+                                  const SizedBox(
+                                    height: 5,
+                                  ),
+                                  Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 20,
+                                          right: 20,
+                                          bottom: 20,
+                                          top: 0),
+                                      child: Container(
+                                          decoration: boxd(),
+                                          child: TextFormFieldLast(
+                                              widget.pass.price))),
+                                  Container(
+                                      // alignment: Alignment.topLeft,
+                                      margin:
+                                          EdgeInsets.symmetric(horizontal: 30),
+                                      child: appText2("Extra Text:".tr)),
+                                  const SizedBox(
+                                    height: 5,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 20,
+                                        right: 20,
+                                        bottom: 20,
+                                        top: 0),
+                                    child: Container(
+                                        decoration: boxd(),
+                                        child: TextFormField1(
+                                            widget.pass.extraText)),
+                                  ),
+                                  Container(
+                                      // alignment: Alignment.topLeft,
+                                      margin:
+                                          EdgeInsets.symmetric(horizontal: 30),
+                                      child: appText2("Description: ".tr)),
+                                  const SizedBox(
+                                    height: 5,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 20,
+                                        right: 20,
+                                        bottom: 20,
+                                        top: 0),
+                                    child: Container(
+                                        decoration: boxd(),
+                                        child: TextFormField2(
+                                            widget.pass.itemDescription)),
+                                  ),
+                                ],
+                              ),
                             ),
-                            Container(
-                                // alignment: Alignment.topLeft,
-                                margin: EdgeInsets.symmetric(horizontal: 30),
-                                child: appText2("Name:".tr)),
-                            const SizedBox(
-                              height: 5,
-                            ),
-                            Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 20, right: 20, bottom: 20, top: 0),
-                                child: Container(
-                                    decoration: boxd(),
-                                    child: TextFormFieldFirst(
-                                        widget.pass.itemName))),
-                            Container(
-                                // alignment: Alignment.topLeft,
-                                margin: EdgeInsets.symmetric(horizontal: 30),
-                                child: appText2("Price:".tr)),
-                            const SizedBox(
-                              height: 5,
-                            ),
-                            Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 20, right: 20, bottom: 20, top: 0),
-                                child: Container(
-                                    decoration: boxd(),
-                                    child:
-                                        TextFormFieldLast(widget.pass.price))),
-                            Container(
-                                // alignment: Alignment.topLeft,
-                                margin: EdgeInsets.symmetric(horizontal: 30),
-                                child: appText2("Extra Text:".tr)),
-                            const SizedBox(
-                              height: 5,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 20, right: 20, bottom: 20, top: 0),
-                              child: Container(
-                                  decoration: boxd(),
-                                  child: TextFormField1(widget.pass.extraText)),
-                            ),
-                            Container(
-                                // alignment: Alignment.topLeft,
-                                margin: EdgeInsets.symmetric(horizontal: 30),
-                                child: appText2("Description: ".tr)),
-                            const SizedBox(
-                              height: 5,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 20, right: 20, bottom: 20, top: 0),
-                              child: Container(
-                                  decoration: boxd(),
-                                  child: TextFormField2(
-                                      widget.pass.itemDescription)),
-                            ),
-                          ],
-                        ),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 40),
+                            child: ButtonRegister1(
+                                Colors.black,
+                                Colors.white,
+                                "Edit Info".tr,
+                                1,
+                                widget.pass.itemName,
+                                widget.pass.price,
+                                widget.pass.extraText,
+                                widget.pass.itemDescription),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(20),
+                            child: appText2("Edit Colors".tr),
+                          ),
+                          widgetEditColor(),
+                          Padding(
+                            padding: const EdgeInsets.all(20.0),
+                            child: appText2("Edit Sizes".tr),
+                          ),
+                          widget.pass.itemSizes != null
+                              ? ListView.builder(
+                                  itemCount: widget.pass.itemSizes!.length,
+                                  shrinkWrap: true,
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    return Container(
+                                      margin: EdgeInsets.all(10),
+                                      // color: Colors.white,
+                                      decoration: boxd(),
+                                      child: ListTile(
+                                          leading: IconButton(
+                                              onPressed: () {
+                                                print(ar);
+                                                print(en);
+                                                if (ar == null) {
+                                                  ar = widget
+                                                      .pass
+                                                      .itemSizes![index]
+                                                      .itemSizeDescAr;
+                                                }
+                                                if (en == null) {
+                                                  en = widget
+                                                      .pass
+                                                      .itemSizes![index]
+                                                      .itemSizeDescEn;
+                                                }
+                                                edit_size(
+                                                    context,
+                                                    widget
+                                                        .pass
+                                                        .itemSizes![index]
+                                                        .itemSizeId,
+                                                    ar,
+                                                    en,
+                                                    widget.pass.id);
+                                              },
+                                              icon:
+                                                  const Icon(Icons.edit_note)),
+                                          title: Form(
+                                            // key: formstate1,
+                                            child: Row(
+                                              children: [
+                                                Expanded(
+                                                    child: TextFormFieldSizeAR(
+                                                        widget
+                                                            .pass
+                                                            .itemSizes![index]
+                                                            .itemSizeDescAr)),
+                                                Expanded(
+                                                    child: TextFormFieldSizeEN(
+                                                        widget
+                                                            .pass
+                                                            .itemSizes![index]
+                                                            .itemSizeDescEn)),
+                                              ],
+                                            ),
+                                          )),
+                                    );
+                                  })
+                              : Container(child: Text("No Thing")),
+                        ],
                       ),
                     ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 40),
-                      child: ButtonRegister1(
-                          Colors.black,
-                          Colors.white,
-                          "Edit Info".tr,
-                          1,
-                          widget.pass.itemName,
-                          widget.pass.price,
-                          widget.pass.extraText,
-                          widget.pass.itemDescription),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(20),
-                      child: appText2("Edit Colors".tr),
-                    ),
-                    widget.pass.itemColors != null
-                        ? GetBuilder<ControllerProduct>(
-                            builder: (controllerPro) {
-                            return ListView.builder(
-                                itemCount: widget.pass.itemColors!.length,
-                                shrinkWrap: true,
-                                itemBuilder: (BuildContext context, int index) {
-                                  controllerPro.colorSave =
-                                      widget.pass.itemColors![index].value;
-                                  return Container(
-                                    margin: EdgeInsets.all(10),
-                                    // color: Colors.white,
-                                    decoration: boxd(),
-                                    child: ListTile(
-                                        leading: IconButton(
-                                            onPressed: () {
-                                              showDialog(
-                                                context: context,
-                                                builder:
-                                                    (BuildContext context) {
-                                                  return StatefulBuilder(
-                                                    builder:
-                                                        (BuildContext context,
-                                                            setState) {
-                                                      return AlertDialog(
-                                                        title: text1(
-                                                            "Pick Colors".tr),
-                                                        content: Column(
-                                                          children: [
-                                                            ColorPicker(
-                                                              pickerColor:
-                                                                  Colors.red,
-                                                              onColorChanged:
-                                                                  (Color
-                                                                      color) {
-                                                                print(color);
-                                                                c = color;
-                                                                colCut = color
-                                                                    .toString()
-                                                                    .substring(
-                                                                        6,
-                                                                        color.toString().length -
-                                                                            1);
-                                                                print(colCut);
-                                                                controllerPro
-                                                                    .SaveColor(
-                                                                        colCut);
-                                                                colCut = colCut
-                                                                    .toString()
-                                                                    .replaceAll(
-                                                                        "0xff",
-                                                                        "#");
-                                                              },
-                                                            ),
-                                                            Row(
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .center,
-                                                              children: [
-                                                                appText2(
-                                                                    "Quantity per Color"
-                                                                        .tr),
-                                                                const SizedBox(
-                                                                  width: 5,
-                                                                ),
-                                                                Row(
-                                                                  children: [
-                                                                    Container(
-                                                                      width: MediaQuery.of(context)
-                                                                              .size
-                                                                              .width /
-                                                                          3,
-                                                                      height:
-                                                                          40,
-                                                                      decoration:
-                                                                          boxd(),
-                                                                      child:
-                                                                          Center(
-                                                                        child:
-                                                                            Row(
-                                                                          mainAxisAlignment:
-                                                                              MainAxisAlignment.center,
-                                                                          children: [
-                                                                            IconButton(
-                                                                                onPressed: () async {
-                                                                                  setState(() {
-                                                                                    quent = quent + 1;
-                                                                                  });
-                                                                                },
-                                                                                icon: const Icon(
-                                                                                  Icons.add,
-                                                                                  color: Colors.black,
-                                                                                )),
-                                                                            text1(quent),
-                                                                            IconButton(
-                                                                                onPressed: () async {
-                                                                                  if (quent > 1) {
-                                                                                    setState(() {
-                                                                                      quent = quent - 1;
-                                                                                    });
-                                                                                  }
-                                                                                },
-                                                                                icon: const Icon(
-                                                                                  Icons.remove,
-                                                                                  color: Colors.black,
-                                                                                ))
-                                                                          ],
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                  ],
-                                                                )
-                                                              ],
-                                                            ),
-                                                          ],
-                                                        ),
-                                                        actions: <Widget>[
-                                                          FlatButton(
-                                                            child: const Text(
-                                                                "OK"),
-                                                            onPressed: () {
-                                                              edit_color(
-                                                                  context,
-                                                                  widget
-                                                                      .pass
-                                                                      .itemColors![
-                                                                          index]
-                                                                      .itemColorId,
-                                                                  quent,
-                                                                  colCut,
-                                                                  widget
-                                                                      .pass.id);
-
-                                                              Navigator.of(
-                                                                      context)
-                                                                  .pop();
-                                                            },
-                                                          ),
-                                                        ],
-                                                      );
-                                                    },
-                                                  );
-                                                },
-                                              );
-                                            },
-                                            icon: Icon(Icons.edit_note)),
-                                        trailing: CircleAvatar(
-                                          radius: 10,
-                                          backgroundColor: Color(int.parse(
-                                              controllerPro.colorSave
-                                                  .toString()
-                                                  .replaceAll("#", "0xff"))),
-                                        ),
-                                        title: Text("Quantity \t".tr +
-                                            widget.pass.itemColors![index].qty
-                                                .toString())),
-                                  );
-                                });
-                          })
-                        : Container(child: Text("No Thing")),
-                    Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: appText2("Edit Sizes".tr),
-                    ),
-                    widget.pass.itemSizes != null
-                        ? ListView.builder(
-                            itemCount: widget.pass.itemSizes!.length,
-                            shrinkWrap: true,
-                            itemBuilder: (BuildContext context, int index) {
-                              return Container(
-                                margin: EdgeInsets.all(10),
-                                // color: Colors.white,
-                                decoration: boxd(),
-                                child: ListTile(
-                                    leading: IconButton(
-                                        onPressed: () {
-                                          print(ar);
-                                          print(en);
-                                          if (ar == null) {
-                                            ar = widget.pass.itemSizes![index]
-                                                .itemSizeDescAr;
-                                          }
-                                          if (en == null) {
-                                            en = widget.pass.itemSizes![index]
-                                                .itemSizeDescEn;
-                                          }
-                                          edit_size(
-                                              context,
-                                              widget.pass.itemSizes![index]
-                                                  .itemSizeId,
-                                              ar,
-                                              en,
-                                              widget.pass.id);
-                                        },
-                                        icon: const Icon(Icons.edit_note)),
-                                    title: Form(
-                                      // key: formstate1,
-                                      child: Row(
-                                        children: [
-                                          Expanded(
-                                              child: TextFormFieldSizeAR(widget
-                                                  .pass
-                                                  .itemSizes![index]
-                                                  .itemSizeDescAr)),
-                                          Expanded(
-                                              child: TextFormFieldSizeEN(widget
-                                                  .pass
-                                                  .itemSizes![index]
-                                                  .itemSizeDescEn)),
-                                        ],
-                                      ),
-                                    )),
-                              );
-                            })
-                        : Container(child: Text("No Thing")),
+                    ButtonRegister3(Colors.black, Colors.white, "Finish".tr),
                   ],
                 )
               : CircularProgressIndicator();
         },
       ),
     );
+  }
+
+  var Colorwidget1;
+  widgetEditColor() {
+    return widget.pass.itemColors != null
+        ? GetBuilder<ControllerProduct>(builder: (controllerPro) {
+            return ListView.builder(
+                itemCount: widget.pass.itemColors!.length,
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemBuilder: (BuildContext context, int index) {
+                  var quent1 = widget.pass.itemColors![index].qty;
+                  var Colorwidget = widget.pass.itemColors![index].value;
+                  print("================Colorwidget==============");
+                  print(Colorwidget);
+                  return Container(
+                    margin: EdgeInsets.all(10),
+                    // color: Colors.white,
+                    decoration: boxd(),
+                    child: Column(
+                      children: [
+                        ListTile(
+                            leading: IconButton(
+                                onPressed: () {}, icon: Icon(Icons.edit_note)),
+                            trailing: CircleAvatar(
+                              radius: 10,
+                              backgroundColor: Colorwidget != null ||
+                                      Colorwidget != "" ||
+                                      Colorwidget != " "
+                                  ? Color(int.parse(Colorwidget.toString()
+                                      .replaceAll("#", "0xff")))
+                                  : Colors.black,
+                            ),
+                            title: appText2(
+                              "Old Quantity: ".tr +
+                                  quent1.toString() +
+                                  "New Quantity: ".tr +
+                                  quent.toString(),
+                            )),
+                        Column(
+                          children: [
+                            appText2("New Color:".tr),
+                            ColorPicker(
+                              pickerColor: Colors.red,
+                              onColorChanged: (Color color) {
+                                c = color;
+                                colCut = color
+                                    .toString()
+                                    .substring(6, color.toString().length - 1);
+
+                                Colorwidget1 = colCut;
+                                print(Colorwidget);
+                                colCut =
+                                    colCut.toString().replaceAll("0xff", "#");
+                              },
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                appText2("Quantity per Color".tr),
+                                const SizedBox(
+                                  width: 5,
+                                ),
+                                Row(
+                                  children: [
+                                    Container(
+                                      width:
+                                          MediaQuery.of(context).size.width / 3,
+                                      height: 40,
+                                      decoration: boxd(),
+                                      child: Center(
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            IconButton(
+                                                onPressed: () async {
+                                                  setState(() {
+                                                    quent = quent + 1;
+                                                    quent1 = quent;
+                                                  });
+                                                },
+                                                icon: const Icon(
+                                                  Icons.add,
+                                                  color: Colors.black,
+                                                )),
+                                            text1(quent),
+                                            IconButton(
+                                                onPressed: () async {
+                                                  if (quent > 1) {
+                                                    setState(() {
+                                                      quent = quent - 1;
+                                                      quent1 = quent;
+                                                    });
+                                                  }
+                                                },
+                                                icon: const Icon(
+                                                  Icons.remove,
+                                                  color: Colors.black,
+                                                ))
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              ],
+                            ),
+                            FlatButton(
+                              child: const Text("OK"),
+                              onPressed: () {
+                                colCut != ""
+                                    ? edit_color(
+                                        context,
+                                        widget.pass.itemColors![index]
+                                            .itemColorId,
+                                        quent,
+                                        colCut,
+                                        widget.pass.id)
+                                    : mydiaFaild(context, "pick color");
+                              },
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  );
+                });
+          })
+        : Container(child: Text("No Thing"));
   }
 
   TextFormField TextFormFieldSizeEN(text) {
@@ -635,6 +642,32 @@ class _EditItemState extends State<EditItem> {
         },
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(25.0))),
+        child: Text(
+          text,
+          style: TextStyle(
+              color: c1,
+              fontSize: 15,
+              fontFamily: 'Nunito',
+              fontWeight: FontWeight.bold),
+        ),
+        textColor: c1,
+        splashColor: Colors.white,
+        color: c2,
+      ),
+    );
+  }
+
+  Widget ButtonRegister3(c2, c1, text) {
+    return Container(
+      width: 200,
+      height: 50,
+      margin: EdgeInsets.all(5),
+      child: RaisedButton(
+        onPressed: () {
+          Navigator.of(context).pushNamed("MainScreenStor");
+        },
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(20.0))),
         child: Text(
           text,
           style: TextStyle(

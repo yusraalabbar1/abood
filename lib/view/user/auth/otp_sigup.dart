@@ -142,7 +142,7 @@ class _otpSignupState extends State<otpSignup> with TickerProviderStateMixin {
                           animationType: AnimationType.fade,
                           validator: (v) {
                             if (v!.length < 4) {
-                              return "can not enter less than 4";
+                              return "can\'t enter less than ".tr + " 4";
                             } else {
                               return null;
                             }

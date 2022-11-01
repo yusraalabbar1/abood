@@ -132,6 +132,11 @@ class _MyCartState extends State<MyCart> {
                                                                         ["id"],
                                                                     controller.myCart[
                                                                             index]
+                                                                        ["qty"],
+                                                                    controller.myCart[
+                                                                                index]
+                                                                            [
+                                                                            "itemColors"]
                                                                         [
                                                                         "qty"]),
                                                                 const SizedBox(
@@ -139,7 +144,7 @@ class _MyCartState extends State<MyCart> {
                                                                 ),
                                                                 Row(
                                                                   children: [
-                                                                    textWidget("price : "
+                                                                    textWidget("Price:"
                                                                             .tr +
                                                                         (controller.myCart[index]["newPrice"] *
                                                                                 controller.myCart[index]["qty"])
@@ -198,7 +203,7 @@ class _MyCartState extends State<MyCart> {
     );
   }
 
-  Widget counter(cartId, quent) {
+  Widget counter(cartId, quent, total) {
     return Row(
       children: [
         Container(
@@ -211,8 +216,20 @@ class _MyCartState extends State<MyCart> {
               children: [
                 IconButton(
                     onPressed: () async {
-                      await qtyCartApi(cartId, quent + 1);
-                      await myCartApi();
+                      print(total);
+                      print(quent);
+                      if (quent == total) {
+                        Get.snackbar(
+                          "Note".tr,
+                          "Only Quantity available ".tr + "$total",
+                          // icon: Icon(Icons.attachment, color: Colors.white),
+                          colorText: Colors.white,
+                          snackPosition: SnackPosition.BOTTOM,
+                        );
+                      } else {
+                        await qtyCartApi(cartId, quent + 1);
+                        await myCartApi();
+                      }
                     },
                     icon: const Icon(
                       Icons.add,

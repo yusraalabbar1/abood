@@ -139,7 +139,7 @@ class _myOrdersState extends State<myOrders> {
                                               passenger.storeDescEn.toString()),
                                           rowInfoStatus(
                                               "Status: ".tr,
-                                              passenger.statusDesc,
+                                              passenger.statusDescEn,
                                               passenger.statusId),
                                         ],
                                       )
@@ -153,7 +153,7 @@ class _myOrdersState extends State<myOrders> {
                                               passenger.storeDescAr.toString()),
                                           rowInfoStatus(
                                               "Status: ".tr,
-                                              passenger.statusDesc.toString(),
+                                              passenger.statusDescAr.toString(),
                                               passenger.statusId),
                                         ],
                                       ),
@@ -229,7 +229,9 @@ class _myOrdersState extends State<myOrders> {
                                           passenger.buildingNo,
                                           passenger.total,
                                           passenger.discount,
-                                          passenger.statusDesc),
+                                          controllerPro.language == "en"
+                                              ? passenger.statusDescEn
+                                              : passenger.statusDescAr),
                                 ),
                               ],
                             ),

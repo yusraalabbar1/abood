@@ -116,11 +116,11 @@ class _welcomState extends State<welcom> {
             child: SizedBox(
               width: 250.0,
               child: TextLiquidFill(
-                text: 'ABOOD',
+                text: 'CLICK & PICK',
                 waveColor: Colors.white,
                 boxBackgroundColor: Colors.black,
                 textStyle: TextStyle(
-                  fontSize: 60.0,
+                  fontSize: 30.0,
                   fontWeight: FontWeight.bold,
                 ),
                 boxHeight: 300.0,

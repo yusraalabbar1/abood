@@ -186,7 +186,25 @@ Drawer drawermain(context) {
                                 ],
                               ),
                             )
-                          : Container(),
+                          : InkWell(
+                              onTap: () async {
+                                Navigator.of(context)
+                                    .pushReplacementNamed("startAccount");
+                              },
+                              child: Row(
+                                children: [
+                                  Container(
+                                    margin: EdgeInsets.all(10),
+                                    child: Icon(
+                                      Icons.login,
+                                      size: 20,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  Container(child: text2('Login'.tr))
+                                ],
+                              ),
+                            ),
                       guest != true
                           ? InkWell(
                               onTap: () async {

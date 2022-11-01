@@ -93,7 +93,7 @@ class _forgetPasswordState extends State<forgetPassword> {
             formdata.save();
             print("========================");
             if (passwordConf != password) {
-              diaFaildCart(context, "password_confirmation!=new_password");
+              diaFaildCart(context, "password_confirmation!=new_password".tr);
             } else {
               changPassWordForget(context, password);
             }

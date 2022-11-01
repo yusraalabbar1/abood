@@ -1,5 +1,6 @@
 import 'package:abood/controller/ControlUser.dart';
 import 'package:abood/controller/controlProduct.dart';
+import 'package:abood/view/user/auth/start_account.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
@@ -43,8 +44,8 @@ AppBar appbarmain(GlobalKey<ScaffoldState> scaffoldKey, context) {
               displayFullTextOnTap: false,
               repeatForever: true,
               animatedTexts: [
-                FadeAnimatedText('ABOOD'),
-                FadeAnimatedText('ABOOD'),
+                FadeAnimatedText('CLICK & PICK'),
+                FadeAnimatedText('CLICK & PICK'),
                 // FadeAnimatedText('For All New!!!'),
               ],
               onTap: () {
@@ -80,46 +81,64 @@ AppBar appbarmain(GlobalKey<ScaffoldState> scaffoldKey, context) {
         );
       }),
       GetBuilder<ControllerProduct>(builder: (controllerPro) {
-        return Badge(
-          position: BadgePosition.topEnd(top: 10, end: 8),
-          animationDuration: Duration(milliseconds: 300),
-          animationType: BadgeAnimationType.slide,
-          badgeColor: Color.fromARGB(255, 245, 71, 129),
-          borderRadius: BorderRadius.circular(8),
-          badgeContent: controllerPro.myFavorite.length != 0
-              ? Text(controllerPro.myFavorite.length.toString(),
-                  style: TextStyle(color: Colors.white, fontSize: 7))
-              : Text(""),
-          child: IconButton(
-              onPressed: () {
-                Navigator.of(context).pushNamed("myLike");
-              },
-              icon: const Icon(
-                Icons.favorite,
-                color: Colors.white,
-              )),
-        );
+        return guest != true
+            ? Badge(
+                position: BadgePosition.topEnd(top: 10, end: 8),
+                animationDuration: Duration(milliseconds: 300),
+                animationType: BadgeAnimationType.slide,
+                badgeColor: Color.fromARGB(255, 245, 71, 129),
+                borderRadius: BorderRadius.circular(8),
+                badgeContent: controllerPro.myFavorite.length != 0
+                    ? Text(controllerPro.myFavorite.length.toString(),
+                        style: TextStyle(color: Colors.white, fontSize: 7))
+                    : Text(""),
+                child: IconButton(
+                    onPressed: () {
+                      Navigator.of(context).pushNamed("myLike");
+                    },
+                    icon: const Icon(
+                      Icons.favorite,
+                      color: Colors.white,
+                    )),
+              )
+            : IconButton(
+                onPressed: () {
+                  Navigator.of(context).pushNamed("myLike");
+                },
+                icon: const Icon(
+                  Icons.favorite,
+                  color: Colors.white,
+                ));
       }),
       GetBuilder<ControllerProduct>(builder: (controllerPro) {
-        return Badge(
-          position: BadgePosition.topEnd(top: 10, end: 8),
-          animationDuration: Duration(milliseconds: 300),
-          animationType: BadgeAnimationType.slide,
-          badgeColor: Color.fromARGB(255, 122, 187, 239),
-          borderRadius: BorderRadius.circular(8),
-          badgeContent: controllerPro.myCart.length != 0
-              ? Text(controllerPro.myCart.length.toString(),
-                  style: TextStyle(color: Colors.white, fontSize: 7))
-              : Text(""),
-          child: IconButton(
-              onPressed: () {
-                Navigator.of(context).pushNamed("MyCart");
-              },
-              icon: const Icon(
-                Icons.shopping_bag,
-                color: Colors.white,
-              )),
-        );
+        return guest != true
+            ? Badge(
+                position: BadgePosition.topEnd(top: 10, end: 8),
+                animationDuration: Duration(milliseconds: 300),
+                animationType: BadgeAnimationType.slide,
+                badgeColor: Color.fromARGB(255, 122, 187, 239),
+                borderRadius: BorderRadius.circular(8),
+                badgeContent: controllerPro.myCart.length != 0
+                    ? Text(controllerPro.myCart.length.toString(),
+                        style: TextStyle(color: Colors.white, fontSize: 7))
+                    : Text(""),
+                child: IconButton(
+                    onPressed: () {
+                      Navigator.of(context).pushNamed("MyCart");
+                    },
+                    icon: const Icon(
+                      Icons.shopping_bag,
+                      color: Colors.white,
+                    )),
+              )
+            : IconButton(
+                onPressed: () {
+                  Navigator.of(context).pushNamed("MyCart");
+                },
+                icon: const Icon(
+                  Icons.shopping_bag,
+                  color: Colors.white,
+                ));
       }),
     ],
     // leading: Row(children: [

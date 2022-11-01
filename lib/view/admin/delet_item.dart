@@ -184,7 +184,7 @@ class _DeletItemState extends State<DeletItem> {
                                         child: IconButton(
                                             onPressed: () {
                                               deletItemColorApi(
-                                                  context, widget.pass.id);
+                                                  context, widget.pass.itemId);
                                             },
                                             icon: Icon(
                                               Icons.delete,
@@ -241,7 +241,7 @@ class _DeletItemState extends State<DeletItem> {
                                         child: IconButton(
                                             onPressed: () {
                                               deletItemSizeApi(
-                                                  context, widget.pass.id);
+                                                  context, widget.pass.itemId);
                                             },
                                             icon: Icon(
                                               Icons.delete,
@@ -314,7 +314,7 @@ class _DeletItemState extends State<DeletItem> {
                                         child: IconButton(
                                             onPressed: () {
                                               deletItemImageApi(
-                                                  context, widget.pass.id);
+                                                  context, widget.pass.itemId);
                                             },
                                             icon: Icon(
                                               Icons.delete,
@@ -334,7 +334,7 @@ class _DeletItemState extends State<DeletItem> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 30),
                       child: ButtonRegister2(Colors.black, Colors.white,
-                          " Delete product".tr, 1, widget.pass.id),
+                          " Delete product".tr, 1, widget.pass.itemId),
                     ),
                   ],
                 )
@@ -427,51 +427,51 @@ class _DeletItemState extends State<DeletItem> {
             fontFamily: 'majallab'));
   }
 
-  Widget ButtonRegister1(c2, c1, text, x) {
-    return Container(
-      width: 150,
-      height: 65,
-      child: RaisedButton(
-        onPressed: () {
-          print('Button Clicked.');
-          var formdata = formstate.currentState;
-          if (formdata!.validate()) {
-            formdata.save();
-            print("=========valid==============");
-            print(controller.nameItem);
-            print(controller.priceItem);
-            print(controller.noteItem);
-            print(controller.desItem);
-            editItemApi(
-                context,
-                int.parse(widget.pass.id.toString()),
-                controller.nameItem,
-                controller.desItem,
-                int.parse(controller.priceItem.toString()),
-                controller.noteItem);
-            print("=========api==============");
+  // Widget ButtonRegister1(c2, c1, text, x) {
+  //   return Container(
+  //     width: 150,
+  //     height: 65,
+  //     child: RaisedButton(
+  //       onPressed: () {
+  //         print('Button Clicked.');
+  //         var formdata = formstate.currentState;
+  //         if (formdata!.validate()) {
+  //           formdata.save();
+  //           print("=========valid==============");
+  //           print(controller.nameItem);
+  //           print(controller.priceItem);
+  //           print(controller.noteItem);
+  //           print(controller.desItem);
+  //           editItemApi(
+  //               context,
+  //               int.parse(widget.pass.id.toString()),
+  //               controller.nameItem,
+  //               controller.desItem,
+  //               int.parse(controller.priceItem.toString()),
+  //               controller.noteItem);
+  //           print("=========api==============");
 
-            // Navigator.of(context).pushNamed("picColor");
-          } else {
-            print("not validddddddddddddddd");
-          }
-        },
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(20.0))),
-        child: Text(
-          text,
-          style: TextStyle(
-              color: c1,
-              fontSize: 15,
-              fontFamily: 'Nunito',
-              fontWeight: FontWeight.bold),
-        ),
-        textColor: c1,
-        splashColor: Colors.white,
-        color: c2,
-      ),
-    );
-  }
+  //           // Navigator.of(context).pushNamed("picColor");
+  //         } else {
+  //           print("not validddddddddddddddd");
+  //         }
+  //       },
+  //       shape: RoundedRectangleBorder(
+  //           borderRadius: BorderRadius.all(Radius.circular(20.0))),
+  //       child: Text(
+  //         text,
+  //         style: TextStyle(
+  //             color: c1,
+  //             fontSize: 15,
+  //             fontFamily: 'Nunito',
+  //             fontWeight: FontWeight.bold),
+  //       ),
+  //       textColor: c1,
+  //       splashColor: Colors.white,
+  //       color: c2,
+  //     ),
+  //   );
+  // }
 
   Widget ButtonRegister2(c2, c1, text, x, id) {
     return Container(

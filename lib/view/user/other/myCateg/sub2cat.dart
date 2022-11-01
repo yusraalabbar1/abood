@@ -50,19 +50,18 @@ class _Sub2catState extends State<Sub2cat> {
       id = int.parse(controller.id.toString());
     }
     print(id);
+    print(c2);
     if (isRefresh) {
       currentPage = 0;
-      print("1");
     } else {
       print("============================");
       print("thisssssssssssssssssssss");
       print("============================");
     }
     // print(widget.id);
-    var request = http.Request(
-        'GET',
-        Uri.parse(
-            baseURL + '/api/store/$c2/items/user/$id/pageIndex/$currentPage'));
+    var request =
+        http.Request('GET', Uri.parse(//{{Url}}/api/store/19/items/pageIndex/0
+            baseURL + '/api/store/$c2/items/pageIndex/$currentPage'));
 
     final response = await request.send();
     var res = await http.Response.fromStream(response);

@@ -57,7 +57,7 @@ Future deletItemSizeApi(context, id) async {
 
 Future deletItemColorApi(context, id) async {
   var request =
-      http.Request('GET', Uri.parse(baseURL + '/api/items/delete/size/$id'));
+      http.Request('GET', Uri.parse(baseURL + '/api/items/delete/color/$id'));
 
   http.StreamedResponse response = await request.send();
 

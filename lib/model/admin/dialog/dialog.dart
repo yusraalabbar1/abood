@@ -14,7 +14,7 @@ Future diaSucc(context, c) {
           dialogType: DialogType.SUCCES,
           btnOkOnPress: () {},
           body: Center(
-            child: Text(c.message.toString(),
+            child: Text(c.message.toString().tr,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                     color: Colors.black, fontSize: 14, fontFamily: 'Almarai')),
@@ -46,7 +46,7 @@ Future diaFaild(context, c) {
           headerAnimationLoop: true,
           btnOkOnPress: () {},
           body: Center(
-            child: Text(c.message.toString(),
+            child: Text(c.message.toString().tr,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                     color: Colors.black, fontSize: 14, fontFamily: 'Almarai')),
@@ -64,7 +64,7 @@ Future mydiaFaild(context, c) {
           headerAnimationLoop: true,
           btnOkOnPress: () {},
           body: Center(
-            child: Text(c.toString(),
+            child: Text(c.toString().tr,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                     color: Colors.black, fontSize: 14, fontFamily: 'Almarai')),
