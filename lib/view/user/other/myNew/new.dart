@@ -80,11 +80,11 @@ class _NewState extends State<New> {
     }
   }
 
-  BoxDecoration box3(img) {
-    return BoxDecoration(
+  BoxDecoration box3() {
+    return const BoxDecoration(
         image: DecorationImage(
-            fit: BoxFit.fill,
-            image: CachedNetworkImageProvider(img.toString())));
+            fit: BoxFit.cover,
+            image: AssetImage("assets/images/logoclick&pick3.jpg")));
   }
 
   Homecontroller controller = Get.put(Homecontroller());
@@ -96,8 +96,7 @@ class _NewState extends State<New> {
           Container(
             width: MediaQuery.of(context).size.width,
             height: 130,
-            decoration: box3(
-                "https://technave.com/data/files/mall/article/201901311248084830.jpg"),
+            decoration: box3(),
             child: Center(
                 child: DefaultTextStyle(
               style: const TextStyle(

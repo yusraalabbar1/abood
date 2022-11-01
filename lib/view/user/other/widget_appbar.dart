@@ -44,8 +44,10 @@ AppBar appbarmain(GlobalKey<ScaffoldState> scaffoldKey, context) {
               displayFullTextOnTap: false,
               repeatForever: true,
               animatedTexts: [
-                FadeAnimatedText('CLICK & PICK'),
-                FadeAnimatedText('CLICK & PICK'),
+                FadeAnimatedText('CLICK & PICK',
+                    textStyle: TextStyle(fontSize: 17)),
+                FadeAnimatedText('CLICK & PICK',
+                    textStyle: TextStyle(fontSize: 17)),
                 // FadeAnimatedText('For All New!!!'),
               ],
               onTap: () {

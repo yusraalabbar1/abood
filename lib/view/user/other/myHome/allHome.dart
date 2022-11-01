@@ -31,8 +31,8 @@ class _AllHomeState extends State<AllHome> {
   ];
 
   static const colorizeTextStyle = TextStyle(
-    fontSize: 23.0,
-    fontFamily: 'Horizon',
+    fontSize: 20.0,
+    fontFamily: 'majallab',
     fontWeight: FontWeight.bold,
   );
   @override
@@ -61,6 +61,7 @@ class _AllHomeState extends State<AllHome> {
                         color: Colors.white,
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
+                        fontFamily: 'majallab',
                       )),
                   const SizedBox(
                     width: 20,

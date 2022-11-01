@@ -83,11 +83,11 @@ class _finishRegisterState extends State<finishRegister>
           Center(
               child: DefaultTextStyle(
             style: const TextStyle(
-              fontSize: 40.0,
+              fontSize: 30.0,
             ),
             child: AnimatedTextKit(
               animatedTexts: [
-                WavyAnimatedText('ABOOD'),
+                WavyAnimatedText('CLICK & PICK'),
               ],
               isRepeatingAnimation: true,
               onTap: () {

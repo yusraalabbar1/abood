@@ -122,6 +122,7 @@ class _welcomState extends State<welcom> {
                 textStyle: TextStyle(
                   fontSize: 30.0,
                   fontWeight: FontWeight.bold,
+                  fontFamily: 'Nunito',
                 ),
                 boxHeight: 300.0,
               ),
