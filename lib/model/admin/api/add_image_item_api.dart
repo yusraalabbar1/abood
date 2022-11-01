@@ -27,7 +27,7 @@ Future addImageApi(context, id, image) async {
   if (response.statusCode == 200) {
     if (c.isSuccess == true) {
       print(c.message);
-      myDialog(context, "تم الارسال");
+      myDialog(context, c);
     } else {
       diaFaild(context, c);
       print(c.message);

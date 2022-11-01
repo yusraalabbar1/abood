@@ -179,5 +179,18 @@ const Map<String, String> en = {
       "Password and confirmation do not match",
   "The Request was successfully completed":
       "The Request was successfully completed",
-  "Request Faild": "Request Faild"
+  "Request Faild": "Request Faild",
+  "ItemUsedOnCart": "",
+  "DeleteItemSuccessfully": "Delete Item Successfully",
+  "DeleteItemSizeSuccessfully": "Delete Item Size Successfully",
+  "DeleteItemSizeFailed": "Delete Item Size Failed",
+  "DeleteItemImageFailed": "Delete Item Image Failed",
+  "DeleteItemImageSuccessfully": "Delete Item Image Successfully",
+  "DeleteItemColorFailed": "Delete Item Color Failed",
+  "DeleteItemColorSuccessfully": "Delete Item Color Successfully",
+  "EditOfferItemSuccessfully": "Edit Offer Item Successfully",
+  "PasswordChangedSuccessfully_nEnter to Login":
+      "Password Changed Successfully ,Enter to Login",
+  "EditItemColorSuccessfully": "Edit Item Color Successfully",
+  "EditItemSizeSuccessfully": "Edit Item Size Successfully"
 };

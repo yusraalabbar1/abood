@@ -90,7 +90,7 @@ Future myDialog(context, c) {
             );
           },
           body: Center(
-            child: Text(c.toString(),
+            child: Text(c.toString().tr,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                     color: Colors.black,

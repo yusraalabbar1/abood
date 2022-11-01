@@ -178,14 +178,17 @@ const Map<String, String> ar = {
   "The Request was successfully completed": "تمت عملية الطلب بنجاح",
   "Request Faild": "فشلت عملية الطلب",
   "Are you sure you want to log out?": "هل متأكد من تسجيل الخروج",
-  "ItemUsedOnCart": "",
-  "DeleteItemSuccessfully": "",
-  "DeleteItemSizeSuccessfully": "",
-  "DeleteItemSizeFailed": "",
-  "DeleteItemImageFailed": "",
-  "DeleteItemImageSuccessfully": "",
-  "DeleteItemColorFailed": "",
-  "DeleteItemColorSuccessfully": "",
-  "EditOfferItemSuccessfully": "",
-  "PasswordChangedSuccessfully_nEnter to Login": ""
+  "ItemUsedOnCart": "المنتج مطلوب من قبل مستخدم",
+  "DeleteItemSuccessfully": "تم الحذف بنجاح ",
+  "DeleteItemSizeSuccessfully": "تم حذف المقاس بنجاح",
+  "DeleteItemSizeFailed": "لم يتم حذف المقاس",
+  "DeleteItemImageFailed": "لم يتم حذف الصورة",
+  "DeleteItemImageSuccessfully": "تم حذف الصورة بنجاح",
+  "DeleteItemColorFailed": "لم يتم حذف اللون",
+  "DeleteItemColorSuccessfully": "تم حذف اللون بنجاح",
+  "EditOfferItemSuccessfully": "تم تعديل العرض بنجاح",
+  "PasswordChangedSuccessfully_nEnter to Login":
+      "تم تغيير كلمة المرور بنجاح يرجى تسجيل الدخول",
+  "EditItemColorSuccessfully": "تم تعديل اللون بنجاح",
+  "EditItemSizeSuccessfully": "تم تعديل المقاس بنجاح"
 };

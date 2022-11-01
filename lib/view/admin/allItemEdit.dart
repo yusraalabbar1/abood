@@ -47,12 +47,9 @@ class _AllItemsStoreEditState extends State<AllItemsStoreEdit> {
     Homecontroller controller = Get.put(Homecontroller());
     int id_user = controller.id;
     print(idd);
-    print("============================");
     if (isRefresh) {
       currentPage = 0;
-      print("1===========================");
     } else {
-      print("2===========================");
       print(currentPage);
       // if (currentPage > 2) {
       //   print("3========================");
@@ -61,11 +58,9 @@ class _AllItemsStoreEditState extends State<AllItemsStoreEdit> {
       // }
     }
     print("==========currentPage============");
-    print(currentPage);
-    var request = http.Request(
-        'GET',
-        Uri.parse(baseURL +
-            '/api/store/items/users/$id_user/pageIndex/$currentPage'));
+
+    var request = http.Request('GET',
+        Uri.parse(baseURL + '/api/store/$idd/items/pageIndex/$currentPage'));
 
     final response = await request.send();
     var res = await http.Response.fromStream(response);

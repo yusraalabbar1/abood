@@ -33,7 +33,7 @@ Future editItemApi(context, id, name, des, price, note) async {
     if (c.isSuccess == true) {
       print(c.message);
       // alert(context, "تمت العملية بنجاح ", "succ");
-      myDialog3(context, "تمت العملية بنجاح ");
+      myDialog3(context, c.message);
     } else {
       diaFaild(context, c);
       print(c.message);

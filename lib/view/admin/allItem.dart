@@ -44,6 +44,7 @@ class _AllItemsStoreState extends State<AllItemsStore> {
   Future<bool> getPassengerData({bool isRefresh = false}) async {
     Homecontroller controller = Get.put(Homecontroller());
     int id_user = controller.id;
+    int idd = int.parse(widget.id.toString());
     if (isRefresh) {
       currentPage = 0;
       print("1===========================");
@@ -58,10 +59,8 @@ class _AllItemsStoreState extends State<AllItemsStore> {
     }
     print("==========currentPage============");
     print(currentPage);
-    var request = http.Request(
-        'GET',
-        Uri.parse(baseURL +
-            '/api/store/items/users/$id_user/pageIndex/$currentPage'));
+    var request = http.Request('GET',
+        Uri.parse(baseURL + '/api/store/$idd/items/pageIndex/$currentPage'));
 
     final response = await request.send();
     var res = await http.Response.fromStream(response);

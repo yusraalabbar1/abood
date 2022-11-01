@@ -19,13 +19,13 @@ Future deletItemApi(context, id) async {
   if (response.statusCode == 200) {
     if (c.isSuccess == true) {
       print(c.message);
-      myDialog2(context, "تمت العملية بنجاح ");
+      myDialog2(context, c.message);
     } else {
       diaFaild(context, c);
       print(c.message);
     }
   } else {
-    mydiaFaild(context, "حصل خطأ أثناء ادخال المعلومات");
+    mydiaFaild(context, c.message);
     print(c.message);
     print("nooooo");
   }
@@ -43,7 +43,7 @@ Future deletItemSizeApi(context, id) async {
   if (response.statusCode == 200) {
     if (c.isSuccess == true) {
       print(c.message);
-      myDialog2(context, "تمت العملية بنجاح ");
+      myDialog2(context, c.message);
     } else {
       diaFaild(context, c);
       print(c.message);
@@ -56,6 +56,7 @@ Future deletItemSizeApi(context, id) async {
 }
 
 Future deletItemColorApi(context, id) async {
+  print(id);
   var request =
       http.Request('GET', Uri.parse(baseURL + '/api/items/delete/color/$id'));
 

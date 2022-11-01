@@ -33,8 +33,24 @@ edit_color(context, id, qty, value, idd) async {
     if (response.statusCode == 200) {
       if (c.isSuccess == true) {
         print(c.message);
-        // alert(context, "تمت العملية بنجاح ", "succ");
-        myDialog3(context, "تمت العملية بنجاح ");
+        AwesomeDialog(
+                context: context,
+                animType: AnimType.RIGHSLIDE,
+                headerAnimationLoop: true,
+                dialogType: DialogType.SUCCES,
+                btnOkOnPress: () {},
+                body: Center(
+                  child: Text(c.message.toString(),
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 14,
+                          fontFamily: 'Almarai',
+                          fontWeight: FontWeight.bold)),
+                ),
+                dialogBackgroundColor: MyColors.color3,
+                btnOkColor: Colors.black)
+            .show();
       } else {
         diaFaild(context, c);
         print(c.message);
@@ -66,7 +82,7 @@ edit_size(context, id, ar, en, idStore) async {
   if (response.statusCode == 200) {
     if (c.isSuccess == true) {
       print(c.message);
-      myDialog3(context, "تمت العملية بنجاح ");
+      // myDialog3(context, "تمت العملية بنجاح ");
       AwesomeDialog(
               context: context,
               animType: AnimType.RIGHSLIDE,
@@ -74,7 +90,7 @@ edit_size(context, id, ar, en, idStore) async {
               dialogType: DialogType.SUCCES,
               btnOkOnPress: () {},
               body: Center(
-                child: Text(c.toString(),
+                child: Text(c.message.toString(),
                     textAlign: TextAlign.center,
                     style: const TextStyle(
                         color: Colors.black,

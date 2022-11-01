@@ -59,9 +59,10 @@ class _Sub2catState extends State<Sub2cat> {
       print("============================");
     }
     // print(widget.id);
-    var request =
-        http.Request('GET', Uri.parse(//{{Url}}/api/store/19/items/pageIndex/0
-            baseURL + '/api/store/$c2/items/pageIndex/$currentPage'));
+    var request = http.Request(
+        'GET',
+        Uri.parse(
+            baseURL + '/api/store/$c2/items/users/$id/pageIndex/$currentPage'));
 
     final response = await request.send();
     var res = await http.Response.fromStream(response);

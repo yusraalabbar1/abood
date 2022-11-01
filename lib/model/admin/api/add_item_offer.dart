@@ -26,7 +26,7 @@ Future addItemRate(context, id, price, text) async {
   if (response.statusCode == 200) {
     if (c.isSuccess == true) {
       print(c.message);
-      myDialog3(context, "تمت العملية بنجاح ");
+      myDialog3(context, c.isSuccess);
     } else {
       diaFaild(context, c);
       print(c.message);

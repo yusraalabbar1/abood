@@ -160,8 +160,11 @@ class _DeletItemState extends State<DeletItem> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Container(
+                                        alignment: Alignment.center,
                                         height: 70,
-                                        width: 220,
+                                        width:
+                                            MediaQuery.of(context).size.width /
+                                                1.3,
                                         // decoration: boxd(),
                                         child: ListView.builder(
                                           shrinkWrap: true,
@@ -172,25 +175,38 @@ class _DeletItemState extends State<DeletItem> {
                                             return Padding(
                                                 padding: const EdgeInsets.only(
                                                     left: 5),
-                                                child: CircleAvatar(
-                                                  radius: 10,
-                                                  backgroundColor: Colors.red,
+                                                child: Row(
+                                                  children: [
+                                                    CircleAvatar(
+                                                      radius: 20,
+                                                      backgroundColor:
+                                                          Colors.red,
+                                                    ),
+                                                    CircleAvatar(
+                                                      radius: 10,
+                                                      backgroundColor:
+                                                          Colors.black38,
+                                                      child: IconButton(
+                                                          onPressed: () {
+                                                            deletItemColorApi(
+                                                                context,
+                                                                widget
+                                                                    .pass
+                                                                    .itemColors![
+                                                                        index]
+                                                                    .itemColorId);
+                                                          },
+                                                          icon: Icon(
+                                                            Icons.remove,
+                                                            color: Colors.white,
+                                                            size: 5,
+                                                          )),
+                                                    )
+                                                  ],
                                                 ));
                                           },
                                         ),
                                       ),
-                                      CircleAvatar(
-                                        backgroundColor: Colors.black38,
-                                        child: IconButton(
-                                            onPressed: () {
-                                              deletItemColorApi(
-                                                  context, widget.pass.itemId);
-                                            },
-                                            icon: Icon(
-                                              Icons.delete,
-                                              color: Colors.white,
-                                            )),
-                                      )
                                     ],
                                   ),
                                 )
@@ -210,8 +226,11 @@ class _DeletItemState extends State<DeletItem> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Container(
+                                        alignment: Alignment.center,
                                         height: 70,
-                                        width: 220,
+                                        width:
+                                            MediaQuery.of(context).size.width /
+                                                1.3,
                                         // decoration: boxd(),
                                         child: ListView.builder(
                                           shrinkWrap: true,
@@ -222,32 +241,45 @@ class _DeletItemState extends State<DeletItem> {
                                             return Padding(
                                                 padding: const EdgeInsets.only(
                                                     left: 5),
-                                                child: Chip(
-                                                  label: Text(
-                                                    widget
-                                                        .pass
-                                                        .itemSizes![index]
-                                                        .itemSizeDescEn
-                                                        .toString(),
-                                                    style: TextStyle(
-                                                        color: Colors.white),
-                                                  ),
+                                                child: Row(
+                                                  children: [
+                                                    Chip(
+                                                      label: Text(
+                                                        widget
+                                                            .pass
+                                                            .itemSizes![index]
+                                                            .itemSizeDescEn
+                                                            .toString(),
+                                                        style: TextStyle(
+                                                            color:
+                                                                Colors.white),
+                                                      ),
+                                                    ),
+                                                    CircleAvatar(
+                                                      radius: 10,
+                                                      backgroundColor:
+                                                          Colors.black38,
+                                                      child: IconButton(
+                                                          onPressed: () {
+                                                            deletItemSizeApi(
+                                                                context,
+                                                                widget
+                                                                    .pass
+                                                                    .itemSizes![
+                                                                        index]
+                                                                    .itemSizeId);
+                                                          },
+                                                          icon: Icon(
+                                                            Icons.remove,
+                                                            color: Colors.white,
+                                                            size: 5,
+                                                          )),
+                                                    )
+                                                  ],
                                                 ));
                                           },
                                         ),
                                       ),
-                                      CircleAvatar(
-                                        backgroundColor: Colors.black38,
-                                        child: IconButton(
-                                            onPressed: () {
-                                              deletItemSizeApi(
-                                                  context, widget.pass.itemId);
-                                            },
-                                            icon: Icon(
-                                              Icons.delete,
-                                              color: Colors.white,
-                                            )),
-                                      )
                                     ],
                                   ),
                                 )
@@ -267,8 +299,11 @@ class _DeletItemState extends State<DeletItem> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Container(
-                                        height: 100,
-                                        width: 220,
+                                        alignment: Alignment.center,
+                                        height: 70,
+                                        width:
+                                            MediaQuery.of(context).size.width /
+                                                1.3,
                                         // decoration: boxd(),
                                         child: ListView.builder(
                                           shrinkWrap: true,
@@ -282,45 +317,55 @@ class _DeletItemState extends State<DeletItem> {
                                             return Padding(
                                               padding: const EdgeInsets.only(
                                                   left: 5),
-                                              child: Container(
-                                                margin: EdgeInsets.only(
-                                                    top: 5, bottom: 5),
-                                                height: 80,
-                                                width: 80,
-                                                decoration: BoxDecoration(
-                                                  color: Colors.black38,
-                                                  image: DecorationImage(
-                                                    image: NetworkImage(
-                                                        imageAds +
-                                                            widget
-                                                                .pass
-                                                                .itemImages![
-                                                                    index]
-                                                                .imageUrl
-                                                                .toString()),
-                                                    fit: BoxFit.fill,
+                                              child: Row(
+                                                children: [
+                                                  Container(
+                                                    margin: EdgeInsets.only(
+                                                        top: 5, bottom: 5),
+                                                    height: 80,
+                                                    width: 80,
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.black38,
+                                                      image: DecorationImage(
+                                                        image: NetworkImage(
+                                                            imageAds +
+                                                                widget
+                                                                    .pass
+                                                                    .itemImages![
+                                                                        index]
+                                                                    .imageUrl
+                                                                    .toString()),
+                                                        fit: BoxFit.fill,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.all(
+                                                              Radius.circular(
+                                                                  5)),
+                                                    ),
                                                   ),
-                                                  borderRadius:
-                                                      BorderRadius.all(
-                                                          Radius.circular(5)),
-                                                ),
+                                                  CircleAvatar(
+                                                    radius: 10,
+                                                    backgroundColor:
+                                                        Colors.black38,
+                                                    child: IconButton(
+                                                        onPressed: () {
+                                                          deletItemImageApi(
+                                                              context,
+                                                              widget
+                                                                  .pass.itemId);
+                                                        },
+                                                        icon: Icon(
+                                                          Icons.remove,
+                                                          color: Colors.white,
+                                                          size: 5,
+                                                        )),
+                                                  )
+                                                ],
                                               ),
                                             );
                                           },
                                         ),
                                       ),
-                                      CircleAvatar(
-                                        backgroundColor: Colors.black38,
-                                        child: IconButton(
-                                            onPressed: () {
-                                              deletItemImageApi(
-                                                  context, widget.pass.itemId);
-                                            },
-                                            icon: Icon(
-                                              Icons.delete,
-                                              color: Colors.white,
-                                            )),
-                                      )
                                     ],
                                   ),
                                 )

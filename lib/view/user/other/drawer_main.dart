@@ -4,6 +4,7 @@ import 'package:abood/view/user/auth/start_account.dart';
 import 'package:abood/view/user/other/widget/change_lang.dart';
 import 'package:abood/view/user/other/widget/dialog_guest.dart';
 import 'package:abood/view/user/other/widget/dialogs_drawer.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -29,6 +30,18 @@ Text text3(text) {
           color: Colors.black, fontSize: 20, fontFamily: 'majallab'));
 }
 
+const colorizeColors = [
+  Colors.white,
+  Colors.blue,
+  Colors.yellow,
+  Colors.red,
+];
+
+const colorizeTextStyle = TextStyle(
+  fontSize: 25.0,
+  fontFamily: 'majallab',
+  fontWeight: FontWeight.bold,
+);
 Drawer drawermain(context) {
   Homecontroller controller = Get.put(Homecontroller());
   return Drawer(
@@ -45,7 +58,21 @@ Drawer drawermain(context) {
                       SizedBox(
                         height: 45,
                       ),
-                      Center(child: text1("ABOOD")),
+                      AnimatedTextKit(
+                        displayFullTextOnTap: false,
+                        repeatForever: true,
+                        animatedTexts: [
+                          ColorizeAnimatedText(
+                            'CLICK & PICK',
+                            textStyle: colorizeTextStyle,
+                            colors: colorizeColors,
+                          ),
+                        ],
+                        isRepeatingAnimation: true,
+                        onTap: () {
+                          print("Tap Event");
+                        },
+                      ),
                       Divider(
                         color: Colors.white,
                         thickness: 0.5,

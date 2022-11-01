@@ -121,167 +121,165 @@ class _myProfileState extends State<myProfile> {
         return Future.value(false);
       },
       child: Scaffold(
-          body: ListView(
-        shrinkWrap: true,
-        children: [
-          Container(
-            margin: EdgeInsets.all(15),
-            height: MediaQuery.of(context).size.height - 200,
-            width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
-                color: Colors.white,
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
-                    spreadRadius: 5,
-                    blurRadius: 7,
-                    offset: Offset(0, 3), // changes position of shadow
+          body: Container(
+        margin: EdgeInsets.all(15),
+        height: MediaQuery.of(context).size.height - 200,
+        width: MediaQuery.of(context).size.width,
+        decoration: BoxDecoration(
+            color: Colors.white,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.5),
+                spreadRadius: 5,
+                blurRadius: 7,
+                offset: Offset(0, 3), // changes position of shadow
+              ),
+            ],
+            // image: DecorationImage(
+            //     fit: BoxFit.cover,
+            //     image: AssetImage("assets/images/logoclick&pick1.jpg")),
+            borderRadius: BorderRadius.all(Radius.circular(20))),
+        child: Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: GetBuilder<Homecontroller>(builder: (controller) {
+              return Column(
+                children: [
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  const CircleAvatar(
+                    backgroundColor: Colors.grey,
+                    radius: 50,
+                    backgroundImage: CachedNetworkImageProvider(
+                        "http://cdn.onlinewebfonts.com/svg/img_81837.png"),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Expanded(
+                          child: Container(
+                        child: Text1("First Name".tr),
+                      )),
+                      Expanded(
+                          child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Container(
+                            alignment: Alignment.topLeft,
+                            margin: EdgeInsets.all(30),
+                            child: Text2(controller.firstName),
+                          ),
+                        ],
+                      ))
+                    ],
+                  ),
+                  line(),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Expanded(
+                          child: Container(
+                        child: Text1("Last Name".tr),
+                      )),
+                      Expanded(
+                          child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Container(
+                            margin: EdgeInsets.all(30),
+                            alignment: Alignment.topLeft,
+                            child: Text2(controller.lastName),
+                          ),
+                        ],
+                      ))
+                    ],
+                  ),
+                  line(),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Expanded(
+                          child: Container(
+                        child: Text1("Mobile Number".tr),
+                      )),
+                      Expanded(
+                          child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Container(
+                            margin: EdgeInsets.all(30),
+                            alignment: Alignment.topLeft,
+                            child: Text2(controller.mobileNumber),
+                          ),
+                        ],
+                      ))
+                    ],
+                  ),
+                  line(),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  Container(
+                    width: 150,
+                    height: 37,
+                    child: RaisedButton.icon(
+                      onPressed: () {
+                        print('Button Clicked.');
+                        showLoadingUpdate(context);
+                      },
+                      shape: RoundedRectangleBorder(
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(25.0))),
+                      label: Text(
+                        "Edit information".tr,
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 11,
+                            fontFamily: 'Almarai'),
+                      ),
+                      icon: Icon(
+                        Icons.edit,
+                        color: Colors.white,
+                      ),
+                      textColor: Colors.white,
+                      splashColor: Colors.white,
+                      color: Colors.black,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  Container(
+                    width: 150,
+                    height: 37,
+                    child: RaisedButton.icon(
+                      onPressed: () {
+                        print('Button Clicked.');
+                        // showLoading(context);
+                        Navigator.of(context).pushNamed("editPassword");
+                      },
+                      shape: RoundedRectangleBorder(
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(25.0))),
+                      label: Text(
+                        "Edit password".tr,
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 11,
+                            fontFamily: 'Almarai'),
+                      ),
+                      icon: Icon(
+                        Icons.edit,
+                        color: Colors.white,
+                      ),
+                      textColor: Colors.white,
+                      splashColor: Colors.white,
+                      color: Colors.black,
+                    ),
                   ),
                 ],
-                borderRadius: BorderRadius.all(Radius.circular(20))),
-            child: Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: GetBuilder<Homecontroller>(builder: (controller) {
-                  return Column(
-                    children: [
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      const CircleAvatar(
-                        backgroundColor: Colors.grey,
-                        radius: 50,
-                        backgroundImage: CachedNetworkImageProvider(
-                            "http://cdn.onlinewebfonts.com/svg/img_81837.png"),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Expanded(
-                              child: Container(
-                            child: Text1("First Name".tr),
-                          )),
-                          Expanded(
-                              child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Container(
-                                alignment: Alignment.topLeft,
-                                margin: EdgeInsets.all(30),
-                                child: Text2(controller.firstName),
-                              ),
-                            ],
-                          ))
-                        ],
-                      ),
-                      line(),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Expanded(
-                              child: Container(
-                            child: Text1("Last Name".tr),
-                          )),
-                          Expanded(
-                              child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Container(
-                                margin: EdgeInsets.all(30),
-                                alignment: Alignment.topLeft,
-                                child: Text2(controller.lastName),
-                              ),
-                            ],
-                          ))
-                        ],
-                      ),
-                      line(),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Expanded(
-                              child: Container(
-                            child: Text1("Mobile Number".tr),
-                          )),
-                          Expanded(
-                              child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Container(
-                                margin: EdgeInsets.all(30),
-                                alignment: Alignment.topLeft,
-                                child: Text2(controller.mobileNumber),
-                              ),
-                            ],
-                          ))
-                        ],
-                      ),
-                      line(),
-                      SizedBox(
-                        height: 30,
-                      ),
-                      Container(
-                        width: 150,
-                        height: 37,
-                        child: RaisedButton.icon(
-                          onPressed: () {
-                            print('Button Clicked.');
-                            showLoadingUpdate(context);
-                          },
-                          shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(25.0))),
-                          label: Text(
-                            "Edit information".tr,
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 11,
-                                fontFamily: 'Almarai'),
-                          ),
-                          icon: Icon(
-                            Icons.edit,
-                            color: Colors.white,
-                          ),
-                          textColor: Colors.white,
-                          splashColor: Colors.white,
-                          color: Colors.black,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 30,
-                      ),
-                      Container(
-                        width: 150,
-                        height: 37,
-                        child: RaisedButton.icon(
-                          onPressed: () {
-                            print('Button Clicked.');
-                            // showLoading(context);
-                            Navigator.of(context).pushNamed("editPassword");
-                          },
-                          shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(25.0))),
-                          label: Text(
-                            "Edit password".tr,
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 11,
-                                fontFamily: 'Almarai'),
-                          ),
-                          icon: Icon(
-                            Icons.edit,
-                            color: Colors.white,
-                          ),
-                          textColor: Colors.white,
-                          splashColor: Colors.white,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ],
-                  );
-                })),
-          ),
-        ],
+              );
+            })),
       )),
     );
   }
