@@ -1,8 +1,10 @@
 import 'dart:convert';
 
+import 'package:abood/constant/colors.dart';
 import 'package:abood/constant/urls.dart';
 import 'package:abood/model/admin/dialog/dialog.dart';
 import 'package:abood/model/admin/jsonModel/onlyItemDelete.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -19,7 +21,25 @@ Future deletItemApi(context, id) async {
   if (response.statusCode == 200) {
     if (c.isSuccess == true) {
       print(c.message);
-      myDialog2(context, c.message);
+      // myDialog2(context, c.message);
+      AwesomeDialog(
+              context: context,
+              animType: AnimType.RIGHSLIDE,
+              headerAnimationLoop: true,
+              dialogType: DialogType.SUCCES,
+              btnOkOnPress: () {},
+              body: Center(
+                child: Text(c.message.toString(),
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 14,
+                        fontFamily: 'Almarai',
+                        fontWeight: FontWeight.bold)),
+              ),
+              dialogBackgroundColor: MyColors.color3,
+              btnOkColor: Colors.black)
+          .show();
     } else {
       diaFaild(context, c);
       print(c.message);
@@ -43,7 +63,25 @@ Future deletItemSizeApi(context, id) async {
   if (response.statusCode == 200) {
     if (c.isSuccess == true) {
       print(c.message);
-      myDialog2(context, c.message);
+      // myDialog2(context, c.message);
+      AwesomeDialog(
+              context: context,
+              animType: AnimType.RIGHSLIDE,
+              headerAnimationLoop: true,
+              dialogType: DialogType.SUCCES,
+              btnOkOnPress: () {},
+              body: Center(
+                child: Text(c.message.toString(),
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 14,
+                        fontFamily: 'Almarai',
+                        fontWeight: FontWeight.bold)),
+              ),
+              dialogBackgroundColor: MyColors.color3,
+              btnOkColor: Colors.black)
+          .show();
     } else {
       diaFaild(context, c);
       print(c.message);
@@ -68,7 +106,25 @@ Future deletItemColorApi(context, id) async {
   if (response.statusCode == 200) {
     if (c.isSuccess == true) {
       print(c.message);
-      myDialog2(context, "تمت العملية بنجاح ");
+      // myDialog2(context, "تمت العملية بنجاح ");
+      AwesomeDialog(
+              context: context,
+              animType: AnimType.RIGHSLIDE,
+              headerAnimationLoop: true,
+              dialogType: DialogType.SUCCES,
+              btnOkOnPress: () {},
+              body: Center(
+                child: Text("تمت العملية بنجاح ",
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 14,
+                        fontFamily: 'Almarai',
+                        fontWeight: FontWeight.bold)),
+              ),
+              dialogBackgroundColor: MyColors.color3,
+              btnOkColor: Colors.black)
+          .show();
     } else {
       diaFaild(context, c);
       print(c.message);
@@ -92,7 +148,25 @@ Future deletItemImageApi(context, id) async {
   if (response.statusCode == 200) {
     if (c.isSuccess == true) {
       print(c.message);
-      myDialog2(context, "تمت العملية بنجاح ");
+      // myDialog2(context, "تمت العملية بنجاح ");
+      AwesomeDialog(
+              context: context,
+              animType: AnimType.RIGHSLIDE,
+              headerAnimationLoop: true,
+              dialogType: DialogType.SUCCES,
+              btnOkOnPress: () {},
+              body: const Center(
+                child: Text("تمت العملية بنجاح ",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 14,
+                        fontFamily: 'Almarai',
+                        fontWeight: FontWeight.bold)),
+              ),
+              dialogBackgroundColor: MyColors.color3,
+              btnOkColor: Colors.black)
+          .show();
     } else {
       diaFaild(context, c);
       print(c.message);

@@ -1,4 +1,5 @@
 import 'package:abood/controller/ControlUser.dart';
+import 'package:abood/model/admin/api/get_item_det.dart';
 import 'package:abood/view/admin/add_offer.dart';
 import 'package:abood/view/admin/delet_item.dart';
 import 'package:abood/view/admin/edit_item.dart';
@@ -45,18 +46,11 @@ class _AllItemsStoreState extends State<AllItemsStore> {
     Homecontroller controller = Get.put(Homecontroller());
     int id_user = controller.id;
     int idd = int.parse(widget.id.toString());
+    print(id_user);
     if (isRefresh) {
       currentPage = 0;
       print("1===========================");
-    } else {
-      print("2===========================");
-      print(currentPage);
-      // if (currentPage > 2) {
-      //   print("3========================");
-      //   refreshController.loadNoData();
-      //   return false;
-      // }
-    }
+    } else {}
     print("==========currentPage============");
     print(currentPage);
     var request = http.Request('GET',
@@ -260,17 +254,18 @@ class _AllItemsStoreState extends State<AllItemsStore> {
                                                                 () async {
                                                               setState(() {
                                                                 i = 1;
-                                                                // deletItemApi();
-                                                                Navigator.push(
-                                                                  context,
-                                                                  MaterialPageRoute(
+                                                              });
+                                                              await getItemDetailStore(
+                                                                  passenger
+                                                                      .itemId);
+                                                              Navigator.push(
+                                                                context,
+                                                                MaterialPageRoute(
                                                                     builder: (context) =>
                                                                         DeletItem(
                                                                             pass:
-                                                                                passenger),
-                                                                  ),
-                                                                );
-                                                              });
+                                                                                passenger)),
+                                                              );
                                                             }),
                                                       ),
                                                     ),

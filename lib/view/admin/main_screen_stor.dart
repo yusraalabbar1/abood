@@ -444,7 +444,13 @@ class _MainScreenStorState extends State<MainScreenStor> {
             ),
             InkWell(
               onTap: () {
-                Navigator.of(context).pushNamed("AllItemsStore");
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => StorByMerch(
+                          id: controller.id, typeOperation: 'AllItemsStore')),
+                );
+                // Navigator.of(context).pushNamed("AllItemsStore");
               },
               child: Container(
                 margin: EdgeInsets.symmetric(horizontal: 20),

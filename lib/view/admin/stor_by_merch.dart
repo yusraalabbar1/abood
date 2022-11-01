@@ -2,6 +2,7 @@ import 'package:abood/constant/urls.dart';
 import 'package:abood/controller/controlProduct.dart';
 import 'package:abood/model/user/stor/stor_by_section_sub/stor_by_section_sub_model.dart';
 import 'package:abood/model/user/stor/stor_by_userId_main_page/stor_by_userId_main_page_model.dart';
+import 'package:abood/view/admin/allItem.dart';
 import 'package:abood/view/admin/allItemDelete.dart';
 import 'package:abood/view/admin/allItemEdit.dart';
 import 'package:abood/view/admin/all_item_offer.dart';
@@ -164,6 +165,14 @@ class _StorByMerchState extends State<StorByMerch> {
                         MaterialPageRoute(
                           builder: (context) =>
                               AllItemsStoreoffer(id: passenger.id),
+                        ),
+                      );
+                    } else if (widget.typeOperation.toString() ==
+                        "AllItemsStore") {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => AllItemsStore(id: passenger.id),
                         ),
                       );
                     }

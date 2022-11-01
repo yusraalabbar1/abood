@@ -1,4 +1,5 @@
 import 'package:abood/controller/ControlUser.dart';
+import 'package:abood/model/admin/api/get_item_det.dart';
 import 'package:abood/view/admin/add_offer.dart';
 import 'package:abood/view/admin/delet_item.dart';
 import 'package:abood/view/admin/edit_item.dart';
@@ -201,6 +202,7 @@ class _AllItemsStoreDeletState extends State<AllItemsStoreDelet> {
                       final passenger = passengers[index];
                       return InkWell(
                           onTap: () async {
+                            await getItemDetailStore(passenger.itemId);
                             Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -231,7 +233,9 @@ class _AllItemsStoreDeletState extends State<AllItemsStoreDelet> {
                                         MainAxisAlignment.spaceAround,
                                     children: [
                                       InkWell(
-                                        onTap: () {
+                                        onTap: () async {
+                                          await getItemDetailStore(
+                                              passenger.itemId);
                                           Navigator.push(
                                             context,
                                             MaterialPageRoute(

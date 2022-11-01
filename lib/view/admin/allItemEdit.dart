@@ -1,5 +1,6 @@
 import 'package:abood/controller/ControlUser.dart';
 import 'package:abood/model/admin/api/edit_color.dart';
+import 'package:abood/model/admin/api/get_item_det.dart';
 import 'package:abood/view/admin/add_offer.dart';
 import 'package:abood/view/admin/delet_item.dart';
 import 'package:abood/view/admin/edit_item.dart';
@@ -206,6 +207,7 @@ class _AllItemsStoreEditState extends State<AllItemsStoreEdit> {
                       final passenger = passengers[index];
                       return InkWell(
                           onTap: () async {
+                            await getItemDetailStore(passenger.itemId);
                             Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -239,7 +241,9 @@ class _AllItemsStoreEditState extends State<AllItemsStoreEdit> {
                                         MainAxisAlignment.spaceAround,
                                     children: [
                                       InkWell(
-                                        onTap: () {
+                                        onTap: () async {
+                                          await getItemDetailStore(
+                                              passenger.itemId);
                                           Navigator.push(
                                             context,
                                             MaterialPageRoute(

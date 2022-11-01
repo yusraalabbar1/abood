@@ -3,6 +3,7 @@ import 'package:abood/controller/controlAdmin.dart';
 import 'package:abood/controller/controlProduct.dart';
 import 'package:abood/model/admin/api/deletItemApi.dart';
 import 'package:abood/model/admin/api/editItem.dart';
+import 'package:abood/model/admin/api/get_item_det.dart';
 import 'package:abood/model/user/stor/items/get_items_id.dart';
 import 'package:abood/model/user/stor/stor_item/stor_item_model.dart';
 import 'package:flutter/material.dart';
@@ -34,6 +35,7 @@ class _DeletItemState extends State<DeletItem> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    print(widget.pass.itemId);
   }
 
   Text appText2(text) {
@@ -57,336 +59,323 @@ class _DeletItemState extends State<DeletItem> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
         backgroundColor: Colors.white,
-        toolbarHeight: 100,
-        title: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [appText(" Delete Product".tr)],
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          toolbarHeight: 100,
+          title: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [appText(" Delete Product".tr)],
+          ),
         ),
-      ),
-      body: FutureBuilder(
-        builder: (context, AsyncSnapshot<dynamic> snapshot) {
-          return snapshot.hasData != null
-              ? ListView(
+        body: GetBuilder<ControllerAdmin>(builder: (controller) {
+          return ListView(
+            children: [
+              SizedBox(
+                height: 20,
+              ),
+              Container(
+                alignment: Alignment.center,
+                child: text1("Basic Information".tr),
+              ),
+              Container(
+                margin: EdgeInsets.all(10),
+                // height: 350,
+                width: MediaQuery.of(context).size.width,
+                child: Form(
+                  key: formstate,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                          // alignment: Alignment.topLeft,
+                          margin: EdgeInsets.symmetric(horizontal: 30),
+                          child: appText2("Name:".tr)),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            left: 20, right: 20, bottom: 20, top: 0),
+                        child: Container(
+                            decoration: boxd(),
+                            child: TextFormFieldFirst(
+                                controller.ItemsById["itemName"])),
+                      ),
+                      Container(
+                          // alignment: Alignment.topLeft,
+                          margin: EdgeInsets.symmetric(horizontal: 30),
+                          child: appText2("Price:".tr)),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            left: 20, right: 20, bottom: 20, top: 0),
+                        child: Container(
+                            decoration: boxd(),
+                            child: TextFormFieldLast(
+                                controller.ItemsById["price"])),
+                      ),
+                      Container(
+                          // alignment: Alignment.topLeft,
+                          margin: EdgeInsets.symmetric(horizontal: 30),
+                          child: appText2("Extra Text:".tr)),
+                      Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Container(
+                            decoration: boxd(),
+                            child: TextFormField1(
+                                controller.ItemsById["extraText"])),
+                      ),
+                      Container(
+                          // alignment: Alignment.topLeft,
+                          margin: EdgeInsets.symmetric(horizontal: 30),
+                          child: appText2("Description: ".tr)),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            left: 20, right: 20, bottom: 20, top: 20),
+                        child: Container(
+                            decoration: boxd(),
+                            child: TextFormField2(
+                                controller.ItemsById["itemDescription"])),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.all(20),
+                // height: 450,
+                width: MediaQuery.of(context).size.width,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SizedBox(
-                      height: 20,
-                    ),
                     Container(
                       alignment: Alignment.center,
-                      child: text1("Basic Information".tr),
-                    ),
-                    Container(
-                      margin: EdgeInsets.all(10),
-                      // height: 350,
-                      width: MediaQuery.of(context).size.width,
-                      child: Form(
-                        key: formstate,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                                // alignment: Alignment.topLeft,
-                                margin: EdgeInsets.symmetric(horizontal: 30),
-                                child: appText2("Name:".tr)),
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 20, right: 20, bottom: 20, top: 0),
-                              child: Container(
-                                  decoration: boxd(),
-                                  child:
-                                      TextFormFieldFirst(widget.pass.itemName)),
-                            ),
-                            Container(
-                                // alignment: Alignment.topLeft,
-                                margin: EdgeInsets.symmetric(horizontal: 30),
-                                child: appText2("Price:".tr)),
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 20, right: 20, bottom: 20, top: 0),
-                              child: Container(
-                                  decoration: boxd(),
-                                  child: TextFormFieldLast(widget.pass.price)),
-                            ),
-                            Container(
-                                // alignment: Alignment.topLeft,
-                                margin: EdgeInsets.symmetric(horizontal: 30),
-                                child: appText2("Extra Text:".tr)),
-                            Padding(
-                              padding: const EdgeInsets.all(20.0),
-                              child: Container(
-                                  decoration: boxd(),
-                                  child: TextFormField1(widget.pass.extraText)),
-                            ),
-                            Container(
-                                // alignment: Alignment.topLeft,
-                                margin: EdgeInsets.symmetric(horizontal: 30),
-                                child: appText2("Description: ".tr)),
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 20, right: 20, bottom: 20, top: 20),
-                              child: Container(
-                                  decoration: boxd(),
-                                  child: TextFormField2(
-                                      widget.pass.itemDescription)),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.all(20),
-                      // height: 450,
-                      width: MediaQuery.of(context).size.width,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            alignment: Alignment.center,
-                            child: text1("Delete Sub Section".tr),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          widget.pass.itemColors != null
-                              ? Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 20),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Container(
-                                        alignment: Alignment.center,
-                                        height: 70,
-                                        width:
-                                            MediaQuery.of(context).size.width /
-                                                1.3,
-                                        // decoration: boxd(),
-                                        child: ListView.builder(
-                                          shrinkWrap: true,
-                                          itemCount:
-                                              widget.pass.itemColors!.length,
-                                          scrollDirection: Axis.horizontal,
-                                          itemBuilder: (ctx, index) {
-                                            return Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 5),
-                                                child: Row(
-                                                  children: [
-                                                    CircleAvatar(
-                                                      radius: 20,
-                                                      backgroundColor:
-                                                          Colors.red,
-                                                    ),
-                                                    CircleAvatar(
-                                                      radius: 10,
-                                                      backgroundColor:
-                                                          Colors.black38,
-                                                      child: IconButton(
-                                                          onPressed: () {
-                                                            deletItemColorApi(
-                                                                context,
-                                                                widget
-                                                                    .pass
-                                                                    .itemColors![
-                                                                        index]
-                                                                    .itemColorId);
-                                                          },
-                                                          icon: Icon(
-                                                            Icons.remove,
-                                                            color: Colors.white,
-                                                            size: 5,
-                                                          )),
-                                                    )
-                                                  ],
-                                                ));
-                                          },
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                )
-                              : Container(),
-                          const Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Divider(
-                              thickness: 3,
-                            ),
-                          ),
-                          widget.pass.itemSizes != null
-                              ? Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 20),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Container(
-                                        alignment: Alignment.center,
-                                        height: 70,
-                                        width:
-                                            MediaQuery.of(context).size.width /
-                                                1.3,
-                                        // decoration: boxd(),
-                                        child: ListView.builder(
-                                          shrinkWrap: true,
-                                          itemCount:
-                                              widget.pass.itemSizes!.length,
-                                          scrollDirection: Axis.horizontal,
-                                          itemBuilder: (ctx, index) {
-                                            return Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 5),
-                                                child: Row(
-                                                  children: [
-                                                    Chip(
-                                                      label: Text(
-                                                        widget
-                                                            .pass
-                                                            .itemSizes![index]
-                                                            .itemSizeDescEn
-                                                            .toString(),
-                                                        style: TextStyle(
-                                                            color:
-                                                                Colors.white),
-                                                      ),
-                                                    ),
-                                                    CircleAvatar(
-                                                      radius: 10,
-                                                      backgroundColor:
-                                                          Colors.black38,
-                                                      child: IconButton(
-                                                          onPressed: () {
-                                                            deletItemSizeApi(
-                                                                context,
-                                                                widget
-                                                                    .pass
-                                                                    .itemSizes![
-                                                                        index]
-                                                                    .itemSizeId);
-                                                          },
-                                                          icon: Icon(
-                                                            Icons.remove,
-                                                            color: Colors.white,
-                                                            size: 5,
-                                                          )),
-                                                    )
-                                                  ],
-                                                ));
-                                          },
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                )
-                              : Container(),
-                          const Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Divider(
-                              thickness: 3,
-                            ),
-                          ),
-                          widget.pass.itemImages != null
-                              ? Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 20),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Container(
-                                        alignment: Alignment.center,
-                                        height: 70,
-                                        width:
-                                            MediaQuery.of(context).size.width /
-                                                1.3,
-                                        // decoration: boxd(),
-                                        child: ListView.builder(
-                                          shrinkWrap: true,
-                                          itemCount:
-                                              widget.pass.itemImages!.length > 0
-                                                  ? widget
-                                                      .pass.itemImages!.length
-                                                  : 0,
-                                          scrollDirection: Axis.horizontal,
-                                          itemBuilder: (ctx, index) {
-                                            return Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 5),
-                                              child: Row(
-                                                children: [
-                                                  Container(
-                                                    margin: EdgeInsets.only(
-                                                        top: 5, bottom: 5),
-                                                    height: 80,
-                                                    width: 80,
-                                                    decoration: BoxDecoration(
-                                                      color: Colors.black38,
-                                                      image: DecorationImage(
-                                                        image: NetworkImage(
-                                                            imageAds +
-                                                                widget
-                                                                    .pass
-                                                                    .itemImages![
-                                                                        index]
-                                                                    .imageUrl
-                                                                    .toString()),
-                                                        fit: BoxFit.fill,
-                                                      ),
-                                                      borderRadius:
-                                                          BorderRadius.all(
-                                                              Radius.circular(
-                                                                  5)),
-                                                    ),
-                                                  ),
-                                                  CircleAvatar(
-                                                    radius: 10,
-                                                    backgroundColor:
-                                                        Colors.black38,
-                                                    child: IconButton(
-                                                        onPressed: () {
-                                                          deletItemImageApi(
-                                                              context,
-                                                              widget
-                                                                  .pass.itemId);
-                                                        },
-                                                        icon: Icon(
-                                                          Icons.remove,
-                                                          color: Colors.white,
-                                                          size: 5,
-                                                        )),
-                                                  )
-                                                ],
-                                              ),
-                                            );
-                                          },
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                )
-                              : Container(),
-                        ],
-                      ),
+                      child: text1("Delete Sub Section".tr),
                     ),
                     SizedBox(
-                      height: 15,
+                      height: 10,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 30),
-                      child: ButtonRegister2(Colors.black, Colors.white,
-                          " Delete product".tr, 1, widget.pass.itemId),
+                    controller.ItemsById["itemColors"] != null
+                        ? Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  alignment: Alignment.center,
+                                  height: 70,
+                                  width:
+                                      MediaQuery.of(context).size.width / 1.3,
+                                  // decoration: boxd(),
+                                  child: ListView.builder(
+                                    shrinkWrap: true,
+                                    itemCount: controller
+                                        .ItemsById["itemColors"].length,
+                                    scrollDirection: Axis.horizontal,
+                                    itemBuilder: (ctx, index) {
+                                      return Padding(
+                                          padding:
+                                              const EdgeInsets.only(left: 5),
+                                          child: Row(
+                                            children: [
+                                              CircleAvatar(
+                                                radius: 20,
+                                                backgroundColor: Colors.red,
+                                              ),
+                                              CircleAvatar(
+                                                radius: 10,
+                                                backgroundColor: Colors.black38,
+                                                child: IconButton(
+                                                    onPressed: () async {
+                                                      await deletItemColorApi(
+                                                          context,
+                                                          controller.ItemsById[
+                                                                      "itemColors"]
+                                                                  [index]
+                                                              ["itemColorId"]);
+                                                      await getItemDetailStore(
+                                                          controller.ItemsById[
+                                                              "itemId"]);
+                                                    },
+                                                    icon: Icon(
+                                                      Icons.remove,
+                                                      color: Colors.white,
+                                                      size: 5,
+                                                    )),
+                                              )
+                                            ],
+                                          ));
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                          )
+                        : Container(),
+                    const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Divider(
+                        thickness: 3,
+                      ),
                     ),
+                    controller.ItemsById["itemSizes"] != null
+                        ? Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  alignment: Alignment.center,
+                                  height: 70,
+                                  width:
+                                      MediaQuery.of(context).size.width / 1.3,
+                                  // decoration: boxd(),
+                                  child: ListView.builder(
+                                    shrinkWrap: true,
+                                    itemCount: controller
+                                        .ItemsById["itemSizes"].length,
+                                    scrollDirection: Axis.horizontal,
+                                    itemBuilder: (ctx, index) {
+                                      return Padding(
+                                          padding:
+                                              const EdgeInsets.only(left: 5),
+                                          child: Row(
+                                            children: [
+                                              Chip(
+                                                label: Text(
+                                                  controller
+                                                      .ItemsById["itemSizes"]
+                                                          [index]
+                                                          ["itemSizeDescEn"]
+                                                      .toString(),
+                                                  style: TextStyle(
+                                                      color: Colors.white),
+                                                ),
+                                              ),
+                                              CircleAvatar(
+                                                radius: 10,
+                                                backgroundColor: Colors.black38,
+                                                child: IconButton(
+                                                    onPressed: () async {
+                                                      await deletItemSizeApi(
+                                                          context,
+                                                          controller.ItemsById[
+                                                                      "itemSizes"]
+                                                                  [index]
+                                                              ["itemSizeId"]);
+                                                      await getItemDetailStore(
+                                                          controller.ItemsById[
+                                                              "itemId"]);
+                                                    },
+                                                    icon: Icon(
+                                                      Icons.remove,
+                                                      color: Colors.white,
+                                                      size: 5,
+                                                    )),
+                                              )
+                                            ],
+                                          ));
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                          )
+                        : Container(),
+                    const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Divider(
+                        thickness: 3,
+                      ),
+                    ),
+                    controller.ItemsById["itemImages"] != null
+                        ? Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  alignment: Alignment.center,
+                                  height: 70,
+                                  width:
+                                      MediaQuery.of(context).size.width / 1.3,
+                                  // decoration: boxd(),
+                                  child: ListView.builder(
+                                    shrinkWrap: true,
+                                    itemCount: controller
+                                                .ItemsById["itemImages"]
+                                                .length >
+                                            0
+                                        ? controller
+                                            .ItemsById["itemImages"].length
+                                        : 0,
+                                    scrollDirection: Axis.horizontal,
+                                    itemBuilder: (ctx, index) {
+                                      return Padding(
+                                        padding: const EdgeInsets.only(left: 5),
+                                        child: Row(
+                                          children: [
+                                            Container(
+                                              margin: EdgeInsets.only(
+                                                  top: 5, bottom: 5),
+                                              height: 80,
+                                              width: 80,
+                                              decoration: BoxDecoration(
+                                                color: Colors.black38,
+                                                image: DecorationImage(
+                                                  image: NetworkImage(imageAds +
+                                                      controller.ItemsById[
+                                                              "itemImages"]
+                                                              [index]
+                                                              ["imageUrl"]
+                                                          .toString()),
+                                                  fit: BoxFit.fill,
+                                                ),
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(5)),
+                                              ),
+                                            ),
+                                            CircleAvatar(
+                                              radius: 10,
+                                              backgroundColor: Colors.black38,
+                                              child: IconButton(
+                                                  onPressed: () async {
+                                                    deletItemImageApi(
+                                                        context,
+                                                        controller.ItemsById[
+                                                            "itemId"]);
+                                                    // await getItemDetailStore(
+                                                    //     controller.ItemsById[
+                                                    //         "itemId"]);
+                                                  },
+                                                  icon: Icon(
+                                                    Icons.remove,
+                                                    color: Colors.white,
+                                                    size: 5,
+                                                  )),
+                                            )
+                                          ],
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                          )
+                        : Container(),
                   ],
-                )
-              : CircularProgressIndicator();
-        },
-      ),
-    );
+                ),
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 30),
+                child: ButtonRegister2(Colors.black, Colors.white,
+                    " Delete product".tr, 1, controller.ItemsById["itemId"]),
+              ),
+            ],
+          );
+        }));
   }
 
   TextFormField TextFormFieldFirst(text) {
@@ -472,60 +461,15 @@ class _DeletItemState extends State<DeletItem> {
             fontFamily: 'majallab'));
   }
 
-  // Widget ButtonRegister1(c2, c1, text, x) {
-  //   return Container(
-  //     width: 150,
-  //     height: 65,
-  //     child: RaisedButton(
-  //       onPressed: () {
-  //         print('Button Clicked.');
-  //         var formdata = formstate.currentState;
-  //         if (formdata!.validate()) {
-  //           formdata.save();
-  //           print("=========valid==============");
-  //           print(controller.nameItem);
-  //           print(controller.priceItem);
-  //           print(controller.noteItem);
-  //           print(controller.desItem);
-  //           editItemApi(
-  //               context,
-  //               int.parse(widget.pass.id.toString()),
-  //               controller.nameItem,
-  //               controller.desItem,
-  //               int.parse(controller.priceItem.toString()),
-  //               controller.noteItem);
-  //           print("=========api==============");
-
-  //           // Navigator.of(context).pushNamed("picColor");
-  //         } else {
-  //           print("not validddddddddddddddd");
-  //         }
-  //       },
-  //       shape: RoundedRectangleBorder(
-  //           borderRadius: BorderRadius.all(Radius.circular(20.0))),
-  //       child: Text(
-  //         text,
-  //         style: TextStyle(
-  //             color: c1,
-  //             fontSize: 15,
-  //             fontFamily: 'Nunito',
-  //             fontWeight: FontWeight.bold),
-  //       ),
-  //       textColor: c1,
-  //       splashColor: Colors.white,
-  //       color: c2,
-  //     ),
-  //   );
-  // }
-
   Widget ButtonRegister2(c2, c1, text, x, id) {
     return Container(
       width: 150,
       height: 65,
       child: RaisedButton(
-        onPressed: () {
+        onPressed: () async {
           print('Button Clicked.');
           deletItemApi(context, id);
+          await getItemDetailStore(widget.pass.itemId);
         },
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(20.0))),
