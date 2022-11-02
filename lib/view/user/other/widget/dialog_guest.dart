@@ -28,7 +28,7 @@ class LoginGuest extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text("To Access Services, Pleas Login".tr,
+        Text("To Access Services, Please Login".tr,
             style: TextStyle(
                 color: Colors.black, fontSize: 14, fontFamily: 'Almarai')),
         Center(

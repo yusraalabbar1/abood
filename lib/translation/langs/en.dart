@@ -145,12 +145,12 @@ const Map<String, String> en = {
   "add Comment": "Add Comment",
   "Enter Comment": "Enter Comment",
   "OFF": "OFF",
-  "To Access Services, Pleas Login": "To Access Services, Pleas Login",
+  "To Access Services, Please Login": "To Access Services, Please Login",
   "can\'t enter bigest than ": "can\'t enter bigest than ",
   "can\'t enter less than ": "can\'t enter less than ",
   'Enter a valid Name': 'Enter a valid Name',
   'Enter a valid Email': 'Enter a valid Email',
-  "characters": "characters",
+  "characters": "Numbers",
   "Quantity per Color": "Quantity per Color",
   "Edit Colors": "Edit Colors",
   "Edit Sizes": "Edit Sizes",
@@ -192,5 +192,6 @@ const Map<String, String> en = {
   "PasswordChangedSuccessfully_nEnter to Login":
       "Password Changed Successfully ,Enter to Login",
   "EditItemColorSuccessfully": "Edit Item Color Successfully",
-  "EditItemSizeSuccessfully": "Edit Item Size Successfully"
+  "EditItemSizeSuccessfully": "Edit Item Size Successfully",
+  "DeleteCartSuccessfully": "Delete Cart Successfully"
 };

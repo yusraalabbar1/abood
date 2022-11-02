@@ -56,7 +56,7 @@ class _signupState extends State<signup> {
     return Scaffold(
       backgroundColor: Color(0xffF5F5F5),
       appBar: AppBar(
-        title: Text("ABOOD"),
+        title: Text("CLICK & PICK"),
         toolbarHeight: 100,
       ),
       body: Form(

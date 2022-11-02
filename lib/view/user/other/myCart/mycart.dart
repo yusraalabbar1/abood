@@ -223,7 +223,10 @@ class _MyCartState extends State<MyCart> {
                           "Note".tr,
                           "Only Quantity available ".tr + "$total",
                           // icon: Icon(Icons.attachment, color: Colors.white),
-                          colorText: Colors.white,
+                          colorText: Colors.white, isDismissible: true,
+                          borderRadius: 10.0,
+                          backgroundColor:
+                              Color.fromARGB(255, 44, 43, 43).withOpacity(0.4),
                           snackPosition: SnackPosition.BOTTOM,
                         );
                       } else {

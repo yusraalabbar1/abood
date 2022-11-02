@@ -88,7 +88,7 @@ class _OtpForgetState extends State<OtpForget> with TickerProviderStateMixin {
     return Scaffold(
         backgroundColor: Color(0xffF5F5F5),
         appBar: AppBar(
-          title: Text("ABOOD"),
+          title: Text("CLICK & PICK"),
         ),
         body: Stack(
           children: [

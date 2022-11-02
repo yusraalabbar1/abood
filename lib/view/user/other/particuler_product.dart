@@ -219,7 +219,7 @@ class _particulerProductState extends State<particulerProduct> {
                                 flex: 5,
                                 child: Center(
                                   child: Text(
-                                    "Lorem ipsum dolor sit amet, consectetur adipiscing eliIn nsectetur adipiscing eliIn  ",
+                                    controller.ItemsById["itemDescription"],
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                         color: AppColor.bodyColor,
@@ -477,9 +477,11 @@ class _particulerProductState extends State<particulerProduct> {
                                             "Note".tr,
                                             "Choose Size".tr,
                                             colorText: Colors.white,
-
+                                            isDismissible: true,
+                                            borderRadius: 10.0,
                                             backgroundColor:
-                                                Colors.grey.withOpacity(0.4),
+                                                Color.fromARGB(255, 44, 43, 43)
+                                                    .withOpacity(0.4),
                                             // icon: Icon(Icons.attachment, color: Colors.white),
                                             snackPosition: SnackPosition.BOTTOM,
                                           );
@@ -491,9 +493,11 @@ class _particulerProductState extends State<particulerProduct> {
                                             "Note".tr,
                                             "Choose Color".tr,
                                             colorText: Colors.white,
-
+                                            isDismissible: true,
+                                            borderRadius: 10.0,
                                             backgroundColor:
-                                                Colors.grey.withOpacity(0.4),
+                                                Color.fromARGB(255, 44, 43, 43)
+                                                    .withOpacity(0.4),
                                             // icon: Icon(Icons.attachment, color: Colors.white),
                                             snackPosition: SnackPosition.BOTTOM,
                                           );
@@ -505,10 +509,11 @@ class _particulerProductState extends State<particulerProduct> {
                                             "Note".tr,
                                             "Choose Size & Color".tr,
                                             colorText: Colors.white,
-
                                             backgroundColor:
-                                                Colors.grey.withOpacity(0.4),
-                                            // icon: Icon(Icons.attachment, color: Colors.white),
+                                                Color.fromARGB(255, 44, 43, 43)
+                                                    .withOpacity(0.4),
+                                            isDismissible: true,
+                                            borderRadius: 10.0,
                                             snackPosition: SnackPosition.BOTTOM,
                                           );
                                           // diaFaildCart(context,

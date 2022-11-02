@@ -21,7 +21,7 @@ class _loginState extends State<login> {
     return Scaffold(
       backgroundColor: Color(0xffF5F5F5),
       appBar: AppBar(
-        title: Text("ABOOD"),
+        title: Text("CLICK & PICK"),
       ),
       body: Form(
         key: formstate,

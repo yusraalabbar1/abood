@@ -144,7 +144,7 @@ const Map<String, String> ar = {
   "add Comment": "إضافة تعليق",
   "Enter Comment": "أدخل التعليق",
   "OFF": "خصم",
-  "To Access Services, Pleas Login": "للوصول للخدمات يرجى تسجيل الدخول",
+  "To Access Services, Please Login": "للوصول للخدمات يرجى تسجيل الدخول",
   "can\'t enter bigest than ": "لا يمكن أن تكون أكبر من",
   "can\'t enter less than ": "لا يمكن أن تكون أصغر من",
   'Enter a valid Name': 'أدخل اسم صحيح',
@@ -190,5 +190,6 @@ const Map<String, String> ar = {
   "PasswordChangedSuccessfully_nEnter to Login":
       "تم تغيير كلمة المرور بنجاح يرجى تسجيل الدخول",
   "EditItemColorSuccessfully": "تم تعديل اللون بنجاح",
-  "EditItemSizeSuccessfully": "تم تعديل المقاس بنجاح"
+  "EditItemSizeSuccessfully": "تم تعديل المقاس بنجاح",
+  "DeleteCartSuccessfully": "تم الحذف بنجاح "
 };

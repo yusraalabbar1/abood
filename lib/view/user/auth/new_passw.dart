@@ -19,7 +19,7 @@ class _forgetPasswordNumberState extends State<forgetPasswordNumber> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("ABOOD"),
+        title: Text("CLICK & PICK"),
       ),
       body: Form(
         key: formstate,
