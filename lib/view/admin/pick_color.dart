@@ -1,6 +1,7 @@
 import 'package:abood/constant/urls.dart';
 import 'package:abood/controller/controlAdmin.dart';
 import 'package:abood/model/admin/api/add_item.dart';
+import 'package:abood/model/user/auth/login/api/loginApi.dart';
 import 'package:abood/view/admin/add_product.dart';
 import 'package:abood/view/admin/pick_size.dart';
 import 'package:flutter/material.dart';
@@ -209,6 +210,7 @@ class _picColorState extends State<picColor> {
                                   setState(() {
                                     print(index);
                                     print(myListMapColors);
+
                                     myListMapColors.removeAt(index);
 
                                     myListMapColorsFinal.removeAt(index);
@@ -297,14 +299,24 @@ class _picColorState extends State<picColor> {
       child: RaisedButton(
         onPressed: () {
           controller.SaveIdStore(int.parse(widget.id.toString()));
-          addItem(
-              context,
-              controller.nameItem.toString(),
-              controller.desItem.toString(),
-              controller.priceItem,
-              controller.noteItem.toString(),
-              myListMapize,
-              myListMapColorsFinal);
+          if (myListMapize.length == 0 && myListMapColorsFinal.length != 0) {
+            diaFaildDelet(context, "You did not choose sizes".tr);
+          } else if (myListMapize.length != 0 &&
+              myListMapColorsFinal.length == 0) {
+            diaFaildDelet(context, "You did not choose colors".tr);
+          } else if (myListMapize.length == 0 &&
+              myListMapColorsFinal.length == 0) {
+            diaFaildDelet(context, "You did not choose colors and sizes".tr);
+          } else {
+            addItem(
+                context,
+                controller.nameItem.toString(),
+                controller.desItem.toString(),
+                controller.priceItem,
+                controller.noteItem.toString(),
+                myListMapize,
+                myListMapColorsFinal);
+          }
         },
         shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(25.0))),

@@ -43,6 +43,7 @@ class DatumSetting {
     this.isEditior,
     this.isMedia,
     this.displayName,
+    this.displayNameEn,
     this.id,
   });
 
@@ -51,6 +52,7 @@ class DatumSetting {
   bool? isEditior;
   bool? isMedia;
   String? displayName;
+  String? displayNameEn;
   int? id;
 
   factory DatumSetting.fromJson(Map<String, dynamic> json) => DatumSetting(
@@ -59,6 +61,7 @@ class DatumSetting {
         isEditior: json["isEditior"],
         isMedia: json["isMedia"],
         displayName: json["displayName"],
+        displayNameEn: json["displayNameEn"],
         id: json["id"],
       );
 
@@ -68,6 +71,7 @@ class DatumSetting {
         "isEditior": isEditior,
         "isMedia": isMedia,
         "displayName": displayName,
+        "displayNameEn": displayNameEn,
         "id": id,
       };
 }

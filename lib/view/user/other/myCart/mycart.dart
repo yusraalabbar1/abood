@@ -41,13 +41,6 @@ class _MyCartState extends State<MyCart> {
         toolbarHeight: 70,
         title: text1("My Cart".tr),
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {
-      //     // Add your onPressed code here!
-      //   },
-      //   backgroundColor: Colors.green,
-      //   child: const Icon(Icons.navigation),
-      // ),
       body: guest != true
           ? RefreshIndicator(
               onRefresh: () async {
@@ -63,135 +56,166 @@ class _MyCartState extends State<MyCart> {
                   Divider(
                     thickness: 3,
                   ),
+                  textWidget("Please select The Products To Order".tr),
+                  Divider(
+                    thickness: 3,
+                  ),
                   SizedBox(
                     width: MediaQuery.of(context).size.width,
                     height: MediaQuery.of(context).size.height / 1.5,
                     child: GetBuilder<ControllerProduct>(builder: (controller) {
                       return (controller.myCart.length > 0
-                          ? Container(
-                              color: Colors.white,
-                              child: ListView.builder(
-                                  itemCount: controller.myCart.length,
-                                  itemBuilder:
-                                      (BuildContext context, int index) {
-                                    return Column(
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Card(
-                                              color: Colors.white,
-                                              // elevation: 5,
-                                              shape: RoundedRectangleBorder(
-                                                side: BorderSide(
-                                                  color: Colors.black,
+                          ? ListView.builder(
+                              itemCount: controller.myCart.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                return Column(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 5),
+                                      child: Card(
+                                          color: index % 2 != 0
+                                              ? Colors.white
+                                              : Color.fromARGB(
+                                                  255, 244, 239, 239),
+                                          // elevation: 5,
+                                          shape: RoundedRectangleBorder(
+                                            side: BorderSide(
+                                              color: Color.fromARGB(
+                                                  255, 244, 239, 239),
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(5.0),
+                                          ),
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              color: index % 2 != 0
+                                                  ? Colors.white
+                                                  : Color.fromARGB(
+                                                      255, 244, 239, 239),
+                                              shape: BoxShape.rectangle,
+                                              borderRadius:
+                                                  const BorderRadius.only(
+                                                      topLeft:
+                                                          Radius.circular(15.0),
+                                                      bottomLeft:
+                                                          Radius.circular(15.0),
+                                                      topRight:
+                                                          Radius.circular(15.0),
+                                                      bottomRight:
+                                                          Radius.circular(
+                                                              15.0)),
+                                            ),
+                                            child: Row(
+                                              children: [
+                                                const SizedBox(
+                                                  width: 10,
                                                 ),
-                                                borderRadius:
-                                                    BorderRadius.circular(15.0),
-                                              ),
-                                              child: Container(
-                                                color: Colors.white,
-                                                child: Row(
-                                                  children: [
-                                                    Expanded(
-                                                      flex: 4,
-                                                      child: Center(
-                                                        child: Container(
-                                                          color: Colors.white,
-                                                          child: ListTile(
-                                                            leading: Container(
-                                                              color:
-                                                                  Colors.white,
-                                                              child: ClipRRect(
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              4),
-                                                                  child:
-                                                                      CachedNetworkImage(
-                                                                    imageUrl: (imageAds +
-                                                                        controller.myCart[index]["itemImages"][0]
-                                                                            [
-                                                                            "imageUrl"]),
-                                                                    fit: BoxFit
-                                                                        .cover,
-                                                                  )),
-                                                              width: 70,
-                                                              height: 73,
+                                                Expanded(
+                                                  flex: 2,
+                                                  child: Container(
+                                                    color: Colors.transparent,
+                                                    child: ClipRRect(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(4),
+                                                        child:
+                                                            CachedNetworkImage(
+                                                          imageUrl: (imageAds +
+                                                              controller.myCart[
+                                                                          index]
+                                                                      [
+                                                                      "itemImages"]
+                                                                  [
+                                                                  0]["imageUrl"]),
+                                                          fit: BoxFit.cover,
+                                                          height: 100,
+                                                          width: 90,
+                                                        )),
+                                                  ),
+                                                ),
+                                                Expanded(
+                                                  flex: 4,
+                                                  child: Center(
+                                                    child: Container(
+                                                      color: index % 2 != 0
+                                                          ? Colors.white
+                                                          : Color.fromARGB(255,
+                                                              244, 239, 239),
+                                                      child: ListTile(
+                                                        subtitle: Column(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                          children: [
+                                                            const SizedBox(
+                                                              height: 10,
                                                             ),
-                                                            subtitle: Column(
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .center,
+                                                            counter(
+                                                                controller.myCart[
+                                                                        index]
+                                                                    ["id"],
+                                                                controller.myCart[
+                                                                        index]
+                                                                    ["qty"],
+                                                                controller.myCart[
+                                                                            index]
+                                                                        [
+                                                                        "itemColors"]
+                                                                    ["qty"]),
+                                                            const SizedBox(
+                                                              height: 10,
+                                                            ),
+                                                            Row(
                                                               children: [
-                                                                const SizedBox(
-                                                                  height: 10,
-                                                                ),
-                                                                counter(
-                                                                    controller.myCart[
-                                                                            index]
-                                                                        ["id"],
-                                                                    controller.myCart[
-                                                                            index]
-                                                                        ["qty"],
-                                                                    controller.myCart[
-                                                                                index]
-                                                                            [
-                                                                            "itemColors"]
-                                                                        [
-                                                                        "qty"]),
-                                                                const SizedBox(
-                                                                  height: 10,
-                                                                ),
-                                                                Row(
-                                                                  children: [
-                                                                    textWidget("Price:"
-                                                                            .tr +
-                                                                        (controller.myCart[index]["newPrice"] *
-                                                                                controller.myCart[index]["qty"])
-                                                                            .toString() +
-                                                                        " JOD \t ")
-                                                                  ],
-                                                                )
+                                                                textWidget("Price:"
+                                                                        .tr +
+                                                                    (controller.myCart[index]["newPrice"] *
+                                                                            controller.myCart[index]["qty"])
+                                                                        .toString() +
+                                                                    " JOD \t ")
                                                               ],
-                                                            ),
-                                                            title: Container(
-                                                                child: textWidget(
-                                                                    controller.myCart[
-                                                                            index]
-                                                                        [
-                                                                        "itemName"])),
-                                                          ),
+                                                            )
+                                                          ],
                                                         ),
+                                                        title: Container(
+                                                            child: textWidget(
+                                                                controller.myCart[
+                                                                        index][
+                                                                    "itemName"])),
                                                       ),
                                                     ),
-                                                    Expanded(
-                                                      flex: 1,
-                                                      child: Container(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                  .all(8),
-                                                          decoration: boxdeco(),
-                                                          width: 40,
-                                                          height: MediaQuery.of(
-                                                                      context)
+                                                  ),
+                                                ),
+                                                Expanded(
+                                                  flex: 1,
+                                                  child: Container(
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              8),
+                                                      decoration:
+                                                          boxdeco(index),
+                                                      width: 40,
+                                                      height:
+                                                          MediaQuery.of(context)
                                                                   .size
                                                                   .height /
                                                               6,
-                                                          child: sideWidget(
-                                                              controller.myCart[
-                                                                  index]["id"],
-                                                              controller.myCart[
-                                                                      index]
-                                                                  ["isCheck"])),
-                                                    ),
-                                                  ],
+                                                      child: sideWidget(
+                                                          controller
+                                                                  .myCart[index]
+                                                              ["id"],
+                                                          controller
+                                                                  .myCart[index]
+                                                              ["isCheck"])),
                                                 ),
-                                              )),
-                                        ),
-                                      ],
-                                    );
-                                  }),
-                            )
+                                              ],
+                                            ),
+                                          )),
+                                    ),
+                                  ],
+                                );
+                              })
                           : nothingWidget());
                     }),
                   ),
@@ -207,8 +231,8 @@ class _MyCartState extends State<MyCart> {
     return Row(
       children: [
         Container(
-          width: MediaQuery.of(context).size.width / 3,
-          height: 40,
+          width: MediaQuery.of(context).size.width / 3.5,
+          height: 30,
           decoration: boxd(),
           child: Center(
             child: Row(
@@ -237,6 +261,7 @@ class _MyCartState extends State<MyCart> {
                     icon: const Icon(
                       Icons.add,
                       color: Colors.black,
+                      size: 15,
                     )),
                 text1(quent.toString()),
                 IconButton(
@@ -249,6 +274,7 @@ class _MyCartState extends State<MyCart> {
                     icon: const Icon(
                       Icons.remove,
                       color: Colors.black,
+                      size: 15,
                     ))
               ],
             ),
@@ -283,9 +309,9 @@ class _MyCartState extends State<MyCart> {
             fontFamily: 'Almarai'));
   }
 
-  BoxDecoration boxdeco() {
-    return const BoxDecoration(
-      color: Colors.white,
+  BoxDecoration boxdeco(index) {
+    return BoxDecoration(
+      color: index % 2 != 0 ? Colors.white : Color.fromARGB(255, 244, 239, 239),
       shape: BoxShape.rectangle,
       borderRadius: BorderRadius.only(
           topLeft: Radius.circular(15.0),

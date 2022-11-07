@@ -75,10 +75,10 @@ class _loginState extends State<login> {
       ),
       validator: (text) {
         if (text!.length > 15) {
-          return "can\'t enter bigest than ".tr + "15" + "characters".tr;
+          return "can\'t enter bigest than ".tr + "15" + "numbers".tr;
         }
         if (text.length < 9) {
-          return "can\'t enter less than ".tr + "9" + "characters".tr;
+          return "can\'t enter less than ".tr + "9" + "numbers".tr;
         }
       },
       onSaved: (string) {

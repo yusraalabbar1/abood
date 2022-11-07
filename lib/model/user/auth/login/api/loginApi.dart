@@ -93,6 +93,21 @@ Future diaSucc(context, c) {
       .show();
 }
 
+Future diaFaildDelet(context, c) {
+  return AwesomeDialog(
+          context: context,
+          animType: AnimType.RIGHSLIDE,
+          dialogType: DialogType.ERROR,
+          headerAnimationLoop: true,
+          btnOkOnPress: () {},
+          body: Text(c,
+              style: const TextStyle(
+                  color: Colors.black, fontSize: 14, fontFamily: 'Almarai')),
+          dialogBackgroundColor: MyColors.color3,
+          btnOkColor: Colors.black)
+      .show();
+}
+
 Future diaFaild(context, c) {
   return AwesomeDialog(
           context: context,

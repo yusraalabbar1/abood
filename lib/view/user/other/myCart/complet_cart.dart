@@ -303,11 +303,11 @@ class _CompletCartState extends State<CompletCart> {
         prefixIcon: IconButton(onPressed: () {}, icon: Icon(Icons.phone)),
       ),
       validator: (text) {
-        if (text!.length > 30) {
-          return "can\'t enter bigest than ".tr + "30" + "characters".tr;
+        if (text!.length > 15) {
+          return "can\'t enter bigest than ".tr + "15" + "numbers".tr;
         }
-        if (text.length < 1) {
-          return "can\'t enter less than ".tr + "1" + "characters".tr;
+        if (text.length < 9) {
+          return "can\'t enter less than ".tr + "9" + "numbers".tr;
         }
       },
       onSaved: (string) {
@@ -327,10 +327,10 @@ class _CompletCartState extends State<CompletCart> {
       ),
       validator: (text) {
         if (text!.length > 30) {
-          return "can\'t enter bigest than ".tr + "30" + "characters".tr;
+          return "can\'t enter bigest than ".tr + "30" + "numbers".tr;
         }
         if (text.length < 1) {
-          return "can\'t enter less than ".tr + "1" + "characters".tr;
+          return "can\'t enter less than ".tr + "1" + "numbers".tr;
         }
       },
       onSaved: (string) {
@@ -373,10 +373,18 @@ class _CompletCartState extends State<CompletCart> {
       ),
       validator: (text) {
         if (text!.length > 30) {
-          return "can\'t enter bigest than ".tr + "30" + "characters".tr;
+          return "can\'t enter bigest than ".tr +
+              "30" +
+              "characters".tr +
+              " - " +
+              "numbers".tr;
         }
         if (text.length < 1) {
-          return "can\'t enter less than ".tr + "1" + "characters".tr;
+          return "can\'t enter less than ".tr +
+              "1" +
+              "characters".tr +
+              " - " +
+              "numbers".tr;
         }
       },
       onSaved: (string) {

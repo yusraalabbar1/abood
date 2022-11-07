@@ -4,6 +4,7 @@ import 'package:abood/controller/controlProduct.dart';
 import 'package:abood/model/admin/api/deletItemApi.dart';
 import 'package:abood/model/admin/api/editItem.dart';
 import 'package:abood/model/admin/api/get_item_det.dart';
+import 'package:abood/model/user/auth/login/api/loginApi.dart';
 import 'package:abood/model/user/stor/items/get_items_id.dart';
 import 'package:abood/model/user/stor/stor_item/stor_item_model.dart';
 import 'package:flutter/material.dart';
@@ -144,7 +145,8 @@ class _DeletItemState extends State<DeletItem> {
                 // height: 450,
                 width: MediaQuery.of(context).size.width,
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
                       alignment: Alignment.center,
@@ -157,7 +159,8 @@ class _DeletItemState extends State<DeletItem> {
                         ? Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 20),
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Container(
                                   alignment: Alignment.center,
@@ -174,32 +177,55 @@ class _DeletItemState extends State<DeletItem> {
                                       return Padding(
                                           padding:
                                               const EdgeInsets.only(left: 5),
-                                          child: Row(
+                                          child: Stack(
                                             children: [
                                               CircleAvatar(
-                                                radius: 20,
-                                                backgroundColor: Colors.red,
+                                                // radius: 20,
+                                                backgroundColor: Color(
+                                                    int.parse(controller
+                                                        .ItemsById["itemColors"]
+                                                            [index]["value"]
+                                                        .toString()
+                                                        .replaceAll(
+                                                            "#", "0xff"))),
                                               ),
-                                              CircleAvatar(
-                                                radius: 10,
-                                                backgroundColor: Colors.black38,
-                                                child: IconButton(
-                                                    onPressed: () async {
-                                                      await deletItemColorApi(
-                                                          context,
-                                                          controller.ItemsById[
-                                                                      "itemColors"]
-                                                                  [index]
-                                                              ["itemColorId"]);
-                                                      await getItemDetailStore(
-                                                          controller.ItemsById[
-                                                              "itemId"]);
-                                                    },
-                                                    icon: Icon(
-                                                      Icons.remove,
-                                                      color: Colors.white,
-                                                      size: 5,
-                                                    )),
+                                              Positioned(
+                                                // right: -2.0,
+                                                bottom: 50.0,
+                                                child: CircleAvatar(
+                                                  radius: 10,
+                                                  backgroundColor: Colors.red,
+                                                  child: IconButton(
+                                                      onPressed: () async {
+                                                        if (controller
+                                                                .ItemsById[
+                                                                    "itemColors"]
+                                                                .length >
+                                                            1) {
+                                                          await deletItemColorApi(
+                                                              context,
+                                                              controller.ItemsById[
+                                                                          "itemColors"]
+                                                                      [index][
+                                                                  "itemColorId"]);
+                                                          await getItemDetailStore(
+                                                              controller
+                                                                      .ItemsById[
+                                                                  "itemId"]);
+                                                        } else {
+                                                          print("canot");
+                                                          diaFaildDelet(
+                                                              context,
+                                                              "Cann\'t Delete All Element in Section"
+                                                                  .tr);
+                                                        }
+                                                      },
+                                                      icon: Icon(
+                                                        Icons.remove,
+                                                        color: Colors.white,
+                                                        size: 5,
+                                                      )),
+                                                ),
                                               )
                                             ],
                                           ));
@@ -220,7 +246,8 @@ class _DeletItemState extends State<DeletItem> {
                         ? Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 20),
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Container(
                                   alignment: Alignment.center,
@@ -237,7 +264,7 @@ class _DeletItemState extends State<DeletItem> {
                                       return Padding(
                                           padding:
                                               const EdgeInsets.only(left: 5),
-                                          child: Row(
+                                          child: Stack(
                                             children: [
                                               Chip(
                                                 label: Text(
@@ -250,26 +277,43 @@ class _DeletItemState extends State<DeletItem> {
                                                       color: Colors.white),
                                                 ),
                                               ),
-                                              CircleAvatar(
-                                                radius: 10,
-                                                backgroundColor: Colors.black38,
-                                                child: IconButton(
-                                                    onPressed: () async {
-                                                      await deletItemSizeApi(
-                                                          context,
-                                                          controller.ItemsById[
-                                                                      "itemSizes"]
-                                                                  [index]
-                                                              ["itemSizeId"]);
-                                                      await getItemDetailStore(
-                                                          controller.ItemsById[
-                                                              "itemId"]);
-                                                    },
-                                                    icon: Icon(
-                                                      Icons.remove,
-                                                      color: Colors.white,
-                                                      size: 5,
-                                                    )),
+                                              Positioned(
+                                                // right: -2.0,
+                                                bottom: 50.0,
+                                                child: CircleAvatar(
+                                                  radius: 10,
+                                                  backgroundColor: Colors.red,
+                                                  child: IconButton(
+                                                      onPressed: () async {
+                                                        if (controller
+                                                                .ItemsById[
+                                                                    "itemSizes"]
+                                                                .length >
+                                                            1) {
+                                                          await deletItemSizeApi(
+                                                              context,
+                                                              controller.ItemsById[
+                                                                          "itemSizes"]
+                                                                      [index][
+                                                                  "itemSizeId"]);
+                                                          await getItemDetailStore(
+                                                              controller
+                                                                      .ItemsById[
+                                                                  "itemId"]);
+                                                        } else {
+                                                          print("canot");
+                                                          diaFaildDelet(
+                                                              context,
+                                                              "Cann\'t Delete All Element in Section"
+                                                                  .tr);
+                                                        }
+                                                      },
+                                                      icon: Icon(
+                                                        Icons.remove,
+                                                        color: Colors.white,
+                                                        size: 5,
+                                                      )),
+                                                ),
                                               )
                                             ],
                                           ));
@@ -290,7 +334,8 @@ class _DeletItemState extends State<DeletItem> {
                         ? Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 20),
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Container(
                                   alignment: Alignment.center,
@@ -311,7 +356,7 @@ class _DeletItemState extends State<DeletItem> {
                                     itemBuilder: (ctx, index) {
                                       return Padding(
                                         padding: const EdgeInsets.only(left: 5),
-                                        child: Row(
+                                        child: Stack(
                                           children: [
                                             Container(
                                               margin: EdgeInsets.only(
@@ -333,24 +378,43 @@ class _DeletItemState extends State<DeletItem> {
                                                     Radius.circular(5)),
                                               ),
                                             ),
-                                            CircleAvatar(
-                                              radius: 10,
-                                              backgroundColor: Colors.black38,
-                                              child: IconButton(
-                                                  onPressed: () async {
-                                                    deletItemImageApi(
-                                                        context,
-                                                        controller.ItemsById[
-                                                            "itemId"]);
-                                                    // await getItemDetailStore(
-                                                    //     controller.ItemsById[
-                                                    //         "itemId"]);
-                                                  },
-                                                  icon: Icon(
-                                                    Icons.remove,
-                                                    color: Colors.white,
-                                                    size: 5,
-                                                  )),
+                                            Positioned(
+                                              // right: -2.0,
+                                              bottom: 50.0,
+                                              child: CircleAvatar(
+                                                radius: 10,
+                                                backgroundColor: Colors.red,
+                                                child: IconButton(
+                                                    onPressed: () async {
+                                                      if (controller
+                                                              .ItemsById[
+                                                                  "itemImages"]
+                                                              .length >
+                                                          1) {
+                                                        deletItemImageApi(
+                                                            context,
+                                                            controller.ItemsById[
+                                                                        "itemImages"]
+                                                                    [index][
+                                                                "itemImageId"]);
+                                                        await getItemDetailStore(
+                                                            controller
+                                                                    .ItemsById[
+                                                                "itemId"]);
+                                                      } else {
+                                                        print("canot");
+                                                        diaFaildDelet(
+                                                            context,
+                                                            "Cann\'t Delete All Element in Section"
+                                                                .tr);
+                                                      }
+                                                    },
+                                                    icon: Icon(
+                                                      Icons.remove,
+                                                      color: Colors.white,
+                                                      size: 5,
+                                                    )),
+                                              ),
                                             )
                                           ],
                                         ),
@@ -469,7 +533,7 @@ class _DeletItemState extends State<DeletItem> {
         onPressed: () async {
           print('Button Clicked.');
           deletItemApi(context, id);
-          await getItemDetailStore(widget.pass.itemId);
+          // await getItemDetailStore(widget.pass.itemId);
         },
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(20.0))),

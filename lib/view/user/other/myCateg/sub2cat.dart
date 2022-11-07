@@ -34,7 +34,7 @@ class _Sub2catState extends State<Sub2cat> {
   final RefreshController refreshController =
       RefreshController(initialRefresh: true);
   /////////////////////////////////////
-
+  var text = "";
   Future<bool> getPassengerData({bool isRefresh = false}) async {
     print("=====store id======");
     var c2;
@@ -76,7 +76,9 @@ class _Sub2catState extends State<Sub2cat> {
       }
 
       currentPage++;
-
+      if (passengers.length == 0) {
+        text = "Ther are no Products in the stor".tr;
+      }
       // totalPages = result.meta!.totalPages!;
       // totalPages = 0;
 
@@ -196,176 +198,175 @@ class _Sub2catState extends State<Sub2cat> {
           ),
           Expanded(
               child: SmartRefresher(
-            controller: refreshController,
-            enablePullUp: true,
-            onRefresh: () async {
-              final result = await getPassengerData(isRefresh: true);
-              if (result) {
-                refreshController.refreshCompleted();
-              } else {
-                refreshController.refreshFailed();
-              }
-            },
-            onLoading: () async {
-              final result = await getPassengerData();
-              if (result) {
-                refreshController.loadComplete();
-              } else {
-                refreshController.loadFailed();
-              }
-            },
-            child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: GridView.builder(
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: account.round(),
-                      childAspectRatio: 3 / 4.0,
-                      crossAxisSpacing: 20,
-                      mainAxisSpacing: 20),
-                  itemCount: passengers.length,
-                  itemBuilder: (context, index) {
-                    final passenger = passengers[index];
-                    return InkWell(
-                        onTap: () async {
-                          print(passenger.itemId);
-                          // await getItemsIdApi(passenger.itemId);
-                          // Navigator.of(context)
-                          //     .pushNamed("particularProducte");
-                          print(passenger.itemId);
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  particulerProduct(id: passenger.itemId),
-                            ),
-                          );
-                        },
-                        child: Container(
-                            alignment: Alignment.center,
-                            //child: Text(myProducts[index]["name"]),
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(5)),
-                            child: Column(
-                              children: [
-                                Expanded(
-                                    flex: 3,
-                                    child: Stack(
-                                      children: [
-                                        Container(
-                                            decoration:
-                                                passenger.itemImages!.length > 0
-                                                    ? box2(passenger
-                                                        .itemImages![0]
-                                                        .imageUrl)
-                                                    : box2(passenger.image)),
-                                        Positioned(
-                                            left: 7,
-                                            top: 0.0,
+                  controller: refreshController,
+                  enablePullUp: true,
+                  onRefresh: () async {
+                    final result = await getPassengerData(isRefresh: true);
+                    if (result) {
+                      refreshController.refreshCompleted();
+                    } else {
+                      refreshController.refreshFailed();
+                    }
+                  },
+                  onLoading: () async {
+                    final result = await getPassengerData();
+                    if (result) {
+                      refreshController.loadComplete();
+                    } else {
+                      refreshController.loadFailed();
+                    }
+                  },
+                  child: passengers.length != 0
+                      ? Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: GridView.builder(
+                              gridDelegate:
+                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: account.round(),
+                                      childAspectRatio: 3 / 4.0,
+                                      crossAxisSpacing: 20,
+                                      mainAxisSpacing: 20),
+                              itemCount: passengers.length,
+                              itemBuilder: (context, index) {
+                                final passenger = passengers[index];
+                                return InkWell(
+                                    onTap: () async {
+                                      print(passenger.itemId);
+                                      // await getItemsIdApi(passenger.itemId);
+                                      // Navigator.of(context)
+                                      //     .pushNamed("particularProducte");
+                                      print(passenger.itemId);
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              particulerProduct(
+                                                  id: passenger.itemId),
+                                        ),
+                                      );
+                                    },
+                                    child: Container(
+                                        alignment: Alignment.center,
+                                        //child: Text(myProducts[index]["name"]),
+                                        decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius:
+                                                BorderRadius.circular(5)),
+                                        child: Column(
+                                          children: [
+                                            Expanded(
+                                                flex: 3,
+                                                child: Stack(
+                                                  children: [
+                                                    Container(
+                                                        decoration: passenger
+                                                                    .itemImages!
+                                                                    .length >
+                                                                0
+                                                            ? box2(passenger
+                                                                .itemImages![0]
+                                                                .imageUrl)
+                                                            : box2(passenger
+                                                                .image)),
+                                                    Positioned(
+                                                        left: 7,
+                                                        top: 0.0,
 
-                                            // (background container size) - (circle height / 2)
-                                            child: Column(
-                                              children: [
-                                                SizedBox(
-                                                  height: 5,
-                                                ),
-                                                Container(
-                                                  height: 35.0,
-                                                  width: 35.0,
-                                                  child: Stack(
-                                                    children: [
-                                                      Center(
-                                                          child: Icon(
-                                                              Icons.favorite,
-                                                              color:
-                                                                  Colors.white,
-                                                              size: 25.0)),
-                                                      Center(
-                                                        child: IconButton(
-                                                            icon: Icon(
-                                                              Icons
-                                                                  .favorite_sharp,
-                                                              color: passenger
-                                                                          .isWish ==
-                                                                      true
-                                                                  ? Colors.black
-                                                                  : Colors
-                                                                      .white,
-                                                              size: 20,
+                                                        // (background container size) - (circle height / 2)
+                                                        child: Column(
+                                                          children: [
+                                                            SizedBox(
+                                                              height: 5,
                                                             ),
-                                                            onPressed:
-                                                                () async {
-                                                              if (passenger
-                                                                      .isWish ==
-                                                                  false) {
-                                                                //add and change color
-                                                                setState(() {
-                                                                  i = 1;
-                                                                  passenger
-                                                                          .isWish =
-                                                                      true;
-                                                                });
-                                                                await addLike(
-                                                                    passenger
-                                                                        .itemId,
-                                                                    controller
-                                                                        .id);
-                                                                await myLikeApi(
-                                                                    controller
-                                                                        .id);
-                                                              } else if (passenger
-                                                                      .isWish ==
-                                                                  true) {
-                                                                //delete
-                                                                setState(() {
-                                                                  i = 0;
-                                                                  passenger
-                                                                          .isWish =
-                                                                      false;
-                                                                });
-                                                                await deleteLike(
-                                                                    controller
-                                                                        .id,
-                                                                    passenger
-                                                                        .itemId);
-                                                                await myLikeApi(
-                                                                    controller
-                                                                        .id);
-                                                              }
-                                                            }),
-                                                      ),
-                                                    ],
-                                                  ),
+                                                            Container(
+                                                              height: 35.0,
+                                                              width: 35.0,
+                                                              child: Stack(
+                                                                children: [
+                                                                  Center(
+                                                                      child: Icon(
+                                                                          Icons
+                                                                              .favorite,
+                                                                          color: Colors
+                                                                              .white,
+                                                                          size:
+                                                                              25.0)),
+                                                                  Center(
+                                                                    child: IconButton(
+                                                                        icon: Icon(
+                                                                          Icons
+                                                                              .favorite_sharp,
+                                                                          color: passenger.isWish == true
+                                                                              ? Colors.black
+                                                                              : Colors.white,
+                                                                          size:
+                                                                              20,
+                                                                        ),
+                                                                        onPressed: () async {
+                                                                          if (passenger.isWish ==
+                                                                              false) {
+                                                                            //add and change color
+                                                                            setState(() {
+                                                                              i = 1;
+                                                                              passenger.isWish = true;
+                                                                            });
+                                                                            await addLike(passenger.itemId,
+                                                                                controller.id);
+                                                                            await myLikeApi(controller.id);
+                                                                          } else if (passenger.isWish ==
+                                                                              true) {
+                                                                            //delete
+                                                                            setState(() {
+                                                                              i = 0;
+                                                                              passenger.isWish = false;
+                                                                            });
+                                                                            await deleteLike(controller.id,
+                                                                                passenger.itemId);
+                                                                            await myLikeApi(controller.id);
+                                                                          }
+                                                                        }),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ))
+                                                  ],
+                                                )),
+                                            Expanded(
+                                                child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.spaceAround,
+                                              children: [
+                                                InkWell(
+                                                  onTap: () {},
+                                                  child: Container(
+                                                      width: 50,
+                                                      height: 30,
+                                                      decoration: boxd2(),
+                                                      child: Center(
+                                                          child: textBot(
+                                                              passenger
+                                                                  .newPrice))),
+                                                ),
+                                                text3(
+                                                  passenger.itemName.toString(),
                                                 ),
                                               ],
-                                            ))
-                                      ],
-                                    )),
-                                Expanded(
-                                    child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
-                                  children: [
-                                    InkWell(
-                                      onTap: () {},
-                                      child: Container(
-                                          width: 50,
-                                          height: 30,
-                                          decoration: boxd2(),
-                                          child: Center(
-                                              child:
-                                                  textBot(passenger.newPrice))),
-                                    ),
-                                    text3(
-                                      passenger.itemName.toString(),
-                                    ),
-                                  ],
-                                )),
-                              ],
-                            )));
-                  }),
-            ),
-          ))
+                                            )),
+                                          ],
+                                        )));
+                              }),
+                        )
+                      : Center(
+                          child: Text(text,
+                              style: const TextStyle(
+                                  color: Colors.black,
+                                  overflow: TextOverflow.ellipsis,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20,
+                                  fontFamily: 'Almarai')),
+                        )))
         ]));
   }
 

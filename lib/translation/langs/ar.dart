@@ -150,6 +150,7 @@ const Map<String, String> ar = {
   'Enter a valid Name': 'أدخل اسم صحيح',
   'Enter a valid Email': 'أدخل أيميل صحيح',
   "characters": "أحرف",
+  "numbers": "أرقام",
   "Quantity per Color": "الكمية لكل لون",
   "Edit Colors": "تحرير الألوان",
   "Edit Sizes": "تحرير الأحجام",
@@ -191,5 +192,17 @@ const Map<String, String> ar = {
       "تم تغيير كلمة المرور بنجاح يرجى تسجيل الدخول",
   "EditItemColorSuccessfully": "تم تعديل اللون بنجاح",
   "EditItemSizeSuccessfully": "تم تعديل المقاس بنجاح",
-  "DeleteCartSuccessfully": "تم الحذف بنجاح "
+  "DeleteCartSuccessfully": "تم الحذف بنجاح ",
+  "Are you sure you want to delete account?": "هل أنت متأكد من حذف الحساب",
+  "Cann\'t Delete All Element in Section": "لا يمكن حذف كل عناصر القسم",
+  "ItemSizeUsedOnCart": "المنتج مطلوب من قبل مستخدم",
+  "ItemColorUsedOnCart": "المنتج مطلوب من قبل مستخدم",
+  "You did not choose sizes": "أنت لم تختار مقاسات",
+  "You did not choose colors": "أنت لم تختار ألوان",
+  "You did not choose colors and sizes": "أنت لم تختار مقاسات و ألوان",
+  "Please select The Products To Order": "الرجاء تحديد المنتجات المراد طلبها",
+  "Ther are no Products in the stor": "لا توجد منتجات في المتجر",
+  "Ther are no comments": "لا توجد تعليقات",
+  "PasswordChangedSuccessfully": "تم تغيير كلمة السر بنجاح",
+  " Enter to Login": "اضغط لتسجيل الدخول"
 };

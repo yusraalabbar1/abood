@@ -1,4 +1,5 @@
 import 'package:abood/controller/ControlUser.dart';
+import 'package:abood/controller/controlProduct.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -12,6 +13,7 @@ class contect extends StatefulWidget {
 
 class _contectState extends State<contect> {
   Homecontroller controller = Get.put(Homecontroller());
+  ControllerProduct controllerPro = Get.put(ControllerProduct());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,7 +50,9 @@ class _contectState extends State<contect> {
                       },
                       icon: const Icon(Icons.navigate_before)),
                   trailing: Text(
-                    controller.allSetting[index]["displayName"],
+                    controllerPro.language == "en"
+                        ? controller.allSetting[index]["displayNameEn"]
+                        : controller.allSetting[index]["displayName"],
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 15,

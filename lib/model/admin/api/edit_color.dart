@@ -33,6 +33,7 @@ edit_color(context, id, qty, value, idd) async {
     if (response.statusCode == 200) {
       if (c.isSuccess == true) {
         print(c.message);
+
         AwesomeDialog(
                 context: context,
                 animType: AnimType.RIGHSLIDE,
@@ -40,7 +41,7 @@ edit_color(context, id, qty, value, idd) async {
                 dialogType: DialogType.SUCCES,
                 btnOkOnPress: () {},
                 body: Center(
-                  child: Text(c.message.toString(),
+                  child: Text(c.message.toString().tr,
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                           color: Colors.black,
@@ -90,7 +91,7 @@ edit_size(context, id, ar, en, idStore) async {
               dialogType: DialogType.SUCCES,
               btnOkOnPress: () {},
               body: Center(
-                child: Text(c.message.toString(),
+                child: Text(c.message.toString().tr,
                     textAlign: TextAlign.center,
                     style: const TextStyle(
                         color: Colors.black,

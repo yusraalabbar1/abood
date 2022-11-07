@@ -4,6 +4,7 @@ import 'package:abood/view/user/auth/start_account.dart';
 import 'package:abood/view/user/other/widget/change_lang.dart';
 import 'package:abood/view/user/other/widget/dialog_guest.dart';
 import 'package:abood/view/user/other/widget/dialogs_drawer.dart';
+import 'package:abood/view/user/other/widget/showLoadingDelet.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -235,7 +236,7 @@ Drawer drawermain(context) {
                       guest != true
                           ? InkWell(
                               onTap: () async {
-                                // showLoadingDelet(context);
+                                showLoadingDelet(context);
                               },
                               child: Row(
                                 children: [

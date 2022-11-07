@@ -29,7 +29,7 @@ Future deletItemApi(context, id) async {
               dialogType: DialogType.SUCCES,
               btnOkOnPress: () {},
               body: Center(
-                child: Text(c.message.toString(),
+                child: Text(c.message.toString().tr,
                     textAlign: TextAlign.center,
                     style: const TextStyle(
                         color: Colors.black,
@@ -71,7 +71,7 @@ Future deletItemSizeApi(context, id) async {
               dialogType: DialogType.SUCCES,
               btnOkOnPress: () {},
               body: Center(
-                child: Text(c.message.toString(),
+                child: Text(c.message.toString().tr,
                     textAlign: TextAlign.center,
                     style: const TextStyle(
                         color: Colors.black,

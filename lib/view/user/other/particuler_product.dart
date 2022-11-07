@@ -77,15 +77,16 @@ class _particulerProductState extends State<particulerProduct> {
   var isFavourite = false;
   int currentPage = 0;
 
-  late int totalPages;
+  int totalPages = 0;
 
   List<ItemRate> passengers = [];
   double totalRate = 5.0;
   int numberRate = 0;
   final RefreshController refreshController =
       RefreshController(initialRefresh: true);
+  int rateNum = 0;
   /////////////////////////////////////
-
+  var text = "";
   Future<bool> getPassengerData({bool isRefresh = false}) async {
     int idd = int.parse(widget.id.toString());
     if (isRefresh) {
@@ -119,12 +120,16 @@ class _particulerProductState extends State<particulerProduct> {
       }
 
       currentPage++;
-
+      int rateNum = 0;
       // totalPages = result.meta!.totalPages!;
-      totalPages = 0;
+      // totalPages = 0;
 
       print(res.body);
-      setState(() {});
+      setState(() {
+        if (passengers.length == 0) {
+          text = "Ther are no comments".tr;
+        }
+      });
       return true;
     } else {
       return false;
@@ -171,8 +176,8 @@ class _particulerProductState extends State<particulerProduct> {
                             height: MediaQuery.of(context).size.height / 2,
                             width: MediaQuery.of(context).size.width,
                             child: controller.ItemsById["itemImages"].length > 0
-                                ? ListView.builder(
-                                    shrinkWrap: true,
+                                ? PageView.builder(
+                                    // shrinkWrap: true,
                                     itemCount: controller
                                         .ItemsById["itemImages"].length,
                                     scrollDirection: Axis.horizontal,
@@ -219,7 +224,8 @@ class _particulerProductState extends State<particulerProduct> {
                                 flex: 5,
                                 child: Center(
                                   child: Text(
-                                    controller.ItemsById["itemDescription"],
+                                    controller.ItemsById["itemDescription"]
+                                        .toString(),
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                         color: AppColor.bodyColor,
@@ -251,26 +257,53 @@ class _particulerProductState extends State<particulerProduct> {
                                           fontWeight: FontWeight.bold,
                                           fontSize: 25,
                                           fontFamily: 'majallab'))),
-                              Expanded(flex: 2, child: stars()),
                               Expanded(
-                                  child: Row(
-                                children: [
-                                  Expanded(
-                                    child: Text(
-                                        "(" + numberRate.toString() + ")",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontFamily: 'majallab',
-                                            fontSize: 15,
-                                            color: Colors.black)),
-                                  ),
-                                  Expanded(
-                                    child: IconButton(
-                                        onPressed: () {},
-                                        icon: const Icon(Icons.navigate_next)),
-                                  ),
-                                ],
-                              )),
+                                  flex: 2,
+                                  child: Stack(
+                                    alignment: Alignment.center,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Expanded(flex: 3, child: stars()),
+                                          Expanded(
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Expanded(
+                                                  child: Text(
+                                                      "(" +
+                                                          numberRate
+                                                              .toString() +
+                                                          ")",
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontFamily:
+                                                              'majallab',
+                                                          fontSize: 15,
+                                                          color: Colors.black)),
+                                                ),
+                                                Expanded(
+                                                  child: IconButton(
+                                                      onPressed: () {},
+                                                      icon: const Icon(
+                                                          Icons.navigate_next)),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          const SizedBox(width: 20),
+                                        ],
+                                      ),
+                                      Container(
+                                        width:
+                                            MediaQuery.of(context).size.width,
+                                        height: 20,
+                                        color: Colors.transparent,
+                                      )
+                                    ],
+                                  )),
                             ],
                           ),
                           const SizedBox(height: 10),
@@ -378,9 +411,14 @@ class _particulerProductState extends State<particulerProduct> {
                                       } else {
                                         await showRate(context,
                                             int.parse(widget.id.toString()));
-                                        Timer(Duration(seconds: 2), () {
-                                          showRateWait(context);
-                                        });
+                                        if (rateNum == 1) {
+                                          Timer(Duration(seconds: 2), () {
+                                            showRateWait(context);
+                                          });
+                                          setState(() {
+                                            rateNum = 0;
+                                          });
+                                        }
                                       }
                                     },
                                     icon: Icon(Icons.add_box))
@@ -413,24 +451,49 @@ class _particulerProductState extends State<particulerProduct> {
                                   refreshController.loadFailed();
                                 }
                               },
-                              child: ListView.builder(
-                                  shrinkWrap: true,
-                                  itemCount: passengers.length,
-                                  itemBuilder: (context, index) {
-                                    final passenger = passengers[index];
-                                    return Card(
-                                      elevation: 5,
-                                      color: Colors.white,
-                                      child: ListTile(
-                                          trailing: rating(passenger.rate),
-                                          subtitle: Text(
-                                            passenger.fullName.toString(),
-                                          ),
-                                          title: Text(
-                                            passenger.rateText.toString(),
-                                          )),
-                                    );
-                                  }),
+                              child: passengers.length != 0
+                                  ? ListView.builder(
+                                      shrinkWrap: true,
+                                      itemCount: passengers.length,
+                                      itemBuilder: (context, index) {
+                                        final passenger = passengers[index];
+                                        return Stack(
+                                          alignment: Alignment.center,
+                                          children: [
+                                            Card(
+                                              elevation: 5,
+                                              color: Colors.white,
+                                              child: ListTile(
+                                                  trailing:
+                                                      rating(passenger.rate),
+                                                  subtitle: Text(
+                                                    passenger.fullName
+                                                        .toString(),
+                                                  ),
+                                                  title: Text(
+                                                    passenger.rateText
+                                                        .toString(),
+                                                  )),
+                                            ),
+                                            Container(
+                                              width: MediaQuery.of(context)
+                                                  .size
+                                                  .width,
+                                              height: 20,
+                                              color: Colors.transparent,
+                                            )
+                                          ],
+                                        );
+                                      })
+                                  : Center(
+                                      child: Text("Ther are no comments".tr,
+                                          style: const TextStyle(
+                                              color: Colors.black,
+                                              overflow: TextOverflow.ellipsis,
+                                              // fontWeight: FontWeight.bold,
+                                              fontSize: 15,
+                                              fontFamily: 'Almarai')),
+                                    ),
                             ),
                           )
                           // : Container()
@@ -587,6 +650,124 @@ class _particulerProductState extends State<particulerProduct> {
         },
       ),
     );
+  }
+
+  showRate(context, idItem) async {
+    GlobalKey<FormState> formstate = new GlobalKey<FormState>();
+    Homecontroller controller = Get.put(Homecontroller());
+    String comment = "";
+    double rate = 4;
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text("add Comment".tr,
+                    style: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 21,
+                        fontFamily: 'majallab',
+                        fontWeight: FontWeight.bold)),
+                const SizedBox(
+                  height: 30,
+                ),
+                Form(
+                    key: formstate,
+                    child: Column(
+                      children: [
+                        Container(
+                          decoration: boxd(),
+                          child: TextFormField(
+                            maxLength: 30,
+                            keyboardType: TextInputType.text,
+                            textInputAction: TextInputAction.next,
+                            decoration: InputDecoration(
+                              hintText: "Enter Comment".tr,
+                              prefixIcon: IconButton(
+                                  onPressed: () {}, icon: Icon(Icons.comment)),
+                            ),
+                            validator: (text) {
+                              if (text!.length > 30) {
+                                return "can not enter bigest than 30";
+                              }
+                              if (text.length < 1) {
+                                return "can not enter less than 1";
+                              }
+                            },
+                            onSaved: (string) {
+                              comment = string!;
+                              print(comment);
+                              setState(() {
+                                rateNum = 1;
+                              });
+                            },
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        RatingBar.builder(
+                          initialRating: 4,
+                          minRating: 1,
+                          direction: Axis.horizontal,
+                          allowHalfRating: true,
+                          itemCount: 5,
+
+                          // itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+                          itemBuilder: (context, _) => const Icon(
+                            Icons.star_rounded,
+                            color: Colors.amber,
+                            size: 5,
+                          ),
+                          onRatingUpdate: (rating) {
+                            print(rating);
+                            rate = rating;
+                          },
+                        )
+                      ],
+                    )),
+                const SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  width: 300,
+                  height: 53,
+                  child: RaisedButton(
+                    onPressed: () {
+                      print('Button Clicked.');
+
+                      var formdata = formstate.currentState;
+                      if (formdata!.validate()) {
+                        formdata.save();
+                        print(" validddddddddddddddd");
+                        print("========information input==========");
+                        print(comment);
+                        addRate(context, idItem, controller.id, rate, comment);
+                        print("========================");
+                        Navigator.pop(context);
+                      }
+                    },
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(25.0))),
+                    child: Text(
+                      "Ok".tr,
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 21,
+                          fontFamily: 'majallab',
+                          fontWeight: FontWeight.bold),
+                    ),
+                    textColor: Colors.white,
+                    splashColor: Colors.white,
+                    color: Colors.black,
+                  ),
+                )
+              ],
+            ),
+          );
+        });
   }
 
   Widget counter(cartId, quent) {

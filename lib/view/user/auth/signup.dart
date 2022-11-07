@@ -154,8 +154,8 @@ class _signupState extends State<signup> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  ButtonRegister1(Colors.black, Colors.white, 'Login'.tr, 2),
-                  ButtonRegister1(Colors.white, Colors.black, "Next".tr, 1),
+                  ButtonRegister1(Colors.white, Colors.black, 'Login'.tr, 2),
+                  ButtonRegister1(Colors.black, Colors.white, "Next".tr, 1),
                 ],
               ),
             ),
@@ -220,10 +220,10 @@ class _signupState extends State<signup> {
       ),
       validator: (text) {
         if (text!.length > 15) {
-          return "can\'t enter bigest than ".tr + "15" + "characters".tr;
+          return "can\'t enter bigest than ".tr + "15" + "numbers".tr;
         }
         if (text.length < 9) {
-          return "can\'t enter less than ".tr + "9" + "characters".tr;
+          return "can\'t enter less than ".tr + "9" + "numbers".tr;
         }
         return null;
       },

@@ -113,20 +113,15 @@ class _forgetPasswordNumberState extends State<forgetPasswordNumber> {
     return TextFormField(
       keyboardType: TextInputType.phone,
       textInputAction: TextInputAction.next,
-      obscureText: _isObscure,
       decoration: InputDecoration(
         hintText: "Mobile Number".tr,
-        prefixIcon:
-            IconButton(onPressed: () {}, icon: Icon(Icons.mobile_friendly)),
-        labelStyle: TextStyle(
-            color: myFocusNode.hasFocus ? Color(0xffFAB10C) : Colors.black),
       ),
       validator: (text) {
-        if (text!.length > 40) {
-          return "can\'t enter bigest than ".tr + "40" + "characters".tr;
+        if (text!.length > 15) {
+          return "can\'t enter bigest than ".tr + "15" + "numbers".tr;
         }
-        if (text.length < 6) {
-          return "can\'t enter less than ".tr + "6" + "characters".tr;
+        if (text.length < 9) {
+          return "can\'t enter less than ".tr + "9" + "numbers".tr;
         }
         return null;
       },

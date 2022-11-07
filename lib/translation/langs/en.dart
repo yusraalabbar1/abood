@@ -193,5 +193,19 @@ const Map<String, String> en = {
       "Password Changed Successfully ,Enter to Login",
   "EditItemColorSuccessfully": "Edit Item Color Successfully",
   "EditItemSizeSuccessfully": "Edit Item Size Successfully",
-  "DeleteCartSuccessfully": "Delete Cart Successfully"
+  "DeleteCartSuccessfully": "Delete Cart Successfully",
+  "Are you sure you want to delete account?":
+      "Are you sure you want to delete account?",
+  "Cann\'t Delete All Element in Section":
+      "Cann\'t Delete All Element in Section",
+  "ItemSizeUsedOnCart": "Item Size Used On Cart",
+  "ItemColorUsedOnCart": "Item Color Used On Cart",
+  "You did not choose sizes": "You did not choose sizes",
+  "You did not choose colors": "You did not choose colors",
+  "You did not choose colors and sizes": "You did not choose colors and sizes",
+  "Please select The Products To Order": "Please select The Products To Order",
+  "Ther are no Products in the stor": "Ther are no Products in the store",
+  "Ther are no comments": "Ther are no comments",
+  "PasswordChangedSuccessfully": "Password Changed Successfully",
+  " Enter to Login": " Enter to Login"
 };

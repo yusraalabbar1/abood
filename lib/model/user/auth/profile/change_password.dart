@@ -68,7 +68,7 @@ Future diaSuccForget(context, c) {
           btnOkOnPress: () {
             Navigator.of(context).pushReplacementNamed("login");
           },
-          body: Text(c.toString() + "_nEnter to Login",
+          body: Text(c.toString().tr + "\t" + " Enter to Login".tr,
               style: const TextStyle(
                   color: Colors.black, fontSize: 14, fontFamily: 'Almarai')),
           dialogBackgroundColor: MyColors.color3,

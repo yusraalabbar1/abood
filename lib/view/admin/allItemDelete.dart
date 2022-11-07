@@ -202,6 +202,7 @@ class _AllItemsStoreDeletState extends State<AllItemsStoreDelet> {
                       final passenger = passengers[index];
                       return InkWell(
                           onTap: () async {
+                            print(passenger.itemId);
                             await getItemDetailStore(passenger.itemId);
                             Navigator.push(
                               context,
@@ -234,6 +235,7 @@ class _AllItemsStoreDeletState extends State<AllItemsStoreDelet> {
                                     children: [
                                       InkWell(
                                         onTap: () async {
+                                          print(passenger.itemId);
                                           await getItemDetailStore(
                                               passenger.itemId);
                                           Navigator.push(
