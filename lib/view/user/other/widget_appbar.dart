@@ -16,7 +16,7 @@ Text text1(text) {
 AppBar appbarmain(GlobalKey<ScaffoldState> scaffoldKey, context) {
   ControllerProduct controllerPro = Get.put(ControllerProduct());
   return AppBar(
-    toolbarHeight: 70, titleSpacing: 0.0, automaticallyImplyLeading: false,
+    toolbarHeight: 60, titleSpacing: 0.0, automaticallyImplyLeading: false,
     centerTitle: true,
     title: Row(
       mainAxisAlignment: MainAxisAlignment.start,

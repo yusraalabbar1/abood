@@ -58,7 +58,7 @@ class _homePageState extends State<homePage> {
         key: _bottomNavigationKey,
         index: 0,
         height: 60.0,
-        items: const <Widget>[
+        items: <Widget>[
           InkWell(
               child: Icon(
             Icons.home,
@@ -85,11 +85,16 @@ class _homePageState extends State<homePage> {
             color: Colors.white,
           )),
           InkWell(
-              child: Icon(
-            Icons.shopping_basket_sharp,
-            size: 25,
-            color: Colors.white,
-          )),
+            child: Image.asset(
+              "assets/images/image (2).png",
+              width: 30,
+            ),
+            //     Icon(
+            //   Icons.shopping_cart,
+            //   size: 25,
+            //   color: Colors.white,
+            // )
+          ),
         ],
         color: Colors.black,
         backgroundColor: Colors.transparent,
