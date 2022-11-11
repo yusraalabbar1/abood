@@ -42,6 +42,7 @@ import 'package:abood/view/user/other/myCateg/sub2cat.dart';
 import 'package:abood/view/user/other/myCateg/sub_cat.dart';
 import 'package:abood/view/user/other/myHome/search_user.dart';
 import 'package:abood/view/user/other/myNew/new.dart';
+import 'package:abood/view/user/other/myOrders/my_order.dart';
 import 'package:abood/view/user/other/particuler_product.dart';
 import 'package:abood/view/user/other/profile/edit_pass.dart';
 import 'package:abood/view/user/other/setting/about.dart';
@@ -114,6 +115,7 @@ class _MyAppState extends State<MyApp> {
         "otpSignup": ((context) => otpSignup()),
         "SubCat": ((context) => SubCat()),
         "offer": ((context) => offer()),
+        "myOrders": ((context) => myOrders()),
         "searchProduct": ((context) => searchProduct()),
         "forgetPassword": ((context) => forgetPassword()),
         "New": ((context) => New()),

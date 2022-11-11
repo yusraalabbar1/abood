@@ -123,7 +123,7 @@ class _AllItemsStoreofferState extends State<AllItemsStoreoffer> {
   Text appText(text) {
     return Text(text,
         style: const TextStyle(
-          color: Colors.black,
+          color: Colors.white,
           fontSize: 25,
           fontWeight: FontWeight.bold,
         ));
@@ -132,7 +132,7 @@ class _AllItemsStoreofferState extends State<AllItemsStoreoffer> {
   Text appText2(text) {
     return Text(text,
         style: const TextStyle(
-            color: Colors.black,
+            color: Colors.white,
             fontSize: 15,
             fontWeight: FontWeight.bold,
             fontFamily: 'Nunito'));
@@ -152,7 +152,7 @@ class _AllItemsStoreofferState extends State<AllItemsStoreoffer> {
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          backgroundColor: Colors.white,
+          backgroundColor: Colors.black,
           toolbarHeight: 100,
           title: Column(
             mainAxisAlignment: MainAxisAlignment.center,

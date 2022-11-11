@@ -134,10 +134,10 @@ class _AddProductState extends State<AddProduct> {
       ),
       validator: (text) {
         if (text!.length > 40) {
-          return "can not enter bigest than 40";
+          return "can\'t enter bigest than ".tr + "40" + "characters".tr;
         }
         if (text.length < 1) {
-          return "can not enter less than 1";
+          return "can\'t enter less than ".tr + "1" + "characters".tr;
         }
         return null;
       },
@@ -156,11 +156,11 @@ class _AddProductState extends State<AddProduct> {
         hintText: "Price".tr,
       ),
       validator: (text) {
-        if (text!.length > 40) {
-          return "can not enter bigest than 40";
+        if (text!.length > 20) {
+          return "can\'t enter bigest than " + "20" + "numbers".tr;
         }
         if (text.length < 1) {
-          return "can not enter less than 1";
+          return "can\'t enter less than ".tr + "1" + "numbers".tr;
         }
         return null;
       },
@@ -182,10 +182,10 @@ class _AddProductState extends State<AddProduct> {
       ),
       validator: (text) {
         if (text!.length > 100) {
-          return "can not enter bigest than 100";
+          return "can\'t enter bigest than ".tr + "100" + "characters".tr;
         }
         if (text.length < 1) {
-          return "can not enter less than 1";
+          return "can\'t enter less than ".tr + "1" + "characters".tr;
         }
         return null;
       },
@@ -209,10 +209,10 @@ class _AddProductState extends State<AddProduct> {
       ),
       validator: (text) {
         if (text!.length > 100) {
-          return "can not enter bigest than 100";
+          return "can\'t enter bigest than ".tr + "100" + "characters".tr;
         }
         if (text.length < 1) {
-          return "can not enter less than 1";
+          return "can\'t enter less than ".tr + "1" + "characters".tr;
         }
         return null;
       },

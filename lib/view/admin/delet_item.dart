@@ -42,7 +42,7 @@ class _DeletItemState extends State<DeletItem> {
   Text appText2(text) {
     return Text(text,
         style: const TextStyle(
-            color: Colors.black,
+            color: Colors.white,
             fontSize: 15,
             fontWeight: FontWeight.bold,
             fontFamily: 'Nunito'));
@@ -51,7 +51,7 @@ class _DeletItemState extends State<DeletItem> {
   Text appText(text) {
     return Text(text,
         style: const TextStyle(
-          color: Colors.black,
+          color: Colors.white,
           fontSize: 25,
           fontWeight: FontWeight.bold,
         ));
@@ -62,7 +62,7 @@ class _DeletItemState extends State<DeletItem> {
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          backgroundColor: Colors.white,
+          backgroundColor: Colors.black,
           toolbarHeight: 100,
           title: Column(
             mainAxisAlignment: MainAxisAlignment.center,

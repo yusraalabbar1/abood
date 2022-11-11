@@ -179,7 +179,8 @@ Drawer drawermain(context) {
                       ),
                       InkWell(
                         onTap: () async {
-                          showLoadingLang(context);
+                          // showLoadingLang(context);
+                          Navigator.of(context).pushNamed("myOrders");
                         },
                         child: Row(
                           children: [
@@ -191,7 +192,7 @@ Drawer drawermain(context) {
                                 color: Colors.white,
                               ),
                             ),
-                            Container(child: text2("Languages".tr))
+                            Container(child: text2("myOrders".tr))
                           ],
                         ),
                       ),

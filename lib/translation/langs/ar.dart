@@ -204,5 +204,6 @@ const Map<String, String> ar = {
   "Ther are no Products in the stor": "لا توجد منتجات في المتجر",
   "Ther are no comments": "لا توجد تعليقات",
   "PasswordChangedSuccessfully": "تم تغيير كلمة السر بنجاح",
-  " Enter to Login": "اضغط لتسجيل الدخول"
+  " Enter to Login": "اضغط لتسجيل الدخول",
+  "UserNotRelatedToStore": "المستخدم لا يملك متاجر حاليا"
 };

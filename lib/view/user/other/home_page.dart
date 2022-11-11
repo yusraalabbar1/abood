@@ -2,6 +2,7 @@ import 'package:abood/controller/ControlUser.dart';
 import 'package:abood/model/user/mylike/api/mylike.dart';
 import 'package:abood/view/user/auth/start_account.dart';
 import 'package:abood/view/user/other/drawer_main.dart';
+import 'package:abood/view/user/other/myCart/mycart.dart';
 import 'package:abood/view/user/other/myCateg/categ.dart';
 import 'package:abood/view/user/other/myHome/home.dart';
 import 'package:abood/view/user/other/myNew/new.dart';
@@ -38,7 +39,8 @@ class _homePageState extends State<homePage> {
     New(),
     category(),
     guest != true ? myProfile() : LoginGuest(),
-    guest != true ? myOrders() : LoginGuest(),
+    // guest != true ? myOrders() : LoginGuest(),
+    guest != true ? MyCart() : LoginGuest(),
   ];
   @override
   void initState() {
@@ -84,17 +86,16 @@ class _homePageState extends State<homePage> {
             size: 25,
             color: Colors.white,
           )),
-          InkWell(
-            child: Image.asset(
-              "assets/images/image (2).png",
-              width: 30,
-            ),
-            //     Icon(
-            //   Icons.shopping_cart,
-            //   size: 25,
-            //   color: Colors.white,
-            // )
-          ),
+          // InkWell(
+          //   child: Image.asset(
+          //     "assets/images/WhatsApp_Image_2022-11-09_at_1.45.38_PM-removebg-preview.png",
+          //     width: 35,
+          //   ),)
+          Icon(
+            Icons.shopping_bag,
+            size: 25,
+            color: Colors.white,
+          )
         ],
         color: Colors.black,
         backgroundColor: Colors.transparent,

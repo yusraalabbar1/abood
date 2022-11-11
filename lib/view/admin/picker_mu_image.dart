@@ -172,7 +172,7 @@ class _muImageState extends State<muImage> {
   Text appText(text) {
     return Text(text,
         style: const TextStyle(
-          color: Colors.black,
+          color: Colors.white,
           fontSize: 30,
           fontWeight: FontWeight.bold,
         ));
@@ -183,9 +183,10 @@ class _muImageState extends State<muImage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.black,
         toolbarHeight: 100,
         // centerTitle: false,
+
         title: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [appText("pick Image".tr)],

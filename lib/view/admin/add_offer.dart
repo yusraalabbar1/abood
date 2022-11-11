@@ -53,7 +53,7 @@ class _AddOfferState extends State<AddOffer> {
   Text appText2(text) {
     return Text(text,
         style: const TextStyle(
-            color: Colors.black,
+            color: Colors.white,
             fontSize: 20,
             fontWeight: FontWeight.bold,
             fontFamily: 'Nunito'));
@@ -62,7 +62,7 @@ class _AddOfferState extends State<AddOffer> {
   Text appText(text) {
     return Text(text,
         style: const TextStyle(
-          color: Colors.black,
+          color: Colors.white,
           fontSize: 25,
           fontWeight: FontWeight.bold,
         ));
@@ -73,7 +73,7 @@ class _AddOfferState extends State<AddOffer> {
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          backgroundColor: Colors.white,
+          backgroundColor: Colors.black,
           toolbarHeight: 80,
           // centerTitle: false,
           title: Column(

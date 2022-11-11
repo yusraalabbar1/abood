@@ -88,7 +88,7 @@ class _StorByMerchState extends State<StorByMerch> {
   Text appText(text) {
     return Text(text,
         style: const TextStyle(
-          color: Colors.black,
+          color: Colors.white,
           fontSize: 20,
           fontWeight: FontWeight.bold,
         ));
@@ -108,7 +108,7 @@ class _StorByMerchState extends State<StorByMerch> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.black,
         toolbarHeight: 100,
         title: Column(
           mainAxisAlignment: MainAxisAlignment.center,

@@ -62,7 +62,7 @@ class _MyCartState extends State<MyCart> {
                   ),
                   SizedBox(
                     width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height / 1.5,
+                    height: MediaQuery.of(context).size.height / 2,
                     child: GetBuilder<ControllerProduct>(builder: (controller) {
                       return (controller.myCart.length > 0
                           ? ListView.builder(
@@ -388,7 +388,7 @@ class _MyCartState extends State<MyCart> {
             child: Align(
               alignment: FractionalOffset.bottomCenter,
               child: Container(
-                padding: EdgeInsets.only(right: 20),
+                padding: EdgeInsets.only(right: 20, bottom: 80),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

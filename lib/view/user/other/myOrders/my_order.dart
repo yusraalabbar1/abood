@@ -77,6 +77,10 @@ class _myOrdersState extends State<myOrders> {
   Widget build(BuildContext context) {
     ControllerProduct controllerPro = Get.put(ControllerProduct());
     return Scaffold(
+      appBar: AppBar(
+        title: Text("myOrders".tr),
+        toolbarHeight: 80,
+      ),
       body: SmartRefresher(
           controller: refreshController,
           enablePullUp: true,
