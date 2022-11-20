@@ -392,8 +392,8 @@ class _MyCartState extends State<MyCart> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                    Container(
+                      width: 100,
                       child: TextButton(
                           style: TextButton.styleFrom(
                             backgroundColor: Colors.black,
@@ -403,14 +403,17 @@ class _MyCartState extends State<MyCart> {
                           },
                           child: text2("Continue".tr)),
                     ),
-                    TextButton(
-                        style: TextButton.styleFrom(
-                          backgroundColor: Colors.black,
-                        ),
-                        onPressed: () async {
-                          Navigator.of(context).pushNamed("AddCopon");
-                        },
-                        child: text2("Add Coupon".tr)),
+                    Container(
+                      width: 100,
+                      child: TextButton(
+                          style: TextButton.styleFrom(
+                            backgroundColor: Colors.black,
+                          ),
+                          onPressed: () async {
+                            Navigator.of(context).pushNamed("AddCopon");
+                          },
+                          child: text2("Add Coupon".tr)),
+                    ),
                     Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10),
                         child: GetBuilder<ControllerProduct>(

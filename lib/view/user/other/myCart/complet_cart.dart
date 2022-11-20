@@ -238,8 +238,8 @@ class _CompletCartState extends State<CompletCart> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
+              Container(
+                width: 100,
                 child: TextButton(
                     style: TextButton.styleFrom(
                       backgroundColor: Colors.black,
@@ -270,20 +270,23 @@ class _CompletCartState extends State<CompletCart> {
                           color: Colors.white),
                     )),
               ),
-              TextButton(
-                  style: TextButton.styleFrom(
-                    backgroundColor: Colors.black,
-                  ),
-                  onPressed: () async {
-                    Navigator.of(context).pushReplacementNamed("homePage");
-                  },
-                  child: Text(
-                    "Home".tr,
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 14,
-                        color: Colors.white),
-                  )),
+              Container(
+                width: 100,
+                child: TextButton(
+                    style: TextButton.styleFrom(
+                      backgroundColor: Colors.black,
+                    ),
+                    onPressed: () async {
+                      Navigator.of(context).pushReplacementNamed("homePage");
+                    },
+                    child: Text(
+                      "Home".tr,
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14,
+                          color: Colors.white),
+                    )),
+              ),
               Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: GetBuilder<ControllerProduct>(builder: (controller) {
