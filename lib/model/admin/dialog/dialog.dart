@@ -159,7 +159,8 @@ Future infoDialog(context, c, mobile) {
           headerAnimationLoop: true,
           dialogType: DialogType.QUESTION,
           btnOkOnPress: () {
-            generatnewOtp(context, mobile);
+            // generatnewOtp(context, mobile);
+            Navigator.of(context).pushNamed("OtpForget");
           },
           body: Center(
             child: Text(c.toString(),

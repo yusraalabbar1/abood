@@ -22,13 +22,17 @@ class _MainScreenStorState extends State<MainScreenStor> {
     return Container(
       width: w,
       height: 53,
-      child: RaisedButton(
+      child: ElevatedButton(
         onPressed: () {
           print('Button Clicked.');
           Navigator.of(context).pushNamed(nav);
         },
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(25.0))),
+        style: ElevatedButton.styleFrom(
+            shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(25.0))),
+            backgroundColor: c2,
+            onPrimary: Colors.white,
+            textStyle: TextStyle(color: c1)),
         child: Text(
           text,
           style: TextStyle(
@@ -37,9 +41,6 @@ class _MainScreenStorState extends State<MainScreenStor> {
               fontFamily: 'majallab',
               fontWeight: FontWeight.bold),
         ),
-        textColor: c1,
-        splashColor: Colors.white,
-        color: c2,
       ),
     );
   }
@@ -188,11 +189,13 @@ class _MainScreenStorState extends State<MainScreenStor> {
                     width: 10,
                   ),
                   Expanded(
-                    child: RaisedButton(
-                      color: Color.fromARGB(255, 240, 245, 246),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(25),
-                          side: BorderSide(color: Colors.white, width: 2)),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20.0))),
+                        backgroundColor: Color.fromARGB(255, 240, 245, 246),
+                      ),
                       child: Text("Home".tr,
                           style: TextStyle(
                               color: Colors.black,
@@ -207,11 +210,12 @@ class _MainScreenStorState extends State<MainScreenStor> {
                     width: 10,
                   ),
                   Expanded(
-                    child: RaisedButton(
-                      color: MyColors.color1,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(25),
-                          side: BorderSide(color: MyColors.color1, width: 2)),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20.0))),
+                          backgroundColor: MyColors.color1),
                       child: Text("Yes".tr,
                           style: TextStyle(
                               color: Colors.white,
@@ -226,13 +230,15 @@ class _MainScreenStorState extends State<MainScreenStor> {
                     width: 10,
                   ),
                   Expanded(
-                    child: RaisedButton(
-                      color: Color.fromARGB(255, 231, 38, 64),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(25),
-                          side: BorderSide(
-                              color: Color.fromARGB(255, 231, 38, 64),
-                              width: 2)),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color.fromARGB(255, 231, 38, 64),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(25),
+                            side: BorderSide(
+                                color: Color.fromARGB(255, 231, 38, 64),
+                                width: 2)),
+                      ),
                       child: Text("No".tr,
                           style: TextStyle(
                               color: Colors.white,

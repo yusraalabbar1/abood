@@ -192,7 +192,7 @@ Drawer drawermain(context) {
                                 color: Colors.white,
                               ),
                             ),
-                            Container(child: text2("myOrders".tr))
+                            Container(child: text2("My Order".tr))
                           ],
                         ),
                       ),

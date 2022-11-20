@@ -292,7 +292,7 @@ class _AddOfferState extends State<AddOffer> {
     return Container(
       width: 250,
       height: 65,
-      child: RaisedButton(
+      child: ElevatedButton(
         onPressed: () {
           print('Button Clicked.');
           var formdata = formstate.currentState;
@@ -307,8 +307,12 @@ class _AddOfferState extends State<AddOffer> {
             print("not validddddddddddddddd");
           }
         },
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(20.0))),
+        style: ElevatedButton.styleFrom(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(20.0))),
+            backgroundColor: c2,
+            onPrimary: Colors.white,
+            textStyle: TextStyle(color: c1)),
         child: Text(
           text,
           style: TextStyle(
@@ -317,9 +321,9 @@ class _AddOfferState extends State<AddOffer> {
               fontFamily: 'Nunito',
               fontWeight: FontWeight.bold),
         ),
-        textColor: c1,
-        splashColor: Colors.white,
-        color: c2,
+        // textColor: c1,
+        // splashColor: Colors.white,
+        // color: c2,
       ),
     );
   }

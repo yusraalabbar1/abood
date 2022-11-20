@@ -260,7 +260,13 @@ class _AddProductState extends State<AddProduct> {
     return Container(
       width: MediaQuery.of(context).size.width,
       height: 65,
-      child: RaisedButton(
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+            shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(20.0))),
+            backgroundColor: c2,
+            onPrimary: Colors.white,
+            textStyle: TextStyle(color: c1)),
         onPressed: () {
           print('Button Clicked.');
           var formdata = formstate.currentState;
@@ -288,8 +294,6 @@ class _AddProductState extends State<AddProduct> {
             print("not validddddddddddddddd");
           }
         },
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(20.0))),
         child: Text(
           text,
           style: TextStyle(
@@ -298,45 +302,6 @@ class _AddProductState extends State<AddProduct> {
               fontFamily: 'Nunito',
               fontWeight: FontWeight.bold),
         ),
-        textColor: c1,
-        splashColor: Colors.white,
-        color: c2,
-      ),
-    );
-  }
-
-  Widget ButtonRegister2(c2, c1, text, x) {
-    return Container(
-      width: 118,
-      height: 53,
-      child: RaisedButton(
-        onPressed: () {
-          print('Button Clicked.');
-          // Navigator.of(context).pushNamed("otpSignup");
-          // if (x == 1) {
-          //   var formdata = formstate.currentState;
-          //   if (formdata!.validate()) {
-          //     formdata.save();
-          //     print(" validddddddddddddddd");
-          //     Navigator.of(context).pushNamed("otpSignup");
-          //   } else {
-          //     print("not validddddddddddddddd");
-          //   }
-          // } else {}
-        },
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(25.0))),
-        child: Text(
-          text,
-          style: TextStyle(
-              color: c1,
-              fontSize: 18,
-              fontFamily: 'majallab',
-              fontWeight: FontWeight.bold),
-        ),
-        textColor: c1,
-        splashColor: Colors.white,
-        color: c2,
       ),
     );
   }

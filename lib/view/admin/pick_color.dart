@@ -262,7 +262,13 @@ class _picColorState extends State<picColor> {
     return Container(
       width: 200,
       height: 53,
-      child: RaisedButton(
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+            shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(20.0))),
+            backgroundColor: c2,
+            onPrimary: Colors.white,
+            textStyle: TextStyle(color: c1)),
         onPressed: () {
           setState(() {
             myListMapColors.add({"Value": c, "Qty": quent});
@@ -274,8 +280,6 @@ class _picColorState extends State<picColor> {
             print(myListMapColorsFinal);
           });
         },
-        shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(20.0))),
         child: Text(
           "pick".tr,
           style: TextStyle(
@@ -284,9 +288,6 @@ class _picColorState extends State<picColor> {
               fontFamily: 'Nunito',
               fontWeight: FontWeight.bold),
         ),
-        textColor: c1,
-        splashColor: Colors.white,
-        color: c2,
       ),
     );
   }
@@ -296,7 +297,13 @@ class _picColorState extends State<picColor> {
     return Container(
       width: 118,
       height: 65,
-      child: RaisedButton(
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(20.0))),
+            backgroundColor: c2,
+            onPrimary: Colors.white,
+            textStyle: TextStyle(color: c1)),
         onPressed: () {
           controller.SaveIdStore(int.parse(widget.id.toString()));
           if (myListMapize.length == 0 && myListMapColorsFinal.length != 0) {
@@ -318,8 +325,6 @@ class _picColorState extends State<picColor> {
                 myListMapColorsFinal);
           }
         },
-        shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(25.0))),
         child: Text(
           "Send Info Admin".tr,
           style: TextStyle(
@@ -328,9 +333,6 @@ class _picColorState extends State<picColor> {
               fontFamily: 'Nunito',
               fontWeight: FontWeight.bold),
         ),
-        textColor: c1,
-        splashColor: Colors.white,
-        color: c2,
       ),
     );
   }

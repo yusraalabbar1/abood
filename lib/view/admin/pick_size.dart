@@ -85,7 +85,13 @@ class _pickSizeState extends State<pickSize> {
     return Container(
       width: 200,
       height: 53,
-      child: RaisedButton(
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+            shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(20.0))),
+            backgroundColor: c2,
+            onPrimary: Colors.white,
+            textStyle: TextStyle(color: c1)),
         onPressed: () {
           setState(() {
             var formdata = formstate.currentState;
@@ -102,8 +108,6 @@ class _pickSizeState extends State<pickSize> {
             }
           });
         },
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(20.0))),
         child: Text(
           "Pick".tr,
           style: TextStyle(
@@ -112,9 +116,6 @@ class _pickSizeState extends State<pickSize> {
               fontFamily: 'Nunito',
               fontWeight: FontWeight.bold),
         ),
-        textColor: c1,
-        splashColor: Colors.white,
-        color: c2,
       ),
     );
   }

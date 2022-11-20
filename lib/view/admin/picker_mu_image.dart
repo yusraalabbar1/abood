@@ -46,13 +46,17 @@ class _muImageState extends State<muImage> {
     return Container(
       width: MediaQuery.of(context).size.width,
       height: 65,
-      child: RaisedButton(
+      child: ElevatedButton(
         onPressed: () {
           print('Button Clicked.');
           Navigator.of(context).pushReplacementNamed("MainScreenStor");
         },
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(20.0))),
+        style: ElevatedButton.styleFrom(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(20.0))),
+            backgroundColor: c2,
+            onPrimary: Colors.white,
+            textStyle: TextStyle(color: c1)),
         child: Text(
           "Home".tr,
           style: TextStyle(
@@ -61,39 +65,36 @@ class _muImageState extends State<muImage> {
               fontFamily: 'Nunito',
               fontWeight: FontWeight.bold),
         ),
-        textColor: c1,
-        splashColor: Colors.white,
-        color: c2,
       ),
     );
   }
 
   Widget ButtonRegister1(c2, c1) {
     return Container(
-      width: MediaQuery.of(context).size.width,
-      height: 65,
-      child: RaisedButton(
-        onPressed: () {
-          print('Button Clicked.');
-          // openImages();
-          // addImageApi(context, 50, imageFile);
-          Upload(context, imageFile, nameImage, widget.id);
-        },
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(20.0))),
-        child: Text(
-          "send photo".tr,
-          style: TextStyle(
-              color: c1,
-              fontSize: 18,
-              fontFamily: 'Nunito',
-              fontWeight: FontWeight.bold),
-        ),
-        textColor: c1,
-        splashColor: Colors.white,
-        color: c2,
-      ),
-    );
+        width: MediaQuery.of(context).size.width,
+        height: 65,
+        child: ElevatedButton(
+          onPressed: () {
+            print('Button Clicked.');
+            // openImages();
+            // addImageApi(context, 50, imageFile);
+            Upload(context, imageFile, nameImage, widget.id);
+          },
+          style: ElevatedButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(20.0))),
+              backgroundColor: c2,
+              onPrimary: Colors.white,
+              textStyle: TextStyle(color: c1)),
+          child: Text(
+            "send photo".tr,
+            style: TextStyle(
+                color: c1,
+                fontSize: 18,
+                fontFamily: 'Nunito',
+                fontWeight: FontWeight.bold),
+          ),
+        ));
   }
 
   static const colorizeColors = [

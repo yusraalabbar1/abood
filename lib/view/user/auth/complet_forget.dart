@@ -60,13 +60,17 @@ class _completForgetState extends State<completForget> {
     return Container(
       width: 300,
       height: 53,
-      child: RaisedButton(
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+            shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(25.0))),
+            backgroundColor: c2,
+            onPrimary: Colors.white,
+            textStyle: TextStyle(color: c1)),
         onPressed: () {
           print('Button Clicked.');
           Navigator.of(context).pushNamed(nav);
         },
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(25.0))),
         child: Text(
           text,
           style: TextStyle(
@@ -75,9 +79,6 @@ class _completForgetState extends State<completForget> {
               fontFamily: 'majallab',
               fontWeight: FontWeight.bold),
         ),
-        textColor: c1,
-        splashColor: Colors.white,
-        color: c2,
       ),
     );
   }

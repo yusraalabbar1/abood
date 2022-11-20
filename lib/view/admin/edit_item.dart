@@ -383,7 +383,7 @@ class _EditItemState extends State<EditItem> {
                                 )
                               ],
                             ),
-                            FlatButton(
+                            TextButton(
                               child: const Text("OK"),
                               onPressed: () {
                                 colCut != ""
@@ -581,7 +581,13 @@ class _EditItemState extends State<EditItem> {
     return Container(
       width: 150,
       height: 65,
-      child: RaisedButton(
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(20.0))),
+            backgroundColor: c2,
+            onPrimary: Colors.white,
+            textStyle: TextStyle(color: c1)),
         onPressed: () {
           print('Button Clicked.');
           var formdata = formstate.currentState;
@@ -614,8 +620,6 @@ class _EditItemState extends State<EditItem> {
             print("not validddddddddddddddd");
           }
         },
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(25.0))),
         child: Text(
           text,
           style: TextStyle(
@@ -624,9 +628,6 @@ class _EditItemState extends State<EditItem> {
               fontFamily: 'Nunito',
               fontWeight: FontWeight.bold),
         ),
-        textColor: c1,
-        splashColor: Colors.white,
-        color: c2,
       ),
     );
   }
@@ -635,13 +636,17 @@ class _EditItemState extends State<EditItem> {
     return Container(
       width: 150,
       height: 65,
-      child: RaisedButton(
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(20.0))),
+            backgroundColor: c2,
+            onPrimary: Colors.white,
+            textStyle: TextStyle(color: c1)),
         onPressed: () {
           print('Button Clicked.');
           deletItemApi(context, id);
         },
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(25.0))),
         child: Text(
           text,
           style: TextStyle(
@@ -650,9 +655,6 @@ class _EditItemState extends State<EditItem> {
               fontFamily: 'Nunito',
               fontWeight: FontWeight.bold),
         ),
-        textColor: c1,
-        splashColor: Colors.white,
-        color: c2,
       ),
     );
   }
@@ -662,12 +664,16 @@ class _EditItemState extends State<EditItem> {
       width: 200,
       height: 50,
       margin: EdgeInsets.all(5),
-      child: RaisedButton(
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(20.0))),
+            backgroundColor: c2,
+            onPrimary: Colors.white,
+            textStyle: TextStyle(color: c1)),
         onPressed: () {
           Navigator.of(context).pushNamed("MainScreenStor");
         },
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(20.0))),
         child: Text(
           text,
           style: TextStyle(
@@ -676,9 +682,6 @@ class _EditItemState extends State<EditItem> {
               fontFamily: 'Nunito',
               fontWeight: FontWeight.bold),
         ),
-        textColor: c1,
-        splashColor: Colors.white,
-        color: c2,
       ),
     );
   }

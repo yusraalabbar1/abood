@@ -92,11 +92,13 @@ showLoadingUpdate(context) {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      RaisedButton(
-                        color: Colors.black,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(25),
-                            side: BorderSide(color: Colors.black, width: 2)),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(25),
+                              side: BorderSide(color: Colors.black, width: 2)),
+                          backgroundColor: Colors.black,
+                        ),
                         child: Text("Ok".tr,
                             style: TextStyle(
                                 color: Colors.white,
@@ -117,13 +119,15 @@ showLoadingUpdate(context) {
                       SizedBox(
                         width: 10,
                       ),
-                      RaisedButton(
-                        color: Color.fromARGB(255, 231, 38, 64),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(25),
-                            side: BorderSide(
-                                color: Color.fromARGB(255, 231, 38, 64),
-                                width: 2)),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(25),
+                              side: BorderSide(
+                                  color: Color.fromARGB(255, 231, 38, 64),
+                                  width: 2)),
+                          backgroundColor: Color.fromARGB(255, 231, 38, 64),
+                        ),
                         child: Text("Cancle".tr,
                             style: TextStyle(
                                 color: Colors.white,

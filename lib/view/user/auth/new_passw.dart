@@ -80,7 +80,13 @@ class _forgetPasswordNumberState extends State<forgetPasswordNumber> {
     return Container(
       width: 300,
       height: 53,
-      child: RaisedButton(
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+            shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(25.0))),
+            backgroundColor: c2,
+            onPrimary: Colors.white,
+            textStyle: TextStyle(color: c1)),
         onPressed: () {
           var formdata = formstate.currentState;
           if (formdata!.validate()) {
@@ -92,8 +98,6 @@ class _forgetPasswordNumberState extends State<forgetPasswordNumber> {
             forgetApi(context, phone);
           }
         },
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(25.0))),
         child: Text(
           text,
           style: TextStyle(
@@ -102,9 +106,6 @@ class _forgetPasswordNumberState extends State<forgetPasswordNumber> {
               fontFamily: 'majallab',
               fontWeight: FontWeight.bold),
         ),
-        textColor: c1,
-        splashColor: Colors.white,
-        color: c2,
       ),
     );
   }

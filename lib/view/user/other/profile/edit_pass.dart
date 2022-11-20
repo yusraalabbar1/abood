@@ -158,13 +158,13 @@ class _editPasswordState extends State<editPassword> {
                   height: 55,
                   margin: const EdgeInsets.only(
                       bottom: 10, right: 30, left: 30, top: 10),
-                  child: RaisedButton(
-                    color: Colors.black,
-                    elevation: 10,
-                    splashColor: Colors.white,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(25),
-                        side: BorderSide(color: Colors.black, width: 2)),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(25),
+                            side: BorderSide(color: Colors.black, width: 2)),
+                        backgroundColor: Colors.black,
+                        elevation: 10),
                     onPressed: () {
                       var formdata = formstate.currentState;
                       if (formdata!.validate()) {

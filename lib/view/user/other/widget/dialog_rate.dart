@@ -27,12 +27,19 @@ showRateWait(context) async {
               Container(
                 width: 300,
                 height: 53,
-                child: RaisedButton(
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      shape: const RoundedRectangleBorder(
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(25.0))),
+                      backgroundColor: Colors.black,
+                      onPrimary: Colors.white,
+                      textStyle: TextStyle(
+                        color: Colors.white,
+                      )),
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(25.0))),
                   child: Text(
                     "Ok".tr,
                     style: TextStyle(
@@ -41,9 +48,6 @@ showRateWait(context) async {
                         fontFamily: 'majallab',
                         fontWeight: FontWeight.bold),
                   ),
-                  textColor: Colors.white,
-                  splashColor: Colors.white,
-                  color: Colors.black,
                 ),
               )
             ],

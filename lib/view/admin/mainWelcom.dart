@@ -102,23 +102,27 @@ class welcomStore extends StatelessWidget {
                                               right: 30,
                                               left: 30,
                                               top: 30),
-                                          child: RaisedButton(
-                                            color: Colors.white,
-                                            elevation: 10,
-                                            splashColor: MyColors.color3,
-                                            shape: const RoundedRectangleBorder(
-                                                // borderRadius:
-                                                //     BorderRadius.circular(25),
-                                                borderRadius: BorderRadius.only(
-                                                  topLeft: Radius.circular(40),
-                                                  bottomLeft:
-                                                      Radius.circular(40),
-                                                  bottomRight:
-                                                      Radius.circular(40),
-                                                ),
-                                                side: BorderSide(
-                                                    color: Colors.white,
-                                                    width: 2)),
+                                          child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                              shape:
+                                                  const RoundedRectangleBorder(
+                                                      // borderRadius:
+                                                      //     BorderRadius.circular(25),
+                                                      borderRadius:
+                                                          BorderRadius.only(
+                                                        topLeft:
+                                                            Radius.circular(40),
+                                                        bottomLeft:
+                                                            Radius.circular(40),
+                                                        bottomRight:
+                                                            Radius.circular(40),
+                                                      ),
+                                                      side: BorderSide(
+                                                          color: Colors.white,
+                                                          width: 2)),
+                                              backgroundColor: Colors.white,
+                                              onPrimary: MyColors.color3,
+                                            ),
                                             onPressed: () {
                                               Navigator.of(context)
                                                   .pushReplacementNamed(

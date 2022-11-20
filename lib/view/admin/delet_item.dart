@@ -529,14 +529,18 @@ class _DeletItemState extends State<DeletItem> {
     return Container(
       width: 150,
       height: 65,
-      child: RaisedButton(
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(20.0))),
+            backgroundColor: c2,
+            onPrimary: Colors.white,
+            textStyle: TextStyle(color: c1)),
         onPressed: () async {
           print('Button Clicked.');
           deletItemApi(context, id);
           // await getItemDetailStore(widget.pass.itemId);
         },
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(20.0))),
         child: Text(
           text,
           style: TextStyle(
@@ -545,9 +549,6 @@ class _DeletItemState extends State<DeletItem> {
               fontFamily: 'Nunito',
               fontWeight: FontWeight.bold),
         ),
-        textColor: c1,
-        splashColor: Colors.white,
-        color: c2,
       ),
     );
   }

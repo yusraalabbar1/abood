@@ -326,9 +326,11 @@ class _particulerProductStoreState extends State<particulerProductStore> {
                               ),
                               Expanded(
                                 flex: 6,
-                                child: FlatButton(
-                                    color: Colors.black,
-                                    height: 70,
+                                child: TextButton(
+                                    style: TextButton.styleFrom(
+                                      backgroundColor: Colors.black,
+                                    ),
+                                    // height: 70,
                                     onPressed: () async {
                                       if (guest == true) {
                                         diaGuest(context);
@@ -648,9 +650,11 @@ class _particulerProductStoreState extends State<particulerProductStore> {
               ),
               Expanded(
                 flex: 6,
-                child: FlatButton(
-                    color: Colors.black,
-                    height: 70,
+                child: TextButton(
+                    style: TextButton.styleFrom(
+                      backgroundColor: Colors.black,
+                    ),
+                    // height: 70,
                     onPressed: () async {
                       print(itemId);
                       print(itemSizeId);

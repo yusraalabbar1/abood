@@ -83,7 +83,15 @@ class _langState extends State<lang> {
     return Container(
       width: 300,
       height: 53,
-      child: RaisedButton(
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+            shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(25.0))),
+            backgroundColor: c2,
+            onPrimary: Colors.white,
+            textStyle: TextStyle(
+              color: c1,
+            )),
         onPressed: () async {
           print('Button Clicked.');
           SharedPreferences preferences = await SharedPreferences.getInstance();
@@ -101,8 +109,6 @@ class _langState extends State<lang> {
             Navigator.of(context).pushNamed("startAccount");
           }
         },
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(25.0))),
         child: Text(
           text,
           style: TextStyle(
@@ -111,9 +117,6 @@ class _langState extends State<lang> {
               fontFamily: 'majallab',
               fontWeight: FontWeight.bold),
         ),
-        textColor: c1,
-        splashColor: Colors.white,
-        color: c2,
       ),
     );
   }

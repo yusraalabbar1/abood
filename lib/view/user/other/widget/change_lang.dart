@@ -26,11 +26,13 @@ showLoadingLang(context) {
                 return (Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    RaisedButton(
-                      color: Colors.black,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(25),
-                          side: BorderSide(color: Colors.black, width: 2)),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.black,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(25),
+                            side: BorderSide(color: Colors.black, width: 2)),
+                      ),
                       child: Text("العربية".tr,
                           style: TextStyle(
                               color: Colors.white,
@@ -50,11 +52,13 @@ showLoadingLang(context) {
                     SizedBox(
                       width: 10,
                     ),
-                    RaisedButton(
-                      color: Colors.black,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(25),
-                          side: BorderSide(color: Colors.black, width: 2)),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.black,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(25),
+                            side: BorderSide(color: Colors.black, width: 2)),
+                      ),
                       child: Text("English".tr,
                           style: TextStyle(
                               color: Colors.white,

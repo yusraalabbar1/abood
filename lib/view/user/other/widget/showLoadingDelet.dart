@@ -30,11 +30,13 @@ showLoadingDelet(context) async {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      RaisedButton(
-                        color: Colors.black,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(25),
-                            side: BorderSide(color: Colors.black, width: 2)),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          shape: const RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(25.0))),
+                          backgroundColor: Colors.black,
+                        ),
                         child: Text("Yes".tr,
                             style: TextStyle(
                                 color: Colors.white,
@@ -56,11 +58,13 @@ showLoadingDelet(context) async {
                       SizedBox(
                         width: 10,
                       ),
-                      RaisedButton(
-                        color: Colors.black,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(25),
-                            side: BorderSide(color: Colors.black, width: 2)),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          shape: const RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(25.0))),
+                          backgroundColor: Colors.black,
+                        ),
                         child: Text("No".tr,
                             style: TextStyle(
                                 color: Colors.white,

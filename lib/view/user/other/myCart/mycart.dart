@@ -394,15 +394,19 @@ class _MyCartState extends State<MyCart> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: FlatButton(
-                          color: Colors.black,
+                      child: TextButton(
+                          style: TextButton.styleFrom(
+                            backgroundColor: Colors.black,
+                          ),
                           onPressed: () async {
                             Navigator.of(context).pushNamed("CompletCart");
                           },
                           child: text2("Continue".tr)),
                     ),
-                    FlatButton(
-                        color: Colors.black,
+                    TextButton(
+                        style: TextButton.styleFrom(
+                          backgroundColor: Colors.black,
+                        ),
                         onPressed: () async {
                           Navigator.of(context).pushNamed("AddCopon");
                         },
@@ -496,12 +500,16 @@ class _MyCartState extends State<MyCart> {
     return Container(
       width: 250,
       height: 50,
-      child: RaisedButton(
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+            shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(20.0))),
+            backgroundColor: c2,
+            onPrimary: Colors.white,
+            textStyle: TextStyle(color: c1)),
         onPressed: () {
           Navigator.of(context).pushReplacementNamed("homePage");
         },
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(20.0))),
         child: Text(
           text,
           style: TextStyle(
@@ -510,9 +518,6 @@ class _MyCartState extends State<MyCart> {
               fontFamily: 'Nunito',
               fontWeight: FontWeight.bold),
         ),
-        textColor: c1,
-        splashColor: Colors.white,
-        color: c2,
       ),
     );
   }

@@ -42,11 +42,14 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  RaisedButton(
-                    color: MyColors.color1,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(25),
-                        side: BorderSide(color: MyColors.color1, width: 2)),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(25),
+                          side: BorderSide(color: MyColors.color1, width: 2)),
+                      backgroundColor: MyColors.color1,
+                      onPrimary: Colors.white,
+                    ),
                     child: Text("Yes".tr,
                         style: TextStyle(
                             color: Colors.white,
@@ -59,12 +62,15 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                   SizedBox(
                     width: 10,
                   ),
-                  RaisedButton(
-                    color: Color.fromARGB(255, 231, 38, 64),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(25),
-                        side: BorderSide(
-                            color: Color.fromARGB(255, 231, 38, 64), width: 2)),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color.fromARGB(255, 231, 38, 64),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(25),
+                          side: BorderSide(
+                              color: Color.fromARGB(255, 231, 38, 64),
+                              width: 2)),
+                    ),
                     child: Text("No".tr,
                         style: TextStyle(
                             color: Colors.white,

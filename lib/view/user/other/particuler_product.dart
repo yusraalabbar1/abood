@@ -516,9 +516,10 @@ class _particulerProductState extends State<particulerProduct> {
                               ),
                               Expanded(
                                 flex: 6,
-                                child: FlatButton(
-                                    color: Colors.black,
-                                    height: 70,
+                                child: TextButton(
+                                    style: TextButton.styleFrom(
+                                      backgroundColor: Colors.black,
+                                    ),
                                     onPressed: () async {
                                       if (guest == true) {
                                         diaGuest(context);
@@ -734,7 +735,14 @@ class _particulerProductState extends State<particulerProduct> {
                 Container(
                   width: 300,
                   height: 53,
-                  child: RaisedButton(
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(25.0))),
+                        backgroundColor: Colors.black,
+                        onPrimary: Colors.white,
+                        textStyle: TextStyle(color: Colors.white)),
                     onPressed: () {
                       print('Button Clicked.');
 
@@ -749,8 +757,6 @@ class _particulerProductState extends State<particulerProduct> {
                         Navigator.pop(context);
                       }
                     },
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(25.0))),
                     child: Text(
                       "Ok".tr,
                       style: TextStyle(
@@ -759,9 +765,9 @@ class _particulerProductState extends State<particulerProduct> {
                           fontFamily: 'majallab',
                           fontWeight: FontWeight.bold),
                     ),
-                    textColor: Colors.white,
-                    splashColor: Colors.white,
-                    color: Colors.black,
+                    // textColor: Colors.white,
+                    // splashColor: Colors.white,
+                    // color: Colors.black,
                   ),
                 )
               ],
@@ -993,9 +999,11 @@ class _particulerProductState extends State<particulerProduct> {
               ),
               Expanded(
                 flex: 6,
-                child: FlatButton(
-                    color: Colors.black,
-                    height: 70,
+                child: TextButton(
+                    style: TextButton.styleFrom(
+                      backgroundColor: Colors.black,
+                    ),
+                    // height: 70,
                     onPressed: () async {
                       print(itemId);
                       print(itemSizeId);

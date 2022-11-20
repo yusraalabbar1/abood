@@ -201,23 +201,11 @@ class _otpSignupState extends State<otpSignup> with TickerProviderStateMixin {
                       ),
                     ),
 
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        InkWell(
-                            onTap: () {
-                              infoDialog(context, "RESEND".tr,
-                                  controller.mobileNumber);
-                            },
-                            child:
-                                text1("You haven't received the code yet?".tr)),
-                        Countdown(
-                          animation: StepTween(
-                            begin: levelClock, // THIS IS A USER ENTERED NUMBER
-                            end: 0,
-                          ).animate(_controller),
-                        ),
-                      ],
+                    Countdown(
+                      animation: StepTween(
+                        begin: levelClock, // THIS IS A USER ENTERED NUMBER
+                        end: 0,
+                      ).animate(_controller),
                     ),
                     SizedBox(
                       height: 50,
@@ -250,7 +238,13 @@ class _otpSignupState extends State<otpSignup> with TickerProviderStateMixin {
     return Container(
       width: 118,
       height: 53,
-      child: RaisedButton(
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+            shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(25.0))),
+            backgroundColor: c2,
+            onPrimary: Colors.white,
+            textStyle: TextStyle(color: c1)),
         onPressed: () {
           print('Button Clicked.');
           // Navigator.of(context).pushNamed("otpSignup");
@@ -286,8 +280,6 @@ class _otpSignupState extends State<otpSignup> with TickerProviderStateMixin {
             Navigator.of(context).pushNamed("signup");
           }
         },
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(25.0))),
         child: Center(
           child: Text(
             text,
@@ -299,9 +291,6 @@ class _otpSignupState extends State<otpSignup> with TickerProviderStateMixin {
                 fontWeight: FontWeight.bold),
           ),
         ),
-        textColor: c1,
-        splashColor: Colors.white,
-        color: c2,
       ),
     );
   }
@@ -315,6 +304,7 @@ class Countdown extends AnimatedWidget {
   @override
   build(BuildContext context) {
     Duration clockTimer = Duration(seconds: animation.value);
+    Homecontroller controller = Get.put(Homecontroller());
 
     String timerText =
         '${clockTimer.inMinutes.remainder(60).toString()}:${clockTimer.inSeconds.remainder(60).toString().padLeft(2, '0')}';
@@ -325,13 +315,35 @@ class Countdown extends AnimatedWidget {
     // print(
     //     'inSeconds.remainder ${clockTimer.inSeconds.remainder(60).toString()}');
 
-    return Text(
-      "$timerText",
-      style: TextStyle(
-        fontSize: 21,
-        fontFamily: 'majallab',
-        color: Colors.black,
+    return Padding(
+      padding: const EdgeInsets.all(30.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          InkWell(
+              onTap: () {
+                // print(_controller.lastElapsedDuration);
+                if (animation.value == 0) {
+                  infoDialog(context, "RESEND".tr, controller.mobileNumber);
+                }
+              },
+              child: text1("You haven't received the code yet?".tr)),
+          Text(
+            "$timerText",
+            style: TextStyle(
+              fontSize: 21,
+              fontFamily: 'majallab',
+              color: Colors.black,
+            ),
+          ),
+        ],
       ),
     );
+  }
+
+  Text text1(text) {
+    return Text(text,
+        style: const TextStyle(
+            fontSize: 18, fontWeight: FontWeight.bold, fontFamily: 'majallab'));
   }
 }

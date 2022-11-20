@@ -32,7 +32,7 @@ class LoginGuest extends StatelessWidget {
             style: TextStyle(
                 color: Colors.black, fontSize: 14, fontFamily: 'Almarai')),
         Center(
-          child: RaisedButton(
+          child: ElevatedButton(
             onPressed: () {
               Navigator.of(context).pushReplacementNamed("startAccount");
             },

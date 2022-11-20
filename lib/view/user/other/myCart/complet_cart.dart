@@ -240,8 +240,10 @@ class _CompletCartState extends State<CompletCart> {
             children: [
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: FlatButton(
-                    color: Colors.black,
+                child: TextButton(
+                    style: TextButton.styleFrom(
+                      backgroundColor: Colors.black,
+                    ),
                     onPressed: () async {
                       // Navigator.of(context).pushNamed("CompletCart");
                       var formdata = formstate.currentState;
@@ -268,8 +270,10 @@ class _CompletCartState extends State<CompletCart> {
                           color: Colors.white),
                     )),
               ),
-              FlatButton(
-                  color: Colors.black,
+              TextButton(
+                  style: TextButton.styleFrom(
+                    backgroundColor: Colors.black,
+                  ),
                   onPressed: () async {
                     Navigator.of(context).pushReplacementNamed("homePage");
                   },
