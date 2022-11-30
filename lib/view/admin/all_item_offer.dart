@@ -153,6 +153,13 @@ class _AllItemsStoreofferState extends State<AllItemsStoreoffer> {
         appBar: AppBar(
           backgroundColor: Colors.black,
           toolbarHeight: 100,
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back, color: Colors.white),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+          iconTheme: const IconThemeData(
+            color: Colors.white, //change your color here
+          ),
           title: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

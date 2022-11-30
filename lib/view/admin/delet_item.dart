@@ -63,6 +63,10 @@ class _DeletItemState extends State<DeletItem> {
         backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: Colors.black,
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back, color: Colors.white),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
           toolbarHeight: 100,
           title: Column(
             mainAxisAlignment: MainAxisAlignment.center,

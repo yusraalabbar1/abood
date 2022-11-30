@@ -187,7 +187,10 @@ class _muImageState extends State<muImage> {
         backgroundColor: Colors.black,
         toolbarHeight: 100,
         // centerTitle: false,
-
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
         title: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [appText("pick Image".tr)],
