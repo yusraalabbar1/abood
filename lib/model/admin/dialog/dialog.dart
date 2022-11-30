@@ -1,6 +1,7 @@
 import 'package:abood/constant/colors.dart';
 import 'package:abood/controller/controlAdmin.dart';
 import 'package:abood/model/user/auth/signup/api/generate_new_otp.dart';
+import 'package:abood/model/user/auth/signup/api/generate_otp.dart';
 import 'package:abood/view/admin/picker_mu_image.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
@@ -160,6 +161,7 @@ Future infoDialog(context, c, mobile) {
           dialogType: DialogType.QUESTION,
           btnOkOnPress: () {
             // generatnewOtp(context, mobile);
+            generatOtp(context, mobile);
             Navigator.of(context).pushNamed("OtpForget");
           },
           body: Center(

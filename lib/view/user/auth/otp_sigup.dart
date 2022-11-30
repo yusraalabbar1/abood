@@ -36,7 +36,7 @@ class _otpSignupState extends State<otpSignup> with TickerProviderStateMixin {
 
   @override
   void initState() {
-    generatOtp(context, controller.mobileNumber);
+    // generatOtp(context, controller.mobileNumber);
     errorController = StreamController<ErrorAnimationType>();
     super.initState();
 

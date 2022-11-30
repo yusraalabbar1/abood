@@ -55,6 +55,21 @@ class _welcomState extends State<welcom> {
     controller.SavecountryId(preferences.getInt('countryId'));
     controllerPro.SaveLang(preferences.getString("lang"));
     // controller.SaveLang(preferences.getString("lang"));
+    await settingAll();
+    await Website();
+    await whatsup();
+    await facebook();
+    await term();
+    await aboutus();
+    await privacy();
+    await protection();
+    await countryGen();
+    await getInfo();
+    await GetStorByUser();
+    await AllCategories();
+    await BannerApi();
+    await GetStorByUser();
+    await BannerMainApi();
     if (preferences.getBool("isLogin") == true) {
       guest = false;
       if (preferences.getInt("userType") == 1) {
@@ -85,21 +100,6 @@ class _welcomState extends State<welcom> {
 
   @override
   void initState() {
-    settingAll();
-    Website();
-    whatsup();
-    facebook();
-    term();
-    aboutus();
-    privacy();
-    protection();
-    countryGen();
-    getInfo();
-    GetStorByUser();
-    AllCategories();
-    BannerApi();
-    GetStorByUser();
-    BannerMainApi();
     _onChangeHandler();
     super.initState();
   }

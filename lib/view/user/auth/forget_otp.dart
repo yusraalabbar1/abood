@@ -36,7 +36,7 @@ class _OtpForgetState extends State<OtpForget> with TickerProviderStateMixin {
 
   @override
   void initState() {
-    generatOtp(context, controller.mobileNumber);
+    // generatOtp(context, controller.mobileNumber);
     errorController = StreamController<ErrorAnimationType>();
     super.initState();
 
