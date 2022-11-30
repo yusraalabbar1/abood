@@ -14,10 +14,8 @@ import 'package:http/http.dart' as http;
 checkApi(id, val) async {
   var headers = {'Content-Type': 'application/json'};
 
-  var request = http.Request(
-      'POST',
-      Uri.parse(
-          'https://friendly-proskuriakova.162-55-191-66.plesk.page/AboodAPI/api/cart/updateIsCheck'));
+  var request =
+      http.Request('POST', Uri.parse(baseURL + '/api/cart/updateIsCheck'));
   request.body = json.encode({"CartId": id, "IsCheck": val});
   request.headers.addAll(headers);
 

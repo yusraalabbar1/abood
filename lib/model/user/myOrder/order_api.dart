@@ -10,10 +10,8 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 myOrderApi(iduser) async {
-  var request = http.Request(
-      'GET',
-      Uri.parse(
-          'https://friendly-proskuriakova.162-55-191-66.plesk.page/AboodAPI/api/userRequest/getByUserId/22/pageIndex/0'));
+  var request = http.Request('GET',
+      Uri.parse(baseURL + '/api/userRequest/getByUserId/22/pageIndex/0'));
 
   http.StreamedResponse response = await request.send();
 

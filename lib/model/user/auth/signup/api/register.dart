@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:abood/constant/urls.dart';
 import 'package:abood/controller/ControlUser.dart';
 import 'package:abood/model/admin/dialog/dialog.dart';
 import 'package:abood/model/user/auth/signup/json/register_model.dart';
@@ -36,10 +37,8 @@ Future register(context, mobile, password, email, first, last, idcount) async {
   }
   controller.ident(identifier);
   var headers = {'Content-Type': 'application/json'};
-  var request = http.Request(
-      'POST',
-      Uri.parse(
-          'https://friendly-proskuriakova.162-55-191-66.plesk.page/AboodAPI/api/user/registration'));
+  var request =
+      http.Request('POST', Uri.parse(baseURL + '/api/user/registration'));
   request.body = json.encode({
     "UserType": 1,
     "CountryId": idcount,

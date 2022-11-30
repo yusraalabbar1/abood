@@ -23,10 +23,8 @@ paymentApi(context, name, mobile, cityId, area, street, flat, listMap) async {
   print(flat);
   print(listMap);
   var headers = {'Content-Type': 'application/json'};
-  var request = http.Request(
-      'POST',
-      Uri.parse(
-          'https://friendly-proskuriakova.162-55-191-66.plesk.page/AboodAPI/api/userRequest/add'));
+  var request =
+      http.Request('POST', Uri.parse(baseURL + '/api/userRequest/add'));
   request.body = json.encode({
     "UserId": controller.id,
     "FullName": name,

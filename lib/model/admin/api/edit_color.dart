@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:abood/constant/colors.dart';
+import 'package:abood/constant/urls.dart';
 import 'package:abood/model/admin/dialog/dialog.dart';
 import 'package:abood/model/admin/jsonModel/onlyItemDelete.dart';
 import 'package:abood/model/user/stor/items/get_items_id.dart';
@@ -15,10 +16,8 @@ edit_color(context, id, qty, value, idd) async {
     print(qty);
     print(value);
     var headers = {'Content-Type': 'application/json'};
-    var request = http.Request(
-        'POST',
-        Uri.parse(
-            'https://friendly-proskuriakova.162-55-191-66.plesk.page/AboodAPI/api/items/update/color'));
+    var request =
+        http.Request('POST', Uri.parse(baseURL + '/api/items/update/color'));
     request.body = json.encode({
       "Id": int.parse(id.toString()),
       "Qty": int.parse(qty.toString()),

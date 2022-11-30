@@ -61,11 +61,11 @@ android {
          multiDexEnabled true
     }
    signingConfigs {
-       release {
-           keyAlias keystoreProperties['upload']
-           keyPassword keystoreProperties['yusraab']
+      release {
+           keyAlias keystoreProperties['keyAlias']
+           keyPassword keystoreProperties['keyPassword']
            storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
-           storePassword keystoreProperties['yusraab']
+           storePassword keystoreProperties['storePassword']
        }
    }
     buildTypes {

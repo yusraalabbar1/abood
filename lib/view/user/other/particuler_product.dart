@@ -149,7 +149,10 @@ class _particulerProductState extends State<particulerProduct> {
               onPressed: () async {
                 Navigator.of(context).pushNamed("MyCart");
               },
-              icon: const Icon(Icons.shopping_bag)),
+              icon: const Icon(
+                Icons.shopping_bag,
+                color: Colors.white,
+              )),
           IconButton(
               onPressed: () async {
                 Navigator.of(context).pushNamed("myLike");

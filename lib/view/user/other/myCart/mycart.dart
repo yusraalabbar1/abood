@@ -51,7 +51,9 @@ class _MyCartState extends State<MyCart> {
                   ListTile(
                     title: Text("Estimated delivery time is 3 days".tr),
                     subtitle: Text("Cannot be returned or exchanged".tr),
-                    leading: Image.asset("assets/images/shipped.png"),
+                    leading: Image.asset(
+                      "assets/images/shipped.png",
+                    ),
                   ),
                   Divider(
                     thickness: 3,
@@ -481,8 +483,8 @@ class _MyCartState extends State<MyCart> {
         children: [
           Image.asset(
             "assets/images/giphy (1).gif",
-            width: 300,
-            height: 300,
+            width: 200,
+            height: 200,
           ),
           Text("You didn't add anything".tr,
               style: TextStyle(

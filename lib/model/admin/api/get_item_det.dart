@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:abood/constant/urls.dart';
 import 'package:abood/controller/controlAdmin.dart';
 import 'package:abood/model/admin/jsonModel/GetItemStoreModel.dart';
 import 'package:flutter/material.dart';
@@ -9,10 +10,8 @@ import 'package:http/http.dart' as http;
 getItemDetailStore(id) async {
   ControllerAdmin controllerPro = Get.put(ControllerAdmin());
 
-  var request = http.Request(
-      'GET',
-      Uri.parse(
-          'https://friendly-proskuriakova.162-55-191-66.plesk.page/AboodAPI/api/items/$id/details'));
+  var request =
+      http.Request('GET', Uri.parse(baseURL + '/api/items/$id/details'));
 
   http.StreamedResponse response = await request.send();
 
