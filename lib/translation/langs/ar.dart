@@ -20,7 +20,7 @@ const Map<String, String> ar = {
   "SignUp": "انشاء حساب",
   "Guest": "الدخول كضيف",
   "Create Account": "انشاء حساب",
-  "Choose the country": 'اختر المدينة',
+  "Choose the country": 'اختر البلد',
   "First Name": "اسم الاول",
   "Last Name": "اسم الاخير",
   "Email": "البريد الالكتروني",
