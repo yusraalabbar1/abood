@@ -29,13 +29,11 @@ class welcom extends StatefulWidget {
 }
 
 class _welcomState extends State<welcom> {
-  getInfo() async {}
-
   Timer? searchOnStoppedTyping;
   _onChangeHandler() {
     const duration = Duration(
         milliseconds:
-            8000); // set the duration that you want call pop() after that.
+            1); // set the duration that you want call pop() after that.
     if (searchOnStoppedTyping != null) {
       searchOnStoppedTyping?.cancel(); // clear timer
     }
@@ -55,16 +53,15 @@ class _welcomState extends State<welcom> {
     controller.SavecountryId(preferences.getInt('countryId'));
     controllerPro.SaveLang(preferences.getString("lang"));
     // controller.SaveLang(preferences.getString("lang"));
-    await settingAll();
-    await Website();
-    await whatsup();
-    await facebook();
-    await term();
-    await aboutus();
-    await privacy();
-    await protection();
+    // await settingAll();
+    // await Website();
+    // await whatsup();
+    // await facebook();
+    // await term();
+    // await aboutus();
+    // await privacy();
+    // await protection();
     await countryGen();
-    await getInfo();
     await GetStorByUser();
     await AllCategories();
     await BannerApi();

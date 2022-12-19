@@ -1,4 +1,5 @@
 import 'package:abood/controller/ControlUser.dart';
+import 'package:abood/model/setting/settingApi.dart';
 import 'package:abood/model/user/mylike/api/mylike.dart';
 import 'package:abood/view/user/auth/start_account.dart';
 import 'package:abood/view/user/other/drawer_main.dart';
@@ -42,10 +43,22 @@ class _homePageState extends State<homePage> {
     // guest != true ? myOrders() : LoginGuest(),
     guest != true ? MyCart() : LoginGuest(),
   ];
+  setting() async {
+    await settingAll();
+    await Website();
+    await whatsup();
+    await facebook();
+    await term();
+    await aboutus();
+    await privacy();
+    await protection();
+  }
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    setting();
     // myLikeApi(controller.id);
   }
 

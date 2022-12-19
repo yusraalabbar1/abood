@@ -19,7 +19,7 @@ class _welcomHomeState extends State<welcomHome>
   _onChangeHandler() {
     const duration = Duration(
         milliseconds:
-            8000); // set the duration that you want call pop() after that.
+            1000); // set the duration that you want call pop() after that.
     if (searchOnStoppedTyping != null) {
       searchOnStoppedTyping?.cancel(); // clear timer
     }
