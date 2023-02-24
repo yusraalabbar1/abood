@@ -206,23 +206,28 @@ class _muImageState extends State<muImage> {
             children: [
               Stack(
                 children: [
-                  Container(
-                    margin: EdgeInsets.all(10),
-                    height: MediaQuery.of(context).size.height / 5,
-                    width: MediaQuery.of(context).size.width / 2,
-                    decoration: const BoxDecoration(
-                      color: Colors.black,
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                      // gradient: LinearGradient(
-                      //   begin: Alignment.bottomRight,
-                      //   end: Alignment.bottomLeft,
-                      //   colors: [
-                      //     Color.fromARGB(255, 63, 63, 64),
-                      //     Color.fromARGB(255, 250, 253, 253),
-                      //   ],
-                      // )
+                  InkWell(
+                    onTap: () {
+                      _getFromCamera();
+                    },
+                    child: Container(
+                      margin: EdgeInsets.all(10),
+                      height: MediaQuery.of(context).size.height / 5,
+                      width: MediaQuery.of(context).size.width / 2,
+                      decoration: const BoxDecoration(
+                        color: Colors.black,
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                        // gradient: LinearGradient(
+                        //   begin: Alignment.bottomRight,
+                        //   end: Alignment.bottomLeft,
+                        //   colors: [
+                        //     Color.fromARGB(255, 63, 63, 64),
+                        //     Color.fromARGB(255, 250, 253, 253),
+                        //   ],
+                        // )
+                      ),
+                      child: Center(child: appText2("photo \nCamera".tr)),
                     ),
-                    child: Center(child: appText2("photo \nCamera".tr)),
                   ),
                   Positioned(
                       left: 20,
@@ -256,15 +261,20 @@ class _muImageState extends State<muImage> {
               ),
               Stack(
                 children: [
-                  Container(
-                    margin: EdgeInsets.all(10),
-                    height: MediaQuery.of(context).size.height / 5,
-                    width: MediaQuery.of(context).size.width / 3,
-                    decoration: const BoxDecoration(
-                      color: Colors.black,
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                  InkWell(
+                    onTap: () {
+                      _getFromGallery();
+                    },
+                    child: Container(
+                      margin: EdgeInsets.all(10),
+                      height: MediaQuery.of(context).size.height / 5,
+                      width: MediaQuery.of(context).size.width / 3,
+                      decoration: const BoxDecoration(
+                        color: Colors.black,
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                      ),
+                      child: Center(child: appText2("photo \nGallery".tr)),
                     ),
-                    child: Center(child: appText2("photo \nGallery".tr)),
                   ),
                   Positioned(
                       left: 20,

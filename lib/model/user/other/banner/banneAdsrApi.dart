@@ -22,7 +22,7 @@ Future BannerApi() async {
 
   if (response.statusCode == 200) {
     if (c.isSuccess == true) {
-      print("access banner");
+      print("access banner-------------------------------------");
       print(c.data!.length);
       for (var i = 0; i < c.data!.length; i++) {
         print(c.data![i].image);
@@ -33,9 +33,10 @@ Future BannerApi() async {
       controllerPro.SaveContrilerBannerMap(bannerMap);
       print(jsonDecode(res.body));
     } else {
-      print("not access banner");
+      print("not access banner---------------------");
     }
   } else {
-    print("error api banner");
+    print(response.statusCode);
+    print("error api banner-----------------------");
   }
 }

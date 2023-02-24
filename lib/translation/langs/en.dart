@@ -172,7 +172,9 @@ const Map<String, String> en = {
   "Only Quantity available ": "Only Quantity available ",
   "WrongMobileNumberPassword": "Wrong MobileNumber Password",
   "MobileNumber AleardyExist": "Mobile Number Aleardy Exist",
+  "MobileNumberAleardyExist": "Mobile Number Aleardy Exist",
   "VerifyOtpFailOrNotExist": "Verify Otp Fail Or Not Exist",
+  "UserNotActive": "User Not Active",
   "AddCartSuccessfully": "Add Cart Successfully",
   "item_already_exists": "item already exists",
   "password_confirmation!=new_password":
