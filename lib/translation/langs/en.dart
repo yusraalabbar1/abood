@@ -210,5 +210,5 @@ const Map<String, String> en = {
   "Ther are no comments": "Ther are no comments",
   "PasswordChangedSuccessfully": "Password Changed Successfully",
   " Enter to Login": " Enter to Login",
-  "UserNotRelatedToStore": "User Not Related To Store"
+  "UserNotRelatedToStore": "User Not Related To Store",
 };

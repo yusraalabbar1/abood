@@ -216,9 +216,9 @@ class _otpSignupState extends State<otpSignup> with TickerProviderStateMixin {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           ButtonRegister1(
-                              Colors.white, Colors.black, "VERIFY".tr, 1),
+                              Colors.white, Colors.black, "Modify".tr, 2),
                           ButtonRegister1(
-                              Colors.black, Colors.white, "Modify".tr, 2),
+                              Colors.black, Colors.white, "VERIFY".tr, 1),
                         ],
                       ),
                     ),

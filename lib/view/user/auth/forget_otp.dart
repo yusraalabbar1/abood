@@ -216,9 +216,9 @@ class _OtpForgetState extends State<OtpForget> with TickerProviderStateMixin {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           ButtonRegister1(
-                              Colors.white, Colors.black, "VERIFY".tr, 1),
+                              Colors.black, Colors.white, "VERIFY".tr, 1),
                           ButtonRegister1(
-                              Colors.black, Colors.white, "Modify".tr, 2),
+                              Colors.white, Colors.black, "Modify".tr, 2),
                         ],
                       ),
                     ),

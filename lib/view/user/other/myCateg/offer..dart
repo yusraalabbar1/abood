@@ -179,22 +179,16 @@ class _offerState extends State<offer> {
 
                                               // (background container size) - (circle height / 2)
                                               child: Column(
-                                                children: [
-                                                  const SizedBox(
+                                                children: const [
+                                                  SizedBox(
                                                     height: 5,
                                                   ),
-                                                  CircleAvatar(
-                                                    backgroundColor:
-                                                        Colors.red[100],
-                                                    child: Center(
-                                                      child: IconButton(
-                                                          icon: const Icon(
-                                                            Icons.local_offer,
-                                                            color: Colors.white,
-                                                            size: 20,
-                                                          ),
-                                                          onPressed:
-                                                              () async {}),
+                                                  Center(
+                                                    child: Icon(
+                                                      Icons.local_offer,
+                                                      color: Color.fromARGB(
+                                                          255, 208, 17, 17),
+                                                      size: 20,
                                                     ),
                                                   ),
                                                 ],
