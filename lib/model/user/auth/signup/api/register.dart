@@ -64,9 +64,7 @@ Future register(context, mobile, password, email, first, last, idcount) async {
     } else {
       mydiaFaild(context, c.message);
     }
-    // print(await response.stream.bytesToString());
   } else {
-    // print(response.reasonPhrase);
     mydiaFaild(context, c.message);
   }
 }
